@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-10-09T07:20:49.463Z",
+  "note": "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
+  "total": 23,
+  "excluded": [
+    {
+      "name": "Agri-Tracker",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/Agri-Tracker"
+    },
+    {
+      "name": "agri-wisdom",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/agri-wisdom"
+    },
+    {
+      "name": "Agrirexpert.ai",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/Agrirexpert.ai"
+    },
+    {
+      "name": "AgriTech-Free-Tools",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/AgriTech-Free-Tools"
+    },
+    {
+      "name": "AgriTechOS",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/AgriTechOS"
+    },
+    {
+      "name": "bd_crop_advisory",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/bd_crop_advisory"
+    },
+    {
+      "name": "crop-diagnosis",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/crop-diagnosis"
+    },
+    {
+      "name": "cultivating-knowledge",
+      "reason": "2019 stub, no content",
+      "url": "https://github.com/moniruzjaman/cultivating-knowledge"
+    },
+    {
+      "name": "Enhance",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/Enhance"
+    },
+    {
+      "name": "gap-control-point",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/gap-control-point"
+    },
+    {
+      "name": "info",
+      "reason": "AI Studio source file used to author this site",
+      "url": "https://github.com/moniruzjaman/info"
+    },
+    {
+      "name": "krishi-ai-expo",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/krishi-ai-expo"
+    },
+    {
+      "name": "krishi-weather-intelligence",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/krishi-weather-intelligence"
+    },
+    {
+      "name": "krishiai-4.0",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/krishiai-4.0"
+    },
+    {
+      "name": "krishiai-v3",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/krishiai-v3"
+    },
+    {
+      "name": "kurigram_plantation",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/kurigram_plantation"
+    },
+    {
+      "name": "market-intelligence",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/market-intelligence"
+    },
+    {
+      "name": "nursery",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/nursery"
+    },
+    {
+      "name": "nursery-mapping",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/nursery-mapping"
+    },
+    {
+      "name": "open-lovable",
+      "reason": "fork",
+      "url": "https://github.com/moniruzjaman/open-lovable"
+    },
+    {
+      "name": "PageIndex",
+      "reason": "fork",
+      "url": "https://github.com/moniruzjaman/PageIndex"
+    },
+    {
+      "name": "plantation-tracker-next",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/plantation-tracker-next"
+    },
+    {
+      "name": "plantation-tracker-v2",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/plantation-tracker-v2"
+    }
+  ]
+}

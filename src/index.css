@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Abu Md. Moniruzzaman portfolio
+   Carried over unchanged from the Manus build. Values match
+   content/design-system.md; change one, change both.
+   ══════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Brand — deep forest green (authority, agriculture) */
+  --color-forest-950: #061a10;
+  --color-forest-900: #0a2e1a;
+  --color-forest-800: #103c25;
+  --color-forest-700: #164a2d;
+  --color-forest-600: #1a5c32;
+  --color-forest-500: #2d8a4e;
+  --color-forest-400: #4ab870;
+  --color-forest-300: #70c98a;
+  --color-forest-200: #a8d8b0;
+
+  /* Accent — gold (innovation, achievement) */
+  --color-gold-600: #a8861d;
+  --color-gold-500: #c09a24;
+  --color-gold-400: #c9a227;
+  --color-gold-300: #e3ba45;
+
+  /* Neutral — warm cream (paper, agricultural documentation) */
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f7f3ec;
+  --color-cream-200: #efe8dc;
+  --color-cream-300: #dce8dc;
+  --color-cream-400: #d6e4d7;
+
+  /* Text */
+  --color-moss-500: #527059;
+  --color-moss-600: #6b826e;
+  --color-moss-400: #7a9b7c;
+
+  /* Type */
+  --font-display: "Playfair Display", "Noto Serif Bengali", Georgia, serif;
+  --font-sans: "DM Sans", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── base ─────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream-100);
+    color: var(--color-forest-900);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Bangla needs a touch more line height — its glyphs have taller ascenders
+     and descenders than Latin, and the Latin default clips them visually. */
+  html[lang="bn"] body {
+    line-height: 1.85;
+    letter-spacing: 0;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-gold-400);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-forest-900);
+  }
+}
+
+/* ── components ───────────────────────────────────────────── */
+
+@layer components {
+  .u-container {
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .u-container {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .u-container {
+      padding-inline: 3rem;
+    }
+  }
+
+  .u-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  .u-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+  }
+  .u-skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-forest-900);
+    color: white;
+    border-radius: 0.5rem;
+  }
+}
+
+/* ── motion contract ───────────────────────────────────────── */
+/* design-system.md §6: animate only meaningful state changes, and
+   honour prefers-reduced-motion rather than merely shortening it. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── utilities ────────────────────────────────────────────── */
+
+@utility u-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s var(--ease-out-soft),
+    transform 0.6s var(--ease-out-soft);
+}
+@utility u-reveal-visible {
+  opacity: 1;
+  transform: none;
+}

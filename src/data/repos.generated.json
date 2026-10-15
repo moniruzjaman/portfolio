@@ -1,0 +1,801 @@
+{
+  "generatedAt": "2026-10-09T07:20:49.463Z",
+  "source": "moniruzjaman",
+  "total": 39,
+  "scanned": 62,
+  "channels": {
+    "custom-domain": 4,
+    "vercel": 25,
+    "cloudflare": 5,
+    "github-pages": 22
+  },
+  "repos": [
+    {
+      "name": "web.krishiai.live",
+      "slug": "web-krishiai-live",
+      "title": "KrishiAI — বাংলাদেশ কৃষি AI প্ল্যাটফর্ম",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-08T04:05:08Z",
+      "url": "https://github.com/moniruzjaman/web.krishiai.live",
+      "live": "https://web-krishiai-live.vercel.app",
+      "customDomain": "https://web.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/web.krishiai.live/",
+      "channels": [
+        "custom-domain",
+        "vercel",
+        "cloudflare",
+        "github-pages"
+      ],
+      "readmeBytes": 7384,
+      "featured": false
+    },
+    {
+      "name": "pesticide-reform",
+      "slug": "pesticide-reform",
+      "title": "pesticide-reform",
+      "description": "MoA number, rotation & mixing information inclusion in Pesticide labeling",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-07T06:37:20Z",
+      "url": "https://github.com/moniruzjaman/pesticide-reform",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/pesticide-reform/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "plantation-tracker",
+      "slug": "plantation-tracker",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "০৫ বছরে ২৫ কোটি বৃক্ষরোপণ” কর্মসূচির আওতাভুক্ত হওয়ার লক্ষ্যে বৃক্ষরোপণের তথ্য",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-06T15:45:02Z",
+      "url": "https://github.com/moniruzjaman/plantation-tracker",
+      "live": "https://plantation-tracker.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 6173,
+      "featured": false
+    },
+    {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-05T20:22:04Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 16948,
+      "featured": false
+    },
+    {
+      "name": "AgriChem-Guide-Pest-Control-Database",
+      "slug": "agrichem-guide-pest-control-database",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 5,711+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "bangladesh",
+        "bilingual",
+        "dae",
+        "frac",
+        "hrac",
+        "irac",
+        "moa",
+        "pesticide",
+        "progressive-web-app",
+        "pwa",
+        "react",
+        "typescript",
+        "vite"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-10-05T19:36:09Z",
+      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
+      "live": "https://pesticide.krishiai.live",
+      "customDomain": "https://pesticide.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 12686,
+      "featured": false
+    },
+    {
+      "name": "krishi-ai-gateway",
+      "slug": "krishi-ai-gateway",
+      "title": "Krishi AI Gateway",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-05T07:54:56Z",
+      "url": "https://github.com/moniruzjaman/krishi-ai-gateway",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "cloudflare"
+      ],
+      "readmeBytes": 1811,
+      "featured": false
+    },
+    {
+      "name": "fertilizer-nationalism",
+      "slug": "fertilizer-nationalism",
+      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
+      "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-03T20:17:37Z",
+      "url": "https://github.com/moniruzjaman/fertilizer-nationalism",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer-nationalism/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 769,
+      "featured": false
+    },
+    {
+      "name": "pesticide-field-guide",
+      "slug": "pesticide-field-guide",
+      "title": "pesticide-field-guide",
+      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-30T13:49:56Z",
+      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
+      "live": "https://pesticide-field-guide.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "path-to-bloom",
+      "slug": "path-to-bloom",
+      "title": "🌾 Fertilizer Management — The Path to Bloom",
+      "description": "interactive report",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-30T05:23:33Z",
+      "url": "https://github.com/moniruzjaman/path-to-bloom",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/path-to-bloom/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 794,
+      "featured": false
+    },
+    {
+      "name": "fertilizer-reform",
+      "slug": "fertilizer-reform",
+      "title": "fertilizer-reform",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-29T17:37:34Z",
+      "url": "https://github.com/moniruzjaman/fertilizer-reform",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer-reform/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "fertilizer",
+      "slug": "fertilizer",
+      "title": "Fertilizer Management — Burden to Bloom",
+      "description": "The path leads toward transparency, accountability, precision and dignity.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-29T13:34:17Z",
+      "url": "https://github.com/moniruzjaman/fertilizer",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 1679,
+      "featured": false
+    },
+    {
+      "name": "biopesticide-policy",
+      "slug": "biopesticide-policy",
+      "title": "🌱 Biopesticide Transition Framework — Bangladesh",
+      "description": "From dependency to resilience: A phased policy blueprint for Biopesticide Transition.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-28T15:36:42Z",
+      "url": "https://github.com/moniruzjaman/biopesticide-policy",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/biopesticide-policy/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 1314,
+      "featured": false
+    },
+    {
+      "name": "soil-media-portal",
+      "slug": "soil-media-portal",
+      "title": "🌾 AgriMedia Portal — কৃষি মিডিয়া পোর্টাল",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-28T09:47:14Z",
+      "url": "https://github.com/moniruzjaman/soil-media-portal",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/soil-media-portal/",
+      "channels": [
+        "vercel",
+        "cloudflare",
+        "github-pages"
+      ],
+      "readmeBytes": 1597,
+      "featured": false
+    },
+    {
+      "name": "e-bill-system",
+      "slug": "e-bill-system",
+      "title": "E-Bill System",
+      "description": "demo for concept understanding",
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-24T08:00:41Z",
+      "url": "https://github.com/moniruzjaman/e-bill-system",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/e-bill-system/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 4597,
+      "featured": false
+    },
+    {
+      "name": "diagnosis-assistant",
+      "slug": "diagnosis-assistant",
+      "title": "CABI Plant Diagnosis Assistant",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-22T23:02:13Z",
+      "url": "https://github.com/moniruzjaman/diagnosis-assistant",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 4730,
+      "featured": false
+    },
+    {
+      "name": "nursery-report",
+      "slug": "nursery-report",
+      "title": "nursery-report",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-22T15:10:29Z",
+      "url": "https://github.com/moniruzjaman/nursery-report",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/nursery-report/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "pesticide_act_2018",
+      "slug": "pesticide-act-2018",
+      "title": "বালাইনাশক আইন, ২০১৮ — খুচরা বিক্রেতার সমন্বিত ফিল্ড গাইড",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-16T21:22:38Z",
+      "url": "https://github.com/moniruzjaman/pesticide_act_2018",
+      "live": "https://pesticideact2018.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 5479,
+      "featured": false
+    },
+    {
+      "name": "krishiai",
+      "slug": "krishiai",
+      "title": "Run and deploy your AI Studio app",
+      "description": "Digital Agri Ecosystem",
+      "language": "TypeScript",
+      "topics": [
+        "studio"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-09-09T10:36:03Z",
+      "url": "https://github.com/moniruzjaman/krishiai",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 553,
+      "featured": false
+    },
+    {
+      "name": "plantation-tracker-app",
+      "slug": "plantation-tracker-app",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "৫ বছরে ২৫ কোটি বৃক্ষ রোপণ কর্মসূচি ' সম্পৃক্ত হতে তথ্য সংগ্রহ, সংরক্ষণ ও প্রেরণ।",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-09T09:22:09Z",
+      "url": "https://github.com/moniruzjaman/plantation-tracker-app",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 3150,
+      "featured": false
+    },
+    {
+      "name": "krishi-ai",
+      "slug": "krishi-ai",
+      "title": "কৃষি এআই (Krishi AI)",
+      "description": "কৃষি এআই — বাংলাদেশের কৃষকদের জন্য এআই চালিত স্মার্ট কৃষি সহায়ক | Bengali-first Agricultural AI Assistant with Android-native PWA",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "ai",
+        "bangladesh",
+        "bengali",
+        "crop-disease",
+        "farming",
+        "gemini",
+        "nextjs",
+        "pwa"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-09-07T21:14:21Z",
+      "url": "https://github.com/moniruzjaman/krishi-ai",
+      "live": "https://krishiai.live",
+      "customDomain": "https://krishiai.live",
+      "pages": null,
+      "channels": [
+        "custom-domain",
+        "cloudflare"
+      ],
+      "readmeBytes": 5612,
+      "featured": false
+    },
+    {
+      "name": "bnp_policy",
+      "slug": "bnp-policy",
+      "title": "BNP Policy Multimedia Portal (Bangladesh Agriculture & Governance)",
+      "description": "A comprehensive study to support agriculture reform actions taken by the government. It includes Farmers card, Family card to activity intregation",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-09-07T09:22:53Z",
+      "url": "https://github.com/moniruzjaman/bnp_policy",
+      "live": "https://bnp-policy.vercel.app",
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/bnp_policy/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 1669,
+      "featured": false
+    },
+    {
+      "name": "plantation-submission-system",
+      "slug": "plantation-submission-system",
+      "title": "plantation-submission-system",
+      "description": "Plantation Submission System – A mobile-first, offline-capable GIS-enabled web application for recording, validating, and monitoring tree plantation activities with GPS, geo-fencing, multi-site submissions, NDVI, carbon estimation, and government-ready validation workflows.",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-08-24T11:34:06Z",
+      "url": "https://github.com/moniruzjaman/plantation-submission-system",
+      "live": "https://plantation-submission-system.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "krishiai-antigravity",
+      "slug": "krishiai-antigravity",
+      "title": "krishiai-antigravity",
+      "description": "latest",
+      "language": "TypeScript",
+      "topics": [
+        "vscode"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-08-23T11:32:31Z",
+      "url": "https://github.com/moniruzjaman/krishiai-antigravity",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "plantation-tracker-v1",
+      "slug": "plantation-tracker-v1",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের কৃষি সম্প্রসারণ অধিদপ্তর কর্তৃক “০৫ বছরে ২৫ কোটি বৃক্ষরোপণ” দেশব্যাপী মহা-কর্মসূচির আওতাভুক্ত তথ্য সংগ্রহ, ট্র্যাকিং এবং অফলাইন ডেটাবেজ ম্যানেজমেন্টের জন্য তৈরি একটি অত্যাধুনিক এবং শক্তিশালী Progressive Web App (PWA)।",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-08-17T04:49:23Z",
+      "url": "https://github.com/moniruzjaman/plantation-tracker-v1",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 2594,
+      "featured": false
+    },
+    {
+      "name": "kurigram_nursery_registry",
+      "slug": "kurigram-nursery-registry",
+      "title": "Kurigram Nursery Registry",
+      "description": "A fully offline, zero-API-key mobile GIS application for nursery data collection and mapping in Kurigram District, Bangladesh. **Interactive Map**: GPS Auto-Capture**: One-tap location locking**Image Compression**: Photos automatically resized**Inventory Management**: Track Fruit (ফলদ), Forest (বনজ), and Medicinal (ঔষধি) saplings **Offline-First**",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-07-24T08:02:35Z",
+      "url": "https://github.com/moniruzjaman/kurigram_nursery_registry",
+      "live": "https://kurigram-nursery-registry.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 13895,
+      "featured": false
+    },
+    {
+      "name": "krishak-card",
+      "slug": "krishak-card",
+      "title": "🌾 কৃষক কার্ড — Farmers Card System",
+      "description": "Farmers dashboard",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-07-18T03:10:30Z",
+      "url": "https://github.com/moniruzjaman/krishak-card",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 3153,
+      "featured": false
+    },
+    {
+      "name": "kurigram-nursery-2026",
+      "slug": "kurigram-nursery-2026",
+      "title": "kurigram-nursery-2026",
+      "description": "report page",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-07-02T00:37:53Z",
+      "url": "https://github.com/moniruzjaman/kurigram-nursery-2026",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/kurigram-nursery-2026/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "nursery-form-2",
+      "slug": "nursery-form-2",
+      "title": "Run and deploy your AI Studio app",
+      "description": "২০২৬ সালে বৃক্ষরোপনের জন্য বেসরকারি নার্সারির প্রস্তাবিত চারা ও নার্সারীর তথ্য",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-07-02T00:36:36Z",
+      "url": "https://github.com/moniruzjaman/nursery-form-2",
+      "live": "https://nursery-form-2.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 542,
+      "featured": false
+    },
+    {
+      "name": "app.krishiai",
+      "slug": "app-krishiai",
+      "title": "GreenLoop 3.0 - CIRDAP Innovation Challenge 2026",
+      "description": "Expo mobile app for krishiai",
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-05-24T18:26:19Z",
+      "url": "https://github.com/moniruzjaman/app.krishiai",
+      "live": "https://app-krishiai.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 14795,
+      "featured": false
+    },
+    {
+      "name": "krishiai4.0",
+      "slug": "krishiai4-0",
+      "title": "Krishi AI - Agricultural Intelligence Platform",
+      "description": "update",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-05-24T18:26:05Z",
+      "url": "https://github.com/moniruzjaman/krishiai4.0",
+      "live": "https://krishiai4-0.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 3784,
+      "featured": false
+    },
+    {
+      "name": "KrishiAI-3.0",
+      "slug": "krishiai-3-0",
+      "title": "KrishiAI-3.0",
+      "description": "Smart Agri EcoSystem",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-05-24T18:16:20Z",
+      "url": "https://github.com/moniruzjaman/KrishiAI-3.0",
+      "live": "https://krishi-ai-3-0-ashy.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 329,
+      "featured": false
+    },
+    {
+      "name": "krishiai-v2",
+      "slug": "krishiai-v2",
+      "title": "কৃষি AI v2 — Krishi AI Bangladesh",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-05-24T18:16:10Z",
+      "url": "https://github.com/moniruzjaman/krishiai-v2",
+      "live": "https://krishiai-v2.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 6215,
+      "featured": false
+    },
+    {
+      "name": "producer-register",
+      "slug": "producer-register",
+      "title": "Bangladesh GAP Producer Register",
+      "description": "Digital register log book for gap data.",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-05-10T22:26:14Z",
+      "url": "https://github.com/moniruzjaman/producer-register",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 3429,
+      "featured": false
+    },
+    {
+      "name": "nursery-form",
+      "slug": "nursery-form",
+      "title": "nursery-form",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-04-16T12:47:11Z",
+      "url": "https://github.com/moniruzjaman/nursery-form",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/nursery-form/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14,
+      "featured": false
+    },
+    {
+      "name": "gap-brinjal",
+      "slug": "gap-brinjal",
+      "title": "GAP Brinjal Training Portal",
+      "description": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-04-08T21:45:37Z",
+      "url": "https://github.com/moniruzjaman/gap-brinjal",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "cloudflare",
+        "github-pages"
+      ],
+      "readmeBytes": 3617,
+      "featured": false
+    },
+    {
+      "name": "cabi-diagnosis-builder",
+      "slug": "cabi-diagnosis-builder",
+      "title": "cabi-diagnosis-builder",
+      "description": "cabi diagnosis pdf to app",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-04-01T14:55:01Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis-builder",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/cabi-diagnosis-builder/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "krishak-card-v2",
+      "slug": "krishak-card-v2",
+      "title": "krishak-card-v2",
+      "description": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-03-31T04:30:37Z",
+      "url": "https://github.com/moniruzjaman/krishak-card-v2",
+      "live": "https://krishak-card-v2.krishiai.live",
+      "customDomain": "https://krishak-card-v2.krishiai.live",
+      "pages": null,
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "diagnosis_game",
+      "slug": "diagnosis-game",
+      "title": "ধানের ডাক্তার সিমুলেশন (Smart Farmer Simulation)",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-03-30T10:46:31Z",
+      "url": "https://github.com/moniruzjaman/diagnosis_game",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/diagnosis_game/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 4277,
+      "featured": false
+    },
+    {
+      "name": "cirdap-greenloop3.0",
+      "slug": "cirdap-greenloop3-0",
+      "title": "GreenLoop 3.0 - CIRDAP Innovation Challenge 2026",
+      "description": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-03-28T11:13:36Z",
+      "url": "https://github.com/moniruzjaman/cirdap-greenloop3.0",
+      "live": "https://cirdap-greenloop3-0.vercel.app",
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/cirdap-greenloop3.0/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 14795,
+      "featured": false
+    }
+  ]
+}

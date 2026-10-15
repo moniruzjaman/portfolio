@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Abu Md. Moniruzzaman</title>
+    <script>
+      /*
+       * GitHub Pages has no server-side rewrites, so a cold load of a deep link
+       * like /works/soil-media-portal would 404 before the SPA ever boots.
+       * This page stashes the intended path and bounces to the shell, which
+       * replays it through the router (see src/main.tsx).
+       *
+       * MUST stay in sync with `base` in vite.config.ts.
+       */
+      (function () {
+        var BASE = "/portfolio/";
+        var p = window.location.pathname;
+        if (p.indexOf(BASE) === 0 && p !== BASE) {
+          try {
+            sessionStorage.setItem("ph:redirect", p + window.location.search + window.location.hash);
+          } catch (e) {}
+          window.location.replace(BASE + "index.html");
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

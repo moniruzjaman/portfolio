@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moniruzjaman.github.io/sitemap.xml

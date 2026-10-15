@@ -1,0 +1,71 @@
+name: Sync repositories
+
+# Auto-inclusion. Anything pushed to the GitHub dashboard that matches one of the
+# four deployment channels appears on the site within a day, with no edit to any
+# hand-maintained list — the list is generated, not written.
+on:
+  schedule:
+    # 03:17 UTC daily. Off the hour on purpose: GitHub deprioritises scheduled
+    # runs that land on :00, so they queue behind everyone else's.
+    - cron: "17 3 * * *"
+  # Catch a new qualifying repo immediately rather than waiting for the cron.
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - "src/content/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write   # lets this job dispatch deploy.yml (token-made pushes do not trigger it)
+
+concurrency:
+  group: sync-repos
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      # No install needed — the script is dependency-free by design, so it
+      # cannot drift out of sync with package.json.
+      - name: Sync repository data
+        env:
+          # Auto-minted by the Actions runner. This is NOT a personal access
+          # token and there is nothing to configure.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: ${{ github.repository_owner }}
+        run: node scripts/sync-repos.mjs
+
+      - name: Commit if changed, then redeploy
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- src/data/repos.generated.json src/data/excluded.generated.json; then
+            echo "No change — the generated data is already current."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/repos.generated.json src/data/excluded.generated.json
+          git commit -m "chore(data): sync repositories from GitHub dashboard"
+          git push
+          # Pushes made with GITHUB_TOKEN do not start other workflows, so deploy
+          # explicitly or the site would keep serving the old data.
+          gh workflow run deploy.yml --ref "${GITHUB_REF_NAME}"
+
+      # A run that cannot classify every repo must never be committed. The sync
+      # script already throws in that case; this is the second lock on the door.
+      - name: Fail if data is missing
+        run: |
+          test -s src/data/repos.generated.json || {
+            echo "::error::repos.generated.json is empty — refusing to deploy"
+            exit 1
+          }

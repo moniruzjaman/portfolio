@@ -1,15 +1,73 @@
 {
-  "generatedAt": "2026-10-09T07:20:49.463Z",
+  "generatedAt": "2026-10-15T15:20:21.816Z",
   "source": "moniruzjaman",
-  "total": 39,
-  "scanned": 62,
+  "total": 42,
+  "scanned": 66,
   "channels": {
+    "vercel": 26,
+    "github-pages": 25,
     "custom-domain": 4,
-    "vercel": 25,
-    "cloudflare": 5,
-    "github-pages": 22
+    "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "pesticide-field-guide",
+      "slug": "pesticide-field-guide",
+      "title": "pesticide-field-guide",
+      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-15T14:35:26Z",
+      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
+      "live": "https://pesticide-field-guide.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
+    {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-15T13:57:30Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 17671,
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-15T11:22:14Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 806,
+      "featured": false
+    },
     {
       "name": "web.krishiai.live",
       "slug": "web-krishiai-live",
@@ -18,7 +76,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-08T04:05:08Z",
+      "pushedAt": "2026-10-13T18:56:27Z",
       "url": "https://github.com/moniruzjaman/web.krishiai.live",
       "live": "https://web-krishiai-live.vercel.app",
       "customDomain": "https://web.krishiai.live",
@@ -33,22 +91,23 @@
       "featured": false
     },
     {
-      "name": "pesticide-reform",
-      "slug": "pesticide-reform",
-      "title": "pesticide-reform",
-      "description": "MoA number, rotation & mixing information inclusion in Pesticide labeling",
-      "language": "HTML",
+      "name": "knowledge-hub",
+      "slug": "knowledge-hub",
+      "title": "moniruzjaman.github.io",
+      "description": null,
+      "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-07T06:37:20Z",
-      "url": "https://github.com/moniruzjaman/pesticide-reform",
-      "live": null,
+      "pushedAt": "2026-10-13T13:21:36Z",
+      "url": "https://github.com/moniruzjaman/knowledge-hub",
+      "live": "https://knowledge-hub-alpha-khaki.vercel.app",
       "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/pesticide-reform/",
+      "pages": null,
       "channels": [
+        "vercel",
         "github-pages"
       ],
-      "readmeBytes": 0,
+      "readmeBytes": 6629,
       "featured": false
     },
     {
@@ -59,7 +118,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-06T15:45:02Z",
+      "pushedAt": "2026-10-13T09:15:36Z",
       "url": "https://github.com/moniruzjaman/plantation-tracker",
       "live": "https://plantation-tracker.vercel.app",
       "customDomain": null,
@@ -71,22 +130,22 @@
       "featured": false
     },
     {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
-      "language": "JavaScript",
+      "name": "pesticide-reform",
+      "slug": "pesticide-reform",
+      "title": "pesticide-reform",
+      "description": "MoA number, rotation & mixing information inclusion in Pesticide labeling",
+      "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-05T20:22:04Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
+      "pushedAt": "2026-10-13T05:12:48Z",
+      "url": "https://github.com/moniruzjaman/pesticide-reform",
+      "live": null,
       "customDomain": null,
-      "pages": null,
+      "pages": "https://moniruzjaman.github.io/pesticide-reform/",
       "channels": [
-        "vercel"
+        "github-pages"
       ],
-      "readmeBytes": 16948,
+      "readmeBytes": 0,
       "featured": false
     },
     {
@@ -112,7 +171,7 @@
         "vite"
       ],
       "stars": 0,
-      "pushedAt": "2026-10-05T19:36:09Z",
+      "pushedAt": "2026-10-13T01:09:30Z",
       "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
       "live": "https://pesticide.krishiai.live",
       "customDomain": "https://pesticide.krishiai.live",
@@ -121,7 +180,26 @@
         "custom-domain",
         "github-pages"
       ],
-      "readmeBytes": 12686,
+      "readmeBytes": 13710,
+      "featured": false
+    },
+    {
+      "name": "pesticide_regulatory",
+      "slug": "pesticide-regulatory",
+      "title": "pesticide_regulatory",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-09T13:15:15Z",
+      "url": "https://github.com/moniruzjaman/pesticide_regulatory",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
       "featured": false
     },
     {
@@ -160,26 +238,6 @@
         "github-pages"
       ],
       "readmeBytes": 769,
-      "featured": false
-    },
-    {
-      "name": "pesticide-field-guide",
-      "slug": "pesticide-field-guide",
-      "title": "pesticide-field-guide",
-      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-09-30T13:49:56Z",
-      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
-      "live": "https://pesticide-field-guide.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel",
-        "github-pages"
-      ],
-      "readmeBytes": 0,
       "featured": false
     },
     {
@@ -289,7 +347,7 @@
       "stars": 0,
       "pushedAt": "2026-09-24T08:00:41Z",
       "url": "https://github.com/moniruzjaman/e-bill-system",
-      "live": null,
+      "live": "https://e-bill-system.vercel.app",
       "customDomain": null,
       "pages": "https://moniruzjaman.github.io/e-bill-system/",
       "channels": [
@@ -309,7 +367,7 @@
       "stars": 0,
       "pushedAt": "2026-09-22T23:02:13Z",
       "url": "https://github.com/moniruzjaman/diagnosis-assistant",
-      "live": null,
+      "live": "https://diagnosis-assistant-eosin.vercel.app",
       "customDomain": null,
       "pages": null,
       "channels": [
@@ -328,7 +386,7 @@
       "stars": 0,
       "pushedAt": "2026-09-22T15:10:29Z",
       "url": "https://github.com/moniruzjaman/nursery-report",
-      "live": null,
+      "live": "https://kurigram-nursery-2026.vercel.app",
       "customDomain": null,
       "pages": "https://moniruzjaman.github.io/nursery-report/",
       "channels": [
@@ -498,7 +556,7 @@
       "stars": 0,
       "pushedAt": "2026-08-17T04:49:23Z",
       "url": "https://github.com/moniruzjaman/plantation-tracker-v1",
-      "live": null,
+      "live": "https://plantation-tracker-v1.vercel.app",
       "customDomain": null,
       "pages": null,
       "channels": [
@@ -536,7 +594,7 @@
       "stars": 0,
       "pushedAt": "2026-07-18T03:10:30Z",
       "url": "https://github.com/moniruzjaman/krishak-card",
-      "live": null,
+      "live": "https://krishak-card.vercel.app",
       "customDomain": null,
       "pages": null,
       "channels": [
@@ -669,7 +727,7 @@
       "stars": 0,
       "pushedAt": "2026-05-10T22:26:14Z",
       "url": "https://github.com/moniruzjaman/producer-register",
-      "live": null,
+      "live": "https://producer-register.vercel.app",
       "customDomain": null,
       "pages": null,
       "channels": [
@@ -707,7 +765,7 @@
       "stars": 0,
       "pushedAt": "2026-04-08T21:45:37Z",
       "url": "https://github.com/moniruzjaman/gap-brinjal",
-      "live": null,
+      "live": "https://gap-brinjal-krishi-ai-team.vercel.app",
       "customDomain": null,
       "pages": null,
       "channels": [
@@ -767,7 +825,7 @@
       "stars": 0,
       "pushedAt": "2026-03-30T10:46:31Z",
       "url": "https://github.com/moniruzjaman/diagnosis_game",
-      "live": null,
+      "live": "https://diagnosis-game.vercel.app",
       "customDomain": null,
       "pages": "https://moniruzjaman.github.io/diagnosis_game/",
       "channels": [

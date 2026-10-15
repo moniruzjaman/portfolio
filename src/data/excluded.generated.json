@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-09T07:20:49.463Z",
+  "generatedAt": "2026-10-15T15:20:21.816Z",
   "note": "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
-  "total": 23,
+  "total": 24,
   "excluded": [
     {
       "name": "Agri-Tracker",
@@ -117,6 +117,11 @@
       "name": "plantation-tracker-v2",
       "reason": "no qualifying deployment channel",
       "url": "https://github.com/moniruzjaman/plantation-tracker-v2"
+    },
+    {
+      "name": "portfolio",
+      "reason": "empty repository (no commits)",
+      "url": "https://github.com/moniruzjaman/portfolio"
     }
   ]
 }

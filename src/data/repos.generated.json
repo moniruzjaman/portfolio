@@ -1,15 +1,34 @@
 {
-  "generatedAt": "2026-10-15T15:20:21.816Z",
+  "generatedAt": "2026-10-16T08:10:17.197Z",
   "source": "moniruzjaman",
-  "total": 42,
+  "total": 43,
   "scanned": 66,
   "channels": {
+    "github-pages": 26,
     "vercel": 26,
-    "github-pages": 25,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-15T15:20:22Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 6623,
+      "featured": false
+    },
     {
       "name": "pesticide-field-guide",
       "slug": "pesticide-field-guide",

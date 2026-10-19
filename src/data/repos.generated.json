@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-18T08:01:23.658Z",
+  "generatedAt": "2026-10-19T08:51:41.337Z",
   "source": "moniruzjaman",
-  "total": 43,
-  "scanned": 66,
+  "total": 44,
+  "scanned": 69,
   "channels": {
-    "github-pages": 26,
+    "github-pages": 27,
     "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
@@ -18,7 +18,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-17T20:37:35Z",
+      "pushedAt": "2026-10-18T22:18:34Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -26,7 +26,26 @@
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 806,
+      "readmeBytes": 14013,
+      "featured": false
+    },
+    {
+      "name": "self-learning",
+      "slug": "self-learning",
+      "title": "স্বশিক্ষা ও স্বনির্ভরতার কৃষি — বাংলা ই-বুক",
+      "description": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-18T18:02:00Z",
+      "url": "https://github.com/moniruzjaman/self-learning",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/self-learning/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 7015,
       "featured": false
     },
     {
@@ -37,7 +56,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-17T07:47:11Z",
+      "pushedAt": "2026-10-18T08:01:24Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,

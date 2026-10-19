@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-18T08:01:23.658Z",
+  "generatedAt": "2026-10-19T08:51:41.337Z",
   "note": "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
-  "total": 23,
+  "total": 25,
   "excluded": [
     {
       "name": "Agri-Tracker",
@@ -117,6 +117,16 @@
       "name": "plantation-tracker-v2",
       "reason": "no qualifying deployment channel",
       "url": "https://github.com/moniruzjaman/plantation-tracker-v2"
+    },
+    {
+      "name": "rashtrer-teen-ayna",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/rashtrer-teen-ayna"
+    },
+    {
+      "name": "rashtrer-tin-ayna",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/rashtrer-tin-ayna"
     }
   ]
 }

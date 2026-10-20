@@ -1,15 +1,34 @@
 {
-  "generatedAt": "2026-10-19T08:51:41.337Z",
+  "generatedAt": "2026-10-20T08:31:44.494Z",
   "source": "moniruzjaman",
-  "total": 44,
-  "scanned": 69,
+  "total": 45,
+  "scanned": 71,
   "channels": {
-    "github-pages": 27,
-    "vercel": 26,
+    "github-pages": 28,
     "custom-domain": 4,
+    "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "AgriChem_Registry",
+      "slug": "agrichem-registry",
+      "title": "AgriChem_Registry",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-20T07:54:04Z",
+      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "featured": false
+    },
     {
       "name": "rashtra_teen_chokhe",
       "slug": "rashtra-teen-chokhe",
@@ -18,7 +37,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-18T22:18:34Z",
+      "pushedAt": "2026-10-19T13:04:05Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -27,6 +46,60 @@
         "github-pages"
       ],
       "readmeBytes": 14013,
+      "featured": false
+    },
+    {
+      "name": "AgriChem-Guide-Pest-Control-Database",
+      "slug": "agrichem-guide-pest-control-database",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 5,711+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "bangladesh",
+        "bilingual",
+        "dae",
+        "frac",
+        "hrac",
+        "irac",
+        "moa",
+        "pesticide",
+        "progressive-web-app",
+        "pwa",
+        "react",
+        "typescript",
+        "vite"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-10-19T12:35:40Z",
+      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
+      "live": "https://pesticide.krishiai.live",
+      "customDomain": "https://pesticide.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 13710,
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-19T08:51:42Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 6623,
       "featured": false
     },
     {
@@ -46,25 +119,6 @@
         "github-pages"
       ],
       "readmeBytes": 7015,
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-18T08:01:24Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 6623,
       "featured": false
     },
     {
@@ -203,41 +257,6 @@
         "github-pages"
       ],
       "readmeBytes": 0,
-      "featured": false
-    },
-    {
-      "name": "AgriChem-Guide-Pest-Control-Database",
-      "slug": "agrichem-guide-pest-control-database",
-      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
-      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 5,711+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
-      "language": "TypeScript",
-      "topics": [
-        "agriculture",
-        "bangladesh",
-        "bilingual",
-        "dae",
-        "frac",
-        "hrac",
-        "irac",
-        "moa",
-        "pesticide",
-        "progressive-web-app",
-        "pwa",
-        "react",
-        "typescript",
-        "vite"
-      ],
-      "stars": 0,
-      "pushedAt": "2026-10-13T01:09:30Z",
-      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
-      "live": "https://pesticide.krishiai.live",
-      "customDomain": "https://pesticide.krishiai.live",
-      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
-      "channels": [
-        "custom-domain",
-        "github-pages"
-      ],
-      "readmeBytes": 13710,
       "featured": false
     },
     {

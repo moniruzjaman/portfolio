@@ -1,91 +1,15 @@
 {
-  "generatedAt": "2026-10-22T08:36:24.146Z",
+  "generatedAt": "2026-10-23T08:32:00.256Z",
   "source": "moniruzjaman",
   "total": 46,
   "scanned": 74,
   "channels": {
-    "github-pages": 29,
     "custom-domain": 4,
+    "github-pages": 29,
     "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
-    {
-      "name": "rastro-tin-ayna",
-      "slug": "rastro-tin-ayna",
-      "title": "রাষ্ট্রের তিন আয়না — eBook & Audiobook",
-      "description": null,
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-21T13:41:55Z",
-      "url": "https://github.com/moniruzjaman/rastro-tin-ayna",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rastro-tin-ayna/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 4797,
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-21T11:42:06Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-21T08:34:08Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 6623,
-      "featured": false
-    },
-    {
-      "name": "AgriChem_Registry",
-      "slug": "agrichem-registry",
-      "title": "AgriChem_Registry",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-20T12:22:00Z",
-      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 0,
-      "featured": false
-    },
     {
       "name": "AgriChem-Guide-Pest-Control-Database",
       "slug": "agrichem-guide-pest-control-database",
@@ -109,7 +33,7 @@
         "vite"
       ],
       "stars": 0,
-      "pushedAt": "2026-10-19T12:35:40Z",
+      "pushedAt": "2026-10-23T07:34:55Z",
       "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
       "live": "https://pesticide.krishiai.live",
       "customDomain": "https://pesticide.krishiai.live",
@@ -118,7 +42,121 @@
         "custom-domain",
         "github-pages"
       ],
-      "readmeBytes": 13710,
+      "readmeBytes": 13402,
+      "featured": false
+    },
+    {
+      "name": "fertilizer",
+      "slug": "fertilizer",
+      "title": "Fertilizer Management — Burden to Bloom",
+      "description": "The path leads toward transparency, accountability, precision and dignity.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-22T22:00:48Z",
+      "url": "https://github.com/moniruzjaman/fertilizer",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 1679,
+      "featured": false
+    },
+    {
+      "name": "fertilizer-nationalism",
+      "slug": "fertilizer-nationalism",
+      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
+      "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-22T19:12:24Z",
+      "url": "https://github.com/moniruzjaman/fertilizer-nationalism",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer-nationalism/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 769,
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-22T11:45:14Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-22T08:36:25Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 6623,
+      "featured": false
+    },
+    {
+      "name": "rastro-tin-ayna",
+      "slug": "rastro-tin-ayna",
+      "title": "রাষ্ট্রের তিন আয়না — eBook & Audiobook",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-21T13:41:55Z",
+      "url": "https://github.com/moniruzjaman/rastro-tin-ayna",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rastro-tin-ayna/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 4797,
+      "featured": false
+    },
+    {
+      "name": "AgriChem_Registry",
+      "slug": "agrichem-registry",
+      "title": "AgriChem_Registry",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-20T12:22:00Z",
+      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
       "featured": false
     },
     {
@@ -138,25 +176,6 @@
         "github-pages"
       ],
       "readmeBytes": 7015,
-      "featured": false
-    },
-    {
-      "name": "fertilizer",
-      "slug": "fertilizer",
-      "title": "Fertilizer Management — Burden to Bloom",
-      "description": "The path leads toward transparency, accountability, precision and dignity.",
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-16T13:29:03Z",
-      "url": "https://github.com/moniruzjaman/fertilizer",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/fertilizer/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 1679,
       "featured": false
     },
     {
@@ -314,25 +333,6 @@
         "cloudflare"
       ],
       "readmeBytes": 1811,
-      "featured": false
-    },
-    {
-      "name": "fertilizer-nationalism",
-      "slug": "fertilizer-nationalism",
-      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
-      "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-03T20:17:37Z",
-      "url": "https://github.com/moniruzjaman/fertilizer-nationalism",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/fertilizer-nationalism/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 769,
       "featured": false
     },
     {

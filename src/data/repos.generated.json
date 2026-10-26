@@ -1,15 +1,60 @@
 {
-  "generatedAt": "2026-10-25T08:24:24.237Z",
+  "generatedAt": "2026-10-26T08:27:43.116Z",
   "source": "moniruzjaman",
-  "total": 46,
-  "scanned": 74,
+  "total": 47,
+  "scanned": 75,
   "channels": {
+    "github-pages": 30,
     "custom-domain": 4,
-    "github-pages": 29,
     "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-26T08:26:43Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 10586,
+      "brand": {
+        "name": "Abu Md. Moniruzzaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "kaggle-dataset",
+      "slug": "kaggle-dataset",
+      "title": "Plant Disease Detection System",
+      "description": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-25T19:51:31Z",
+      "url": "https://github.com/moniruzjaman/kaggle-dataset",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/kaggle-dataset/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 12064,
+      "brand": null,
+      "featured": false
+    },
     {
       "name": "AgriChem-Guide-Pest-Control-Database",
       "slug": "agrichem-guide-pest-control-database",
@@ -33,7 +78,7 @@
         "vite"
       ],
       "stars": 0,
-      "pushedAt": "2026-10-25T08:20:29Z",
+      "pushedAt": "2026-10-25T17:45:01Z",
       "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
       "live": "https://pesticide.krishiai.live",
       "customDomain": "https://pesticide.krishiai.live",
@@ -42,7 +87,14 @@
         "custom-domain",
         "github-pages"
       ],
-      "readmeBytes": 15812,
+      "readmeBytes": 15803,
+      "brand": {
+        "name": "PesticideNext",
+        "themeColor": "#006a4e",
+        "icon": "https://pesticide.krishiai.live/icons/icon-192.png",
+        "image": "https://pesticide.krishiai.live/og-image.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -53,7 +105,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-24T10:52:46Z",
+      "pushedAt": "2026-10-25T11:18:56Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -62,25 +114,12 @@
         "github-pages"
       ],
       "readmeBytes": 14013,
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-24T08:07:07Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 6623,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -100,6 +139,13 @@
         "github-pages"
       ],
       "readmeBytes": 1679,
+      "brand": {
+        "name": "Fertilizer Management — Burden to Bloom",
+        "themeColor": "#006a4e",
+        "icon": "https://moniruzjaman.github.io/apple-touch-icon.png",
+        "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -119,6 +165,11 @@
         "github-pages"
       ],
       "readmeBytes": 769,
+      "brand": {
+        "name": "Bangladesh Before All — Kurigram Integrated Fertilizer Governance & Farmer Card Pilot",
+        "themeColor": "#006a4e",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -138,6 +189,13 @@
         "github-pages"
       ],
       "readmeBytes": 4797,
+      "brand": {
+        "name": "তিন আয়না",
+        "themeColor": "#d97706",
+        "icon": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-192.png",
+        "image": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-512.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -157,6 +215,13 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": {
+        "name": "AgriChem",
+        "themeColor": "#0f3d2e",
+        "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
+        "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -176,6 +241,13 @@
         "github-pages"
       ],
       "readmeBytes": 7015,
+      "brand": {
+        "name": "স্বশিক্ষা কৃষি",
+        "themeColor": "#145a32",
+        "icon": "https://moniruzjaman.github.io/self-learning/apple-touch-icon.png",
+        "image": "https://moniruzjaman.github.io/self-learning/og-image.jpg",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -196,6 +268,7 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -215,6 +288,13 @@
         "vercel"
       ],
       "readmeBytes": 17671,
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -237,6 +317,13 @@
         "github-pages"
       ],
       "readmeBytes": 7384,
+      "brand": {
+        "name": "KrishiAI",
+        "themeColor": "#0b6623",
+        "icon": "https://web.krishiai.live/icons/icon-192.png",
+        "image": "https://web.krishiai.live/og-image.jpeg",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -257,6 +344,11 @@
         "github-pages"
       ],
       "readmeBytes": 6629,
+      "brand": {
+        "name": "Abu Md. Moniruzzaman — Agricultural Extension & Digital Innovation",
+        "icon": "https://knowledge-hub-alpha-khaki.vercel.app/favicon.svg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -276,6 +368,13 @@
         "vercel"
       ],
       "readmeBytes": 6173,
+      "brand": {
+        "name": "বৃক্ষরোপণ ট্র্যাকার",
+        "themeColor": "#006a4e",
+        "icon": "https://plantation-tracker.vercel.app/pwa-192x192.svg",
+        "image": "https://plantation.krishiai.live/og-share-large.png?v=3",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -295,6 +394,13 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": {
+        "name": "Pesticide Reform — DAE Kurigram",
+        "themeColor": "#006a4e",
+        "icon": "https://moniruzjaman.github.io/pesticide-reform/pesticide-reform.jpeg",
+        "image": "https://raw.githubusercontent.com/moniruzjaman/pesticide-reform/main/social-preview.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -314,6 +420,7 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -333,6 +440,7 @@
         "cloudflare"
       ],
       "readmeBytes": 1811,
+      "brand": null,
       "featured": false
     },
     {
@@ -352,6 +460,12 @@
         "github-pages"
       ],
       "readmeBytes": 794,
+      "brand": {
+        "name": "Fertilizer Management — The Path to Bloom | Ministry of Agriculture, Bangladesh",
+        "themeColor": "#004d3a",
+        "icon": "https://moniruzjaman.github.io/path-to-bloom/apple-touch-icon.jpg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -371,6 +485,11 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": {
+        "name": "Distribution Reform Package — Fertilizer Distribution Reform | Ministry of Agriculture, Bangladesh",
+        "icon": "https://moniruzjaman.github.io/fertilizer-reform/favicon.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -390,6 +509,7 @@
         "github-pages"
       ],
       "readmeBytes": 1314,
+      "brand": null,
       "featured": false
     },
     {
@@ -411,6 +531,7 @@
         "github-pages"
       ],
       "readmeBytes": 1597,
+      "brand": null,
       "featured": false
     },
     {
@@ -431,6 +552,13 @@
         "github-pages"
       ],
       "readmeBytes": 4597,
+      "brand": {
+        "name": "E-Bill Reports",
+        "themeColor": "#006a4e",
+        "icon": "https://e-bill-system.vercel.app/icons/icon-192.png",
+        "image": "https://e-bill-system.vercel.app/social-preview.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -450,6 +578,7 @@
         "vercel"
       ],
       "readmeBytes": 4730,
+      "brand": null,
       "featured": false
     },
     {
@@ -470,6 +599,11 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": {
+        "name": "DAE Kurigram | কৃষি সম্প্রসারণ অধিদপ্তর",
+        "image": "https://kurigram-nursery-2026.vercel.app/cover.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -490,6 +624,13 @@
         "github-pages"
       ],
       "readmeBytes": 5479,
+      "brand": {
+        "name": "বালাইনাশক আইন",
+        "themeColor": "#006a4e",
+        "icon": "https://pesticideact2018.vercel.app/icon-192.png",
+        "image": "https://raw.githubusercontent.com/moniruzjaman/pesticide_act_2018/main/public/og-image.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -511,6 +652,7 @@
         "vercel"
       ],
       "readmeBytes": 553,
+      "brand": null,
       "featured": false
     },
     {
@@ -530,6 +672,7 @@
         "github-pages"
       ],
       "readmeBytes": 3150,
+      "brand": null,
       "featured": false
     },
     {
@@ -560,6 +703,7 @@
         "cloudflare"
       ],
       "readmeBytes": 5612,
+      "brand": null,
       "featured": false
     },
     {
@@ -580,6 +724,12 @@
         "github-pages"
       ],
       "readmeBytes": 1669,
+      "brand": {
+        "name": "BNP Policy — Bangladesh Agriculture & Governance Multimedia Portal",
+        "themeColor": "#006a4e",
+        "icon": "https://bnp-policy.vercel.app/bnp-icon.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -599,6 +749,7 @@
         "vercel"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -620,6 +771,7 @@
         "vercel"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -639,6 +791,12 @@
         "vercel"
       ],
       "readmeBytes": 2594,
+      "brand": {
+        "name": "বৃক্ষরোপণ ট্র্যাকার",
+        "themeColor": "#15803d",
+        "icon": "https://plantation-tracker-v1.vercel.app/apple-touch-icon.png",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -658,6 +816,11 @@
         "vercel"
       ],
       "readmeBytes": 13895,
+      "brand": {
+        "name": "Kurigram Nursery Registry",
+        "icon": "https://kurigram-nursery-registry.vercel.app/logo.svg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -677,6 +840,11 @@
         "vercel"
       ],
       "readmeBytes": 3153,
+      "brand": {
+        "name": "কৃষক কার্ড | Farmers Card — DAE Bangladesh",
+        "icon": "https://krishak-card.vercel.app/favicon.svg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -696,6 +864,11 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": {
+        "name": "DAE কুড়িগ্রাম নার্সারী ড্যাশবোর্ড",
+        "image": "https://moniruzjaman.github.io/kurigram-nursery-2026/og-image.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -715,6 +888,12 @@
         "vercel"
       ],
       "readmeBytes": 542,
+      "brand": {
+        "name": "Nursery App",
+        "themeColor": "#15803d",
+        "icon": "https://nursery-form-2.vercel.app/pwa-192x192.svg",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -734,6 +913,13 @@
         "vercel"
       ],
       "readmeBytes": 14795,
+      "brand": {
+        "name": "GreenLoop 3.0 | CIRDAP-REEDS Innovation Challenge 2026",
+        "themeColor": "#006a4e",
+        "icon": "https://app-krishiai.vercel.app/assets/media/greenloop_banner.png",
+        "image": "https://app-krishiai.vercel.app/assets/media/greenloop_banner.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -753,6 +939,7 @@
         "vercel"
       ],
       "readmeBytes": 3784,
+      "brand": null,
       "featured": false
     },
     {
@@ -772,6 +959,11 @@
         "vercel"
       ],
       "readmeBytes": 329,
+      "brand": {
+        "name": "Krishi AI: স্মার্ট কৃষি ইকোসিস্টেম",
+        "themeColor": "#0a8a1f",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -791,6 +983,13 @@
         "vercel"
       ],
       "readmeBytes": 6215,
+      "brand": {
+        "name": "কৃষি AI",
+        "themeColor": "#16a34a",
+        "icon": "https://krishiai-v2.vercel.app/favicon.svg",
+        "image": "https://krishiai-v2.vercel.app/og-image.svg",
+        "source": "manifest"
+      },
       "featured": false
     },
     {
@@ -810,6 +1009,11 @@
         "vercel"
       ],
       "readmeBytes": 3429,
+      "brand": {
+        "name": "Bangladesh GAP Producer Register",
+        "icon": "https://producer-register.vercel.app/gap.png",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -829,6 +1033,7 @@
         "github-pages"
       ],
       "readmeBytes": 14,
+      "brand": null,
       "featured": false
     },
     {
@@ -850,6 +1055,7 @@
         "github-pages"
       ],
       "readmeBytes": 3617,
+      "brand": null,
       "featured": false
     },
     {
@@ -869,6 +1075,7 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -889,6 +1096,7 @@
         "github-pages"
       ],
       "readmeBytes": 0,
+      "brand": null,
       "featured": false
     },
     {
@@ -909,6 +1117,11 @@
         "github-pages"
       ],
       "readmeBytes": 4277,
+      "brand": {
+        "name": "ফসল ফতোয়া (Crop Call) - কৃষি সিদ্ধান্ত সিমুলেশন",
+        "themeColor": "#022c22",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -929,6 +1142,13 @@
         "github-pages"
       ],
       "readmeBytes": 14795,
+      "brand": {
+        "name": "GreenLoop 3.0 | CIRDAP-REEDS Innovation Challenge 2026",
+        "themeColor": "#006a4e",
+        "icon": "https://cirdap-greenloop3-0.vercel.app/assets/media/greenloop_banner.png",
+        "image": "https://cirdap-greenloop3-0.vercel.app/assets/media/greenloop_banner.png",
+        "source": "html"
+      },
       "featured": false
     }
   ]

@@ -5,10 +5,17 @@
  * The constraint is architectural, so it gets a CI gate rather than a promise in
  * a README. A future contributor cannot quietly add a key: this fails the build.
  *
+ * SCOPE (revised when the Google Drive library was added): the shipped site and
+ * src/ contain no credentials, ever. Build-time scripts in scripts/ MAY read CI
+ * secrets (GITHUB_TOKEN, GOOGLE_API_KEY, GOOGLE_SERVICE_ACCOUNT_JSON) to fetch
+ * data into static JSON — the credential stays on the runner, the browser reads
+ * the JSON. This gate is what proves none of it leaked into the output.
+ *
  * Checks:
  *   1. no secret-shaped environment variables are referenced in src/
- *   2. no key-shaped literals in source
- *   3. the built output references no host outside the allowlist
+ *   2. no key-shaped literals in source, INCLUDING generated .json under src/
+ *   3. no high-signal credential in the BUILT output (js/css/html/json)
+ *   4. the built output references no host outside the allowlist
  *
  * Exit code 1 on any violation, with the offending file and line.
  */
@@ -23,22 +30,7 @@ const ROOT = resolve(__dirname, "..");
 const DIST = resolve(ROOT, process.argv[2] || "dist");
 const SRC = resolve(ROOT, "src");
 
-/** Hosts the site is allowed to talk to. Empty of anything key-bearing. */
-const ALLOWED_HOSTS = [
-  "fonts.googleapis.com",
-  "fonts.gstatic.com",
-  "github.com",
-  "moniruzjaman.github.io",
-  "krishiai.live",
-  "raw.githubusercontent.com",
-  "user-images.githubusercontent.com",
-  "camo.githubusercontent.com",
-  "avatars.githubusercontent.com",
-  "api.github.com",
-  "vercel.app",
-  "surge.sh",
-  "workers.dev",
-];
+import { hostOf, hostAllowed } from "./lib/hosts.mjs";
 
 /** Patterns that indicate a credential, wherever they appear. */
 const SECRET_PATTERNS = [
@@ -48,7 +40,15 @@ const SECRET_PATTERNS = [
   { re: /\bgithub_pat_[A-Za-z0-9_]{50,}\b/g, name: "GitHub fine-grained PAT" },
   { re: /\bsupabase\.co\b/i, name: "Supabase project reference" },
   { re: /\bAKIA[0-9A-Z]{16}\b/g, name: "AWS access key id" },
+  { re: /-----BEGIN (?:RSA |EC )?PRIVATE KEY-----/g, name: "private key block" },
+  { re: /\\?"private_key\\?"\s*:/g, name: "service-account private_key field" },
+  { re: /[a-z0-9-]+@[a-z0-9-]+\.iam\.gserviceaccount\.com/gi, name: "service-account identity" },
 ];
+
+/** Subset safe to run over minified bundles: no false positives on bundled library code. */
+const BUNDLE_PATTERNS = SECRET_PATTERNS.filter(
+  (p) => !["OpenAI-style secret key", "Supabase project reference"].includes(p.name),
+);
 
 const KEY_ENV_PATTERNS = [
   /import\.meta\.env\.[A-Z0-9_]*(KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)/i,
@@ -73,7 +73,7 @@ async function* walk(dir) {
 
 for await (const file of walk(SRC)) {
   const ext = extname(file);
-  if (![".ts", ".tsx", ".js", ".jsx", ".mjs", ".css", ".html"].includes(ext)) continue;
+  if (![".ts", ".tsx", ".js", ".jsx", ".mjs", ".css", ".html", ".json"].includes(ext)) continue;
   const text = await readFile(file, "utf8");
   const lines = text.split("\n");
 
@@ -127,25 +127,19 @@ try {
   process.exit(1);
 }
 
-const hostOf = (u) => {
-  try {
-    return new URL(u).hostname.toLowerCase();
-  } catch {
-    return null;
-  }
-};
-const hostAllowed = (host) =>
-  ALLOWED_HOSTS.some((h) => host === h || host.endsWith(`.${h}`)) ||
-  host.endsWith(".vercel.app") ||
-  host.endsWith(".surge.sh") ||
-  host.endsWith(".krishiai.live");
-
 const advisories = new Set();
 
 for await (const file of walk(DIST)) {
   const ext = extname(file);
   const text = await readFile(file, "utf8");
   const where = relative(ROOT, file);
+
+  if ([".js", ".css", ".html", ".json", ".map"].includes(ext)) {
+    for (const { re, name } of BUNDLE_PATTERNS) {
+      re.lastIndex = 0;
+      if (re.test(text)) problems.push(`${where}  ${name} in built output`);
+    }
+  }
 
   for (const pos of NETWORK_POSITIONS) {
     if (pos.ext !== ext) continue;
@@ -176,14 +170,14 @@ for await (const file of walk(DIST)) {
 if (advisories.size) {
   console.log(`\n  advisory — non-requested hosts found in the bundle (not fetched):`);
   for (const h of [...advisories].sort().slice(0, 12)) console.log(`    ${h}`);
-  console.log(`  If any of these should be requested, it belongs in ALLOWED_HOSTS.`);
+  console.log(`  If any of these should be requested, it belongs in ALLOWED_HOSTS (scripts/lib/hosts.mjs).`);
 }
 
 if (problems.length) {
   console.error(`\n✖ no-api-key check FAILED — ${problems.length} violation(s):\n`);
   for (const p of [...new Set(problems)].slice(0, 40)) console.error(`   ${p}`);
   console.error(`\n   This site is built to run with no credentials of any kind.`);
-  console.error(`   If a host is legitimate, add it to ALLOWED_HOSTS in scripts/verify-no-secrets.mjs\n`);
+  console.error(`   If a host is legitimate, add it to ALLOWED_HOSTS in scripts/lib/hosts.mjs\n`);
   process.exit(1);
 }
 

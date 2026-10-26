@@ -3,15 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzzaman — agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzzaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/gen-sitemap.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
+    "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
     "build:fast": "vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "sync": "node scripts/sync-repos.mjs",
-    "verify": "node scripts/verify-no-secrets.mjs dist"
+    "sync": "node scripts/sync-repos.mjs && node scripts/sync-drive.mjs",
+    "verify": "node scripts/verify-no-secrets.mjs dist",
+    "sync:drive": "node scripts/sync-drive.mjs",
+    "test:scripts": "node --test \"scripts/__tests__/*.test.mjs\"",
+    "test:render": "node scripts/render-smoke.mjs",
+    "test": "npm run test:scripts && npm run test:render"
   },
   "dependencies": {
     "lucide-react": "^1.54.0",

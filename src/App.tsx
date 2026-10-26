@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Route, Switch } from "wouter";
+import { Route, Router, Switch } from "wouter";
+import { ROUTER_BASE } from "@/lib/site";
 import { LangProvider } from "@/lib/i18n";
 import { Nav, Footer } from "@/components/Chrome";
 import { SearchDialog } from "@/components/SearchDialog";
@@ -11,19 +12,19 @@ import Expertise from "@/pages/Expertise";
 import Notes from "@/pages/Notes";
 import NoteDetail from "@/pages/NoteDetail";
 import About from "@/pages/About";
+import Library from "@/pages/Library";
 import { NotFound } from "@/pages/NotFound";
 
 /**
- * Deep-link recovery: GitHub Pages has no rewrite rules, so a cold load of
- * /works/foo hits 404.html, which stashes the path in sessionStorage and
- * redirects here. main.tsx replays that path via history.replaceState BEFORE
- * this tree mounts, so wouter's location hook reads the right URL on first
- * render and no flash of the home page occurs. Nothing extra is needed here.
+ * Deep links on GitHub Pages: there are no rewrite rules, so a cold load of
+ * /works/foo hits 404.html, which stashes the path and redirects to the shell;
+ * main.tsx replays it before React mounts.
  *
- * The repo is `moniruzjaman/portfolio`, a project site, so the deploy root is
- * `/portfolio/` and wouter's default location hook works because GitHub Pages
- * serves the app under that base. If the repo name changes, this comment,
- * vite.config.ts `base`, and public/404.html must change together.
+ * Base path: wouter only strips a prefix it is told about. <Router base> below is
+ * REQUIRED when the site is served from a sub-path such as /portfolio/ — without
+ * it every route, including "/", renders Not Found. The base comes from Vite's
+ * `base` via src/lib/site.ts, so there is nothing to keep in sync by hand
+ * (public/404.html is generated from the same value by scripts/gen-static.mjs).
  */
 function Shell() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -54,6 +55,7 @@ function Shell() {
           <Route path="/" component={Home} />
           <Route path="/works" component={Works} />
           <Route path="/works/:slug" component={WorkDetail} />
+          <Route path="/library" component={Library} />
           <Route path="/expertise" component={Expertise} />
           <Route path="/notes" component={Notes} />
           <Route path="/notes/:slug" component={NoteDetail} />
@@ -68,10 +70,13 @@ function Shell() {
   );
 }
 
-export default function App() {
+/** `ssrPath` exists only so scripts/render-smoke.mjs can render the REAL app at a given URL. */
+export default function App({ ssrPath }: { ssrPath?: string }) {
   return (
     <LangProvider>
-      <Shell />
+      <Router base={ROUTER_BASE} ssrPath={ssrPath}>
+        <Shell />
+      </Router>
     </LangProvider>
   );
 }

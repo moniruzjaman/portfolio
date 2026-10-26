@@ -21,6 +21,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { probeBrand } from "./lib/brand-probe.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -180,7 +181,9 @@ function channelsFor(repo, tree, customDomain) {
 
   if (customDomain) ch.push("custom-domain");
   if (home.endsWith(".vercel.app")) ch.push("vercel");
-  if (CLOUDFLARE_MARKERS.some(has)) ch.push("cloudflare");
+  // A Cloudflare Pages / Workers homepage is proof on its own; marker files cover
+  // repos whose deployment URL is not recorded in the homepage field.
+  if (/\.(pages|workers)\.dev\/?$/.test(home) || CLOUDFLARE_MARKERS.some(has)) ch.push("cloudflare");
   if (repo.has_pages || PAGES_MARKERS.some(has)) ch.push("github-pages");
 
   return [...new Set(ch)];
@@ -296,6 +299,11 @@ async function main() {
     const pagesUrl = `https://${OWNER}.github.io/${name}/`;
     const [homeAlive, pagesAlive] = await Promise.all([alive(homepage), alive(pagesUrl)]);
 
+    // Branding comes from the app itself (PWA manifest + <head>). Cosmetic, so a
+    // failed probe yields null and the site derives a monogram — it never aborts.
+    const liveUrl = homeAlive ? homepage : customDomain || null;
+    const brand = await probeBrand(liveUrl || (pagesAlive ? pagesUrl : null));
+
     included.push({
       name,
       slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
@@ -306,15 +314,16 @@ async function main() {
       stars: repo.stargazers_count,
       pushedAt: repo.pushed_at,
       url: repo.html_url,
-      live: homeAlive ? homepage : customDomain || null,
+      live: liveUrl,
       customDomain,
       pages: pagesAlive ? pagesUrl : null,
       channels,
       readmeBytes: readme.length,
-      featured: false, // curated by hand in content/featured.json, see §5 of the blueprint
+      brand,
+      featured: false, // flagship order is curated in src/content/apps.ts
     });
 
-    process.stdout.write(`  ✓ ${name}\n`);
+    process.stdout.write(`  ✓ ${name}${brand ? `  [brand: ${brand.source}${brand.themeColor ? " " + brand.themeColor : ""}]` : ""}\n`);
   }
 
   // Deterministic order: most recently pushed first, then name.
@@ -353,8 +362,9 @@ async function main() {
   );
 
   const live = included.filter((r) => r.live || r.pages).length;
+  const branded = included.filter((r) => r.brand).length;
   console.log(
-    `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL\n` +
+    `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL · ${branded} branded from the app itself\n` +
       `  channels: ${Object.entries(counts).map(([k, v]) => `${k}=${v}`).join("  ")}\n` +
       `  took ${((Date.now() - t0) / 1000).toFixed(1)}s → ${OUT.replace(ROOT + "/", "")}`,
   );

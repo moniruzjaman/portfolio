@@ -7,6 +7,7 @@ import { author } from "@/lib/author";
 
 const LINKS = [
   { href: "/works", en: "Work", bn: "কাজ" },
+  { href: "/library", en: "Library", bn: "লাইব্রেরি" },
   { href: "/expertise", en: "Expertise", bn: "দক্ষতা" },
   { href: "/notes", en: "Writing", bn: "লেখা" },
   { href: "/about", en: "About", bn: "পরিচিতি" },
@@ -46,7 +47,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {LINKS.map((l) => (
             <Link
               key={l.href}
@@ -82,7 +83,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
             onClick={() => setOpen((o) => !o)}
             aria-label={t("Menu", "মেনু")}
             aria-expanded={open}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
           >
             {open ? <X size={16} /> : <Menu size={16} />}
           </button>
@@ -90,7 +91,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
       </div>
 
       {open && (
-        <nav className="border-t border-forest-200 bg-cream-100 md:hidden" aria-label="Mobile">
+        <nav className="border-t border-forest-200 bg-cream-100 lg:hidden" aria-label="Mobile">
           <div className="u-container flex flex-col py-3">
             {LINKS.map((l) => (
               <Link

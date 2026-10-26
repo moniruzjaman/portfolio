@@ -155,10 +155,29 @@ positioned satellite nodes connected to a centred expertise node by dashed SVG
 edges. Node geometry is percentage-based, so it scales without a breakpoint.
 Footer strip shows the count of live-linked repositories.
 
-### RepoCard
-Bordered white card, serif title, three-line description clamp, channel chips,
+### AppCard (was RepoCard)
+Bordered white card with a colour band on top carrying the app's mark and address.
+The band is the app's own theme colour when its PWA manifest / `<head>` publishes
+one (`brand.derived === false`), otherwise a deterministic colour from
+`FALLBACK_PALETTE` keyed on the repo name — never random, never presented as the
+app's brand (the detail page says "Colour assigned" when derived). Foreground is
+chosen for contrast, and a near-white theme colour is rejected because it would
+vanish on the cream page. Serif title, description clamp, channel chips,
 language + relative-push footer. Whole card is one link — no nested interactive
 elements, which keeps the tab order clean.
+
+### PlatformTiles
+Four tiles (krishiai.live · Vercel · Cloudflare · GitHub Pages) showing apps and
+addresses per channel — computed from the data. On `/works` they are the channel
+filter (`aria-pressed`); on Home they link to `/works`. An "address" is host **and**
+path: every GitHub Pages site shares `moniruzjaman.github.io`, so counting hosts
+collapses ~22 sites into one.
+
+### Library / DocPreview
+`/library` lists files from Google Drive. Preview opens in a native `<dialog>`
+(focus trap, Esc, focus return for free). The Drive frame is mounted only while
+open, so nothing is requested from Google until a visitor asks. Frames are
+sandboxed. Folder browsing (`embeddedfolderview`) is likewise click-to-load.
 
 ### NoteCard
 Cream surface, type chip + year, serif title, summary clamp, reading time.
@@ -202,11 +221,26 @@ where the CV says 8+, "6+ digital apps" against 39 real repositories, and
 
 ### The no-API-key constraint
 
-Architectural, enforced by `scripts/verify-no-secrets.mjs` in CI. No credentials
-exist anywhere in this project. Repository data is fetched at build time with the
-Actions runner's auto-minted `GITHUB_TOKEN`; the browser reads static JSON. If a
-future change needs a key, the build fails until the constraint is revisited
-deliberately.
+Architectural, enforced by `scripts/verify-no-secrets.mjs` in CI. **No credentials
+exist in the shipped site or in `src/`.** Data that needs authentication is fetched
+at build time by scripts running in CI — `GITHUB_TOKEN` (auto-minted) for
+repositories, and optionally `GOOGLE_API_KEY` / `GOOGLE_SERVICE_ACCOUNT_JSON`
+(repository secrets) for the Drive library — and written to static JSON. The
+credential stays on the runner; the browser only reads the JSON.
+
+*Revised in v1.1.* The original wording ("no credentials exist anywhere in this
+project") would have forbidden the Drive sync, so it was revisited deliberately, as
+this section always required. What did not change: nothing secret reaches the
+browser. What got stricter: the gate now also scans generated `.json` under `src/`
+and the **built output** for key and private-key shapes (it previously skipped both),
+and `scripts/__tests__` proves the Drive sync never writes its key to disk.
+
+### Drive visibility is fail-closed
+Only files publicly readable ("Anyone with the link") are ever indexed. With an API
+key that is true by construction (the key is anonymous). With a service account the
+sync checks each file's permissions and **skips** anything not public, or whose
+permissions it cannot read, logging the reason to `library-skipped.generated.json`.
+Listing a private file's title on a public site is the failure this prevents.
 
 ### Writing a note
 
@@ -278,3 +312,22 @@ Things that must not appear, and why.
 - Anti-patterns added (§9), including two real bugs this build fixed
 - Bangla rules made specific: line-height, letter-spacing, font selection
 - `gold-500` and `moss-400` downgraded to decorative-only after measuring them
+
+**v1.1** — ecosystem, branding and library.
+
+- **Fixed: every route rendered Not Found at `/portfolio/`.** wouter only strips a
+  base it is given; `<Router base>` was missing. Reproduced before fixing and now
+  guarded by `npm run test:render`, which renders the real `<App/>` at a sub-path and
+  at root (mutation-tested: removing the base turns it red).
+- Fixed: canonical / `og:*` / JSON-LD URLs pointed at the site root; 404 shim,
+  sitemap and robots now generated from `BASE_PATH` / `SITE_ORIGIN` (`gen-static.mjs`).
+- Fixed: search labelled every repository "Vercel" (`h.kind === "repo" ? "vercel" : "vercel"`).
+- Fixed: "addresses" counted hosts, collapsing all GitHub Pages sites into one.
+- Added: app branding probed from each app's PWA manifest / `<head>` with a
+  deterministic, contrast-checked fallback (AppCard).
+- Added: PlatformTiles, Addresses directory view, Cloudflare detection via
+  `*.pages.dev` / `*.workers.dev` homepages.
+- Added: Google Drive library (`/library`), see §7 for the credential policy.
+- Hardened: secrets gate scans `.json` and built output; host allowlist now shared
+  (`scripts/lib/hosts.mjs`).
+- Nav links now collapse below `lg` (six items overflowed the bar at `md`).

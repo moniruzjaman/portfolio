@@ -1,0 +1,42 @@
+{
+  "$comment": "One Drive folder feeds /library. 'root.folderId' is the folder's ID (drive.google.com/drive/folders/<ID>). Everything inside is sorted automatically: a top-level subfolder whose name matches 'researchPattern' becomes Research; otherwise a file goes by type (PDF, Presentations); anything else lands in 'Other files'. Folder IDs are not secrets. With no credentials the page offers Drive's own folder view; add GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) as a repository secret to index the files. Share the folder as 'Anyone with the link: Viewer'. Per-collection folderId is still supported if you later split into separate folders.",
+  "maxDepth": 4,
+  "collections": [
+    {
+      "key": "research",
+      "title": "Research",
+      "titleBn": "গবেষণা",
+      "description": "Studies, working papers and field research.",
+      "descriptionBn": "গবেষণাপত্র, ওয়ার্কিং পেপার ও মাঠ গবেষণা।",
+      "folderId": null
+    },
+    {
+      "key": "pdf",
+      "title": "PDF documents",
+      "titleBn": "পিডিএফ নথি",
+      "description": "Guides, reports and reference documents.",
+      "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
+      "folderId": null
+    },
+    {
+      "key": "pptx",
+      "title": "Presentations",
+      "titleBn": "উপস্থাপনা",
+      "description": "Slide decks from trainings, briefings and talks.",
+      "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
+      "folderId": null
+    },
+    {
+      "key": "other",
+      "title": "Other files",
+      "titleBn": "অন্যান্য ফাইল",
+      "description": "Documents, spreadsheets and other material.",
+      "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
+      "folderId": null
+    }
+  ],
+  "root": {
+    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t",
+    "researchPattern": "research|paper|journal|thesis|study|গবেষণা"
+  }
+}

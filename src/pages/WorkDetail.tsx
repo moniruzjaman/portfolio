@@ -1,7 +1,8 @@
 import { Link, useRoute } from "wouter";
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { GithubMark } from "@/components/icons";
-import { bySlug, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
+import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
+import { BrandMark } from "@/components/AppCard";
 import { notes } from "@/content/notes";
 import { PageHeader, Chip } from "@/components/Section";
 import { useI18n } from "@/lib/i18n";
@@ -13,6 +14,9 @@ export default function WorkDetail() {
   const repo = params ? bySlug(params.slug) : undefined;
 
   if (!repo) return <NotFound />;
+
+  const brand = brandOf(repo);
+  const endpoints = endpointsOf(repo);
 
   const related = notes
     .filter((n) =>
@@ -44,6 +48,36 @@ export default function WorkDetail() {
             >
               <ArrowLeft size={13} /> {t("All works", "সব কাজ")}
             </Link>
+
+            <div
+              className="relative mb-8 flex items-center gap-5 overflow-hidden rounded-2xl p-6"
+              style={{ background: brand.color, color: brand.fg }}
+            >
+              {brand.image && (
+                <img
+                  src={brand.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity"
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              )}
+              <div className="relative">
+                <BrandMark brand={brand} size={72} radius={18} />
+              </div>
+              <div className="relative min-w-0">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] opacity-90">
+                  {endpoints[0]?.label ?? repo.name}
+                </p>
+                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] opacity-75">
+                  {brand.derived
+                    ? t("Colour assigned — app publishes no brand colour", "রং নির্ধারিত — অ্যাপটি নিজস্ব রং প্রকাশ করে না")
+                    : t("Brand colour from the app itself", "অ্যাপের নিজস্ব ব্র্যান্ড রং")}
+                </p>
+              </div>
+            </div>
 
             {repo.description && (
               <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">
@@ -151,13 +185,27 @@ export default function WorkDetail() {
                     </dd>
                   </div>
                 )}
-                {repo.customDomain && (
+                {endpoints.length > 0 && (
                   <div>
                     <dt className="text-xs uppercase tracking-[0.12em] text-moss-400">
-                      {t("Custom domain", "কাস্টম ডোমেইন")}
+                      {t("Addresses", "ঠিকানা")}
                     </dt>
-                    <dd className="mt-1 break-all font-mono text-xs text-forest-500">
-                      {repo.customDomain.replace(/^https?:\/\//, "")}
+                    <dd className="mt-2 space-y-2">
+                      {endpoints.map((e) => (
+                        <a
+                          key={e.url}
+                          href={e.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex min-h-11 items-center justify-between gap-2 break-all rounded-lg border border-forest-300 px-3 py-2 font-mono text-xs text-forest-600 hover:border-forest-500 hover:text-forest-900"
+                        >
+                          <span>
+                            <span className="block text-[9px] uppercase tracking-[0.14em] text-moss-500">{CHANNEL_LABEL[e.channel][lang]}</span>
+                            {e.label}
+                          </span>
+                          <ExternalLink size={12} aria-hidden="true" className="shrink-0" />
+                        </a>
+                      ))}
                     </dd>
                   </div>
                 )}

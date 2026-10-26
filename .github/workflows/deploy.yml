@@ -34,6 +34,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # Script unit tests (brand probe, Drive sync) + server-render of every route
+      # at the real base path. The render test is what catches routing breakage.
+      - name: Test
+        run: npm test
+
       # `npm run build` runs tsc, vite, and the no-api-key gate as one command.
       - name: Build + verify no API keys
         run: npm run build

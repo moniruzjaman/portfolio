@@ -4,13 +4,21 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "node:path";
 
 // The repo is `moniruzjaman/portfolio`, a project site, so the deploy root is
-// `/portfolio/`. Change BASE and the 404.html shim in `public/` together — they
-// must agree or every deep link breaks. Override with BASE_PATH for other hosts.
+// `/portfolio/`. Override with BASE_PATH (e.g. "/" for a user site or custom
+// domain). The router, 404.html shim, sitemap and canonical URL all derive from it.
 const BASE = process.env.BASE_PATH || "/portfolio/";
+// Absolute public URL (canonical, og:image, JSON-LD). Keep defaults identical to
+// scripts/gen-static.mjs; override both with SITE_ORIGIN / BASE_PATH.
+const SITE_URL = `${process.env.SITE_ORIGIN || "https://moniruzjaman.github.io"}${BASE}`;
 
 export default defineConfig({
   base: BASE,
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    // index.html carries __SITE_URL__ so canonical/OG URLs match the real deployment.
+    { name: "site-url", transformIndexHtml: (html) => html.replaceAll("__SITE_URL__", SITE_URL) },
+  ],
   server: {
     allowedHosts: [".monkeycode-ai.live"],
   },

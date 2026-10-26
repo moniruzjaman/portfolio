@@ -32,20 +32,28 @@ computed at runtime from the generated data. Nothing is typed by hand.
 npm install
 npm run dev          # http://localhost:5173
 npm run typecheck    # tsc --noEmit
-npm run build        # typecheck + vite build + no-api-key gate
+npm test             # script unit tests + server-render of every route at its base path
+npm run build        # generate static files + typecheck + vite build + no-credentials gate
 npm run preview      # serve dist/
+npm run sync         # refresh repos + Drive library (needs GITHUB_TOKEN; see .env.example)
 ```
 
-`npm run build` runs all three gates in sequence. A build that passes is a build
-that typechecks, bundles, and contains no credentials.
+`npm run build` runs every gate in sequence. A build that passes is a build that
+typechecks, bundles, and contains no credentials. `npm test` is separate because it
+exercises behaviour (routing under the base path, the Drive/brand pipelines) that
+a build cannot see.
 
 ## Deploying
 
-1. Create the repository `moniruzjaman.github.io` (public).
-2. Push this code to `main`.
-3. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+1. Push this code to `main` of `moniruzjaman/portfolio` (served at
+   `https://moniruzjaman.github.io/portfolio/`).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 
-That is the entire setup. There are no secrets to configure — `GITHUB_TOKEN` is
+To serve from the root instead (a `moniruzjaman.github.io` repo or a custom domain),
+set `BASE_PATH=/` (and `SITE_ORIGIN` for a custom domain) in the workflow `env`.
+Router, 404 shim, sitemap and canonical URLs all follow it — nothing else to edit.
+
+That is the entire setup for the site itself. There are no secrets to configure — `GITHUB_TOKEN` is
 minted automatically by the Actions runner, and the deploy workflow uses it via
 the official `actions/deploy-pages`.
 
@@ -90,19 +98,70 @@ static file.
 
 ---
 
+## App branding
+
+Each card shows the app's **own** colour and icon, read at sync time from the app's
+PWA manifest and `<head>` (`scripts/lib/brand-probe.mjs`). An app with no manifest,
+or behind Vercel deployment protection (which answers with Vercel's login page — the
+probe refuses that), gets a deterministic monogram and palette colour instead, and
+its detail page says the colour was assigned. Nothing is hand-maintained: rebrand an
+app and the portfolio follows at the next sync.
+
+Cloudflare shows as "N apps, 0 addresses" until a Worker/Pages repo has its public
+URL in the GitHub repository's **Homepage** field — the sync can only list an
+address it has been told about.
+
+## Google Drive library
+
+`/library` shows Research, PDF and Presentation folders from Google Drive.
+
+**One folder, sorted automatically.** `root.folderId` in
+`content/library.config.json` is the single Drive folder. Inside it, a top-level
+subfolder whose name matches `researchPattern` (default: research, paper, journal,
+thesis, study, গবেষণা) becomes **Research**; every other file goes by type — PDFs to
+**PDF**, slides to **Presentations**, the rest to **Other files**. Sub-folders are
+walked (up to `maxDepth`) and shown as a label on each card.
+
+**Zero credentials (works today):** share the folder as *Anyone with the link →
+Viewer*. The page shows Drive's own folder view, click-to-load.
+
+**Indexed (cards, thumbnails, search, in-page preview):** add a repository secret
+(**Settings → Secrets and variables → Actions**):
+
+| Secret | When | Notes |
+| --- | --- | --- |
+| `GOOGLE_API_KEY` | recommended | Google Cloud → enable *Google Drive API* → create an API key and restrict it to that API. Anonymous, so it can only ever see public files. |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | alternative | whole JSON key on one line. Share the folders with its `client_email`. Files that are not public are **skipped**, never listed. |
+
+Never paste these into a chat, issue or commit — they belong only in repository
+secrets. The next scheduled run (or **Actions → Run workflow**) indexes the files.
+Skipped files and the reason are written to `src/data/library-skipped.generated.json`.
+
+A **PAT is not needed** for any of this: the repository sync uses the
+auto-minted `GITHUB_TOKEN`, which can read public repositories.
+
 ## Project structure
 
 ```
 ├── content/
-│   └── design-system.md          # the design system — read this first
+│   ├── design-system.md          # the design system — read this first
+│   └── library.config.json       # which Drive folders feed /library
 ├── public/
-│   ├── 404.html                  # deep-link shim (see below)
+│   ├── 404.html                  # GENERATED deep-link shim (gen-static.mjs)
 │   └── favicon.svg
 ├── scripts/
-│   ├── sync-repos.mjs            # the auto-inclusion pipeline
-│   └── verify-no-secrets.mjs     # the no-API-key gate
+│   ├── sync-repos.mjs            # the auto-inclusion pipeline (+ brand probe)
+│   ├── sync-drive.mjs            # Drive library index (fail-closed)
+│   ├── gen-static.mjs            # 404.html, sitemap, robots from BASE_PATH
+│   ├── render-smoke.mjs          # renders real routes at sub-path + root
+│   ├── verify-no-secrets.mjs     # the no-credentials gate
+│   ├── lib/                      # hosts.mjs (shared allowlist), brand-probe.mjs
+│   └── __tests__/                # node:test suites (brand, Drive)
 ├── src/
 │   ├── components/
+│   │   ├── AppCard.tsx           # branded app card + BrandMark
+│   │   ├── PlatformTiles.tsx     # four-channel status tiles / filter
+│   │   ├── DocPreview.tsx        # <dialog> Drive preview
 │   │   ├── KnowledgeGraph.tsx    # signature graph component + 6 expertise areas
 │   │   ├── Chrome.tsx            # nav + footer
 │   │   ├── SearchDialog.tsx      # ⌘K / Ctrl+K search
@@ -113,12 +172,16 @@ static file.
 │   │   └── notes/*.ts            # one file per note
 │   ├── data/
 │   │   ├── repos.generated.json  # ← generated, do not hand-edit
-│   │   └── excluded.generated.json
+│   │   ├── excluded.generated.json
+│   │   └── library.generated.json   # ← generated by sync-drive.mjs
 │   ├── lib/
+│   │   ├── site.ts               # base path (BASE_URL / ROUTER_BASE)
+│   │   ├── brand.ts              # brand derivation + fallback palette
+│   │   ├── library.ts            # Drive URL builders (ids only are stored)
 │   │   ├── author.ts             # identity, CV, career
 │   │   ├── data.ts               # typed access to the generated data
 │   │   └── i18n.tsx              # EN / বাংলা
-│   └── pages/                    # Home, Works, WorkDetail, Expertise,
+│   └── pages/                    # Home, Works, WorkDetail, Library, Expertise,
 │                                 # Notes, NoteDetail, About, NotFound
 └── .github/workflows/
     ├── deploy.yml                # build + deploy to Pages
@@ -168,9 +231,10 @@ would 404 before the SPA boots. Three pieces make it work:
 2. `src/main.tsx` replays it via `history.replaceState` **before** React mounts
 3. wouter reads the corrected URL on first render
 
-> **Moving this project to a differently-named repository?** Change `base` in
-> `vite.config.ts` **and** `BASE` in `public/404.html` **and** the comment in
-> `src/App.tsx`. They must agree or every deep link breaks.
+> **Moving this project?** Set `BASE_PATH` (default `/portfolio/`). The Vite
+> `base`, the router (`<Router base>` in `src/App.tsx`), `public/404.html`, the
+> sitemap and the canonical URL all derive from it. `npm run test:render` fails if
+> routing and base ever disagree.
 
 ---
 

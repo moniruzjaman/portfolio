@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { Search, CornerDownLeft } from "lucide-react";
-import { repos, CHANNEL_LABEL } from "@/lib/data";
+import { repos } from "@/lib/data";
+import { libraryItems, KIND_LABEL } from "@/lib/library";
 import { notes } from "@/content/notes";
 import { useI18n } from "@/lib/i18n";
 
@@ -14,7 +15,7 @@ import { useI18n } from "@/lib/i18n";
  * ordering matches how people actually type repo names.
  */
 type Hit = {
-  kind: "repo" | "note";
+  kind: "repo" | "note" | "doc";
   title: string;
   subtitle: string;
   href: string;
@@ -76,7 +77,17 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
       }))
       .filter((h) => h.score > 0);
 
-    return [...repoHits, ...noteHits].sort((a, b) => b.score - a.score).slice(0, 8);
+    const docHits: Hit[] = libraryItems
+      .map((d) => ({
+        kind: "doc" as const,
+        title: d.title,
+        subtitle: `${KIND_LABEL[d.kind].en} · ${d.modified?.slice(0, 4) ?? ""}`.trim(),
+        href: "/library",
+        score: score(q, d.title, d.path.join(" ")),
+      }))
+      .filter((h) => h.score > 0);
+
+    return [...repoHits, ...noteHits, ...docHits].sort((a, b) => b.score - a.score).slice(0, 8);
   }, [q, lang]);
 
   useEffect(() => setCursor(0), [q]);
@@ -118,7 +129,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               }
               if (e.key === "Enter" && hits[cursor]) go(hits[cursor]);
             }}
-            placeholder={t("Search works and notes…", "কাজ ও নোট খুঁজুন…")}
+            placeholder={t("Search works, notes and library…", "কাজ, নোট ও লাইব্রেরি খুঁজুন…")}
             className="w-full bg-transparent py-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
             aria-label={t("Search", "অনুসন্ধান")}
           />
@@ -153,7 +164,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               </span>
               <span className="flex shrink-0 items-center gap-2">
                 <span className="u-eyebrow text-moss-400">
-                  {h.kind === "repo" ? CHANNEL_LABEL[h.kind === "repo" ? "vercel" : "vercel"].en : t("Note", "নোট")}
+                  {h.kind === "repo" ? t("Work", "কাজ") : h.kind === "doc" ? t("Library", "লাইব্রেরি") : t("Note", "নোট")}
                 </span>
                 {i === cursor && <CornerDownLeft size={13} className="text-moss-400" />}
               </span>
@@ -163,7 +174,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
 
         <div className="flex items-center justify-between border-t border-forest-200 px-4 py-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-moss-400">
-            {repos.length} works · {notes.length} notes
+            {repos.length} works · {notes.length} notes · {libraryItems.length} docs
           </span>
           <span className="font-mono text-[10px] text-moss-400">↑↓ ↵</span>
         </div>

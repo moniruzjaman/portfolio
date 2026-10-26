@@ -1,0 +1,3961 @@
+From 7ef8584a43200b7332814555306d56b8a06afb41 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 25 Oct 2026 21:48:14 +0000
+Subject: [PATCH 1/2] feat: ecosystem view, app branding, Drive library; fix
+ base-path routing
+
+- fix: every route rendered Not Found under /portfolio/ (<Router base> missing)
+- fix: canonical/og URLs, 404 shim, sitemap derive from BASE_PATH/SITE_ORIGIN
+- fix: search labelled all repos 'Vercel'; address count collapsed github.io sites
+- feat: app branding probed from PWA manifest/head with deterministic fallback
+- feat: platform tiles, addresses directory, Cloudflare pages.dev/workers.dev detection
+- feat: /library from Google Drive (API key / service account, fail-closed, zero-credential fallback)
+- harden: secrets gate scans json + built output; shared host allowlist
+- test: brand probe, Drive sync (mock servers), render smoke at sub-path and root
+---
+ .env.example                     |   5 +
+ .github/workflows/deploy.yml     |   5 +
+ .github/workflows/sync-repos.yml |  22 +-
+ README.md                        |  91 ++++++--
+ content/design-system.md         |  67 +++++-
+ content/library.config.json      |  30 +++
+ index.html                       |  10 +-
+ package.json                     |  12 +-
+ public/404.html                  |  15 +-
+ public/robots.txt                |   2 +-
+ public/sitemap.xml               | 112 +++++-----
+ scripts/__tests__/brand.test.mjs | 122 ++++++++++
+ scripts/__tests__/drive.test.mjs | 137 ++++++++++++
+ scripts/gen-sitemap.mjs          |  24 --
+ scripts/gen-static.mjs           |  61 +++++
+ scripts/lib/brand-probe.mjs      | 191 ++++++++++++++++
+ scripts/lib/hosts.mjs            |  50 +++++
+ scripts/render-smoke.mjs         |  40 ++++
+ scripts/sync-drive.mjs           | 369 +++++++++++++++++++++++++++++++
+ scripts/sync-repos.mjs           |  20 +-
+ scripts/verify-no-secrets.mjs    |  62 +++---
+ src/App.tsx                      |  29 ++-
+ src/components/AppCard.tsx       | 107 +++++++++
+ src/components/Chrome.tsx        |   7 +-
+ src/components/DocPreview.tsx    |  91 ++++++++
+ src/components/PlatformTiles.tsx |  64 ++++++
+ src/components/SearchDialog.tsx  |  23 +-
+ src/content/apps.ts              |  15 ++
+ src/data/library.generated.json  |  33 +++
+ src/lib/brand.ts                 | 105 +++++++++
+ src/lib/data.ts                  |  98 +++++++-
+ src/lib/library.ts               |  86 +++++++
+ src/lib/site.ts                  |  16 ++
+ src/pages/Home.tsx               | 108 +++++----
+ src/pages/Library.tsx            | 231 +++++++++++++++++++
+ src/pages/WorkDetail.tsx         |  58 ++++-
+ src/pages/Works.tsx              | 220 +++++++++---------
+ src/test/ssr-probe.tsx           |   5 +
+ vite.config.ts                   |  14 +-
+ 39 files changed, 2409 insertions(+), 348 deletions(-)
+ create mode 100644 .env.example
+ create mode 100644 content/library.config.json
+ create mode 100644 scripts/__tests__/brand.test.mjs
+ create mode 100644 scripts/__tests__/drive.test.mjs
+ delete mode 100644 scripts/gen-sitemap.mjs
+ create mode 100644 scripts/gen-static.mjs
+ create mode 100644 scripts/lib/brand-probe.mjs
+ create mode 100644 scripts/lib/hosts.mjs
+ create mode 100644 scripts/render-smoke.mjs
+ create mode 100644 scripts/sync-drive.mjs
+ create mode 100644 src/components/AppCard.tsx
+ create mode 100644 src/components/DocPreview.tsx
+ create mode 100644 src/components/PlatformTiles.tsx
+ create mode 100644 src/content/apps.ts
+ create mode 100644 src/data/library.generated.json
+ create mode 100644 src/lib/brand.ts
+ create mode 100644 src/lib/library.ts
+ create mode 100644 src/lib/site.ts
+ create mode 100644 src/pages/Library.tsx
+ create mode 100644 src/test/ssr-probe.tsx
+
+diff --git a/.env.example b/.env.example
+new file mode 100644
+index 0000000..13f80b9
+--- /dev/null
++++ b/.env.example
+@@ -0,0 +1,5 @@
++# Only needed to run the syncs on your own machine. In CI these come from
++# repository secrets (Settings → Secrets and variables → Actions) — never commit a real value.
++# GITHUB_TOKEN=
++# GOOGLE_API_KEY=                 # Drive API key; sees only "Anyone with the link" files
++# GOOGLE_SERVICE_ACCOUNT_JSON=    # alternative: whole JSON key on one line
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index 0d5d57c..dc0f948 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -34,6 +34,11 @@ jobs:
+       - name: Typecheck
+         run: npm run typecheck
+ 
++      # Script unit tests (brand probe, Drive sync) + server-render of every route
++      # at the real base path. The render test is what catches routing breakage.
++      - name: Test
++        run: npm test
++
+       # `npm run build` runs tsc, vite, and the no-api-key gate as one command.
+       - name: Build + verify no API keys
+         run: npm run build
+diff --git a/.github/workflows/sync-repos.yml b/.github/workflows/sync-repos.yml
+index 2bc2ffb..98eefca 100644
+--- a/.github/workflows/sync-repos.yml
++++ b/.github/workflows/sync-repos.yml
+@@ -1,4 +1,4 @@
+-name: Sync repositories
++name: Sync repositories and library
+ 
+ # Auto-inclusion. Anything pushed to the GitHub dashboard that matches one of the
+ # four deployment channels appears on the site within a day, with no edit to any
+@@ -44,18 +44,32 @@ jobs:
+           REPO_OWNER: ${{ github.repository_owner }}
+         run: node scripts/sync-repos.mjs
+ 
++      # Google Drive library (/library). Optional and independent of the repo sync:
++      #   - with no secret set it only refreshes folder links from content/library.config.json
++      #   - with GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) it indexes the files
++      # continue-on-error so a Drive outage or a mis-shared folder cannot block repo
++      # updates; the script reports the failure as a visible ::error:: annotation and
++      # leaves the previous library data untouched.
++      - name: Sync Drive library
++        continue-on-error: true
++        env:
++          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
++          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
++        run: node scripts/sync-drive.mjs
++
+       - name: Commit if changed, then redeploy
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         run: |
+-          if git diff --quiet -- src/data/repos.generated.json src/data/excluded.generated.json; then
++          # status (not diff) so a brand-new generated file counts as a change too.
++          if [ -z "$(git status --porcelain -- 'src/data/*.generated.json')" ]; then
+             echo "No change — the generated data is already current."
+             exit 0
+           fi
+           git config user.name  "github-actions[bot]"
+           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+-          git add src/data/repos.generated.json src/data/excluded.generated.json
+-          git commit -m "chore(data): sync repositories from GitHub dashboard"
++          git add src/data/*.generated.json
++          git commit -m "chore(data): sync repositories and library"
+           git push
+           # Pushes made with GITHUB_TOKEN do not start other workflows, so deploy
+           # explicitly or the site would keep serving the old data.
+diff --git a/README.md b/README.md
+index 86d072d..39fbcc2 100644
+--- a/README.md
++++ b/README.md
+@@ -32,20 +32,28 @@ computed at runtime from the generated data. Nothing is typed by hand.
+ npm install
+ npm run dev          # http://localhost:5173
+ npm run typecheck    # tsc --noEmit
+-npm run build        # typecheck + vite build + no-api-key gate
++npm test             # script unit tests + server-render of every route at its base path
++npm run build        # generate static files + typecheck + vite build + no-credentials gate
+ npm run preview      # serve dist/
++npm run sync         # refresh repos + Drive library (needs GITHUB_TOKEN; see .env.example)
+ ```
+ 
+-`npm run build` runs all three gates in sequence. A build that passes is a build
+-that typechecks, bundles, and contains no credentials.
++`npm run build` runs every gate in sequence. A build that passes is a build that
++typechecks, bundles, and contains no credentials. `npm test` is separate because it
++exercises behaviour (routing under the base path, the Drive/brand pipelines) that
++a build cannot see.
+ 
+ ## Deploying
+ 
+-1. Create the repository `moniruzjaman.github.io` (public).
+-2. Push this code to `main`.
+-3. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
++1. Push this code to `main` of `moniruzjaman/portfolio` (served at
++   `https://moniruzjaman.github.io/portfolio/`).
++2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+ 
+-That is the entire setup. There are no secrets to configure — `GITHUB_TOKEN` is
++To serve from the root instead (a `moniruzjaman.github.io` repo or a custom domain),
++set `BASE_PATH=/` (and `SITE_ORIGIN` for a custom domain) in the workflow `env`.
++Router, 404 shim, sitemap and canonical URLs all follow it — nothing else to edit.
++
++That is the entire setup for the site itself. There are no secrets to configure — `GITHUB_TOKEN` is
+ minted automatically by the Actions runner, and the deploy workflow uses it via
+ the official `actions/deploy-pages`.
+ 
+@@ -90,19 +98,65 @@ static file.
+ 
+ ---
+ 
++## App branding
++
++Each card shows the app's **own** colour and icon, read at sync time from the app's
++PWA manifest and `<head>` (`scripts/lib/brand-probe.mjs`). An app with no manifest,
++or behind Vercel deployment protection (which answers with Vercel's login page — the
++probe refuses that), gets a deterministic monogram and palette colour instead, and
++its detail page says the colour was assigned. Nothing is hand-maintained: rebrand an
++app and the portfolio follows at the next sync.
++
++Cloudflare shows as "N apps, 0 addresses" until a Worker/Pages repo has its public
++URL in the GitHub repository's **Homepage** field — the sync can only list an
++address it has been told about.
++
++## Google Drive library
++
++`/library` shows Research, PDF and Presentation folders from Google Drive.
++
++**Zero credentials (works today):** set `folderId` for each collection in
++`content/library.config.json` (the last part of the folder's URL) and share the
++folder as *Anyone with the link → Viewer*. The page shows Drive's own folder view,
++click-to-load.
++
++**Indexed (cards, thumbnails, search, in-page preview):** add a repository secret
++(**Settings → Secrets and variables → Actions**):
++
++| Secret | When | Notes |
++| --- | --- | --- |
++| `GOOGLE_API_KEY` | recommended | Google Cloud → enable *Google Drive API* → create an API key and restrict it to that API. Anonymous, so it can only ever see public files. |
++| `GOOGLE_SERVICE_ACCOUNT_JSON` | alternative | whole JSON key on one line. Share the folders with its `client_email`. Files that are not public are **skipped**, never listed. |
++
++Never paste these into a chat, issue or commit — they belong only in repository
++secrets. The next scheduled run (or **Actions → Run workflow**) indexes the files.
++Skipped files and the reason are written to `src/data/library-skipped.generated.json`.
++
++A **PAT is not needed** for any of this: the repository sync uses the
++auto-minted `GITHUB_TOKEN`, which can read public repositories.
++
+ ## Project structure
+ 
+ ```
+ ├── content/
+-│   └── design-system.md          # the design system — read this first
++│   ├── design-system.md          # the design system — read this first
++│   └── library.config.json       # which Drive folders feed /library
+ ├── public/
+-│   ├── 404.html                  # deep-link shim (see below)
++│   ├── 404.html                  # GENERATED deep-link shim (gen-static.mjs)
+ │   └── favicon.svg
+ ├── scripts/
+-│   ├── sync-repos.mjs            # the auto-inclusion pipeline
+-│   └── verify-no-secrets.mjs     # the no-API-key gate
++│   ├── sync-repos.mjs            # the auto-inclusion pipeline (+ brand probe)
++│   ├── sync-drive.mjs            # Drive library index (fail-closed)
++│   ├── gen-static.mjs            # 404.html, sitemap, robots from BASE_PATH
++│   ├── render-smoke.mjs          # renders real routes at sub-path + root
++│   ├── verify-no-secrets.mjs     # the no-credentials gate
++│   ├── lib/                      # hosts.mjs (shared allowlist), brand-probe.mjs
++│   └── __tests__/                # node:test suites (brand, Drive)
+ ├── src/
+ │   ├── components/
++│   │   ├── AppCard.tsx           # branded app card + BrandMark
++│   │   ├── PlatformTiles.tsx     # four-channel status tiles / filter
++│   │   ├── DocPreview.tsx        # <dialog> Drive preview
+ │   │   ├── KnowledgeGraph.tsx    # signature graph component + 6 expertise areas
+ │   │   ├── Chrome.tsx            # nav + footer
+ │   │   ├── SearchDialog.tsx      # ⌘K / Ctrl+K search
+@@ -113,12 +167,16 @@ static file.
+ │   │   └── notes/*.ts            # one file per note
+ │   ├── data/
+ │   │   ├── repos.generated.json  # ← generated, do not hand-edit
+-│   │   └── excluded.generated.json
++│   │   ├── excluded.generated.json
++│   │   └── library.generated.json   # ← generated by sync-drive.mjs
+ │   ├── lib/
++│   │   ├── site.ts               # base path (BASE_URL / ROUTER_BASE)
++│   │   ├── brand.ts              # brand derivation + fallback palette
++│   │   ├── library.ts            # Drive URL builders (ids only are stored)
+ │   │   ├── author.ts             # identity, CV, career
+ │   │   ├── data.ts               # typed access to the generated data
+ │   │   └── i18n.tsx              # EN / বাংলা
+-│   └── pages/                    # Home, Works, WorkDetail, Expertise,
++│   └── pages/                    # Home, Works, WorkDetail, Library, Expertise,
+ │                                 # Notes, NoteDetail, About, NotFound
+ └── .github/workflows/
+     ├── deploy.yml                # build + deploy to Pages
+@@ -168,9 +226,10 @@ would 404 before the SPA boots. Three pieces make it work:
+ 2. `src/main.tsx` replays it via `history.replaceState` **before** React mounts
+ 3. wouter reads the corrected URL on first render
+ 
+-> **Moving this project to a differently-named repository?** Change `base` in
+-> `vite.config.ts` **and** `BASE` in `public/404.html` **and** the comment in
+-> `src/App.tsx`. They must agree or every deep link breaks.
++> **Moving this project?** Set `BASE_PATH` (default `/portfolio/`). The Vite
++> `base`, the router (`<Router base>` in `src/App.tsx`), `public/404.html`, the
++> sitemap and the canonical URL all derive from it. `npm run test:render` fails if
++> routing and base ever disagree.
+ 
+ ---
+ 
+diff --git a/content/design-system.md b/content/design-system.md
+index c237872..412916a 100644
+--- a/content/design-system.md
++++ b/content/design-system.md
+@@ -155,11 +155,30 @@ positioned satellite nodes connected to a centred expertise node by dashed SVG
+ edges. Node geometry is percentage-based, so it scales without a breakpoint.
+ Footer strip shows the count of live-linked repositories.
+ 
+-### RepoCard
+-Bordered white card, serif title, three-line description clamp, channel chips,
++### AppCard (was RepoCard)
++Bordered white card with a colour band on top carrying the app's mark and address.
++The band is the app's own theme colour when its PWA manifest / `<head>` publishes
++one (`brand.derived === false`), otherwise a deterministic colour from
++`FALLBACK_PALETTE` keyed on the repo name — never random, never presented as the
++app's brand (the detail page says "Colour assigned" when derived). Foreground is
++chosen for contrast, and a near-white theme colour is rejected because it would
++vanish on the cream page. Serif title, description clamp, channel chips,
+ language + relative-push footer. Whole card is one link — no nested interactive
+ elements, which keeps the tab order clean.
+ 
++### PlatformTiles
++Four tiles (krishiai.live · Vercel · Cloudflare · GitHub Pages) showing apps and
++addresses per channel — computed from the data. On `/works` they are the channel
++filter (`aria-pressed`); on Home they link to `/works`. An "address" is host **and**
++path: every GitHub Pages site shares `moniruzjaman.github.io`, so counting hosts
++collapses ~22 sites into one.
++
++### Library / DocPreview
++`/library` lists files from Google Drive. Preview opens in a native `<dialog>`
++(focus trap, Esc, focus return for free). The Drive frame is mounted only while
++open, so nothing is requested from Google until a visitor asks. Frames are
++sandboxed. Folder browsing (`embeddedfolderview`) is likewise click-to-load.
++
+ ### NoteCard
+ Cream surface, type chip + year, serif title, summary clamp, reading time.
+ 
+@@ -202,11 +221,26 @@ where the CV says 8+, "6+ digital apps" against 39 real repositories, and
+ 
+ ### The no-API-key constraint
+ 
+-Architectural, enforced by `scripts/verify-no-secrets.mjs` in CI. No credentials
+-exist anywhere in this project. Repository data is fetched at build time with the
+-Actions runner's auto-minted `GITHUB_TOKEN`; the browser reads static JSON. If a
+-future change needs a key, the build fails until the constraint is revisited
+-deliberately.
++Architectural, enforced by `scripts/verify-no-secrets.mjs` in CI. **No credentials
++exist in the shipped site or in `src/`.** Data that needs authentication is fetched
++at build time by scripts running in CI — `GITHUB_TOKEN` (auto-minted) for
++repositories, and optionally `GOOGLE_API_KEY` / `GOOGLE_SERVICE_ACCOUNT_JSON`
++(repository secrets) for the Drive library — and written to static JSON. The
++credential stays on the runner; the browser only reads the JSON.
++
++*Revised in v1.1.* The original wording ("no credentials exist anywhere in this
++project") would have forbidden the Drive sync, so it was revisited deliberately, as
++this section always required. What did not change: nothing secret reaches the
++browser. What got stricter: the gate now also scans generated `.json` under `src/`
++and the **built output** for key and private-key shapes (it previously skipped both),
++and `scripts/__tests__` proves the Drive sync never writes its key to disk.
++
++### Drive visibility is fail-closed
++Only files publicly readable ("Anyone with the link") are ever indexed. With an API
++key that is true by construction (the key is anonymous). With a service account the
++sync checks each file's permissions and **skips** anything not public, or whose
++permissions it cannot read, logging the reason to `library-skipped.generated.json`.
++Listing a private file's title on a public site is the failure this prevents.
+ 
+ ### Writing a note
+ 
+@@ -278,3 +312,22 @@ Things that must not appear, and why.
+ - Anti-patterns added (§9), including two real bugs this build fixed
+ - Bangla rules made specific: line-height, letter-spacing, font selection
+ - `gold-500` and `moss-400` downgraded to decorative-only after measuring them
++
++**v1.1** — ecosystem, branding and library.
++
++- **Fixed: every route rendered Not Found at `/portfolio/`.** wouter only strips a
++  base it is given; `<Router base>` was missing. Reproduced before fixing and now
++  guarded by `npm run test:render`, which renders the real `<App/>` at a sub-path and
++  at root (mutation-tested: removing the base turns it red).
++- Fixed: canonical / `og:*` / JSON-LD URLs pointed at the site root; 404 shim,
++  sitemap and robots now generated from `BASE_PATH` / `SITE_ORIGIN` (`gen-static.mjs`).
++- Fixed: search labelled every repository "Vercel" (`h.kind === "repo" ? "vercel" : "vercel"`).
++- Fixed: "addresses" counted hosts, collapsing all GitHub Pages sites into one.
++- Added: app branding probed from each app's PWA manifest / `<head>` with a
++  deterministic, contrast-checked fallback (AppCard).
++- Added: PlatformTiles, Addresses directory view, Cloudflare detection via
++  `*.pages.dev` / `*.workers.dev` homepages.
++- Added: Google Drive library (`/library`), see §7 for the credential policy.
++- Hardened: secrets gate scans `.json` and built output; host allowlist now shared
++  (`scripts/lib/hosts.mjs`).
++- Nav links now collapse below `lg` (six items overflowed the bar at `md`).
+diff --git a/content/library.config.json b/content/library.config.json
+new file mode 100644
+index 0000000..992e9e0
+--- /dev/null
++++ b/content/library.config.json
+@@ -0,0 +1,30 @@
++{
++  "$comment": "Which Google Drive folders feed /library. folderId is the last path segment of the folder's URL (drive.google.com/drive/folders/<ID>). Folder IDs are not secrets. Set one and push — with no credentials the site shows a click-to-load view of the folder; add GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) as a repository secret and the sync indexes every file with title, type, date and preview. Share each folder as 'Anyone with the link: Viewer'. See README, 'Google Drive library'.",
++  "maxDepth": 4,
++  "collections": [
++    {
++      "key": "research",
++      "title": "Research",
++      "titleBn": "গবেষণা",
++      "description": "Studies, working papers and field research.",
++      "descriptionBn": "গবেষণাপত্র, ওয়ার্কিং পেপার ও মাঠ গবেষণা।",
++      "folderId": null
++    },
++    {
++      "key": "pdf",
++      "title": "PDF documents",
++      "titleBn": "পিডিএফ নথি",
++      "description": "Guides, reports and reference documents.",
++      "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
++      "folderId": null
++    },
++    {
++      "key": "pptx",
++      "title": "Presentations",
++      "titleBn": "উপস্থাপনা",
++      "description": "Slide decks from trainings, briefings and talks.",
++      "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
++      "folderId": null
++    }
++  ]
++}
+diff --git a/index.html b/index.html
+index c2d14e6..ac1fc91 100644
+--- a/index.html
++++ b/index.html
+@@ -8,12 +8,12 @@
+       name="description"
+       content="Portfolio of Abu Md. Moniruzzaman — Additional Deputy Director (Horticulture), DAE Bangladesh, and builder of digital tools for smallholder farmers. Selected work, career, and field writing."
+     />
+-    <link rel="canonical" href="https://moniruzjaman.github.io/" />
++    <link rel="canonical" href="__SITE_URL__" />
+ 
+     <meta property="og:type" content="website" />
+-    <meta property="og:image" content="https://moniruzjaman.github.io/portrait.jpg" />
++    <meta property="og:image" content="__SITE_URL__portrait.jpg" />
+     <meta property="og:site_name" content="Abu Md. Moniruzzaman" />
+-    <meta property="og:url" content="https://moniruzjaman.github.io/" />
++    <meta property="og:url" content="__SITE_URL__" />
+     <meta property="og:title" content="Abu Md. Moniruzzaman — Portfolio" />
+     <meta
+       property="og:description"
+@@ -41,7 +41,7 @@
+           "@type": "GovernmentOrganization",
+           "name": "Department of Agricultural Extension (DAE), Government of Bangladesh"
+         },
+-        "url": "https://moniruzjaman.github.io/",
++        "url": "__SITE_URL__",
+         "email": "mailto:mithun.hstu@gmail.com",
+         "alumniOf": [
+           { "@type": "CollegeOrUniversity", "name": "Hajee Mohammad Danesh Science and Technology University" },
+@@ -55,7 +55,7 @@
+           "Digital Agriculture",
+           "Farmer Field Schools"
+         ],
+-        "image": "https://moniruzjaman.github.io/portrait.jpg",
++        "image": "__SITE_URL__portrait.jpg",
+         "sameAs": [
+           "https://github.com/moniruzjaman",
+           "https://www.linkedin.com/in/abu-md-moniruzjaman",
+diff --git a/package.json b/package.json
+index 3914325..6f5a769 100644
+--- a/package.json
++++ b/package.json
+@@ -3,15 +3,19 @@
+   "private": true,
+   "version": "1.0.0",
+   "type": "module",
+-  "description": "Personal portfolio of Abu Md. Moniruzzaman — agricultural extension & digital tools, DAE Bangladesh",
++  "description": "Personal portfolio of Abu Md. Moniruzzaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
+   "scripts": {
+     "dev": "vite",
+-    "build": "node scripts/gen-sitemap.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
++    "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
+     "build:fast": "vite build",
+     "typecheck": "tsc --noEmit",
+     "preview": "vite preview",
+-    "sync": "node scripts/sync-repos.mjs",
+-    "verify": "node scripts/verify-no-secrets.mjs dist"
++    "sync": "node scripts/sync-repos.mjs && node scripts/sync-drive.mjs",
++    "verify": "node scripts/verify-no-secrets.mjs dist",
++    "sync:drive": "node scripts/sync-drive.mjs",
++    "test:scripts": "node --test \"scripts/__tests__/*.test.mjs\"",
++    "test:render": "node scripts/render-smoke.mjs",
++    "test": "npm run test:scripts && npm run test:render"
+   },
+   "dependencies": {
+     "lucide-react": "^1.54.0",
+diff --git a/public/404.html b/public/404.html
+index c1a4eca..f5399d8 100644
+--- a/public/404.html
++++ b/public/404.html
+@@ -4,21 +4,14 @@
+     <meta charset="utf-8" />
+     <title>Abu Md. Moniruzzaman</title>
+     <script>
+-      /*
+-       * GitHub Pages has no server-side rewrites, so a cold load of a deep link
+-       * like /works/soil-media-portal would 404 before the SPA ever boots.
+-       * This page stashes the intended path and bounces to the shell, which
+-       * replays it through the router (see src/main.tsx).
+-       *
+-       * MUST stay in sync with `base` in vite.config.ts.
+-       */
++      /* GENERATED by scripts/gen-static.mjs — do not edit.
++       * GitHub Pages has no rewrites, so a cold load of a deep link would 404 before
++       * the SPA boots. Stash the path, bounce to the shell; src/main.tsx replays it. */
+       (function () {
+         var BASE = "/portfolio/";
+         var p = window.location.pathname;
+         if (p.indexOf(BASE) === 0 && p !== BASE) {
+-          try {
+-            sessionStorage.setItem("ph:redirect", p + window.location.search + window.location.hash);
+-          } catch (e) {}
++          try { sessionStorage.setItem("ph:redirect", p + window.location.search + window.location.hash); } catch (e) {}
+           window.location.replace(BASE + "index.html");
+         }
+       })();
+diff --git a/public/robots.txt b/public/robots.txt
+index 72d2da0..1f84a78 100644
+--- a/public/robots.txt
++++ b/public/robots.txt
+@@ -1,4 +1,4 @@
+ User-agent: *
+ Allow: /
+ 
+-Sitemap: https://moniruzjaman.github.io/sitemap.xml
++Sitemap: https://moniruzjaman.github.io/portfolio/sitemap.xml
+diff --git a/public/sitemap.xml b/public/sitemap.xml
+index 1e3f0f4..913bb32 100644
+--- a/public/sitemap.xml
++++ b/public/sitemap.xml
+@@ -1,55 +1,63 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+-  <url><loc>https://moniruzjaman.github.io/</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/expertise</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/about</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/web-krishiai-live</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/pesticide-reform</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/plantation-tracker</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/cabi-diagnosis</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/agrichem-guide-pest-control-database</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishi-ai-gateway</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/fertilizer-nationalism</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/pesticide-field-guide</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/path-to-bloom</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/fertilizer-reform</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/fertilizer</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/biopesticide-policy</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/soil-media-portal</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/e-bill-system</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/diagnosis-assistant</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/nursery-report</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/pesticide-act-2018</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishiai</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/plantation-tracker-app</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishi-ai</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/bnp-policy</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/plantation-submission-system</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishiai-antigravity</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/plantation-tracker-v1</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/kurigram-nursery-registry</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishak-card</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/kurigram-nursery-2026</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/nursery-form-2</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/app-krishiai</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishiai4-0</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishiai-3-0</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishiai-v2</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/producer-register</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/nursery-form</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/gap-brinjal</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/cabi-diagnosis-builder</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/krishak-card-v2</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/diagnosis-game</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/works/cirdap-greenloop3-0</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/greenhouse-advisory-tools</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/greenloop-3-circular-agriculture</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/ipm-game-field-method</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/digital-transformation-krishak-card-roadmap</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/smart-integrated-nutrient-management-t-aman</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/plantation-tracker-field-system</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/cabi-plantwise-ready-reckoner</loc></url>
+-  <url><loc>https://moniruzjaman.github.io/notes/soil-health-media-hub</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/library</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/expertise</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/about</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/portfolio</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-registry</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/self-learning</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/web-krishiai-live</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/knowledge-hub</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-reform</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/path-to-bloom</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-reform</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/biopesticide-policy</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/soil-media-portal</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/e-bill-system</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-report</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/bnp-policy</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-submission-system</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form-2</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/app-krishiai</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai4-0</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-3-0</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-v2</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/producer-register</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/gap-brinjal</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card-v2</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-game</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner</loc></url>
++  <url><loc>https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub</loc></url>
+ </urlset>
+diff --git a/scripts/__tests__/brand.test.mjs b/scripts/__tests__/brand.test.mjs
+new file mode 100644
+index 0000000..fd02d7a
+--- /dev/null
++++ b/scripts/__tests__/brand.test.mjs
+@@ -0,0 +1,122 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import http from "node:http";
++import { parseHtml, parseManifest, normaliseHex, probeBrand } from "../lib/brand-probe.mjs";
++import { urlAllowed } from "../lib/hosts.mjs";
++import { brandFor, FALLBACK_PALETTE, contrast, monogramOf } from "../../src/lib/brand.ts";
++
++const BASE = "https://app.krishiai.live/";
++
++test("parseHtml reads theme colour, touch icon, og image regardless of attribute order/quotes", () => {
++  const html = `<head><title>Soil &amp; Media</title>
++    <meta content='#1A5C32' name="theme-color">
++    <link href="/icons/180.png" sizes="180x180" rel="apple-touch-icon">
++    <link rel="icon" href="/favicon.ico">
++    <meta property="og:image" content="/og.png">
++    <link rel="manifest" href=/manifest.webmanifest></head>`;
++  const r = parseHtml(html, BASE);
++  assert.equal(r.themeColor, "#1a5c32");
++  assert.equal(r.icon, "https://app.krishiai.live/icons/180.png");
++  assert.equal(r.image, "https://app.krishiai.live/og.png");
++  assert.equal(r.manifest, "https://app.krishiai.live/manifest.webmanifest");
++  assert.equal(r.name, "Soil & Media");
++});
++
++test("off-allowlist icon hosts are dropped, not stored", () => {
++  const r = parseHtml(`<link rel="icon" href="https://evil.example/i.png"><meta property="og:image" content="https://tracker.example/x.png">`, BASE);
++  assert.equal(r.icon, null);
++  assert.equal(r.image, null);
++});
++
++test("normaliseHex accepts only real hex colours", () => {
++  assert.equal(normaliseHex("#abc"), "#aabbcc");
++  for (const bad of ["red", "rgb(0,0,0)", "#12", "#gggggg", "", null, undefined, 5]) assert.equal(normaliseHex(bad), null);
++});
++
++test("parseManifest picks the smallest sharp icon, skips maskable, rejects non-manifests", () => {
++  const m = parseManifest(
++    { short_name: "Krishak", theme_color: "#0f5c6b", icons: [
++      { src: "a-48.png", sizes: "48x48" }, { src: "a-192.png", sizes: "192x192" },
++      { src: "a-512.png", sizes: "512x512" }, { src: "a-mask.png", sizes: "192x192", purpose: "maskable" } ] },
++    "https://app.krishiai.live/manifest.json");
++  assert.equal(m.icon, "https://app.krishiai.live/a-192.png");
++  assert.equal(m.themeColor, "#0f5c6b");
++  assert.equal(parseManifest({ nope: 1 }, BASE), null);
++  assert.equal(parseManifest("<html>", BASE), null);
++});
++
++/* ── end-to-end against a local server ─────────────────────────────── */
++function serve(routes) {
++  return new Promise((ok) => {
++    const s = http.createServer((req, res) => {
++      const r = routes[req.url];
++      if (!r) { res.writeHead(404).end("nope"); return; }
++      res.writeHead(r.status ?? 200, { "content-type": r.type ?? "text/html" }).end(r.body);
++    }).listen(0, "127.0.0.1", () => ok({ s, url: `http://127.0.0.1:${s.address().port}` }));
++  });
++}
++const any = { allowUrl: () => true };
++
++test("probeBrand: manifest wins over <head>, source recorded", async () => {
++  const { s, url } = await serve({
++    "/": { body: `<meta name="theme-color" content="#111111"><link rel="manifest" href="/m.json"><link rel="icon" href="/f.png">` },
++    "/m.json": { type: "application/json", body: JSON.stringify({ theme_color: "#1a5c32", icons: [{ src: "/i.png", sizes: "192x192" }] }) },
++  });
++  const b = await probeBrand(url + "/", any);
++  s.close();
++  assert.equal(b.source, "manifest");
++  assert.equal(b.themeColor, "#1a5c32");
++  assert.match(b.icon, /\/i\.png$/);
++});
++
++test("probeBrand: a 401 (Vercel deployment protection) is NOT read as the app's brand", async () => {
++  const { s, url } = await serve({ "/": { status: 401, body: `<meta name="theme-color" content="#000000"><link rel="icon" href="/vercel-logo.svg">` } });
++  const b = await probeBrand(url + "/", any);
++  s.close();
++  assert.equal(b, null);
++});
++
++test("probeBrand: broken manifest degrades to <head>, never throws", async () => {
++  const { s, url } = await serve({
++    "/": { body: `<meta name="theme-color" content="#3b4a8c"><link rel="manifest" href="/m.json">` },
++    "/m.json": { type: "application/json", body: "{not json" },
++  });
++  const b = await probeBrand(url + "/", any);
++  s.close();
++  assert.equal(b.source, "html");
++  assert.equal(b.themeColor, "#3b4a8c");
++});
++
++test("probeBrand: refuses off-allowlist URLs by default (SSRF / wrong-host guard)", async () => {
++  assert.equal(await probeBrand("http://127.0.0.1:1/"), null);
++  assert.equal(urlAllowed("https://x.vercel.app/"), true);
++  assert.equal(urlAllowed("https://x.pages.dev/"), true);
++  assert.equal(urlAllowed("https://vercel.com/login"), false);
++});
++
++/* ── front-end fallback ────────────────────────────────────────────── */
++test("every fallback colour clears 4.5:1 with white text", () => {
++  for (const c of FALLBACK_PALETTE) assert.ok(contrast(c, "#ffffff") >= 4.5, `${c} = ${contrast(c, "#ffffff").toFixed(2)}`);
++});
++
++test("brandFor: deterministic, never blank, honest about derived colours", () => {
++  const a = brandFor("krishak-card"), b = brandFor("krishak-card");
++  assert.deepEqual(a, b);
++  assert.equal(a.derived, true);
++  assert.equal(brandFor("x", { themeColor: "#ffffff", source: "html" }).derived, true, "near-white is unusable as a band colour");
++  const real = brandFor("x", { themeColor: "#1a5c32", icon: "https://a.vercel.app/i.png", source: "manifest" });
++  assert.equal(real.derived, false);
++  assert.equal(real.color, "#1a5c32");
++  assert.equal(real.icon, "https://a.vercel.app/i.png");
++  // chosen foreground always readable
++  for (const c of ["#1a5c32", "#e3ba45", "#f0f0f0", "#000000"]) {
++    const x = brandFor("n", { themeColor: c, source: "html" });
++    assert.ok(contrast(x.color, x.fg) >= 4.5, `${c}`);
++  }
++});
++
++test("monogramOf", () => {
++  assert.equal(monogramOf("web.krishiai.live"), "WK");
++  assert.equal(monogramOf("krishak"), "KR");
++  assert.equal(monogramOf("পেস্টি"), "?");
++});
+diff --git a/scripts/__tests__/drive.test.mjs b/scripts/__tests__/drive.test.mjs
+new file mode 100644
+index 0000000..ac097b6
+--- /dev/null
++++ b/scripts/__tests__/drive.test.mjs
+@@ -0,0 +1,137 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import http from "node:http";
++import { mkdtemp, writeFile, readFile } from "node:fs/promises";
++import { tmpdir } from "node:os";
++import { join } from "node:path";
++import { generateKeyPairSync, createVerify } from "node:crypto";
++import { kindOf, titleOf, signJwt, mergeWithoutCredentials, run } from "../sync-drive.mjs";
++
++const FOLDER = "application/vnd.google-apps.folder";
++const id = (n) => `file_${String(n).padStart(12, "0")}`; // passes the 10+ char id check
++
++/** Mock Drive: tree[parentId] = files. Records requests. */
++function mockDrive(tree, { status = {} } = {}) {
++  const seen = [];
++  const s = http.createServer((req, res) => {
++    const u = new URL(req.url, "http://x");
++    seen.push({ path: u.pathname, q: u.searchParams.get("q"), key: u.searchParams.get("key"), auth: req.headers.authorization });
++    if (u.pathname === "/token") {
++      res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ access_token: "tok123" }));
++      return;
++    }
++    const parent = u.searchParams.get("q")?.match(/'([^']+)' in parents/)?.[1];
++    if (status[parent]) { res.writeHead(status[parent]).end("{}"); return; }
++    res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ files: tree[parent] || [] }));
++  });
++  return new Promise((ok) => s.listen(0, "127.0.0.1", () => ok({ s, seen, url: `http://127.0.0.1:${s.address().port}` })));
++}
++
++async function setup(config, prev) {
++  const dir = await mkdtemp(join(tmpdir(), "lib-"));
++  const paths = { config: join(dir, "c.json"), out: join(dir, "out.json"), skipped: join(dir, "skip.json") };
++  await writeFile(paths.config, JSON.stringify(config));
++  if (prev) await writeFile(paths.out, JSON.stringify(prev));
++  return paths;
++}
++const col = (key, folderId) => ({ key, title: key, titleBn: key, description: "", descriptionBn: "", folderId });
++const quiet = async (fn) => { const l = console.log; console.log = () => {}; try { return await fn(); } finally { console.log = l; } };
++
++test("kindOf / titleOf", () => {
++  assert.equal(kindOf("application/pdf"), "pdf");
++  assert.equal(kindOf("application/octet-stream", "talk.PPTX"), "slides");
++  assert.equal(kindOf("application/vnd.google-apps.presentation"), "slides");
++  assert.equal(kindOf("application/vnd.google-apps.document"), "doc");
++  assert.equal(kindOf("x/y"), "other");
++  assert.equal(titleOf("NPK_Guide-2025_final.pdf"), "NPK Guide – 2025 final");
++  assert.equal(titleOf("মাটি স্বাস্থ্য.pdf"), "মাটি স্বাস্থ্য");
++});
++
++test("service-account JWT is a valid RS256 signature over the right claims", () => {
++  const { privateKey, publicKey } = generateKeyPairSync("rsa", { modulusLength: 2048, privateKeyEncoding: { type: "pkcs8", format: "pem" }, publicKeyEncoding: { type: "spki", format: "pem" } });
++  const jwt = signJwt({ client_email: "sa@p.iam.gserviceaccount.com", private_key: privateKey }, 1000);
++  const [h, c, sig] = jwt.split(".");
++  assert.ok(createVerify("RSA-SHA256").update(`${h}.${c}`).verify(publicKey, Buffer.from(sig, "base64url")));
++  const claim = JSON.parse(Buffer.from(c, "base64url"));
++  assert.equal(claim.iss, "sa@p.iam.gserviceaccount.com");
++  assert.equal(claim.scope, "https://www.googleapis.com/auth/drive.readonly");
++  assert.equal(claim.exp - claim.iat, 3300);
++});
++
++test("api-key mode: recurses sub-folders, records path, skips shortcuts, writes no secret", async () => {
++  const m = await mockDrive({
++    ROOTFOLDER01: [
++      { id: id(1), name: "Brief_2026.pdf", mimeType: "application/pdf", modifiedTime: "2026-03-01T00:00:00Z", size: "2048" },
++      { id: id(2), name: "Decks", mimeType: FOLDER },
++      { id: id(3), name: "link", mimeType: "application/vnd.google-apps.shortcut" },
++    ],
++    [id(2)]: [{ id: id(4), name: "Training.pptx", mimeType: "application/vnd.openxmlformats-officedocument.presentationml.presentation", modifiedTime: "2026-05-01T00:00:00Z" }],
++  });
++  const paths = await setup({ collections: [col("pdf", "ROOTFOLDER01")] });
++  const out = await quiet(() => run({ GOOGLE_API_KEY: "KEY_SECRET_VALUE" }, { fetchImpl: fetch, base: m.url, tokenUrl: m.url + "/token", paths }));
++  m.s.close();
++  const items = out.collections[0].items;
++  assert.deepEqual(items.map((i) => i.title), ["Training", "Brief 2026"], "newest first");
++  assert.deepEqual(items[0].path, ["Decks"]);
++  assert.equal(items[0].kind, "slides");
++  assert.ok(m.seen.every((r) => r.key === "KEY_SECRET_VALUE"));
++  assert.equal(JSON.parse(await readFile(paths.skipped)).skipped[0].reason, "shortcut (target not followed)");
++  assert.ok(!(await readFile(paths.out, "utf8")).includes("KEY_SECRET_VALUE"), "key must never reach the output file");
++});
++
++test("service-account mode FAILS CLOSED: private and unverifiable files are skipped", async () => {
++  const { privateKey } = generateKeyPairSync("rsa", { modulusLength: 2048, privateKeyEncoding: { type: "pkcs8", format: "pem" }, publicKeyEncoding: { type: "spki", format: "pem" } });
++  const m = await mockDrive({
++    ROOTFOLDER01: [
++      { id: id(1), name: "public.pdf", mimeType: "application/pdf", permissions: [{ type: "anyone", role: "reader" }] },
++      { id: id(2), name: "private.pdf", mimeType: "application/pdf", permissions: [{ type: "user", role: "owner" }] },
++      { id: id(3), name: "unknown.pdf", mimeType: "application/pdf" },
++    ],
++  });
++  const paths = await setup({ collections: [col("pdf", "ROOTFOLDER01")] });
++  const sa = JSON.stringify({ client_email: "sa@p.iam.gserviceaccount.com", private_key: privateKey });
++  const out = await quiet(() => run({ GOOGLE_SERVICE_ACCOUNT_JSON: sa }, { fetchImpl: fetch, base: m.url, tokenUrl: m.url + "/token", paths }));
++  m.s.close();
++  assert.deepEqual(out.collections[0].items.map((i) => i.name), ["public.pdf"]);
++  const skipped = JSON.parse(await readFile(paths.skipped)).skipped.map((s) => s.reason);
++  assert.deepEqual(skipped.sort(), ["not shared publicly", "permissions not readable — failing closed"]);
++  assert.ok(m.seen.some((r) => r.auth === "Bearer tok123"));
++  const written = await readFile(paths.out, "utf8");
++  assert.ok(!written.includes("PRIVATE KEY") && !written.includes("iam.gserviceaccount"));
++});
++
++test("an unreadable folder ABORTS and leaves the previous data untouched", async () => {
++  const m = await mockDrive({}, { status: { ROOTFOLDER01: 404 } });
++  const prev = { generatedAt: "2026-01-01T00:00:00Z", mode: "api-key", collections: [{ ...col("pdf", "ROOTFOLDER01"), items: [{ id: id(1), title: "kept" }] }] };
++  const paths = await setup({ collections: [col("pdf", "ROOTFOLDER01")] }, prev);
++  await assert.rejects(() => quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: m.url, paths })), /not readable \(404\)/);
++  m.s.close();
++  assert.equal(JSON.parse(await readFile(paths.out)).collections[0].items[0].title, "kept");
++});
++
++test("a populated collection collapsing to zero files refuses to overwrite", async () => {
++  const m = await mockDrive({ ROOTFOLDER01: [] });
++  const items = Array.from({ length: 6 }, (_, n) => ({ id: id(n), title: `t${n}` }));
++  const prev = { generatedAt: "x", mode: "api-key", collections: [{ ...col("pdf", "ROOTFOLDER01"), items }] };
++  const paths = await setup({ collections: [col("pdf", "ROOTFOLDER01")] }, prev);
++  await assert.rejects(() => quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: m.url, paths })), /Refusing to overwrite/);
++  m.s.close();
++});
++
++test("a malformed folderId is a config error, not a silent skip", async () => {
++  const paths = await setup({ collections: [col("pdf", "bad id!")] });
++  await assert.rejects(() => quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: "http://127.0.0.1:1", tokenUrl: "", paths })), /does not look like a Drive id/);
++});
++
++test("no credentials: links folders, keeps items only for an unchanged folder, never fails", async () => {
++  const prev = { generatedAt: "t", mode: "api-key", collections: [
++    { ...col("pdf", "ROOTFOLDER01"), items: [{ id: id(1) }] },
++    { ...col("pptx", "OLDFOLDER0001"), items: [{ id: id(2) }] } ] };
++  const merged = mergeWithoutCredentials(prev, { collections: [col("pdf", "ROOTFOLDER01"), col("pptx", "NEWFOLDER0001"), col("research", null)] });
++  assert.equal(merged.collections[0].items.length, 1, "same folder keeps its index");
++  assert.equal(merged.collections[1].items.length, 0, "changed folder drops stale files");
++  assert.equal(merged.collections[2].folderId, null);
++  const paths = await setup({ collections: [col("pdf", "ROOTFOLDER01")] });
++  const out = await quiet(() => run({}, { fetchImpl: () => { throw new Error("no network expected"); }, base: "", tokenUrl: "", paths }));
++  assert.equal(out.collections[0].folderId, "ROOTFOLDER01");
++});
+diff --git a/scripts/gen-sitemap.mjs b/scripts/gen-sitemap.mjs
+deleted file mode 100644
+index a12dc29..0000000
+--- a/scripts/gen-sitemap.mjs
++++ /dev/null
+@@ -1,24 +0,0 @@
+-/**
+- * gen-sitemap.mjs — writes public/sitemap.xml from the same sources the site
+- * renders from (generated repo list + note files), so it cannot drift.
+- */
+-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+-
+-const SITE = "https://moniruzjaman.github.io";
+-const repos = JSON.parse(readFileSync("src/data/repos.generated.json", "utf8")).repos;
+-const noteSlugs = readdirSync("src/content/notes")
+-  .filter((f) => f.endsWith(".ts"))
+-  .map((f) => readFileSync(`src/content/notes/${f}`, "utf8").match(/slug:\s*"([^"]+)"/)?.[1])
+-  .filter(Boolean);
+-
+-const paths = [
+-  "/", "/works", "/expertise", "/notes", "/about",
+-  ...repos.map((r) => `/works/${r.slug}`),
+-  ...noteSlugs.map((s) => `/notes/${s}`),
+-];
+-const xml =
+-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+-  paths.map((p) => `  <url><loc>${SITE}${p}</loc></url>`).join("\n") +
+-  `\n</urlset>\n`;
+-writeFileSync("public/sitemap.xml", xml);
+-console.log(`sitemap: ${paths.length} URLs`);
+diff --git a/scripts/gen-static.mjs b/scripts/gen-static.mjs
+new file mode 100644
+index 0000000..340b807
+--- /dev/null
++++ b/scripts/gen-static.mjs
+@@ -0,0 +1,61 @@
++/**
++ * gen-static.mjs — writes the files that must agree with the deployment base path:
++ *   public/404.html   GitHub Pages deep-link shim (needs the base to match)
++ *   public/sitemap.xml, public/robots.txt   (need the absolute site URL)
++ *
++ * They used to be hand-written with "/portfolio/" and the site root baked in, which
++ * disagreed with each other. Deriving all three from BASE_PATH / SITE_ORIGIN — the
++ * same inputs vite.config.ts reads — removes that class of drift.
++ */
++import { readFileSync, readdirSync, writeFileSync } from "node:fs";
++
++const BASE = process.env.BASE_PATH || "/portfolio/";
++const ORIGIN = (process.env.SITE_ORIGIN || "https://moniruzjaman.github.io").replace(/\/$/, "");
++const SITE = `${ORIGIN}${BASE}`;
++
++const repos = JSON.parse(readFileSync("src/data/repos.generated.json", "utf8")).repos;
++const noteSlugs = readdirSync("src/content/notes")
++  .filter((f) => f.endsWith(".ts"))
++  .map((f) => readFileSync(`src/content/notes/${f}`, "utf8").match(/slug:\s*"([^"]+)"/)?.[1])
++  .filter(Boolean);
++
++const paths = [
++  "", "works", "library", "expertise", "notes", "about",
++  ...repos.map((r) => `works/${r.slug}`),
++  ...noteSlugs.map((s) => `notes/${s}`),
++];
++writeFileSync(
++  "public/sitemap.xml",
++  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
++    paths.map((p) => `  <url><loc>${SITE}${p}</loc></url>`).join("\n") +
++    `\n</urlset>\n`,
++);
++
++writeFileSync("public/robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`);
++
++writeFileSync(
++  "public/404.html",
++  `<!doctype html>
++<html lang="en">
++  <head>
++    <meta charset="utf-8" />
++    <title>Abu Md. Moniruzzaman</title>
++    <script>
++      /* GENERATED by scripts/gen-static.mjs — do not edit.
++       * GitHub Pages has no rewrites, so a cold load of a deep link would 404 before
++       * the SPA boots. Stash the path, bounce to the shell; src/main.tsx replays it. */
++      (function () {
++        var BASE = ${JSON.stringify(BASE)};
++        var p = window.location.pathname;
++        if (p.indexOf(BASE) === 0 && p !== BASE) {
++          try { sessionStorage.setItem("ph:redirect", p + window.location.search + window.location.hash); } catch (e) {}
++          window.location.replace(BASE + "index.html");
++        }
++      })();
++    </script>
++  </head>
++  <body></body>
++</html>
++`,
++);
++console.log(`static: base ${BASE} · ${paths.length} sitemap URLs · ${SITE}`);
+diff --git a/scripts/lib/brand-probe.mjs b/scripts/lib/brand-probe.mjs
+new file mode 100644
+index 0000000..700a28c
+--- /dev/null
++++ b/scripts/lib/brand-probe.mjs
+@@ -0,0 +1,191 @@
++/**
++ * brand-probe.mjs — derive an app's real branding from the app itself.
++ *
++ * Every app in this portfolio is a PWA, so each one already publishes its own
++ * brand: a web manifest (theme_color, icons) and <head> metadata. Reading those
++ * means the portfolio shows the colour and icon the app actually ships with, and
++ * it stays correct when an app is rebranded — no hand-maintained brand table.
++ *
++ * Failure policy (deliberately the opposite of sync-repos.mjs): brand is
++ * cosmetic. If a probe fails, the site falls back to a deterministic monogram and
++ * palette colour (src/lib/brand.ts). That is a degraded card, not a lie, so it
++ * must never abort a sync.
++ *
++ * Two traps this guards against:
++ *   - Vercel deployment protection answers 401 with Vercel's *own* login page.
++ *     Reading that would brand an app with Vercel's logo. We require a 200 and a
++ *     final URL that is still on an allowed host.
++ *   - SPA hosts answer unknown paths with index.html or a 404 page. We only
++ *     accept a manifest that parses as JSON with an `icons` array.
++ */
++
++import { urlAllowed } from "./hosts.mjs";
++
++const UA = "krishiai-hub-sync (+https://github.com/moniruzjaman/portfolio)";
++const MAX_HTML = 600_000;
++
++/* ── tiny, dependency-free tag parsing ────────────────────────────────── */
++
++function attrs(tag) {
++  const out = {};
++  const re = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)\s*(?:=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+)))?/g;
++  let m;
++  while ((m = re.exec(tag.replace(/^<\w+/, "").replace(/\/?>$/, "")))) {
++    out[m[1].toLowerCase()] = (m[2] ?? m[3] ?? m[4] ?? "").trim();
++  }
++  return out;
++}
++
++function tags(html, name) {
++  const re = new RegExp(`<${name}\\b[^>]*>`, "gi");
++  return (html.match(re) || []).map(attrs);
++}
++
++export function normaliseHex(v) {
++  if (typeof v !== "string") return null;
++  const s = v.trim().toLowerCase();
++  const m = s.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/);
++  if (!m) return null;
++  const h = m[1];
++  return "#" + (h.length === 3 ? [...h].map((c) => c + c).join("") : h);
++}
++
++const resolve = (href, base, allow = urlAllowed) => {
++  if (!href) return null;
++  try {
++    const u = new URL(href, base);
++    return allow(u.href) ? u.href : null;
++  } catch {
++    return null;
++  }
++};
++
++const decode = (s) =>
++  s
++    .replace(/&amp;/g, "&")
++    .replace(/&quot;/g, '"')
++    .replace(/&#39;|&apos;/g, "'")
++    .replace(/&lt;/g, "<")
++    .replace(/&gt;/g, ">")
++    .trim();
++
++/** Largest declared size from "48x48 96x96", or 0 for "any"/missing. */
++function maxSize(sizes) {
++  if (!sizes) return 0;
++  return Math.max(0, ...sizes.split(/\s+/).map((s) => Number(s.split("x")[0]) || 0));
++}
++
++/* ── <head> metadata ──────────────────────────────────────────────────── */
++
++export function parseHtml(html, baseUrl, allow = urlAllowed) {
++  const metas = tags(html, "meta");
++  const links = tags(html, "link");
++  const meta = (key) =>
++    metas.find((m) => (m.name || m.property || "").toLowerCase() === key)?.content;
++
++  const themeColor = metas
++    .filter((m) => (m.name || "").toLowerCase() === "theme-color")
++    .map((m) => normaliseHex(m.content))
++    .find(Boolean) ?? null;
++
++  const rels = (rel) => links.filter((l) => (l.rel || "").toLowerCase().split(/\s+/).includes(rel));
++
++  // Prefer a real raster/touch icon (crisp on a card) over the favicon.
++  const touch = rels("apple-touch-icon").sort((a, b) => maxSize(b.sizes) - maxSize(a.sizes))[0];
++  const icons = [...rels("icon"), ...rels("shortcut")]
++    .filter((l) => l.href)
++    .sort((a, b) => maxSize(b.sizes) - maxSize(a.sizes));
++  const svg = icons.find((l) => /svg/.test(l.type || "") || /\.svg(\?|$)/i.test(l.href));
++  const iconHref = (touch || svg || icons[0])?.href;
++
++  const titleTag = html.match(/<title[^>]*>([^<]*)<\/title>/i)?.[1];
++
++  return {
++    name: decode(meta("og:site_name") || meta("application-name") || titleTag || "") || null,
++    description: decode(meta("og:description") || meta("description") || "") || null,
++    themeColor,
++    icon: resolve(iconHref, baseUrl, allow),
++    image: resolve(meta("og:image"), baseUrl, allow),
++    manifest: resolve(rels("manifest")[0]?.href, baseUrl, allow),
++  };
++}
++
++/* ── web app manifest ─────────────────────────────────────────────────── */
++
++export function parseManifest(json, manifestUrl, allow = urlAllowed) {
++  if (!json || typeof json !== "object" || !Array.isArray(json.icons)) return null;
++  const usable = json.icons
++    .filter((i) => i && typeof i.src === "string" && !/maskable/.test(i.purpose || ""))
++    .map((i) => ({ ...i, px: maxSize(i.sizes) }));
++  // Pick the smallest icon that is still >=192px (sharp, but not a 1MB asset);
++  // else the largest available.
++  const sharp = usable.filter((i) => i.px >= 192).sort((a, b) => a.px - b.px)[0];
++  const best = sharp || usable.sort((a, b) => b.px - a.px)[0];
++  return {
++    name: json.short_name || json.name || null,
++    themeColor: normaliseHex(json.theme_color),
++    backgroundColor: normaliseHex(json.background_color),
++    icon: resolve(best?.src, manifestUrl, allow),
++  };
++}
++
++/* ── fetch ────────────────────────────────────────────────────────────── */
++
++async function get(url, fetchImpl, accept) {
++  const ctrl = new AbortController();
++  const timer = setTimeout(() => ctrl.abort(), 8000);
++  try {
++    const res = await fetchImpl(url, {
++      redirect: "follow",
++      signal: ctrl.signal,
++      headers: { "User-Agent": UA, Accept: accept },
++    });
++    return res;
++  } finally {
++    clearTimeout(timer);
++  }
++}
++
++/**
++ * @param {string} url  a live deployment URL
++ * @param {{fetchImpl?: typeof fetch, allowUrl?: (u:string)=>boolean}} [opts]
++ * @returns {Promise<null | {name?:string, themeColor?:string, icon?:string, image?:string, source:"manifest"|"html"}>}
++ */
++export async function probeBrand(url, opts = {}) {
++  const fetchImpl = opts.fetchImpl || fetch;
++  const allow = opts.allowUrl || urlAllowed;
++  if (!url || !allow(url)) return null;
++
++  try {
++    const res = await get(url, fetchImpl, "text/html");
++    // 200 only: a 401 here is Vercel's login wall, not the app.
++    if (res.status !== 200) return null;
++    if (res.url && !allow(res.url)) return null; // bounced to an SSO/login host
++    const html = (await res.text()).slice(0, MAX_HTML);
++    const page = parseHtml(html, res.url || url, allow);
++
++    let man = null;
++    if (page.manifest) {
++      try {
++        const mres = await get(page.manifest, fetchImpl, "application/manifest+json,application/json");
++        if (mres.status === 200) man = parseManifest(await mres.json(), mres.url || page.manifest, allow);
++      } catch {
++        /* a broken manifest is not fatal — the <head> still has brand data */
++      }
++    }
++
++    const themeColor = man?.themeColor || page.themeColor || null;
++    const icon = man?.icon || page.icon || null;
++    const brand = {
++      name: man?.name || page.name || undefined,
++      themeColor: themeColor || undefined,
++      icon: icon || undefined,
++      image: page.image || undefined,
++      source: man ? "manifest" : "html",
++    };
++    if (!brand.themeColor && !brand.icon && !brand.image) return null;
++    return Object.fromEntries(Object.entries(brand).filter(([, v]) => v !== undefined));
++  } catch {
++    return null;
++  }
++}
+diff --git a/scripts/lib/hosts.mjs b/scripts/lib/hosts.mjs
+new file mode 100644
+index 0000000..58e4150
+--- /dev/null
++++ b/scripts/lib/hosts.mjs
+@@ -0,0 +1,50 @@
++/**
++ * Single source of truth for which hosts the *shipped site* may reference.
++ *
++ * Imported by verify-no-secrets.mjs (the CI gate) and by the build-time probes
++ * (brand-probe.mjs). A brand icon, preview frame or deployment link whose host is
++ * not on this list is dropped at sync time instead of failing the build later.
++ */
++
++export const ALLOWED_HOSTS = [
++  // fonts
++  "fonts.googleapis.com",
++  "fonts.gstatic.com",
++  // source + published sites
++  "github.com",
++  "moniruzjaman.github.io",
++  "raw.githubusercontent.com",
++  "user-images.githubusercontent.com",
++  "camo.githubusercontent.com",
++  "avatars.githubusercontent.com",
++  "api.github.com",
++  // the four deployment channels this portfolio showcases
++  "krishiai.live",
++  "vercel.app",
++  "workers.dev",
++  "pages.dev",
++  "surge.sh",
++  // Google Drive library: link-out and click-to-load preview frames only
++  "drive.google.com",
++  "docs.google.com",
++];
++
++export const hostOf = (u) => {
++  try {
++    return new URL(u).hostname.toLowerCase();
++  } catch {
++    return null;
++  }
++};
++
++export const hostAllowed = (host) =>
++  Boolean(host) && ALLOWED_HOSTS.some((h) => host === h || host.endsWith(`.${h}`));
++
++export const urlAllowed = (u) => {
++  try {
++    const url = new URL(u);
++    return (url.protocol === "https:" || url.protocol === "http:") && hostAllowed(url.hostname.toLowerCase());
++  } catch {
++    return false;
++  }
++};
+diff --git a/scripts/render-smoke.mjs b/scripts/render-smoke.mjs
+new file mode 100644
+index 0000000..811bed4
+--- /dev/null
++++ b/scripts/render-smoke.mjs
+@@ -0,0 +1,40 @@
++/**
++ * render-smoke.mjs — server-renders real routes through Vite and asserts on the output.
++ *
++ * Exists because the sub-path routing bug (every route, including "/", rendering
++ * Not Found under /portfolio/) passed the typecheck, the build AND the secrets
++ * gate. Only rendering the app at its real base path can catch that class of bug.
++ *
++ * Runs at both a sub-path and the root, since the deployment target may change.
++ */
++import { createServer } from "vite";
++
++const CASES = [
++  // [base, route, must contain, must NOT contain]
++  ["/portfolio/", "", "I build digital tools", "This page does not exist"],
++  ["/portfolio/", "works", "The live ecosystem", "This page does not exist"],
++  ["/portfolio/", "works/web-krishiai-live", "web.krishiai.live", "This page does not exist"],
++  ["/portfolio/", "library", "Research, documents and presentations", "This page does not exist"],
++  ["/portfolio/", "definitely-not-a-page", "This page does not exist", null],
++  ["/", "works", "The live ecosystem", "This page does not exist"],
++  ["/", "library", "Research, documents and presentations", "This page does not exist"],
++];
++
++let failed = 0;
++for (const base of [...new Set(CASES.map((c) => c[0]))]) {
++  process.env.BASE_PATH = base;
++  const vite = await createServer({ root: process.cwd(), server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
++  const { renderAt } = await vite.ssrLoadModule("/src/test/ssr-probe.tsx");
++  for (const [b, route, want, unwanted] of CASES.filter((c) => c[0] === base)) {
++    const html = renderAt(b + route).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&");
++    const ok = html.includes(want) && (!unwanted || !html.includes(unwanted));
++    if (!ok) failed++;
++    console.log(`${ok ? "✔" : "✖"} base ${b.padEnd(11)} /${route.padEnd(26)} ${ok ? "" : `expected "${want}"`}`);
++  }
++  await vite.close();
++}
++if (failed) {
++  console.error(`\n✖ ${failed} render check(s) failed`);
++  process.exit(1);
++}
++console.log("\n✔ all routes render at their base path");
+diff --git a/scripts/sync-drive.mjs b/scripts/sync-drive.mjs
+new file mode 100644
+index 0000000..6be9f6f
+--- /dev/null
++++ b/scripts/sync-drive.mjs
+@@ -0,0 +1,369 @@
++#!/usr/bin/env node
++/**
++ * sync-drive.mjs — build-time index of the public Google Drive library.
++ *
++ * Same architecture as sync-repos.mjs and for the same reasons: credentials live
++ * only in CI, the browser reads a static JSON file, and no visitor ever calls a
++ * Google API. The shipped site and src/ still contain zero credentials —
++ * verify-no-secrets.mjs enforces that on the built output.
++ *
++ * THREE MODES (chosen by what is in the environment)
++ *   GOOGLE_API_KEY                  anonymous API access. Can only ever see files
++ *                                   shared "Anyone with the link", so a private file
++ *                                   cannot leak through this path. RECOMMENDED.
++ *   GOOGLE_SERVICE_ACCOUNT_JSON     can see anything shared with the account, so
++ *                                   each file's permissions are checked and any file
++ *                                   not publicly readable is SKIPPED (fail closed).
++ *   neither                         no API call. Refreshes folder metadata from the
++ *                                   config only; the site falls back to Drive's own
++ *                                   embedded folder view. Never fails the workflow.
++ *
++ * SAFETY RULES (each learned from sync-repos.mjs, see design-system.md §9)
++ *   - An API error on a configured folder ABORTS the run. Treating "could not read"
++ *     as "empty" would silently delete the library from the site.
++ *   - Existing data is never overwritten with less than what was fetched.
++ *   - Only a validated file id and a few metadata fields are written; Drive's
++ *     webViewLink / thumbnailLink are never stored. URLs are built in the app.
++ */
++
++import { readFile, writeFile, mkdir } from "node:fs/promises";
++import { createSign } from "node:crypto";
++import { dirname, resolve } from "node:path";
++import { fileURLToPath } from "node:url";
++
++const __dirname = dirname(fileURLToPath(import.meta.url));
++const ROOT = resolve(__dirname, "..");
++export const PATHS = {
++  config: resolve(ROOT, "content/library.config.json"),
++  out: resolve(ROOT, "src/data/library.generated.json"),
++  skipped: resolve(ROOT, "src/data/library-skipped.generated.json"),
++};
++
++const DRIVE = "https://www.googleapis.com/drive/v3";
++const TOKEN_URL = "https://oauth2.googleapis.com/token";
++const SCOPE = "https://www.googleapis.com/auth/drive.readonly";
++const ID_RE = /^[A-Za-z0-9_-]{10,}$/;
++const MAX_ITEMS = 2000;
++const FOLDER = "application/vnd.google-apps.folder";
++const SHORTCUT = "application/vnd.google-apps.shortcut";
++
++const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
++
++/* ── pure helpers (unit-tested) ────────────────────────────────────────── */
++
++/** Map a MIME type to the small vocabulary the UI renders. */
++export function kindOf(mime, name = "") {
++  const ext = (name.match(/\.([A-Za-z0-9]+)$/)?.[1] || "").toLowerCase();
++  if (mime === "application/pdf" || ext === "pdf") return "pdf";
++  if (
++    mime === "application/vnd.google-apps.presentation" ||
++    mime.includes("presentationml") ||
++    mime === "application/vnd.ms-powerpoint" ||
++    ["ppt", "pptx", "odp"].includes(ext)
++  )
++    return "slides";
++  if (
++    mime === "application/vnd.google-apps.document" ||
++    mime.includes("wordprocessingml") ||
++    mime === "application/msword" ||
++    ["doc", "docx", "odt", "rtf"].includes(ext)
++  )
++    return "doc";
++  if (
++    mime === "application/vnd.google-apps.spreadsheet" ||
++    mime.includes("spreadsheetml") ||
++    mime === "application/vnd.ms-excel" ||
++    ["xls", "xlsx", "csv", "ods"].includes(ext)
++  )
++    return "sheet";
++  if (mime.startsWith("image/")) return "image";
++  return "other";
++}
++
++/** "NPK_Guide-2025_final.pdf" → "NPK Guide 2025 final". Bangla names pass through. */
++export function titleOf(name) {
++  return name
++    .replace(/\.[A-Za-z0-9]{1,5}$/, "")
++    .replace(/[_]+/g, " ")
++    .replace(/\s*-\s*/g, " – ")
++    .replace(/\s{2,}/g, " ")
++    .trim();
++}
++
++export function shapeItem(f, path, collection) {
++  return {
++    id: f.id,
++    collection,
++    name: f.name,
++    title: titleOf(f.name),
++    kind: kindOf(f.mimeType, f.name),
++    mime: f.mimeType,
++    modified: f.modifiedTime || null,
++    size: f.size ? Number(f.size) : null,
++    path,
++    ...(f.resourceKey ? { resourceKey: f.resourceKey } : {}),
++  };
++}
++
++export const isPublic = (f) =>
++  Array.isArray(f.permissions) && f.permissions.some((p) => p.type === "anyone");
++
++/* ── auth ──────────────────────────────────────────────────────────────── */
++
++const b64url = (b) => Buffer.from(b).toString("base64url");
++
++export function signJwt(sa, now = Math.floor(Date.now() / 1000), tokenUrl = TOKEN_URL) {
++  const head = b64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
++  const claim = b64url(
++    JSON.stringify({ iss: sa.client_email, scope: SCOPE, aud: tokenUrl, iat: now, exp: now + 3300 }),
++  );
++  const sig = createSign("RSA-SHA256").update(`${head}.${claim}`).sign(sa.private_key);
++  return `${head}.${claim}.${b64url(sig)}`;
++}
++
++async function bearerFor(sa, { fetchImpl, tokenUrl }) {
++  const res = await fetchImpl(tokenUrl, {
++    method: "POST",
++    headers: { "Content-Type": "application/x-www-form-urlencoded" },
++    body: new URLSearchParams({
++      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
++      assertion: signJwt(sa, undefined, tokenUrl),
++    }),
++  });
++  if (!res.ok) throw new Error(`service-account token exchange failed (${res.status})`);
++  return (await res.json()).access_token;
++}
++
++/* ── drive listing ─────────────────────────────────────────────────────── */
++
++class DriveError extends Error {
++  constructor(status, what) {
++    super(`${what} → ${status}`);
++    this.status = status;
++  }
++}
++
++function makeClient({ apiKey, bearer, fetchImpl, base }) {
++  async function once(url, extraHeaders) {
++    const res = await fetchImpl(url, {
++      headers: { Accept: "application/json", ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}), ...extraHeaders },
++    });
++    if (!res.ok) throw new DriveError(res.status, "Drive list");
++    return res.json();
++  }
++  // Backoff only on rate-limit / transient. 404 and 401 are configuration errors.
++  return async function list(params, extraHeaders = {}, retries = 4) {
++    const q = new URLSearchParams({ ...params, ...(apiKey ? { key: apiKey } : {}) });
++    const url = `${base}/files?${q}`;
++    for (let attempt = 0; ; attempt++) {
++      try {
++        return await once(url, extraHeaders);
++      } catch (err) {
++        const s = err.status ?? 0;
++        const retryable = s === 403 || s === 429 || s === 0 || s >= 500;
++        if (!retryable || attempt >= retries) throw err;
++        await sleep(Math.min(2 ** attempt * 1500, 20_000));
++      }
++    }
++  };
++}
++
++/**
++ * Walk one collection's folder tree. Returns { items, skipped }.
++ * `verify` = true in service-account mode: skip anything not publicly readable.
++ */
++export async function crawl(list, col, { maxDepth, verify }) {
++  const items = [];
++  const skipped = [];
++  const headers = col.resourceKey ? { "X-Goog-Drive-Resource-Keys": `${col.folderId}/${col.resourceKey}` } : {};
++  const fields =
++    "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey" + (verify ? ",permissions(type,role)" : "") + ")";
++
++  const queue = [{ id: col.folderId, path: [], depth: 0 }];
++  while (queue.length) {
++    const { id, path, depth } = queue.shift();
++    let pageToken;
++    do {
++      let data;
++      try {
++        data = await list(
++          {
++            q: `'${id}' in parents and trashed = false`,
++            fields,
++            pageSize: "1000",
++            orderBy: "name",
++            supportsAllDrives: "true",
++            includeItemsFromAllDrives: "true",
++            ...(pageToken ? { pageToken } : {}),
++          },
++          headers,
++        );
++      } catch (err) {
++        if (err.status === 404 || err.status === 401) {
++          throw new Error(
++            `Folder "${col.title}" (${id}) is not readable (${err.status}). ` +
++              `Share it as "Anyone with the link: Viewer"` +
++              (verify ? " or share it with the service account's client_email" : "") +
++              `, then re-run. Refusing to publish an empty collection.`,
++          );
++        }
++        throw new Error(`Could not read "${col.title}" (${err.message}). Aborting rather than dropping files from the site.`);
++      }
++
++      for (const f of data.files || []) {
++        if (!ID_RE.test(f.id)) {
++          skipped.push({ id: f.id, name: f.name, reason: "unexpected id format" });
++          continue;
++        }
++        if (f.mimeType === FOLDER) {
++          if (depth + 1 > maxDepth) skipped.push({ id: f.id, name: f.name, reason: `deeper than maxDepth=${maxDepth}` });
++          else queue.push({ id: f.id, path: [...path, f.name], depth: depth + 1 });
++          continue;
++        }
++        if (f.mimeType === SHORTCUT) {
++          skipped.push({ id: f.id, name: f.name, reason: "shortcut (target not followed)" });
++          continue;
++        }
++        if (verify && !isPublic(f)) {
++          skipped.push({
++            id: f.id,
++            name: f.name,
++            reason: f.permissions ? "not shared publicly" : "permissions not readable — failing closed",
++          });
++          continue;
++        }
++        if (items.length >= MAX_ITEMS) {
++          skipped.push({ id: f.id, name: f.name, reason: `over the ${MAX_ITEMS}-file cap` });
++          continue;
++        }
++        items.push(shapeItem(f, path, col.key));
++      }
++      pageToken = data.nextPageToken;
++    } while (pageToken);
++  }
++
++  items.sort((a, b) => (b.modified || "").localeCompare(a.modified || "") || a.title.localeCompare(b.title));
++  return { items, skipped };
++}
++
++/* ── output assembly ───────────────────────────────────────────────────── */
++
++function collectionMeta(c) {
++  return {
++    key: c.key,
++    title: c.title,
++    titleBn: c.titleBn,
++    description: c.description,
++    descriptionBn: c.descriptionBn,
++    folderId: c.folderId && ID_RE.test(c.folderId) ? c.folderId : null,
++  };
++}
++
++/** No credentials: refresh metadata, keep any items that belong to the same folder. */
++export function mergeWithoutCredentials(prev, config) {
++  const prevByKey = new Map((prev?.collections || []).map((c) => [c.key, c]));
++  return {
++    generatedAt: prev?.generatedAt ?? null,
++    mode: prev?.mode ?? "none",
++    collections: config.collections.map((c) => {
++      const meta = collectionMeta(c);
++      const old = prevByKey.get(c.key);
++      const keep = old && old.folderId === meta.folderId ? old.items : [];
++      return { ...meta, items: keep };
++    }),
++  };
++}
++
++async function readJson(path) {
++  try {
++    return JSON.parse(await readFile(path, "utf8"));
++  } catch {
++    return null;
++  }
++}
++
++async function write(path, obj) {
++  await mkdir(dirname(path), { recursive: true });
++  await writeFile(path, JSON.stringify(obj, null, 2) + "\n", "utf8");
++}
++
++export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIVE, tokenUrl: TOKEN_URL, paths: PATHS }) {
++  const { fetchImpl, base, tokenUrl, paths } = io;
++  const config = await readJson(paths.config);
++  if (!config?.collections?.length) throw new Error(`${paths.config} is missing or has no collections`);
++  const prev = await readJson(paths.out);
++  const maxDepth = Number.isInteger(config.maxDepth) ? config.maxDepth : 4;
++
++  const apiKey = (env.GOOGLE_API_KEY || "").trim();
++  const saRaw = (env.GOOGLE_SERVICE_ACCOUNT_JSON || "").trim();
++  const mode = saRaw ? "service-account" : apiKey ? "api-key" : "none";
++
++  if (mode === "none") {
++    const merged = mergeWithoutCredentials(prev, config);
++    const configured = merged.collections.filter((c) => c.folderId).length;
++    await write(paths.out, merged);
++    console.log(
++      configured
++        ? `▸ no Drive credentials — ${configured} folder(s) linked, files not indexed. The site will offer Drive's own folder view.`
++        : `▸ no Drive credentials and no folderId in content/library.config.json — library stays empty.`,
++    );
++    return merged;
++  }
++
++  let bearer = null;
++  if (mode === "service-account") {
++    let sa;
++    try {
++      sa = JSON.parse(saRaw);
++    } catch {
++      throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is not valid JSON");
++    }
++    if (!sa.client_email || !sa.private_key) throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON lacks client_email / private_key");
++    bearer = await bearerFor(sa, { fetchImpl, tokenUrl });
++  }
++  const list = makeClient({ apiKey: mode === "api-key" ? apiKey : null, bearer, fetchImpl, base });
++
++  console.log(`▸ syncing Drive library (${mode})`);
++  const collections = [];
++  const skippedAll = [];
++  for (const c of config.collections) {
++    const meta = collectionMeta(c);
++    if (!meta.folderId) {
++      if (c.folderId) throw new Error(`Collection "${c.key}": folderId "${c.folderId}" does not look like a Drive id`);
++      collections.push({ ...meta, items: [] });
++      console.log(`  · ${c.key}: no folderId — skipped`);
++      continue;
++    }
++    const { items, skipped } = await crawl(list, { ...c, ...meta }, { maxDepth, verify: mode === "service-account" });
++    collections.push({ ...meta, items });
++    skippedAll.push(...skipped.map((s) => ({ collection: c.key, ...s })));
++    console.log(`  ✓ ${c.key}: ${items.length} file(s), ${skipped.length} skipped`);
++
++    // Guard: a previously populated collection must not silently collapse.
++    const before = prev?.collections?.find((p) => p.key === c.key && p.folderId === meta.folderId)?.items.length ?? 0;
++    if (before >= 5 && items.length === 0) {
++      throw new Error(`"${c.key}" had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`);
++    }
++  }
++
++  const payload = { generatedAt: new Date().toISOString(), mode, collections };
++  await write(paths.out, payload);
++  await write(paths.skipped, {
++    generatedAt: payload.generatedAt,
++    note: "Audit trail — files seen in the configured folders but NOT published, and why.",
++    total: skippedAll.length,
++    skipped: skippedAll,
++  });
++  const n = collections.reduce((s, c) => s + c.items.length, 0);
++  console.log(`\n✔ ${n} file(s) indexed · ${skippedAll.length} skipped`);
++  return payload;
++}
++
++// Run only when executed directly, so tests can import the helpers.
++if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
++  run().catch((err) => {
++    console.error(`::error::Drive sync failed: ${err.message}`);
++    console.error("✖ Drive sync failed:", err.message);
++    process.exit(1);
++  });
++}
+diff --git a/scripts/sync-repos.mjs b/scripts/sync-repos.mjs
+index 222d80e..e33cf5f 100644
+--- a/scripts/sync-repos.mjs
++++ b/scripts/sync-repos.mjs
+@@ -21,6 +21,7 @@
+ import { writeFile, mkdir } from "node:fs/promises";
+ import { dirname, resolve } from "node:path";
+ import { fileURLToPath } from "node:url";
++import { probeBrand } from "./lib/brand-probe.mjs";
+ 
+ const __dirname = dirname(fileURLToPath(import.meta.url));
+ const ROOT = resolve(__dirname, "..");
+@@ -180,7 +181,9 @@ function channelsFor(repo, tree, customDomain) {
+ 
+   if (customDomain) ch.push("custom-domain");
+   if (home.endsWith(".vercel.app")) ch.push("vercel");
+-  if (CLOUDFLARE_MARKERS.some(has)) ch.push("cloudflare");
++  // A Cloudflare Pages / Workers homepage is proof on its own; marker files cover
++  // repos whose deployment URL is not recorded in the homepage field.
++  if (/\.(pages|workers)\.dev\/?$/.test(home) || CLOUDFLARE_MARKERS.some(has)) ch.push("cloudflare");
+   if (repo.has_pages || PAGES_MARKERS.some(has)) ch.push("github-pages");
+ 
+   return [...new Set(ch)];
+@@ -296,6 +299,11 @@ async function main() {
+     const pagesUrl = `https://${OWNER}.github.io/${name}/`;
+     const [homeAlive, pagesAlive] = await Promise.all([alive(homepage), alive(pagesUrl)]);
+ 
++    // Branding comes from the app itself (PWA manifest + <head>). Cosmetic, so a
++    // failed probe yields null and the site derives a monogram — it never aborts.
++    const liveUrl = homeAlive ? homepage : customDomain || null;
++    const brand = await probeBrand(liveUrl || (pagesAlive ? pagesUrl : null));
++
+     included.push({
+       name,
+       slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+@@ -306,15 +314,16 @@ async function main() {
+       stars: repo.stargazers_count,
+       pushedAt: repo.pushed_at,
+       url: repo.html_url,
+-      live: homeAlive ? homepage : customDomain || null,
++      live: liveUrl,
+       customDomain,
+       pages: pagesAlive ? pagesUrl : null,
+       channels,
+       readmeBytes: readme.length,
+-      featured: false, // curated by hand in content/featured.json, see §5 of the blueprint
++      brand,
++      featured: false, // flagship order is curated in src/content/apps.ts
+     });
+ 
+-    process.stdout.write(`  ✓ ${name}\n`);
++    process.stdout.write(`  ✓ ${name}${brand ? `  [brand: ${brand.source}${brand.themeColor ? " " + brand.themeColor : ""}]` : ""}\n`);
+   }
+ 
+   // Deterministic order: most recently pushed first, then name.
+@@ -353,8 +362,9 @@ async function main() {
+   );
+ 
+   const live = included.filter((r) => r.live || r.pages).length;
++  const branded = included.filter((r) => r.brand).length;
+   console.log(
+-    `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL\n` +
++    `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL · ${branded} branded from the app itself\n` +
+       `  channels: ${Object.entries(counts).map(([k, v]) => `${k}=${v}`).join("  ")}\n` +
+       `  took ${((Date.now() - t0) / 1000).toFixed(1)}s → ${OUT.replace(ROOT + "/", "")}`,
+   );
+diff --git a/scripts/verify-no-secrets.mjs b/scripts/verify-no-secrets.mjs
+index 6377514..ce928ab 100644
+--- a/scripts/verify-no-secrets.mjs
++++ b/scripts/verify-no-secrets.mjs
+@@ -5,10 +5,17 @@
+  * The constraint is architectural, so it gets a CI gate rather than a promise in
+  * a README. A future contributor cannot quietly add a key: this fails the build.
+  *
++ * SCOPE (revised when the Google Drive library was added): the shipped site and
++ * src/ contain no credentials, ever. Build-time scripts in scripts/ MAY read CI
++ * secrets (GITHUB_TOKEN, GOOGLE_API_KEY, GOOGLE_SERVICE_ACCOUNT_JSON) to fetch
++ * data into static JSON — the credential stays on the runner, the browser reads
++ * the JSON. This gate is what proves none of it leaked into the output.
++ *
+  * Checks:
+  *   1. no secret-shaped environment variables are referenced in src/
+- *   2. no key-shaped literals in source
+- *   3. the built output references no host outside the allowlist
++ *   2. no key-shaped literals in source, INCLUDING generated .json under src/
++ *   3. no high-signal credential in the BUILT output (js/css/html/json)
++ *   4. the built output references no host outside the allowlist
+  *
+  * Exit code 1 on any violation, with the offending file and line.
+  */
+@@ -23,22 +30,7 @@ const ROOT = resolve(__dirname, "..");
+ const DIST = resolve(ROOT, process.argv[2] || "dist");
+ const SRC = resolve(ROOT, "src");
+ 
+-/** Hosts the site is allowed to talk to. Empty of anything key-bearing. */
+-const ALLOWED_HOSTS = [
+-  "fonts.googleapis.com",
+-  "fonts.gstatic.com",
+-  "github.com",
+-  "moniruzjaman.github.io",
+-  "krishiai.live",
+-  "raw.githubusercontent.com",
+-  "user-images.githubusercontent.com",
+-  "camo.githubusercontent.com",
+-  "avatars.githubusercontent.com",
+-  "api.github.com",
+-  "vercel.app",
+-  "surge.sh",
+-  "workers.dev",
+-];
++import { hostOf, hostAllowed } from "./lib/hosts.mjs";
+ 
+ /** Patterns that indicate a credential, wherever they appear. */
+ const SECRET_PATTERNS = [
+@@ -48,8 +40,16 @@ const SECRET_PATTERNS = [
+   { re: /\bgithub_pat_[A-Za-z0-9_]{50,}\b/g, name: "GitHub fine-grained PAT" },
+   { re: /\bsupabase\.co\b/i, name: "Supabase project reference" },
+   { re: /\bAKIA[0-9A-Z]{16}\b/g, name: "AWS access key id" },
++  { re: /-----BEGIN (?:RSA |EC )?PRIVATE KEY-----/g, name: "private key block" },
++  { re: /\\?"private_key\\?"\s*:/g, name: "service-account private_key field" },
++  { re: /[a-z0-9-]+@[a-z0-9-]+\.iam\.gserviceaccount\.com/gi, name: "service-account identity" },
+ ];
+ 
++/** Subset safe to run over minified bundles: no false positives on bundled library code. */
++const BUNDLE_PATTERNS = SECRET_PATTERNS.filter(
++  (p) => !["OpenAI-style secret key", "Supabase project reference"].includes(p.name),
++);
++
+ const KEY_ENV_PATTERNS = [
+   /import\.meta\.env\.[A-Z0-9_]*(KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)/i,
+   /process\.env\.[A-Z0-9_]*(KEY|TOKEN|SECRET|PASSWORD|CREDENTIAL)/,
+@@ -73,7 +73,7 @@ async function* walk(dir) {
+ 
+ for await (const file of walk(SRC)) {
+   const ext = extname(file);
+-  if (![".ts", ".tsx", ".js", ".jsx", ".mjs", ".css", ".html"].includes(ext)) continue;
++  if (![".ts", ".tsx", ".js", ".jsx", ".mjs", ".css", ".html", ".json"].includes(ext)) continue;
+   const text = await readFile(file, "utf8");
+   const lines = text.split("\n");
+ 
+@@ -127,19 +127,6 @@ try {
+   process.exit(1);
+ }
+ 
+-const hostOf = (u) => {
+-  try {
+-    return new URL(u).hostname.toLowerCase();
+-  } catch {
+-    return null;
+-  }
+-};
+-const hostAllowed = (host) =>
+-  ALLOWED_HOSTS.some((h) => host === h || host.endsWith(`.${h}`)) ||
+-  host.endsWith(".vercel.app") ||
+-  host.endsWith(".surge.sh") ||
+-  host.endsWith(".krishiai.live");
+-
+ const advisories = new Set();
+ 
+ for await (const file of walk(DIST)) {
+@@ -147,6 +134,13 @@ for await (const file of walk(DIST)) {
+   const text = await readFile(file, "utf8");
+   const where = relative(ROOT, file);
+ 
++  if ([".js", ".css", ".html", ".json", ".map"].includes(ext)) {
++    for (const { re, name } of BUNDLE_PATTERNS) {
++      re.lastIndex = 0;
++      if (re.test(text)) problems.push(`${where}  ${name} in built output`);
++    }
++  }
++
+   for (const pos of NETWORK_POSITIONS) {
+     if (pos.ext !== ext) continue;
+     pos.re.lastIndex = 0;
+@@ -176,14 +170,14 @@ for await (const file of walk(DIST)) {
+ if (advisories.size) {
+   console.log(`\n  advisory — non-requested hosts found in the bundle (not fetched):`);
+   for (const h of [...advisories].sort().slice(0, 12)) console.log(`    ${h}`);
+-  console.log(`  If any of these should be requested, it belongs in ALLOWED_HOSTS.`);
++  console.log(`  If any of these should be requested, it belongs in ALLOWED_HOSTS (scripts/lib/hosts.mjs).`);
+ }
+ 
+ if (problems.length) {
+   console.error(`\n✖ no-api-key check FAILED — ${problems.length} violation(s):\n`);
+   for (const p of [...new Set(problems)].slice(0, 40)) console.error(`   ${p}`);
+   console.error(`\n   This site is built to run with no credentials of any kind.`);
+-  console.error(`   If a host is legitimate, add it to ALLOWED_HOSTS in scripts/verify-no-secrets.mjs\n`);
++  console.error(`   If a host is legitimate, add it to ALLOWED_HOSTS in scripts/lib/hosts.mjs\n`);
+   process.exit(1);
+ }
+ 
+diff --git a/src/App.tsx b/src/App.tsx
+index 55b8385..342a067 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,5 +1,6 @@
+ import { useEffect, useState } from "react";
+-import { Route, Switch } from "wouter";
++import { Route, Router, Switch } from "wouter";
++import { ROUTER_BASE } from "@/lib/site";
+ import { LangProvider } from "@/lib/i18n";
+ import { Nav, Footer } from "@/components/Chrome";
+ import { SearchDialog } from "@/components/SearchDialog";
+@@ -11,19 +12,19 @@ import Expertise from "@/pages/Expertise";
+ import Notes from "@/pages/Notes";
+ import NoteDetail from "@/pages/NoteDetail";
+ import About from "@/pages/About";
++import Library from "@/pages/Library";
+ import { NotFound } from "@/pages/NotFound";
+ 
+ /**
+- * Deep-link recovery: GitHub Pages has no rewrite rules, so a cold load of
+- * /works/foo hits 404.html, which stashes the path in sessionStorage and
+- * redirects here. main.tsx replays that path via history.replaceState BEFORE
+- * this tree mounts, so wouter's location hook reads the right URL on first
+- * render and no flash of the home page occurs. Nothing extra is needed here.
++ * Deep links on GitHub Pages: there are no rewrite rules, so a cold load of
++ * /works/foo hits 404.html, which stashes the path and redirects to the shell;
++ * main.tsx replays it before React mounts.
+  *
+- * The repo is `moniruzjaman/portfolio`, a project site, so the deploy root is
+- * `/portfolio/` and wouter's default location hook works because GitHub Pages
+- * serves the app under that base. If the repo name changes, this comment,
+- * vite.config.ts `base`, and public/404.html must change together.
++ * Base path: wouter only strips a prefix it is told about. <Router base> below is
++ * REQUIRED when the site is served from a sub-path such as /portfolio/ — without
++ * it every route, including "/", renders Not Found. The base comes from Vite's
++ * `base` via src/lib/site.ts, so there is nothing to keep in sync by hand
++ * (public/404.html is generated from the same value by scripts/gen-static.mjs).
+  */
+ function Shell() {
+   const [searchOpen, setSearchOpen] = useState(false);
+@@ -54,6 +55,7 @@ function Shell() {
+           <Route path="/" component={Home} />
+           <Route path="/works" component={Works} />
+           <Route path="/works/:slug" component={WorkDetail} />
++          <Route path="/library" component={Library} />
+           <Route path="/expertise" component={Expertise} />
+           <Route path="/notes" component={Notes} />
+           <Route path="/notes/:slug" component={NoteDetail} />
+@@ -68,10 +70,13 @@ function Shell() {
+   );
+ }
+ 
+-export default function App() {
++/** `ssrPath` exists only so scripts/render-smoke.mjs can render the REAL app at a given URL. */
++export default function App({ ssrPath }: { ssrPath?: string }) {
+   return (
+     <LangProvider>
+-      <Shell />
++      <Router base={ROUTER_BASE} ssrPath={ssrPath}>
++        <Shell />
++      </Router>
+     </LangProvider>
+   );
+ }
+diff --git a/src/components/AppCard.tsx b/src/components/AppCard.tsx
+new file mode 100644
+index 0000000..dcf6147
+--- /dev/null
++++ b/src/components/AppCard.tsx
+@@ -0,0 +1,107 @@
++import { useState } from "react";
++import { Link } from "wouter";
++import { ArrowUpRight } from "lucide-react";
++import { brandOf, primaryEndpoint, relativeDate, CHANNEL_COLOR, CHANNEL_LABEL, type Repo } from "@/lib/data";
++import type { Brand } from "@/lib/brand";
++import { Chip } from "@/components/Section";
++import { useI18n } from "@/lib/i18n";
++
++/**
++ * The app's own mark. Uses the icon the app ships (PWA manifest / touch icon);
++ * falls back to a monogram if there is none or it fails to load. The <img> is
++ * decorative (alt="") because the card's title already names the app.
++ */
++export function BrandMark({ brand, size = 44, radius = 12 }: { brand: Brand; size?: number; radius?: number }) {
++  const [failed, setFailed] = useState(false);
++  const showIcon = brand.icon && !failed;
++  return (
++    <span
++      aria-hidden="true"
++      className="flex shrink-0 items-center justify-center overflow-hidden font-serif font-black"
++      style={{
++        width: size,
++        height: size,
++        borderRadius: radius,
++        fontSize: size * 0.38,
++        // A real icon sits on white so a transparent PNG/SVG is legible on any brand colour.
++        background: showIcon ? "#ffffff" : "rgba(255,255,255,0.16)",
++        color: brand.fg,
++        boxShadow: showIcon ? "0 0 0 1px rgba(255,255,255,0.35)" : "inset 0 0 0 1px rgba(255,255,255,0.28)",
++      }}
++    >
++      {showIcon ? (
++        <img
++          src={brand.icon!}
++          alt=""
++          loading="lazy"
++          decoding="async"
++          referrerPolicy="no-referrer"
++          width={size}
++          height={size}
++          className="h-full w-full object-contain p-[12%]"
++          onError={() => setFailed(true)}
++        />
++      ) : (
++        brand.monogram
++      )}
++    </span>
++  );
++}
++
++/**
++ * One card per app. The whole card is a single link (design-system §5: no nested
++ * interactive elements, so the tab order stays clean). The colour band is the
++ * app's own theme colour when known, a deterministic palette colour otherwise.
++ */
++export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boolean }) {
++  const { lang } = useI18n();
++  const brand = brandOf(repo);
++  const ep = primaryEndpoint(repo);
++
++  return (
++    <Link
++      href={`/works/${repo.slug}`}
++      className="group flex flex-col overflow-hidden rounded-2xl border border-forest-400 bg-white transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.1)]"
++    >
++      <div className="flex items-center gap-3 px-5 py-4" style={{ background: brand.color, color: brand.fg }}>
++        <BrandMark brand={brand} size={compact ? 38 : 44} />
++        <span className="min-w-0 flex-1">
++          <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em] opacity-90">
++            {ep ? ep.label : repo.name}
++          </span>
++          <span className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] opacity-75">
++            {repo.channels.map((c) => CHANNEL_LABEL[c][lang]).join(" · ")}
++          </span>
++        </span>
++        <ArrowUpRight
++          size={16}
++          aria-hidden="true"
++          className="shrink-0 opacity-80 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
++        />
++      </div>
++
++      <div className="flex flex-1 flex-col p-5">
++        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{repo.title}</h3>
++        {repo.description && (
++          <p className={`mt-2 flex-1 text-sm leading-relaxed text-moss-600 ${compact ? "line-clamp-2" : "line-clamp-3"}`}>
++            {repo.description}
++          </p>
++        )}
++        <div className="mt-4 flex flex-wrap items-center gap-1.5">
++          {repo.channels.map((c) => (
++            <Chip key={c} color={CHANNEL_COLOR[c]}>
++              {CHANNEL_LABEL[c][lang]}
++            </Chip>
++          ))}
++        </div>
++        <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
++          <span>{repo.language ?? "—"}</span>
++          <span className="flex items-center gap-1.5">
++            {ep && <span className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400" aria-label={lang === "bn" ? "চালু" : "live"} />}
++            {relativeDate(repo.pushedAt)}
++          </span>
++        </div>
++      </div>
++    </Link>
++  );
++}
+diff --git a/src/components/Chrome.tsx b/src/components/Chrome.tsx
+index b983850..47b6a70 100644
+--- a/src/components/Chrome.tsx
++++ b/src/components/Chrome.tsx
+@@ -7,6 +7,7 @@ import { author } from "@/lib/author";
+ 
+ const LINKS = [
+   { href: "/works", en: "Work", bn: "কাজ" },
++  { href: "/library", en: "Library", bn: "লাইব্রেরি" },
+   { href: "/expertise", en: "Expertise", bn: "দক্ষতা" },
+   { href: "/notes", en: "Writing", bn: "লেখা" },
+   { href: "/about", en: "About", bn: "পরিচিতি" },
+@@ -46,7 +47,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+           </span>
+         </Link>
+ 
+-        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
++        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+           {LINKS.map((l) => (
+             <Link
+               key={l.href}
+@@ -82,7 +83,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+             onClick={() => setOpen((o) => !o)}
+             aria-label={t("Menu", "মেনু")}
+             aria-expanded={open}
+-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 md:hidden"
++            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
+           >
+             {open ? <X size={16} /> : <Menu size={16} />}
+           </button>
+@@ -90,7 +91,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+       </div>
+ 
+       {open && (
+-        <nav className="border-t border-forest-200 bg-cream-100 md:hidden" aria-label="Mobile">
++        <nav className="border-t border-forest-200 bg-cream-100 lg:hidden" aria-label="Mobile">
+           <div className="u-container flex flex-col py-3">
+             {LINKS.map((l) => (
+               <Link
+diff --git a/src/components/DocPreview.tsx b/src/components/DocPreview.tsx
+new file mode 100644
+index 0000000..bad5235
+--- /dev/null
++++ b/src/components/DocPreview.tsx
+@@ -0,0 +1,91 @@
++import { useEffect, useRef } from "react";
++import { Download, ExternalLink, X } from "lucide-react";
++import { downloadUrl, KIND_LABEL, openUrl, previewUrl, type LibItem } from "@/lib/library";
++import { useI18n } from "@/lib/i18n";
++
++/**
++ * Preview in a native <dialog>: focus is trapped, Esc closes, and focus returns to
++ * the card that opened it — all provided by the platform rather than re-implemented.
++ *
++ * The Drive frame is mounted ONLY while open. Until a visitor asks for a preview
++ * no request goes to Google and nothing is set in their browser. The frame is
++ * sandboxed: it can run its own scripts but cannot navigate this page or submit forms.
++ */
++export function DocPreview({ item, onClose }: { item: LibItem | null; onClose: () => void }) {
++  const ref = useRef<HTMLDialogElement>(null);
++  const { t, lang } = useI18n();
++
++  useEffect(() => {
++    const d = ref.current;
++    if (!d) return;
++    if (item && !d.open) d.showModal();
++    if (!item && d.open) d.close();
++  }, [item]);
++
++  return (
++    <dialog
++      ref={ref}
++      onClose={onClose}
++      onClick={(e) => {
++        // A click on the dialog element itself (not its content) is a backdrop click.
++        if (e.target === ref.current) onClose();
++      }}
++      aria-labelledby="doc-preview-title"
++      className="m-auto h-[88vh] w-[min(1100px,95vw)] overflow-hidden rounded-2xl border border-forest-200 bg-cream-50 p-0 text-forest-900 shadow-[0_30px_80px_rgba(6,26,16,0.4)] backdrop:bg-forest-950/70 backdrop:backdrop-blur-sm"
++    >
++      {item && (
++        <div className="flex h-full flex-col">
++          <div className="flex items-center gap-3 border-b border-forest-200 px-4 py-3 sm:px-5">
++            <div className="min-w-0 flex-1">
++              <p className="u-eyebrow text-gold-600">{KIND_LABEL[item.kind][lang]}</p>
++              <h2 id="doc-preview-title" className="truncate font-serif text-lg font-black">
++                {item.title}
++              </h2>
++            </div>
++            <a
++              href={openUrl(item)}
++              target="_blank"
++              rel="noreferrer"
++              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-forest-900/25 px-4 text-xs font-bold hover:bg-white"
++            >
++              <ExternalLink size={14} aria-hidden="true" /> <span className="hidden sm:inline">{t("Open in Drive", "ড্রাইভে খুলুন")}</span>
++              <span className="sr-only sm:hidden">{t("Open in Drive", "ড্রাইভে খুলুন")}</span>
++            </a>
++            <a
++              href={downloadUrl(item)}
++              target="_blank"
++              rel="noreferrer"
++              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-900 px-4 text-xs font-bold text-cream-100 hover:bg-forest-600"
++            >
++              <Download size={14} aria-hidden="true" /> <span className="hidden sm:inline">{t("Download", "ডাউনলোড")}</span>
++              <span className="sr-only sm:hidden">{t("Download", "ডাউনলোড")}</span>
++            </a>
++            <button
++              type="button"
++              onClick={onClose}
++              aria-label={t("Close preview", "প্রিভিউ বন্ধ করুন")}
++              className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-900/15 hover:bg-forest-900 hover:text-cream-100"
++            >
++              <X size={16} />
++            </button>
++          </div>
++          <iframe
++            key={item.id}
++            title={item.title}
++            src={previewUrl(item)}
++            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
++            referrerPolicy="no-referrer"
++            allow="fullscreen"
++            className="w-full flex-1 bg-white"
++          />
++          <p className="border-t border-forest-200 px-5 py-2 text-[11px] text-moss-500">
++            {t(
++              "The preview is served by Google Drive. If it does not load, use “Open in Drive”.",
++              "প্রিভিউ গুগল ড্রাইভ থেকে আসে। না খুললে “ড্রাইভে খুলুন” ব্যবহার করুন।",
++            )}
++          </p>
++        </div>
++      )}
++    </dialog>
++  );
++}
+diff --git a/src/components/PlatformTiles.tsx b/src/components/PlatformTiles.tsx
+new file mode 100644
+index 0000000..c91ef23
+--- /dev/null
++++ b/src/components/PlatformTiles.tsx
+@@ -0,0 +1,64 @@
++import { Link } from "wouter";
++import { CHANNEL_BLURB, CHANNEL_COLOR, CHANNEL_LABEL, platformStats, type Channel } from "@/lib/data";
++import { useI18n } from "@/lib/i18n";
++
++/**
++ * The four deployment channels as a status strip. All numbers come from the
++ * generated data (apps per channel, distinct reachable hostnames), never typed.
++ *
++ *   onSelect given  → tiles are toggle buttons (the filter on /works)
++ *   otherwise       → tiles link to /works (the home page)
++ */
++export function PlatformTiles({
++  value,
++  onSelect,
++  dark = false,
++}: {
++  value?: Channel | "all";
++  onSelect?: (c: Channel | "all") => void;
++  dark?: boolean;
++}) {
++  const { t, lang } = useI18n();
++
++  return (
++    <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
++      {platformStats.map((p) => {
++        const active = value === p.channel;
++        const base = dark
++          ? `border-white/10 bg-white/[0.05] text-white ${active ? "ring-2 ring-gold-400" : "hover:bg-white/[0.09]"}`
++          : `bg-white text-forest-900 ${active ? "border-forest-900 ring-2 ring-forest-900" : "border-forest-400 hover:border-forest-300"}`;
++        const body = (
++          <>
++            <span className="flex items-center gap-2">
++              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: CHANNEL_COLOR[p.channel] }} />
++              <span className="font-serif text-lg font-black leading-none">{CHANNEL_LABEL[p.channel][lang]}</span>
++            </span>
++            <span className="mt-4 flex items-baseline gap-2">
++              <span className="font-serif text-4xl font-black leading-none">{p.apps}</span>
++              <span className={`font-mono text-[10px] uppercase tracking-[0.14em] ${dark ? "text-forest-200" : "text-moss-500"}`}>
++                {t("apps", "অ্যাপ")} · {p.endpoints} {t(p.endpoints === 1 ? "address" : "addresses", "ঠিকানা")}
++              </span>
++            </span>
++            <span className={`mt-3 block text-xs leading-relaxed ${dark ? "text-forest-200" : "text-moss-500"}`}>
++              {CHANNEL_BLURB[p.channel][lang]}
++            </span>
++          </>
++        );
++        const cls = `block h-full w-full rounded-2xl border p-5 text-left transition-all duration-200 ${base}`;
++        return (
++          <li key={p.channel}>
++            {onSelect ? (
++              <button type="button" aria-pressed={active} onClick={() => onSelect(active ? "all" : p.channel)} className={cls}>
++                {body}
++              </button>
++            ) : (
++              <Link href="/works" className={cls}>
++                {body}
++              </Link>
++            )}
++          </li>
++        );
++      })}
++    </ul>
++  );
++}
+diff --git a/src/components/SearchDialog.tsx b/src/components/SearchDialog.tsx
+index 86d650d..f1e0deb 100644
+--- a/src/components/SearchDialog.tsx
++++ b/src/components/SearchDialog.tsx
+@@ -1,7 +1,8 @@
+ import { useEffect, useMemo, useRef, useState } from "react";
+ import { useLocation } from "wouter";
+ import { Search, CornerDownLeft } from "lucide-react";
+-import { repos, CHANNEL_LABEL } from "@/lib/data";
++import { repos } from "@/lib/data";
++import { libraryItems, KIND_LABEL } from "@/lib/library";
+ import { notes } from "@/content/notes";
+ import { useI18n } from "@/lib/i18n";
+ 
+@@ -14,7 +15,7 @@ import { useI18n } from "@/lib/i18n";
+  * ordering matches how people actually type repo names.
+  */
+ type Hit = {
+-  kind: "repo" | "note";
++  kind: "repo" | "note" | "doc";
+   title: string;
+   subtitle: string;
+   href: string;
+@@ -76,7 +77,17 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () =>
+       }))
+       .filter((h) => h.score > 0);
+ 
+-    return [...repoHits, ...noteHits].sort((a, b) => b.score - a.score).slice(0, 8);
++    const docHits: Hit[] = libraryItems
++      .map((d) => ({
++        kind: "doc" as const,
++        title: d.title,
++        subtitle: `${KIND_LABEL[d.kind].en} · ${d.modified?.slice(0, 4) ?? ""}`.trim(),
++        href: "/library",
++        score: score(q, d.title, d.path.join(" ")),
++      }))
++      .filter((h) => h.score > 0);
++
++    return [...repoHits, ...noteHits, ...docHits].sort((a, b) => b.score - a.score).slice(0, 8);
+   }, [q, lang]);
+ 
+   useEffect(() => setCursor(0), [q]);
+@@ -118,7 +129,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () =>
+               }
+               if (e.key === "Enter" && hits[cursor]) go(hits[cursor]);
+             }}
+-            placeholder={t("Search works and notes…", "কাজ ও নোট খুঁজুন…")}
++            placeholder={t("Search works, notes and library…", "কাজ, নোট ও লাইব্রেরি খুঁজুন…")}
+             className="w-full bg-transparent py-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
+             aria-label={t("Search", "অনুসন্ধান")}
+           />
+@@ -153,7 +164,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () =>
+               </span>
+               <span className="flex shrink-0 items-center gap-2">
+                 <span className="u-eyebrow text-moss-400">
+-                  {h.kind === "repo" ? CHANNEL_LABEL[h.kind === "repo" ? "vercel" : "vercel"].en : t("Note", "নোট")}
++                  {h.kind === "repo" ? t("Work", "কাজ") : h.kind === "doc" ? t("Library", "লাইব্রেরি") : t("Note", "নোট")}
+                 </span>
+                 {i === cursor && <CornerDownLeft size={13} className="text-moss-400" />}
+               </span>
+@@ -163,7 +174,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () =>
+ 
+         <div className="flex items-center justify-between border-t border-forest-200 px-4 py-2">
+           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-moss-400">
+-            {repos.length} works · {notes.length} notes
++            {repos.length} works · {notes.length} notes · {libraryItems.length} docs
+           </span>
+           <span className="font-mono text-[10px] text-moss-400">↑↓ ↵</span>
+         </div>
+diff --git a/src/content/apps.ts b/src/content/apps.ts
+new file mode 100644
+index 0000000..dccd3e4
+--- /dev/null
++++ b/src/content/apps.ts
+@@ -0,0 +1,15 @@
++/**
++ * Flagship order — the one piece of curation in an otherwise generated catalogue.
++ *
++ * Names are repo names. A name that no longer exists in the generated data is
++ * dropped silently by `flagship`, so renaming a repo cannot break the build.
++ * Everything else about an app (title, description, hosts, brand) is generated.
++ */
++export const FLAGSHIP_NAMES = [
++  "web.krishiai.live",
++  "soil-media-portal",
++  "plantation-tracker",
++  "cabi-diagnosis",
++  "krishak-card",
++  "pesticide-field-guide",
++] as const;
+diff --git a/src/data/library.generated.json b/src/data/library.generated.json
+new file mode 100644
+index 0000000..49b1dbf
+--- /dev/null
++++ b/src/data/library.generated.json
+@@ -0,0 +1,33 @@
++{
++  "generatedAt": null,
++  "mode": "none",
++  "collections": [
++    {
++      "key": "research",
++      "title": "Research",
++      "titleBn": "গবেষণা",
++      "description": "Studies, working papers and field research.",
++      "descriptionBn": "গবেষণাপত্র, ওয়ার্কিং পেপার ও মাঠ গবেষণা।",
++      "folderId": null,
++      "items": []
++    },
++    {
++      "key": "pdf",
++      "title": "PDF documents",
++      "titleBn": "পিডিএফ নথি",
++      "description": "Guides, reports and reference documents.",
++      "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
++      "folderId": null,
++      "items": []
++    },
++    {
++      "key": "pptx",
++      "title": "Presentations",
++      "titleBn": "উপস্থাপনা",
++      "description": "Slide decks from trainings, briefings and talks.",
++      "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
++      "folderId": null,
++      "items": []
++    }
++  ]
++}
+diff --git a/src/lib/brand.ts b/src/lib/brand.ts
+new file mode 100644
+index 0000000..8a1ccb1
+--- /dev/null
++++ b/src/lib/brand.ts
+@@ -0,0 +1,105 @@
++/**
++ * App branding.
++ *
++ * `RawBrand` is what scripts/lib/brand-probe.mjs read from the app itself (PWA
++ * manifest + <head>). It is absent for apps that could not be probed — deployment
++ * protection, offline, or no manifest. `brandFor` always returns something
++ * renderable, so a card never has a blank hole:
++ *
++ *   real theme colour  → used as-is (unless it is near-white, which would vanish)
++ *   otherwise          → a deterministic colour from the palette below, keyed on
++ *                        the repo name, so the same app is the same colour forever
++ *   no icon            → a monogram
++ *
++ * `derived: true` marks a fallback, so the UI never presents an invented colour as
++ * the app's own brand.
++ *
++ * No imports: this file is unit-tested directly by node (scripts/__tests__).
++ */
++
++export type RawBrand = {
++  name?: string;
++  themeColor?: string;
++  icon?: string;
++  image?: string;
++  source: "manifest" | "html";
++};
++
++export type Brand = {
++  color: string;
++  /** Text colour that passes contrast on `color`. */
++  fg: string;
++  monogram: string;
++  icon: string | null;
++  image: string | null;
++  derived: boolean;
++};
++
++/** Every entry clears 4.5:1 against white (asserted in the tests). */
++export const FALLBACK_PALETTE = [
++  "#1a5c32", // forest
++  "#0f5c6b", // teal
++  "#3b4a8c", // indigo
++  "#8a4b14", // umber
++  "#7a2e4d", // plum
++  "#2b4f6e", // slate
++  "#5c4a12", // olive
++  "#6b3a2e", // clay
++] as const;
++
++const INK = "#0a2e1a";
++const WHITE = "#ffffff";
++
++const channel = (v: number) => {
++  const c = v / 255;
++  return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
++};
++
++export function luminance(hex: string): number {
++  const n = parseInt(hex.slice(1), 16);
++  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
++}
++
++export function contrast(a: string, b: string): number {
++  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
++  return (hi + 0.05) / (lo + 0.05);
++}
++
++const isHex = (v: unknown): v is string => typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v);
++
++/** FNV-1a — small, stable, no dependency. */
++export function hash(s: string): number {
++  let h = 0x811c9dc5;
++  for (let i = 0; i < s.length; i++) {
++    h ^= s.charCodeAt(i);
++    h = Math.imul(h, 0x01000193);
++  }
++  return h >>> 0;
++}
++
++/** "web.krishiai.live" → "WK", "AgriChem-Guide-Pest…" → "AG", "krishak" → "KR". */
++export function monogramOf(name: string): string {
++  const words = name.split(/[^A-Za-z0-9]+/).filter(Boolean);
++  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
++  return (words[0] ?? "?").slice(0, 2).toUpperCase();
++}
++
++export function readableOn(bg: string): string {
++  return contrast(bg, WHITE) >= contrast(bg, INK) ? WHITE : INK;
++}
++
++export function brandFor(repoName: string, raw?: RawBrand | null): Brand {
++  const real = raw && isHex(raw.themeColor) ? raw.themeColor.toLowerCase() : null;
++  // A near-white theme colour (very common: #ffffff) would make the card band
++  // invisible against the cream page, so treat it as "no usable colour".
++  const usable = real && luminance(real) < 0.8 ? real : null;
++  const color = usable ?? FALLBACK_PALETTE[hash(repoName) % FALLBACK_PALETTE.length];
++  return {
++    color,
++    fg: readableOn(color),
++    monogram: monogramOf(repoName),
++    icon: raw?.icon ?? null,
++    image: raw?.image ?? null,
++    derived: !usable,
++  };
++}
+diff --git a/src/lib/data.ts b/src/lib/data.ts
+index 6fbfd49..5bcd332 100644
+--- a/src/lib/data.ts
++++ b/src/lib/data.ts
+@@ -1,4 +1,5 @@
+ import raw from "../data/repos.generated.json";
++import { brandFor, type Brand, type RawBrand } from "./brand";
+ 
+ export type Channel = "custom-domain" | "vercel" | "cloudflare" | "github-pages";
+ 
+@@ -18,24 +19,34 @@ export type Repo = {
+   channels: Channel[];
+   readmeBytes: number;
+   featured: boolean;
++  /** Read from the app's own manifest/<head> at sync time; absent until then. */
++  brand?: RawBrand | null;
+ };
+ 
+ export const meta = {
+   generatedAt: raw.generatedAt,
+   source: raw.source,
+   scanned: raw.scanned,
+-  channels: raw.channels as Record<string, number>,
+ };
+ 
+ export const repos: Repo[] = raw.repos as Repo[];
+ 
++export const CHANNELS: Channel[] = ["custom-domain", "vercel", "cloudflare", "github-pages"];
++
+ export const CHANNEL_LABEL: Record<Channel, { en: string; bn: string }> = {
+-  "custom-domain": { en: "Custom domain", bn: "কাস্টম ডোমেইন" },
++  "custom-domain": { en: "krishiai.live", bn: "krishiai.live" },
+   vercel: { en: "Vercel", bn: "ভার্সেল" },
+   cloudflare: { en: "Cloudflare", bn: "ক্লাউডফ্লেয়ার" },
+   "github-pages": { en: "GitHub Pages", bn: "গিটহাব পেজ" },
+ };
+ 
++export const CHANNEL_BLURB: Record<Channel, { en: string; bn: string }> = {
++  "custom-domain": { en: "Apps on their own krishiai.live address", bn: "নিজস্ব krishiai.live ঠিকানায় অ্যাপ" },
++  vercel: { en: "Serverless apps on *.vercel.app", bn: "*.vercel.app-এ সার্ভারলেস অ্যাপ" },
++  cloudflare: { en: "Workers and Pages deployments", bn: "ওয়ার্কার ও পেজ ডিপ্লয়মেন্ট" },
++  "github-pages": { en: "Static sites on github.io", bn: "github.io-তে স্ট্যাটিক সাইট" },
++};
++
+ export const CHANNEL_COLOR: Record<Channel, string> = {
+   "custom-domain": "var(--color-gold-400)",
+   vercel: "var(--color-forest-400)",
+@@ -43,17 +54,94 @@ export const CHANNEL_COLOR: Record<Channel, string> = {
+   "github-pages": "var(--color-forest-300)",
+ };
+ 
+-export const bySlug = (slug: string): Repo | undefined =>
+-  repos.find((r) => r.slug === slug);
++export const bySlug = (slug: string): Repo | undefined => repos.find((r) => r.slug === slug);
++
++export const brandOf = (r: Repo): Brand => brandFor(r.name, r.brand);
++
++/* ── endpoints ─────────────────────────────────────────────────────────── */
++
++/** `label` is host + path ("moniruzjaman.github.io/soil-media-portal"): on GitHub Pages the host alone is shared by every site. */
++export type Endpoint = { channel: Channel; url: string; host: string; label: string };
++
++const hostOf = (u: string): string => {
++  try {
++    return new URL(u).hostname.toLowerCase();
++  } catch {
++    return u;
++  }
++};
++
++/** Which showcase channel a hostname belongs to. */
++export function channelOfHost(host: string): Channel | null {
++  if (host === "krishiai.live" || host.endsWith(".krishiai.live")) return "custom-domain";
++  if (host.endsWith(".vercel.app")) return "vercel";
++  if (host.endsWith(".pages.dev") || host.endsWith(".workers.dev")) return "cloudflare";
++  if (host.endsWith(".github.io")) return "github-pages";
++  return null;
++}
++
++/**
++ * Every distinct address a repo is served from, derived from the generated URLs.
++ * The sync only records a URL if it answered, so each of these was reachable at
++ * `meta.generatedAt`. (That is "reachable at last sync", not uptime.)
++ */
++export function endpointsOf(r: Repo): Endpoint[] {
++  const seen = new Set<string>();
++  const out: Endpoint[] = [];
++  const add = (url: string | null, fallback: Channel) => {
++    if (!url) return;
++    const host = hostOf(url);
++    const label = host + new URL(url).pathname.replace(/\/$/, "");
++    if (seen.has(label)) return;
++    seen.add(label);
++    out.push({ channel: channelOfHost(host) ?? fallback, url, host, label });
++  };
++  add(r.customDomain, "custom-domain");
++  add(r.live, "vercel");
++  add(r.pages, "github-pages");
++  const order = (c: Channel) => CHANNELS.indexOf(c);
++  return out.sort((a, b) => order(a.channel) - order(b.channel));
++}
++
++/** The address a card should show: own domain, then live app, then Pages. */
++export const primaryEndpoint = (r: Repo): Endpoint | null => endpointsOf(r)[0] ?? null;
++
++/* ── computed stats (never hand-typed — design-system §7) ──────────────── */
++
++const allEndpoints = repos.flatMap((r) => endpointsOf(r).map((e) => ({ ...e, repo: r })));
++
++export type PlatformStat = {
++  channel: Channel;
++  apps: number;
++  endpoints: number;
++  hosts: string[];
++};
++
++export const platformStats: PlatformStat[] = CHANNELS.map((channel) => {
++  const eps = allEndpoints.filter((e) => e.channel === channel);
++  const labels = [...new Set(eps.map((e) => e.label))];
++  return {
++    channel,
++    apps: repos.filter((r) => r.channels.includes(channel)).length,
++    endpoints: labels.length,
++    hosts: labels,
++  };
++});
+ 
+-/** Counted live from the generated data, never hand-typed — see blueprint §10. */
+ export const stats = {
+   repos: repos.length,
+   live: repos.filter((r) => r.live || r.pages).length,
+   languages: new Set(repos.map((r) => r.language).filter(Boolean)).size,
+   scanned: meta.scanned,
++  addresses: new Set(allEndpoints.map((e) => e.label)).size,
++  branded: repos.filter((r) => r.brand).length,
+ };
+ 
++/** Flat directory for the endpoints view: one row per distinct host. */
++export const endpointDirectory = allEndpoints
++  .map((e) => ({ host: e.host, label: e.label, url: e.url, channel: e.channel, repo: e.repo }))
++  .sort((a, b) => CHANNELS.indexOf(a.channel) - CHANNELS.indexOf(b.channel) || a.label.localeCompare(b.label));
++
+ export function relativeDate(iso: string): string {
+   const then = new Date(iso).getTime();
+   const days = Math.floor((Date.now() - then) / 86_400_000);
+diff --git a/src/lib/library.ts b/src/lib/library.ts
+new file mode 100644
+index 0000000..a74e59e
+--- /dev/null
++++ b/src/lib/library.ts
+@@ -0,0 +1,86 @@
++import raw from "../data/library.generated.json";
++
++export type Kind = "pdf" | "slides" | "doc" | "sheet" | "image" | "other";
++
++export type LibItem = {
++  id: string;
++  collection: string;
++  name: string;
++  title: string;
++  kind: Kind;
++  mime: string;
++  modified: string | null;
++  size: number | null;
++  /** Sub-folder names below the collection root. */
++  path: string[];
++  resourceKey?: string;
++};
++
++export type Collection = {
++  key: string;
++  title: string;
++  titleBn: string;
++  description: string;
++  descriptionBn: string;
++  folderId: string | null;
++  items: LibItem[];
++};
++
++export const library = {
++  generatedAt: raw.generatedAt as string | null,
++  mode: raw.mode as string,
++  collections: raw.collections as Collection[],
++};
++
++export const libraryItems: LibItem[] = library.collections.flatMap((c) => c.items);
++export const hasLibrary = library.collections.some((c) => c.items.length > 0 || c.folderId);
++
++export const KIND_LABEL: Record<Kind, { en: string; bn: string }> = {
++  pdf: { en: "PDF", bn: "পিডিএফ" },
++  slides: { en: "Slides", bn: "স্লাইড" },
++  doc: { en: "Document", bn: "নথি" },
++  sheet: { en: "Sheet", bn: "স্প্রেডশিট" },
++  image: { en: "Image", bn: "ছবি" },
++  other: { en: "File", bn: "ফাইল" },
++};
++
++/* ── Drive URL builders ────────────────────────────────────────────────────
++ * Only the file id (validated at sync time) is stored. URLs are built here, so a
++ * hostile filename or a changed Drive URL scheme cannot inject anything into the
++ * generated data. Hosts used: drive.google.com, docs.google.com.            */
++
++const NATIVE = {
++  slides: "application/vnd.google-apps.presentation",
++  doc: "application/vnd.google-apps.document",
++  sheet: "application/vnd.google-apps.spreadsheet",
++};
++
++const rk = (i: LibItem, sep: "?" | "&") => (i.resourceKey ? `${sep}resourcekey=${encodeURIComponent(i.resourceKey)}` : "");
++
++/** Opens the file in Drive itself — works for every type. */
++export const openUrl = (i: LibItem) => `https://drive.google.com/open?id=${i.id}${rk(i, "&")}`;
++
++/** Embeddable preview, loaded only after the visitor asks for it. */
++export function previewUrl(i: LibItem): string {
++  if (i.mime === NATIVE.slides) return `https://docs.google.com/presentation/d/${i.id}/embed?start=false&loop=false${rk(i, "&")}`;
++  if (i.mime === NATIVE.doc) return `https://docs.google.com/document/d/${i.id}/preview${rk(i, "?")}`;
++  if (i.mime === NATIVE.sheet) return `https://docs.google.com/spreadsheets/d/${i.id}/preview${rk(i, "?")}`;
++  return `https://drive.google.com/file/d/${i.id}/preview${rk(i, "?")}`;
++}
++
++export function downloadUrl(i: LibItem): string {
++  if (i.mime === NATIVE.slides) return `https://docs.google.com/presentation/d/${i.id}/export/pptx`;
++  if (i.mime === NATIVE.doc) return `https://docs.google.com/document/d/${i.id}/export?format=pdf`;
++  if (i.mime === NATIVE.sheet) return `https://docs.google.com/spreadsheets/d/${i.id}/export?format=xlsx`;
++  return `https://drive.google.com/uc?export=download&id=${i.id}${rk(i, "&")}`;
++}
++
++export const thumbUrl = (i: LibItem, w = 480) => `https://drive.google.com/thumbnail?id=${i.id}&sz=w${w}${rk(i, "&")}`;
++export const folderUrl = (id: string) => `https://drive.google.com/drive/folders/${id}`;
++export const folderEmbedUrl = (id: string) => `https://drive.google.com/embeddedfolderview?id=${id}#grid`;
++
++export function formatBytes(n: number | null): string {
++  if (!n) return "";
++  if (n < 1024 * 1024) return `${Math.max(1, Math.round(n / 1024))} KB`;
++  return `${(n / 1024 / 1024).toFixed(n < 10 * 1024 * 1024 ? 1 : 0)} MB`;
++}
+diff --git a/src/lib/site.ts b/src/lib/site.ts
+new file mode 100644
+index 0000000..e1889fe
+--- /dev/null
++++ b/src/lib/site.ts
+@@ -0,0 +1,16 @@
++/**
++ * Deployment base path, in one place.
++ *
++ * Vite exposes the configured `base` as BASE_URL ("/portfolio/" for a GitHub
++ * project site, "/" for a user site or custom domain). Everything that needs the
++ * prefix reads it from here so the app works at either location without edits.
++ *
++ * The router needs it WITHOUT the trailing slash — wouter only strips a base it is
++ * told about, and without this every route 404s under a sub-path (verified; see
++ * the change log in content/design-system.md).
++ */
++export const BASE_URL: string = import.meta.env.BASE_URL;
++export const ROUTER_BASE: string = BASE_URL.replace(/\/$/, "");
++
++/** URL of a file in /public, honouring the base path. */
++export const asset = (path: string): string => `${BASE_URL}${path.replace(/^\//, "")}`;
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 69d4168..58c596d 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -1,23 +1,21 @@
+ import { useState } from "react";
+ import { Link } from "wouter";
+-import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles, Radio } from "lucide-react";
++import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles, Radio, FileText } from "lucide-react";
+ import { socials } from "@/components/Socials";
+ import { expertiseGraphs, KnowledgeGraph } from "@/components/KnowledgeGraph";
+-import { repos, stats, CHANNEL_COLOR, relativeDate } from "@/lib/data";
++import { repos, stats } from "@/lib/data";
++import { FLAGSHIP_NAMES } from "@/content/apps";
++import { AppCard } from "@/components/AppCard";
++import { PlatformTiles } from "@/components/PlatformTiles";
++import { libraryItems, KIND_LABEL } from "@/lib/library";
++import { asset } from "@/lib/site";
+ import { notes } from "@/content/notes";
+ import { author, figures } from "@/lib/author";
+ import { useI18n } from "@/lib/i18n";
+ import { SectionHeading } from "@/components/Section";
+ 
+-/** Six highest-signal repos — deterministic, not a hand-typed list. */
+-const FEATURED = [
+-  "web.krishiai.live",
+-  "soil-media-portal",
+-  "plantation-tracker",
+-  "cabi-diagnosis",
+-  "krishak-card",
+-  "pesticide-field-guide",
+-]
++/** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
++const FEATURED = FLAGSHIP_NAMES
+   .map((n) => repos.find((r) => r.name === n))
+   .filter((r): r is (typeof repos)[number] => Boolean(r));
+ 
+@@ -105,7 +103,7 @@ export default function Home() {
+             <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-forest-400/20 via-transparent to-gold-400/20 blur-2xl" />
+             <div className="relative overflow-hidden rounded-[2rem] border border-forest-200/70 bg-forest-900 p-8 text-white shadow-[0_30px_80px_rgba(10,46,26,0.22)]">
+               <img
+-                src={`${import.meta.env.BASE_URL}portrait.jpg`}
++                src={asset("portrait.jpg")}
+                 alt={author.name}
+                 width={720}
+                 height={693}
+@@ -163,45 +161,17 @@ export default function Home() {
+           </div>
+ 
+           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+-            {FEATURED.map((repo, i) => (
+-              <Link
+-                key={repo.name}
+-                href={`/works/${repo.slug}`}
+-                className="group flex min-h-[260px] flex-col justify-between rounded-[1.5rem] border border-forest-400 bg-white p-6 shadow-[0_12px_35px_rgba(10,46,26,0.05)] transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_20px_45px_rgba(10,46,26,0.1)]"
+-              >
+-                <div>
+-                  <div className="mb-8 flex items-center justify-between">
+-                    <span className="font-mono text-xs font-bold text-gold-500">
+-                      {String(i + 1).padStart(2, "0")}
+-                    </span>
+-                    <ArrowUpRight
+-                      className="text-moss-400 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+-                      size={18}
+-                    />
+-                  </div>
+-                  <h3 className="font-serif text-2xl font-black leading-tight text-forest-900">
+-                    {repo.title}
+-                  </h3>
+-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-moss-600">
+-                    {repo.description}
+-                  </p>
+-                </div>
+-                <div className="mt-6 flex items-center gap-2">
+-                  {repo.channels.map((c) => (
+-                    <span
+-                      key={c}
+-                      className="h-1.5 w-1.5 rounded-full"
+-                      style={{ backgroundColor: CHANNEL_COLOR[c] }}
+-                      title={c}
+-                    />
+-                  ))}
+-                  <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.14em] text-moss-400">
+-                    {relativeDate(repo.pushedAt)}
+-                  </span>
+-                </div>
+-              </Link>
++            {FEATURED.map((repo) => (
++              <AppCard key={repo.name} repo={repo} />
+             ))}
+           </div>
++
++          <div className="mt-14">
++            <p className="u-eyebrow mb-4 text-gold-600">
++              {t(`Where it runs · ${stats.addresses} live addresses`, `যেখানে চলে · ${stats.addresses}টি চালু ঠিকানা`)}
++            </p>
++            <PlatformTiles />
++          </div>
+         </div>
+       </section>
+ 
+@@ -349,6 +319,46 @@ export default function Home() {
+         </div>
+       </section>
+ 
++      {/* ── library teaser: only when there is something real to show ── */}
++      {libraryItems.length > 0 && (
++        <section className="bg-cream-100 px-5 py-24 sm:px-8 lg:px-12">
++          <div className="u-container">
++            <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
++              <div>
++                <p className="u-eyebrow mb-3 text-gold-500">{t("Library", "লাইব্রেরি")}</p>
++                <h2 className="max-w-2xl font-serif text-4xl font-black text-forest-900 sm:text-5xl">
++                  {t("Research, PDFs and slide decks.", "গবেষণা, পিডিএফ ও স্লাইড।")}
++                </h2>
++              </div>
++              <Link href="/library" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
++                {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)} <ArrowUpRight size={16} />
++              </Link>
++            </div>
++            <ul className="grid gap-4 md:grid-cols-3">
++              {[...libraryItems]
++                .sort((a, b) => (b.modified ?? "").localeCompare(a.modified ?? ""))
++                .slice(0, 3)
++                .map((i) => (
++                  <li key={i.id}>
++                    <Link
++                      href="/library"
++                      className="flex h-full gap-4 rounded-2xl border border-forest-400 bg-white p-5 transition-colors hover:border-forest-300"
++                    >
++                      <FileText size={22} className="mt-1 shrink-0 text-forest-500" aria-hidden="true" />
++                      <span>
++                        <span className="u-eyebrow block text-moss-500">
++                          {KIND_LABEL[i.kind][lang]} · {i.modified?.slice(0, 4)}
++                        </span>
++                        <span className="mt-1 block font-serif text-lg font-black leading-snug text-forest-900">{i.title}</span>
++                      </span>
++                    </Link>
++                  </li>
++                ))}
++            </ul>
++          </div>
++        </section>
++      )}
++
+       {/* ── writing preview ────────────────────────────── */}
+       <section className="border-y border-forest-300 bg-white px-5 py-24 sm:px-8 lg:px-12">
+         <div className="u-container">
+diff --git a/src/pages/Library.tsx b/src/pages/Library.tsx
+new file mode 100644
+index 0000000..c6236fb
+--- /dev/null
++++ b/src/pages/Library.tsx
+@@ -0,0 +1,231 @@
++import { useMemo, useState } from "react";
++import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileIcon, Image as ImageIcon, Search } from "lucide-react";
++import { PageHeader, Chip } from "@/components/Section";
++import { DocPreview } from "@/components/DocPreview";
++import { useI18n } from "@/lib/i18n";
++import {
++  folderEmbedUrl,
++  folderUrl,
++  formatBytes,
++  KIND_LABEL,
++  library,
++  libraryItems,
++  thumbUrl,
++  type Kind,
++  type LibItem,
++} from "@/lib/library";
++
++const KIND_ICON: Record<Kind, typeof FileText> = {
++  pdf: FileText,
++  slides: Presentation,
++  doc: FileText,
++  sheet: Table2,
++  image: ImageIcon,
++  other: FileIcon,
++};
++
++function Thumb({ item }: { item: LibItem }) {
++  const [failed, setFailed] = useState(false);
++  const Icon = KIND_ICON[item.kind];
++  return (
++    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden border-b border-forest-300 bg-cream-200">
++      <Icon size={36} className="text-moss-400" aria-hidden="true" />
++      {!failed && (
++        <img
++          src={thumbUrl(item)}
++          alt=""
++          loading="lazy"
++          decoding="async"
++          referrerPolicy="no-referrer"
++          className="absolute inset-0 h-full w-full object-cover object-top"
++          onError={() => setFailed(true)}
++        />
++      )}
++    </div>
++  );
++}
++
++export default function Library() {
++  const { t, lang } = useI18n();
++  const [tab, setTab] = useState<string>("all");
++  const [q, setQ] = useState("");
++  const [sort, setSort] = useState<"new" | "title">("new");
++  const [open, setOpen] = useState<LibItem | null>(null);
++
++  const shown = useMemo(() => {
++    const needle = q.trim().toLowerCase();
++    return libraryItems
++      .filter((i) => tab === "all" || i.collection === tab)
++      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind].join(" ").toLowerCase().includes(needle))
++      .sort((a, b) =>
++        sort === "title" ? a.title.localeCompare(b.title) : (b.modified ?? "").localeCompare(a.modified ?? ""),
++      );
++  }, [tab, q, sort]);
++
++  const linked = library.collections.filter((c) => c.folderId);
++  const indexed = libraryItems.length > 0;
++  const tabs = [
++    { key: "all", label: t("All", "সব"), n: libraryItems.length },
++    ...library.collections.filter((c) => c.items.length > 0).map((c) => ({ key: c.key, label: lang === "bn" ? c.titleBn : c.title, n: c.items.length })),
++  ];
++
++  return (
++    <>
++      <PageHeader
++        lang={lang}
++        eyebrowEn="Library"
++        eyebrowBn="লাইব্রেরি"
++        titleEn="Research, documents and presentations"
++        titleBn="গবেষণা, নথি ও উপস্থাপনা"
++        ledeEn="Open-access material from the field — read it here or open the original in Google Drive."
++        ledeBn="মাঠ থেকে উন্মুক্ত উপকরণ — এখানে পড়ুন অথবা গুগল ড্রাইভে মূল ফাইল খুলুন।"
++      />
++
++      <section className="px-5 py-12 sm:px-8 lg:px-12">
++        <div className="u-container">
++          {indexed && (
++            <>
++              <div className="mb-8 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
++                <div role="group" aria-label={t("Collections", "সংগ্রহ")} className="flex flex-wrap gap-2">
++                  {tabs.map((x) => (
++                    <button
++                      key={x.key}
++                      type="button"
++                      aria-pressed={tab === x.key}
++                      onClick={() => setTab(x.key)}
++                      className={`min-h-11 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
++                        tab === x.key ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
++                      }`}
++                    >
++                      {x.label} · {x.n}
++                    </button>
++                  ))}
++                </div>
++                <div className="flex flex-wrap gap-3">
++                  <label className="relative">
++                    <span className="sr-only">{t("Search the library", "লাইব্রেরিতে খুঁজুন")}</span>
++                    <Search size={14} aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-moss-400" />
++                    <input
++                      value={q}
++                      onChange={(e) => setQ(e.target.value)}
++                      placeholder={t("Search…", "খুঁজুন…")}
++                      className="min-h-11 rounded-full border border-forest-300 bg-white py-1.5 pl-9 pr-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
++                    />
++                  </label>
++                  <label>
++                    <span className="sr-only">{t("Sort", "সাজান")}</span>
++                    <select
++                      value={sort}
++                      onChange={(e) => setSort(e.target.value as "new" | "title")}
++                      className="min-h-11 rounded-full border border-forest-300 bg-white px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-moss-500"
++                    >
++                      <option value="new">{t("Newest", "নতুন আগে")}</option>
++                      <option value="title">{t("Title A–Z", "শিরোনাম")}</option>
++                    </select>
++                  </label>
++                </div>
++              </div>
++
++              <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500" aria-live="polite">
++                {shown.length} {t("shown", "দেখানো হচ্ছে")}
++                {library.generatedAt && ` · ${t("indexed", "সূচিবদ্ধ")} ${library.generatedAt.slice(0, 10)}`}
++              </p>
++
++              {shown.length === 0 ? (
++                <p className="py-16 text-center text-moss-500">{t("Nothing matches that search.", "এই অনুসন্ধানে কিছু মেলেনি।")}</p>
++              ) : (
++                <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
++                  {shown.map((i) => (
++                    <li key={i.id}>
++                      <button
++                        type="button"
++                        onClick={() => setOpen(i)}
++                        className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-forest-400 bg-white text-left transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.1)]"
++                      >
++                        <Thumb item={i} />
++                        <span className="flex flex-1 flex-col p-4">
++                          <span className="mb-2 flex flex-wrap items-center gap-1.5">
++                            <Chip>{KIND_LABEL[i.kind][lang]}</Chip>
++                            {i.path[0] && <Chip>{i.path[0]}</Chip>}
++                          </span>
++                          <span className="line-clamp-3 font-serif text-base font-black leading-snug text-forest-900">{i.title}</span>
++                          <span className="mt-auto pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
++                            {[i.modified?.slice(0, 4), formatBytes(i.size)].filter(Boolean).join(" · ")}
++                          </span>
++                        </span>
++                      </button>
++                    </li>
++                  ))}
++                </ul>
++              )}
++            </>
++          )}
++
++          {/* Linked folders. With no files indexed this IS the content: Drive's own
++              folder view, loaded only when asked. With files indexed it is a footer. */}
++          {linked.length > 0 && (
++            <div className={indexed ? "mt-16 border-t border-forest-300 pt-10" : ""}>
++              <p className="u-eyebrow mb-5 text-gold-600">{t("Browse the folders", "ফোল্ডার ঘুরে দেখুন")}</p>
++              <div className="grid gap-5 lg:grid-cols-3">
++                {linked.map((c) => (
++                  <FolderCard key={c.key} c={c} />
++                ))}
++              </div>
++            </div>
++          )}
++
++          {!indexed && linked.length === 0 && (
++            <div className="mx-auto max-w-xl py-16 text-center">
++              <FolderOpen size={36} className="mx-auto text-moss-400" aria-hidden="true" />
++              <h2 className="mt-5 font-serif text-2xl font-black text-forest-900">{t("The library is being prepared", "লাইব্রেরি প্রস্তুত করা হচ্ছে")}</h2>
++              <p className="mt-3 text-moss-500">
++                {t("Research papers, PDFs and presentations will appear here.", "গবেষণাপত্র, পিডিএফ ও উপস্থাপনা এখানে প্রকাশিত হবে।")}
++              </p>
++            </div>
++          )}
++        </div>
++      </section>
++
++      <DocPreview item={open} onClose={() => setOpen(null)} />
++    </>
++  );
++}
++
++function FolderCard({ c }: { c: (typeof library.collections)[number] }) {
++  const { t, lang } = useI18n();
++  const [shown, setShown] = useState(false);
++  const id = c.folderId!;
++  return (
++    <div className="flex flex-col rounded-2xl border border-forest-400 bg-white p-5">
++      <h2 className="font-serif text-xl font-black text-forest-900">{lang === "bn" ? c.titleBn : c.title}</h2>
++      <p className="mt-1 text-sm text-moss-600">{lang === "bn" ? c.descriptionBn : c.description}</p>
++      <div className="mt-4 flex flex-wrap gap-2">
++        <a
++          href={folderUrl(id)}
++          target="_blank"
++          rel="noreferrer"
++          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-900 px-4 text-xs font-bold text-cream-100 hover:bg-forest-600"
++        >
++          <ExternalLink size={13} aria-hidden="true" /> {t("Open in Drive", "ড্রাইভে খুলুন")}
++        </a>
++        {!shown && (
++          <button
++            type="button"
++            onClick={() => setShown(true)}
++            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-forest-900/25 px-4 text-xs font-bold text-forest-900 hover:bg-cream-100"
++          >
++            <FolderOpen size={13} aria-hidden="true" /> {t("Browse here", "এখানে দেখুন")}
++          </button>
++        )}
++      </div>
++      {shown && (
++        <iframe
++          title={lang === "bn" ? c.titleBn : c.title}
++          src={folderEmbedUrl(id)}
++          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
++          className="mt-4 h-[420px] w-full rounded-xl border border-forest-300 bg-white"
++        />
++      )}
++    </div>
++  );
++}
+diff --git a/src/pages/WorkDetail.tsx b/src/pages/WorkDetail.tsx
+index 4d4e5c3..7cae6e5 100644
+--- a/src/pages/WorkDetail.tsx
++++ b/src/pages/WorkDetail.tsx
+@@ -1,7 +1,8 @@
+ import { Link, useRoute } from "wouter";
+ import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
+ import { GithubMark } from "@/components/icons";
+-import { bySlug, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
++import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
++import { BrandMark } from "@/components/AppCard";
+ import { notes } from "@/content/notes";
+ import { PageHeader, Chip } from "@/components/Section";
+ import { useI18n } from "@/lib/i18n";
+@@ -14,6 +15,9 @@ export default function WorkDetail() {
+ 
+   if (!repo) return <NotFound />;
+ 
++  const brand = brandOf(repo);
++  const endpoints = endpointsOf(repo);
++
+   const related = notes
+     .filter((n) =>
+       n.expertise.some((e) =>
+@@ -45,6 +49,36 @@ export default function WorkDetail() {
+               <ArrowLeft size={13} /> {t("All works", "সব কাজ")}
+             </Link>
+ 
++            <div
++              className="relative mb-8 flex items-center gap-5 overflow-hidden rounded-2xl p-6"
++              style={{ background: brand.color, color: brand.fg }}
++            >
++              {brand.image && (
++                <img
++                  src={brand.image}
++                  alt=""
++                  loading="lazy"
++                  decoding="async"
++                  referrerPolicy="no-referrer"
++                  className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity"
++                  onError={(e) => (e.currentTarget.style.display = "none")}
++                />
++              )}
++              <div className="relative">
++                <BrandMark brand={brand} size={72} radius={18} />
++              </div>
++              <div className="relative min-w-0">
++                <p className="font-mono text-[11px] uppercase tracking-[0.16em] opacity-90">
++                  {endpoints[0]?.label ?? repo.name}
++                </p>
++                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] opacity-75">
++                  {brand.derived
++                    ? t("Colour assigned — app publishes no brand colour", "রং নির্ধারিত — অ্যাপটি নিজস্ব রং প্রকাশ করে না")
++                    : t("Brand colour from the app itself", "অ্যাপের নিজস্ব ব্র্যান্ড রং")}
++                </p>
++              </div>
++            </div>
++
+             {repo.description && (
+               <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">
+                 {repo.description}
+@@ -151,13 +185,27 @@ export default function WorkDetail() {
+                     </dd>
+                   </div>
+                 )}
+-                {repo.customDomain && (
++                {endpoints.length > 0 && (
+                   <div>
+                     <dt className="text-xs uppercase tracking-[0.12em] text-moss-400">
+-                      {t("Custom domain", "কাস্টম ডোমেইন")}
++                      {t("Addresses", "ঠিকানা")}
+                     </dt>
+-                    <dd className="mt-1 break-all font-mono text-xs text-forest-500">
+-                      {repo.customDomain.replace(/^https?:\/\//, "")}
++                    <dd className="mt-2 space-y-2">
++                      {endpoints.map((e) => (
++                        <a
++                          key={e.url}
++                          href={e.url}
++                          target="_blank"
++                          rel="noreferrer"
++                          className="flex min-h-11 items-center justify-between gap-2 break-all rounded-lg border border-forest-300 px-3 py-2 font-mono text-xs text-forest-600 hover:border-forest-500 hover:text-forest-900"
++                        >
++                          <span>
++                            <span className="block text-[9px] uppercase tracking-[0.14em] text-moss-500">{CHANNEL_LABEL[e.channel][lang]}</span>
++                            {e.label}
++                          </span>
++                          <ExternalLink size={12} aria-hidden="true" className="shrink-0" />
++                        </a>
++                      ))}
+                     </dd>
+                   </div>
+                 )}
+diff --git a/src/pages/Works.tsx b/src/pages/Works.tsx
+index 2d247d5..bfc0844 100644
+--- a/src/pages/Works.tsx
++++ b/src/pages/Works.tsx
+@@ -1,152 +1,168 @@
+ import { useMemo, useState } from "react";
+ import { Link } from "wouter";
+-import { ArrowUpRight, Filter } from "lucide-react";
+-import { repos, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, meta, type Channel } from "@/lib/data";
++import { ExternalLink } from "lucide-react";
++import { repos, endpointDirectory, stats, CHANNEL_LABEL, CHANNEL_COLOR, meta, type Channel } from "@/lib/data";
+ import { PageHeader, Chip } from "@/components/Section";
++import { AppCard } from "@/components/AppCard";
++import { PlatformTiles } from "@/components/PlatformTiles";
+ import { useI18n } from "@/lib/i18n";
+ 
+-const CHANNELS = Object.keys(CHANNEL_LABEL) as Channel[];
++type View = "catalogue" | "endpoints";
+ 
+ export default function Works() {
+   const { t, lang } = useI18n();
+   const [channel, setChannel] = useState<Channel | "all">("all");
+-  const [lang_, setLangFilter] = useState<string>("all");
++  const [view, setView] = useState<View>("catalogue");
++  const [langFilter, setLangFilter] = useState<string>("all");
+   const [q, setQ] = useState("");
+ 
+   const languages = useMemo(
+     () => [...new Set(repos.map((r) => r.language).filter(Boolean))].sort() as string[],
+     [],
+   );
++  const needle = q.trim().toLowerCase();
+ 
+-  const shown = useMemo(() => {
+-    const needle = q.trim().toLowerCase();
+-    return repos.filter((r) => {
+-      if (channel !== "all" && !r.channels.includes(channel)) return false;
+-      if (lang_ !== "all" && r.language !== lang_) return false;
+-      if (!needle) return true;
+-      return [r.name, r.title, r.description ?? "", ...r.topics].join(" ").toLowerCase().includes(needle);
+-    });
+-  }, [channel, lang_, q]);
++  const shown = useMemo(
++    () =>
++      repos.filter((r) => {
++        if (channel !== "all" && !r.channels.includes(channel)) return false;
++        if (langFilter !== "all" && r.language !== langFilter) return false;
++        if (!needle) return true;
++        return [r.name, r.title, r.description ?? "", ...r.topics].join(" ").toLowerCase().includes(needle);
++      }),
++    [channel, langFilter, needle],
++  );
++
++  const rows = useMemo(
++    () =>
++      endpointDirectory.filter(
++        (e) =>
++          (channel === "all" || e.channel === channel) &&
++          (!needle || [e.label, e.repo.title, e.repo.name].join(" ").toLowerCase().includes(needle)),
++      ),
++    [channel, needle],
++  );
+ 
+   return (
+     <>
+       <PageHeader
+         lang={lang}
+-        eyebrowEn={`${repos.length} published works`}
+-        eyebrowBn={`${repos.length}টি প্রকাশিত কাজ`}
+-        titleEn="Systems, tools, and field services"
+-        titleBn="ব্যবস্থা, সরঞ্জাম ও মাঠ সেবা"
+-        ledeEn="Everything here is public. Auto-discovered from the GitHub dashboard — anything newly pushed that matches a deployment channel appears within a day, with no manual list to maintain."
+-        ledeBn="এখানে সবকিছুই উন্মুক্ত। গিটহাব ড্যাশবোর্ড থেকে স্বয়ংক্রিয়ভাবে সংগৃহীত — নতুন কিছু প্রকাশিত হলে একদিনের মধ্যেই এখানে দেখা যাবে।"
++        eyebrowEn={`${stats.repos} works · ${stats.addresses} live addresses`}
++        eyebrowBn={`${stats.repos}টি কাজ · ${stats.addresses}টি চালু ঠিকানা`}
++        titleEn="The live ecosystem"
++        titleBn="চালু ইকোসিস্টেম"
++        ledeEn="Every app and site, across krishiai.live, Vercel, Cloudflare and GitHub Pages. Discovered automatically from GitHub — anything newly published appears within a day."
++        ledeBn="krishiai.live, ভার্সেল, ক্লাউডফ্লেয়ার ও গিটহাব পেজ জুড়ে প্রতিটি অ্যাপ ও সাইট। গিটহাব থেকে স্বয়ংক্রিয়ভাবে সংগৃহীত — নতুন কিছু প্রকাশিত হলে একদিনের মধ্যে দেখা যাবে।"
+       />
+ 
+       <section className="px-5 py-12 sm:px-8 lg:px-12">
+         <div className="u-container">
+-          {/* filters */}
+-          <div className="mb-10 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
+-            <div className="flex flex-wrap items-center gap-2">
+-              <Filter size={14} className="mr-1 text-moss-400" />
+-              {(["all", ...CHANNELS] as const).map((c) => (
++          <PlatformTiles value={channel} onSelect={setChannel} />
++
++          <div className="mb-8 mt-10 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
++            <div role="group" aria-label={t("View", "দৃশ্য")} className="flex gap-2">
++              {(["catalogue", "endpoints"] as const).map((v) => (
+                 <button
+-                  key={c}
+-                  onClick={() => setChannel(c as Channel | "all")}
+-                  aria-pressed={channel === c}
+-                  className={`rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+-                    channel === c
+-                      ? "border-forest-900 bg-forest-900 text-cream-100"
+-                      : "border-forest-300 text-moss-500 hover:border-forest-500"
++                  key={v}
++                  type="button"
++                  aria-pressed={view === v}
++                  onClick={() => setView(v)}
++                  className={`min-h-11 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
++                    view === v ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                   }`}
+                 >
+-                  {c === "all"
+-                    ? t("All", "সব")
+-                    : `${CHANNEL_LABEL[c as Channel][lang]} · ${
+-                        meta.channels[CHANNEL_LABEL[c as Channel].en] ?? repos.filter((r) => r.channels.includes(c as Channel)).length
+-                      }`}
++                  {v === "catalogue" ? t("Apps", "অ্যাপ") : t("Addresses", "ঠিকানা")}
+                 </button>
+               ))}
+             </div>
+ 
+             <div className="flex flex-wrap gap-3">
+-              <label className="sr-only" htmlFor="lang-filter">
+-                Filter by language
+-              </label>
+-              <select
+-                id="lang-filter"
+-                value={lang_}
+-                onChange={(e) => setLangFilter(e.target.value)}
+-                className="rounded-full border border-forest-300 bg-white px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500"
+-              >
+-                <option value="all">{t("Any language", "যেকোনো ভাষা")}</option>
+-                {languages.map((l) => (
+-                  <option key={l} value={l}>
+-                    {l}
+-                  </option>
+-                ))}
+-              </select>
+-
++              {view === "catalogue" && (
++                <>
++                  <label className="sr-only" htmlFor="lang-filter">
++                    {t("Filter by language", "ভাষা অনুযায়ী ফিল্টার")}
++                  </label>
++                  <select
++                    id="lang-filter"
++                    value={langFilter}
++                    onChange={(e) => setLangFilter(e.target.value)}
++                    className="min-h-11 rounded-full border border-forest-300 bg-white px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-moss-500"
++                  >
++                    <option value="all">{t("Any language", "যেকোনো ভাষা")}</option>
++                    {languages.map((l) => (
++                      <option key={l} value={l}>
++                        {l}
++                      </option>
++                    ))}
++                  </select>
++                </>
++              )}
+               <label className="sr-only" htmlFor="work-search">
+-                Filter works
++                {t("Filter", "ফিল্টার")}
+               </label>
+               <input
+                 id="work-search"
+                 value={q}
+                 onChange={(e) => setQ(e.target.value)}
+                 placeholder={t("Filter…", "খুঁজুন…")}
+-                className="rounded-full border border-forest-300 bg-white px-4 py-1.5 text-sm text-forest-900 outline-none placeholder:text-moss-400"
++                className="min-h-11 rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
+               />
+             </div>
+           </div>
+ 
+-          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-400">
+-            {shown.length} {t("shown", "দেখানো হচ্ছে")} · {t("scanned", "যাচাই করা")} {meta.scanned}{" "}
+-            {t("repositories", "রিপোজিটরি")} · synced {meta.generatedAt.slice(0, 10)}
++          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500" aria-live="polite">
++            {view === "catalogue" ? shown.length : rows.length} {t("shown", "দেখানো হচ্ছে")} · {t("scanned", "যাচাই করা")} {meta.scanned}{" "}
++            {t("repositories", "রিপোজিটরি")} · {t("synced", "সিঙ্ক")} {meta.generatedAt.slice(0, 10)}
+           </p>
+ 
+-          {shown.length === 0 ? (
+-            <p className="py-20 text-center text-moss-400">{t("No works match those filters.", "এই ফিল্টারে কিছু মেলেনি।")}</p>
++          {view === "catalogue" ? (
++            shown.length === 0 ? (
++              <p className="py-20 text-center text-moss-500">{t("No works match those filters.", "এই ফিল্টারে কিছু মেলেনি।")}</p>
++            ) : (
++              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
++                {shown.map((r) => (
++                  <AppCard key={r.name} repo={r} />
++                ))}
++              </div>
++            )
+           ) : (
+-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+-              {shown.map((r) => (
+-                <Link
+-                  key={r.name}
+-                  href={`/works/${r.slug}`}
+-                  className="group flex flex-col rounded-2xl border border-forest-400 bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.08)]"
+-                >
+-                  <div className="flex items-start justify-between gap-3">
+-                    <h2 className="font-serif text-lg font-black leading-snug text-forest-900">
+-                      {r.title}
+-                    </h2>
+-                    <ArrowUpRight
+-                      size={16}
+-                      className="mt-1 shrink-0 text-moss-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+-                    />
+-                  </div>
+-
+-                  {r.description && (
+-                    <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-moss-600">
+-                      {r.description}
+-                    </p>
+-                  )}
+-
+-                  <div className="mt-4 flex flex-wrap items-center gap-1.5">
+-                    {r.channels.map((c) => (
+-                      <Chip key={c} color={CHANNEL_COLOR[c]}>
+-                        {CHANNEL_LABEL[c][lang]}
+-                      </Chip>
+-                    ))}
+-                  </div>
+-
+-                  <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-400">
+-                    <span>{r.language ?? "—"}</span>
+-                    <span className="flex items-center gap-1.5">
+-                      {r.live || r.pages ? (
+-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400" />
+-                      ) : null}
+-                      {relativeDate(r.pushedAt)}
+-                    </span>
+-                  </div>
+-                </Link>
+-              ))}
++            <div className="overflow-x-auto rounded-2xl border border-forest-400 bg-white">
++              <table className="w-full min-w-[640px] text-left text-sm">
++                <caption className="sr-only">{t("Every live address", "প্রতিটি চালু ঠিকানা")}</caption>
++                <thead className="border-b border-forest-300 bg-cream-50">
++                  <tr className="font-mono text-[10px] uppercase tracking-[0.14em] text-moss-500">
++                    <th scope="col" className="px-5 py-3">{t("Address", "ঠিকানা")}</th>
++                    <th scope="col" className="px-5 py-3">{t("App", "অ্যাপ")}</th>
++                    <th scope="col" className="px-5 py-3">{t("Platform", "প্ল্যাটফর্ম")}</th>
++                  </tr>
++                </thead>
++                <tbody>
++                  {rows.map((e) => (
++                    <tr key={e.url} className="border-b border-forest-300/60 last:border-0">
++                      <td className="px-5 py-3">
++                        <a
++                          href={e.url}
++                          target="_blank"
++                          rel="noreferrer"
++                          className="inline-flex min-h-11 items-center gap-2 break-all font-mono text-xs font-bold text-forest-600 hover:text-forest-900"
++                        >
++                          {e.label} <ExternalLink size={12} aria-hidden="true" />
++                          <span className="sr-only">{t("(opens in a new tab)", "(নতুন ট্যাবে খুলবে)")}</span>
++                        </a>
++                      </td>
++                      <td className="px-5 py-3">
++                        <Link href={`/works/${e.repo.slug}`} className="font-bold text-forest-900 hover:text-forest-600">
++                          {e.repo.title}
++                        </Link>
++                      </td>
++                      <td className="px-5 py-3">
++                        <Chip color={CHANNEL_COLOR[e.channel]}>{CHANNEL_LABEL[e.channel][lang]}</Chip>
++                      </td>
++                    </tr>
++                  ))}
++                </tbody>
++              </table>
++              {rows.length === 0 && <p className="py-12 text-center text-moss-500">{t("No addresses match.", "কোনো ঠিকানা মেলেনি।")}</p>}
+             </div>
+           )}
+         </div>
+diff --git a/src/test/ssr-probe.tsx b/src/test/ssr-probe.tsx
+new file mode 100644
+index 0000000..f3b9212
+--- /dev/null
++++ b/src/test/ssr-probe.tsx
+@@ -0,0 +1,5 @@
++import { renderToString } from "react-dom/server";
++import App from "@/App";
++
++/** Renders the real <App/> at `path` (test-only; never imported by the shipped bundle). */
++export const renderAt = (path: string) => renderToString(<App ssrPath={path} />);
+diff --git a/vite.config.ts b/vite.config.ts
+index d3a4bd9..65284b3 100644
+--- a/vite.config.ts
++++ b/vite.config.ts
+@@ -4,13 +4,21 @@ import tailwindcss from "@tailwindcss/vite";
+ import { resolve } from "node:path";
+ 
+ // The repo is `moniruzjaman/portfolio`, a project site, so the deploy root is
+-// `/portfolio/`. Change BASE and the 404.html shim in `public/` together — they
+-// must agree or every deep link breaks. Override with BASE_PATH for other hosts.
++// `/portfolio/`. Override with BASE_PATH (e.g. "/" for a user site or custom
++// domain). The router, 404.html shim, sitemap and canonical URL all derive from it.
+ const BASE = process.env.BASE_PATH || "/portfolio/";
++// Absolute public URL (canonical, og:image, JSON-LD). Keep defaults identical to
++// scripts/gen-static.mjs; override both with SITE_ORIGIN / BASE_PATH.
++const SITE_URL = `${process.env.SITE_ORIGIN || "https://moniruzjaman.github.io"}${BASE}`;
+ 
+ export default defineConfig({
+   base: BASE,
+-  plugins: [react(), tailwindcss()],
++  plugins: [
++    react(),
++    tailwindcss(),
++    // index.html carries __SITE_URL__ so canonical/OG URLs match the real deployment.
++    { name: "site-url", transformIndexHtml: (html) => html.replaceAll("__SITE_URL__", SITE_URL) },
++  ],
+   server: {
+     allowedHosts: [".monkeycode-ai.live"],
+   },
+-- 
+2.43.0
+
+
+From ecad4ec66bc312c48277ecce495ee5b7ed6adccd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 26 Oct 2026 04:30:05 +0000
+Subject: [PATCH 2/2] feat(library): single Drive root folder, auto-sorted into
+ Research/PDF/Presentations/Other
+
+---
+ README.md                        | 13 ++++--
+ content/library.config.json      | 16 ++++++-
+ scripts/__tests__/drive.test.mjs | 45 +++++++++++++++++++
+ scripts/sync-drive.mjs           | 76 ++++++++++++++++++++++++++++++--
+ src/data/library.generated.json  | 12 +++++
+ src/lib/library.ts               |  4 +-
+ src/pages/Library.tsx            | 47 +++++++++++++-------
+ 7 files changed, 186 insertions(+), 27 deletions(-)
+
+diff --git a/README.md b/README.md
+index 39fbcc2..63f0a90 100644
+--- a/README.md
++++ b/README.md
+@@ -115,10 +115,15 @@ address it has been told about.
+ 
+ `/library` shows Research, PDF and Presentation folders from Google Drive.
+ 
+-**Zero credentials (works today):** set `folderId` for each collection in
+-`content/library.config.json` (the last part of the folder's URL) and share the
+-folder as *Anyone with the link → Viewer*. The page shows Drive's own folder view,
+-click-to-load.
++**One folder, sorted automatically.** `root.folderId` in
++`content/library.config.json` is the single Drive folder. Inside it, a top-level
++subfolder whose name matches `researchPattern` (default: research, paper, journal,
++thesis, study, গবেষণা) becomes **Research**; every other file goes by type — PDFs to
++**PDF**, slides to **Presentations**, the rest to **Other files**. Sub-folders are
++walked (up to `maxDepth`) and shown as a label on each card.
++
++**Zero credentials (works today):** share the folder as *Anyone with the link →
++Viewer*. The page shows Drive's own folder view, click-to-load.
+ 
+ **Indexed (cards, thumbnails, search, in-page preview):** add a repository secret
+ (**Settings → Secrets and variables → Actions**):
+diff --git a/content/library.config.json b/content/library.config.json
+index 992e9e0..86f2a80 100644
+--- a/content/library.config.json
++++ b/content/library.config.json
+@@ -1,5 +1,5 @@
+ {
+-  "$comment": "Which Google Drive folders feed /library. folderId is the last path segment of the folder's URL (drive.google.com/drive/folders/<ID>). Folder IDs are not secrets. Set one and push — with no credentials the site shows a click-to-load view of the folder; add GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) as a repository secret and the sync indexes every file with title, type, date and preview. Share each folder as 'Anyone with the link: Viewer'. See README, 'Google Drive library'.",
++  "$comment": "One Drive folder feeds /library. 'root.folderId' is the folder's ID (drive.google.com/drive/folders/<ID>). Everything inside is sorted automatically: a top-level subfolder whose name matches 'researchPattern' becomes Research; otherwise a file goes by type (PDF, Presentations); anything else lands in 'Other files'. Folder IDs are not secrets. With no credentials the page offers Drive's own folder view; add GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) as a repository secret to index the files. Share the folder as 'Anyone with the link: Viewer'. Per-collection folderId is still supported if you later split into separate folders.",
+   "maxDepth": 4,
+   "collections": [
+     {
+@@ -25,6 +25,18 @@
+       "description": "Slide decks from trainings, briefings and talks.",
+       "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
+       "folderId": null
++    },
++    {
++      "key": "other",
++      "title": "Other files",
++      "titleBn": "অন্যান্য ফাইল",
++      "description": "Documents, spreadsheets and other material.",
++      "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
++      "folderId": null
+     }
+-  ]
++  ],
++  "root": {
++    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t",
++    "researchPattern": "research|paper|journal|thesis|study|গবেষণা"
++  }
+ }
+diff --git a/scripts/__tests__/drive.test.mjs b/scripts/__tests__/drive.test.mjs
+index ac097b6..9760d72 100644
+--- a/scripts/__tests__/drive.test.mjs
++++ b/scripts/__tests__/drive.test.mjs
+@@ -135,3 +135,48 @@ test("no credentials: links folders, keeps items only for an unchanged folder, n
+   const out = await quiet(() => run({}, { fetchImpl: () => { throw new Error("no network expected"); }, base: "", tokenUrl: "", paths }));
+   assert.equal(out.collections[0].folderId, "ROOTFOLDER01");
+ });
++
++/* ── single root folder, sorted automatically ───────────────────────── */
++import { assignCollection } from "../sync-drive.mjs";
++
++test("assignCollection: research folder wins, then type, then other", () => {
++  const re = /research|paper|গবেষণা/i;
++  assert.equal(assignCollection(["Research 2025"], "pdf", re), "research", "a PDF inside a research folder is research, not pdf");
++  assert.equal(assignCollection(["গবেষণা"], "doc", re), "research", "Bangla folder name matches");
++  assert.equal(assignCollection([], "pdf", re), "pdf");
++  assert.equal(assignCollection(["Trainings"], "slides", re), "pptx");
++  assert.equal(assignCollection([], "sheet", re), "other");
++  assert.equal(assignCollection(["Misc", "Research"], "pdf", re), "pdf", "only the TOP-level folder name decides");
++});
++
++test("root mode: one folder is crawled once and sorted into collections", async () => {
++  const PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
++  const m = await mockDrive({
++    ROOTFOLDER01: [
++      { id: id(1), name: "Loose.pdf", mimeType: "application/pdf", modifiedTime: "2026-01-01T00:00:00Z" },
++      { id: id(2), name: "Research", mimeType: FOLDER },
++      { id: id(3), name: "Talks", mimeType: FOLDER },
++      { id: id(4), name: "budget.xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
++    ],
++    [id(2)]: [{ id: id(5), name: "Trial.pdf", mimeType: "application/pdf", modifiedTime: "2026-02-01T00:00:00Z" }],
++    [id(3)]: [{ id: id(6), name: "Deck.pptx", mimeType: PPTX, modifiedTime: "2026-03-01T00:00:00Z" }],
++  });
++  const config = { root: { folderId: "ROOTFOLDER01", researchPattern: "research" }, collections: ["research", "pdf", "pptx", "other"].map((k) => col(k, null)) };
++  const paths = await setup(config);
++  const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
++  m.s.close();
++  const by = Object.fromEntries(out.collections.map((c) => [c.key, c.items.map((i) => i.title)]));
++  assert.deepEqual(by, { research: ["Trial"], pdf: ["Loose"], pptx: ["Deck"], other: ["budget"] });
++  assert.equal(out.root.folderId, "ROOTFOLDER01");
++  assert.equal(m.seen.filter((r) => r.q?.includes("'ROOTFOLDER01'")).length, 1, "root listed once, not once per collection");
++});
++
++test("root mode, no credentials: root is kept so the site can embed the folder", () => {
++  const config = { root: { folderId: "ROOTFOLDER01" }, collections: [col("pdf", null)] };
++  const merged = mergeWithoutCredentials(null, config);
++  assert.equal(merged.root.folderId, "ROOTFOLDER01");
++  const kept = mergeWithoutCredentials({ root: { folderId: "ROOTFOLDER01" }, collections: [{ ...col("pdf", null), items: [{ id: "a" }] }] }, config);
++  assert.equal(kept.collections[0].items.length, 1, "same root keeps its index");
++  const dropped = mergeWithoutCredentials({ root: { folderId: "OTHERFOLDER01" }, collections: [{ ...col("pdf", null), items: [{ id: "a" }] }] }, config);
++  assert.equal(dropped.collections[0].items.length, 0, "changed root drops stale files");
++});
+diff --git a/scripts/sync-drive.mjs b/scripts/sync-drive.mjs
+index 6be9f6f..6831f39 100644
+--- a/scripts/sync-drive.mjs
++++ b/scripts/sync-drive.mjs
+@@ -90,6 +90,20 @@ export function titleOf(name) {
+     .trim();
+ }
+ 
++/**
++ * Decide which collection a file in a single "root" folder belongs to.
++ *  1. inside a top-level subfolder whose name matches researchPattern → research
++ *  2. by file type: PDF → pdf, slides → pptx
++ *  3. everything else → other
++ * Pure and unit-tested, so the sorting rules are checkable without Drive.
++ */
++export function assignCollection(path, kind, researchRe) {
++  if (path[0] && researchRe.test(path[0])) return "research";
++  if (kind === "pdf") return "pdf";
++  if (kind === "slides") return "pptx";
++  return "other";
++}
++
+ export function shapeItem(f, path, collection) {
+   return {
+     id: f.id,
+@@ -236,7 +250,8 @@ export async function crawl(list, col, { maxDepth, verify }) {
+           skipped.push({ id: f.id, name: f.name, reason: `over the ${MAX_ITEMS}-file cap` });
+           continue;
+         }
+-        items.push(shapeItem(f, path, col.key));
++        const kind = kindOf(f.mimeType, f.name);
++        items.push(shapeItem(f, path, col.assign ? col.assign(path, kind) : col.key));
+       }
+       pageToken = data.nextPageToken;
+     } while (pageToken);
+@@ -259,16 +274,24 @@ function collectionMeta(c) {
+   };
+ }
+ 
++export function rootMeta(config) {
++  const id = config.root?.folderId;
++  return id && ID_RE.test(id) ? { folderId: id } : null;
++}
++
+ /** No credentials: refresh metadata, keep any items that belong to the same folder. */
+ export function mergeWithoutCredentials(prev, config) {
+   const prevByKey = new Map((prev?.collections || []).map((c) => [c.key, c]));
+   return {
+     generatedAt: prev?.generatedAt ?? null,
+     mode: prev?.mode ?? "none",
++    root: rootMeta(config),
+     collections: config.collections.map((c) => {
+       const meta = collectionMeta(c);
+       const old = prevByKey.get(c.key);
+-      const keep = old && old.folderId === meta.folderId ? old.items : [];
++      // Root mode: items are keyed to the root folder, so keep them only if it is unchanged.
++      const sameRoot = rootMeta(config)?.folderId && prev?.root?.folderId === rootMeta(config).folderId;
++      const keep = sameRoot ? (old?.items ?? []) : old && old.folderId === meta.folderId && meta.folderId ? old.items : [];
+       return { ...meta, items: keep };
+     }),
+   };
+@@ -300,7 +323,7 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
+ 
+   if (mode === "none") {
+     const merged = mergeWithoutCredentials(prev, config);
+-    const configured = merged.collections.filter((c) => c.folderId).length;
++    const configured = merged.root ? 1 : merged.collections.filter((c) => c.folderId).length;
+     await write(paths.out, merged);
+     console.log(
+       configured
+@@ -326,6 +349,51 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
+   console.log(`▸ syncing Drive library (${mode})`);
+   const collections = [];
+   const skippedAll = [];
++
++  const root = rootMeta(config);
++  if (config.root?.folderId && !root) throw new Error(`root.folderId "${config.root.folderId}" does not look like a Drive id`);
++
++  if (root) {
++    // One folder, sorted into the configured collections by assignCollection().
++    const researchRe = new RegExp(config.root.researchPattern || "research", "i");
++    const known = new Set(config.collections.map((c) => c.key));
++    const { items, skipped } = await crawl(
++      list,
++      {
++        key: "root",
++        title: "Drive library",
++        folderId: root.folderId,
++        resourceKey: config.root.resourceKey,
++        assign: (path, kind) => {
++          const k = assignCollection(path, kind, researchRe);
++          return known.has(k) ? k : "other";
++        },
++      },
++      { maxDepth, verify: mode === "service-account" },
++    );
++    skippedAll.push(...skipped.map((s) => ({ collection: "root", ...s })));
++    for (const c of config.collections) {
++      const mine = items.filter((i) => i.collection === c.key);
++      collections.push({ ...collectionMeta(c), folderId: null, items: mine });
++      console.log(`  ✓ ${c.key}: ${mine.length} file(s)`);
++    }
++    // Guard: a populated library must not silently collapse to nothing.
++    const before = (prev?.root?.folderId === root.folderId ? prev.collections : []).reduce((n, c) => n + c.items.length, 0);
++    if (before >= 5 && items.length === 0) {
++      throw new Error(`The library had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`);
++    }
++    const payload = { generatedAt: new Date().toISOString(), mode, root, collections };
++    await write(paths.out, payload);
++    await write(paths.skipped, {
++      generatedAt: payload.generatedAt,
++      note: "Audit trail — files seen in the configured folder but NOT published, and why.",
++      total: skippedAll.length,
++      skipped: skippedAll,
++    });
++    console.log(`\n✔ ${items.length} file(s) indexed · ${skippedAll.length} skipped`);
++    return payload;
++  }
++
+   for (const c of config.collections) {
+     const meta = collectionMeta(c);
+     if (!meta.folderId) {
+@@ -346,7 +414,7 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
+     }
+   }
+ 
+-  const payload = { generatedAt: new Date().toISOString(), mode, collections };
++  const payload = { generatedAt: new Date().toISOString(), mode, root: null, collections };
+   await write(paths.out, payload);
+   await write(paths.skipped, {
+     generatedAt: payload.generatedAt,
+diff --git a/src/data/library.generated.json b/src/data/library.generated.json
+index 49b1dbf..5506a2d 100644
+--- a/src/data/library.generated.json
++++ b/src/data/library.generated.json
+@@ -1,6 +1,9 @@
+ {
+   "generatedAt": null,
+   "mode": "none",
++  "root": {
++    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
++  },
+   "collections": [
+     {
+       "key": "research",
+@@ -28,6 +31,15 @@
+       "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
+       "folderId": null,
+       "items": []
++    },
++    {
++      "key": "other",
++      "title": "Other files",
++      "titleBn": "অন্যান্য ফাইল",
++      "description": "Documents, spreadsheets and other material.",
++      "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
++      "folderId": null,
++      "items": []
+     }
+   ]
+ }
+diff --git a/src/lib/library.ts b/src/lib/library.ts
+index a74e59e..aa962a2 100644
+--- a/src/lib/library.ts
++++ b/src/lib/library.ts
+@@ -29,11 +29,13 @@ export type Collection = {
+ export const library = {
+   generatedAt: raw.generatedAt as string | null,
+   mode: raw.mode as string,
++  /** The single Drive folder everything is sorted from, when configured. */
++  root: (raw as { root?: { folderId: string } | null }).root ?? null,
+   collections: raw.collections as Collection[],
+ };
+ 
+ export const libraryItems: LibItem[] = library.collections.flatMap((c) => c.items);
+-export const hasLibrary = library.collections.some((c) => c.items.length > 0 || c.folderId);
++export const hasLibrary = Boolean(library.root) || library.collections.some((c) => c.items.length > 0 || c.folderId);
+ 
+ export const KIND_LABEL: Record<Kind, { en: string; bn: string }> = {
+   pdf: { en: "PDF", bn: "পিডিএফ" },
+diff --git a/src/pages/Library.tsx b/src/pages/Library.tsx
+index c6236fb..449303e 100644
+--- a/src/pages/Library.tsx
++++ b/src/pages/Library.tsx
+@@ -63,6 +63,7 @@ export default function Library() {
+   }, [tab, q, sort]);
+ 
+   const linked = library.collections.filter((c) => c.folderId);
++  const hasFolders = Boolean(library.root) || linked.length > 0;
+   const indexed = libraryItems.length > 0;
+   const tabs = [
+     { key: "all", label: t("All", "সব"), n: libraryItems.length },
+@@ -163,18 +164,30 @@ export default function Library() {
+ 
+           {/* Linked folders. With no files indexed this IS the content: Drive's own
+               folder view, loaded only when asked. With files indexed it is a footer. */}
+-          {linked.length > 0 && (
++          {hasFolders && (
+             <div className={indexed ? "mt-16 border-t border-forest-300 pt-10" : ""}>
+-              <p className="u-eyebrow mb-5 text-gold-600">{t("Browse the folders", "ফোল্ডার ঘুরে দেখুন")}</p>
+-              <div className="grid gap-5 lg:grid-cols-3">
+-                {linked.map((c) => (
+-                  <FolderCard key={c.key} c={c} />
+-                ))}
++              <p className="u-eyebrow mb-5 text-gold-600">{t("Browse the Drive folder", "ড্রাইভ ফোল্ডার ঘুরে দেখুন")}</p>
++              <div className={library.root ? "grid gap-5" : "grid gap-5 lg:grid-cols-3"}>
++                {library.root && (
++                  <FolderCard
++                    folderId={library.root.folderId}
++                    title={t("Resource library", "রিসোর্স লাইব্রেরি")}
++                    description={t(
++                      "The complete shared folder — research, PDFs and presentations — in Google Drive.",
++                      "সম্পূর্ণ শেয়ার্ড ফোল্ডার — গবেষণা, পিডিএফ ও উপস্থাপনা — গুগল ড্রাইভে।",
++                    )}
++                    wide
++                  />
++                )}
++                {!library.root &&
++                  linked.map((c) => (
++                    <FolderCard key={c.key} folderId={c.folderId!} title={lang === "bn" ? c.titleBn : c.title} description={lang === "bn" ? c.descriptionBn : c.description} />
++                  ))}
+               </div>
+             </div>
+           )}
+ 
+-          {!indexed && linked.length === 0 && (
++          {!indexed && !hasFolders && (
+             <div className="mx-auto max-w-xl py-16 text-center">
+               <FolderOpen size={36} className="mx-auto text-moss-400" aria-hidden="true" />
+               <h2 className="mt-5 font-serif text-2xl font-black text-forest-900">{t("The library is being prepared", "লাইব্রেরি প্রস্তুত করা হচ্ছে")}</h2>
+@@ -191,22 +204,24 @@ export default function Library() {
+   );
+ }
+ 
+-function FolderCard({ c }: { c: (typeof library.collections)[number] }) {
+-  const { t, lang } = useI18n();
++function FolderCard({ folderId, title, description, wide = false }: { folderId: string; title: string; description: string; wide?: boolean }) {
++  const { t } = useI18n();
++  // Open by default for the single root folder: with no files indexed it IS the page.
++  // Still click-to-load otherwise, so no request reaches Google until asked.
+   const [shown, setShown] = useState(false);
+-  const id = c.folderId!;
+   return (
+     <div className="flex flex-col rounded-2xl border border-forest-400 bg-white p-5">
+-      <h2 className="font-serif text-xl font-black text-forest-900">{lang === "bn" ? c.titleBn : c.title}</h2>
+-      <p className="mt-1 text-sm text-moss-600">{lang === "bn" ? c.descriptionBn : c.description}</p>
++      <h2 className="font-serif text-xl font-black text-forest-900">{title}</h2>
++      <p className="mt-1 text-sm text-moss-600">{description}</p>
+       <div className="mt-4 flex flex-wrap gap-2">
+         <a
+-          href={folderUrl(id)}
++          href={folderUrl(folderId)}
+           target="_blank"
+           rel="noreferrer"
+           className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-900 px-4 text-xs font-bold text-cream-100 hover:bg-forest-600"
+         >
+           <ExternalLink size={13} aria-hidden="true" /> {t("Open in Drive", "ড্রাইভে খুলুন")}
++          <span className="sr-only">{t("(opens in a new tab)", "(নতুন ট্যাবে খুলবে)")}</span>
+         </a>
+         {!shown && (
+           <button
+@@ -220,10 +235,10 @@ function FolderCard({ c }: { c: (typeof library.collections)[number] }) {
+       </div>
+       {shown && (
+         <iframe
+-          title={lang === "bn" ? c.titleBn : c.title}
+-          src={folderEmbedUrl(id)}
++          title={title}
++          src={folderEmbedUrl(folderId)}
+           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+-          className="mt-4 h-[420px] w-full rounded-xl border border-forest-300 bg-white"
++          className={`mt-4 w-full rounded-xl border border-forest-300 bg-white ${wide ? "h-[560px]" : "h-[420px]"}`}
+         />
+       )}
+     </div>
+-- 
+2.43.0
+

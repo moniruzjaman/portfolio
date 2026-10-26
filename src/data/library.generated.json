@@ -1,0 +1,45 @@
+{
+  "generatedAt": null,
+  "mode": "none",
+  "root": {
+    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
+  },
+  "collections": [
+    {
+      "key": "research",
+      "title": "Research",
+      "titleBn": "গবেষণা",
+      "description": "Studies, working papers and field research.",
+      "descriptionBn": "গবেষণাপত্র, ওয়ার্কিং পেপার ও মাঠ গবেষণা।",
+      "folderId": null,
+      "items": []
+    },
+    {
+      "key": "pdf",
+      "title": "PDF documents",
+      "titleBn": "পিডিএফ নথি",
+      "description": "Guides, reports and reference documents.",
+      "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
+      "folderId": null,
+      "items": []
+    },
+    {
+      "key": "pptx",
+      "title": "Presentations",
+      "titleBn": "উপস্থাপনা",
+      "description": "Slide decks from trainings, briefings and talks.",
+      "descriptionBn": "প্রশিক্ষণ, ব্রিফিং ও আলোচনার স্লাইড।",
+      "folderId": null,
+      "items": []
+    },
+    {
+      "key": "other",
+      "title": "Other files",
+      "titleBn": "অন্যান্য ফাইল",
+      "description": "Documents, spreadsheets and other material.",
+      "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
+      "folderId": null,
+      "items": []
+    }
+  ]
+}

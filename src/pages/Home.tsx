@@ -1,23 +1,21 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles, Radio } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles, Radio, FileText } from "lucide-react";
 import { socials } from "@/components/Socials";
 import { expertiseGraphs, KnowledgeGraph } from "@/components/KnowledgeGraph";
-import { repos, stats, CHANNEL_COLOR, relativeDate } from "@/lib/data";
+import { repos, stats } from "@/lib/data";
+import { FLAGSHIP_NAMES } from "@/content/apps";
+import { AppCard } from "@/components/AppCard";
+import { PlatformTiles } from "@/components/PlatformTiles";
+import { libraryItems, KIND_LABEL } from "@/lib/library";
+import { asset } from "@/lib/site";
 import { notes } from "@/content/notes";
 import { author, figures } from "@/lib/author";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "@/components/Section";
 
-/** Six highest-signal repos — deterministic, not a hand-typed list. */
-const FEATURED = [
-  "web.krishiai.live",
-  "soil-media-portal",
-  "plantation-tracker",
-  "cabi-diagnosis",
-  "krishak-card",
-  "pesticide-field-guide",
-]
+/** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
+const FEATURED = FLAGSHIP_NAMES
   .map((n) => repos.find((r) => r.name === n))
   .filter((r): r is (typeof repos)[number] => Boolean(r));
 
@@ -105,7 +103,7 @@ export default function Home() {
             <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-forest-400/20 via-transparent to-gold-400/20 blur-2xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-forest-200/70 bg-forest-900 p-8 text-white shadow-[0_30px_80px_rgba(10,46,26,0.22)]">
               <img
-                src={`${import.meta.env.BASE_URL}portrait.jpg`}
+                src={asset("portrait.jpg")}
                 alt={author.name}
                 width={720}
                 height={693}
@@ -163,44 +161,16 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {FEATURED.map((repo, i) => (
-              <Link
-                key={repo.name}
-                href={`/works/${repo.slug}`}
-                className="group flex min-h-[260px] flex-col justify-between rounded-[1.5rem] border border-forest-400 bg-white p-6 shadow-[0_12px_35px_rgba(10,46,26,0.05)] transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_20px_45px_rgba(10,46,26,0.1)]"
-              >
-                <div>
-                  <div className="mb-8 flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-gold-500">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <ArrowUpRight
-                      className="text-moss-400 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
-                      size={18}
-                    />
-                  </div>
-                  <h3 className="font-serif text-2xl font-black leading-tight text-forest-900">
-                    {repo.title}
-                  </h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-moss-600">
-                    {repo.description}
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center gap-2">
-                  {repo.channels.map((c) => (
-                    <span
-                      key={c}
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: CHANNEL_COLOR[c] }}
-                      title={c}
-                    />
-                  ))}
-                  <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.14em] text-moss-400">
-                    {relativeDate(repo.pushedAt)}
-                  </span>
-                </div>
-              </Link>
+            {FEATURED.map((repo) => (
+              <AppCard key={repo.name} repo={repo} />
             ))}
+          </div>
+
+          <div className="mt-14">
+            <p className="u-eyebrow mb-4 text-gold-600">
+              {t(`Where it runs · ${stats.addresses} live addresses`, `যেখানে চলে · ${stats.addresses}টি চালু ঠিকানা`)}
+            </p>
+            <PlatformTiles />
           </div>
         </div>
       </section>
@@ -348,6 +318,46 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── library teaser: only when there is something real to show ── */}
+      {libraryItems.length > 0 && (
+        <section className="bg-cream-100 px-5 py-24 sm:px-8 lg:px-12">
+          <div className="u-container">
+            <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <p className="u-eyebrow mb-3 text-gold-500">{t("Library", "লাইব্রেরি")}</p>
+                <h2 className="max-w-2xl font-serif text-4xl font-black text-forest-900 sm:text-5xl">
+                  {t("Research, PDFs and slide decks.", "গবেষণা, পিডিএফ ও স্লাইড।")}
+                </h2>
+              </div>
+              <Link href="/library" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+                {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)} <ArrowUpRight size={16} />
+              </Link>
+            </div>
+            <ul className="grid gap-4 md:grid-cols-3">
+              {[...libraryItems]
+                .sort((a, b) => (b.modified ?? "").localeCompare(a.modified ?? ""))
+                .slice(0, 3)
+                .map((i) => (
+                  <li key={i.id}>
+                    <Link
+                      href="/library"
+                      className="flex h-full gap-4 rounded-2xl border border-forest-400 bg-white p-5 transition-colors hover:border-forest-300"
+                    >
+                      <FileText size={22} className="mt-1 shrink-0 text-forest-500" aria-hidden="true" />
+                      <span>
+                        <span className="u-eyebrow block text-moss-500">
+                          {KIND_LABEL[i.kind][lang]} · {i.modified?.slice(0, 4)}
+                        </span>
+                        <span className="mt-1 block font-serif text-lg font-black leading-snug text-forest-900">{i.title}</span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* ── writing preview ────────────────────────────── */}
       <section className="border-y border-forest-300 bg-white px-5 py-24 sm:px-8 lg:px-12">

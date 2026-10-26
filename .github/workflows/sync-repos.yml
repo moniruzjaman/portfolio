@@ -1,4 +1,4 @@
-name: Sync repositories
+name: Sync repositories and library
 
 # Auto-inclusion. Anything pushed to the GitHub dashboard that matches one of the
 # four deployment channels appears on the site within a day, with no edit to any
@@ -44,18 +44,32 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner }}
         run: node scripts/sync-repos.mjs
 
+      # Google Drive library (/library). Optional and independent of the repo sync:
+      #   - with no secret set it only refreshes folder links from content/library.config.json
+      #   - with GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) it indexes the files
+      # continue-on-error so a Drive outage or a mis-shared folder cannot block repo
+      # updates; the script reports the failure as a visible ::error:: annotation and
+      # leaves the previous library data untouched.
+      - name: Sync Drive library
+        continue-on-error: true
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: node scripts/sync-drive.mjs
+
       - name: Commit if changed, then redeploy
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- src/data/repos.generated.json src/data/excluded.generated.json; then
+          # status (not diff) so a brand-new generated file counts as a change too.
+          if [ -z "$(git status --porcelain -- 'src/data/*.generated.json')" ]; then
             echo "No change — the generated data is already current."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/repos.generated.json src/data/excluded.generated.json
-          git commit -m "chore(data): sync repositories from GitHub dashboard"
+          git add src/data/*.generated.json
+          git commit -m "chore(data): sync repositories and library"
           git push
           # Pushes made with GITHUB_TOKEN do not start other workflows, so deploy
           # explicitly or the site would keep serving the old data.

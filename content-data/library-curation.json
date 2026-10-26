@@ -1,0 +1,32 @@
+{
+  "$comment": [
+    "Curation layer for the Google Drive library (src/data/library.generated.json).",
+    "",
+    "The generated index says what a file IS (type, size, folder path). This file",
+    "says what it is FOR: which shelf it belongs on and which subjects it covers.",
+    "",
+    "shelves:  research | report | ebook | guide | training | other",
+    "          'research' and 'report' are read-only work; 'ebook' is study material.",
+    "subjects: short chips shown on cards and used as filters. Keep them few and",
+    "          stable — pesticide, fertilizer, soil, gap, plantation, nursery,",
+    "          krishak-card, policy, ai, training, finance, self-learning.",
+    "",
+    "'byPath' matches the top-level Drive folder (case-insensitive) and applies to",
+    "every file inside it that has no explicit entry in 'entries'. 'default' applies",
+    "to everything else. An entry key is the file id from the generated index.",
+    "Nothing here changes any count, and nothing here can break the build."
+  ],
+  "default": { "shelf": "other", "subjects": [] },
+  "byPath": {
+    "Pesticides_Crisis": { "shelf": "research", "subjects": ["pesticide", "policy"] },
+    "bnp_policy": { "shelf": "research", "subjects": ["policy", "fertilizer"] },
+    "Meta_Process": { "shelf": "report", "subjects": ["policy", "fertilizer"] },
+    "Gap": { "shelf": "guide", "subjects": ["gap"] },
+    "ebook": { "shelf": "ebook", "subjects": ["self-learning"] },
+    "interactive-learning": { "shelf": "training", "subjects": ["soil", "training"] },
+    "Krishak Card": { "shelf": "report", "subjects": ["krishak-card"] }
+  },
+  "entries": {
+    "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k": { "shelf": "guide", "subjects": ["soil", "training"], "titleBn": "কেম্পফ স্বাস্থ্য পিরামিড নির্দেশিকা" }
+  }
+}

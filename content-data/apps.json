@@ -1,0 +1,405 @@
+{
+  "$comment": [
+    "Bilingual curation layer for the generated repository catalogue.",
+    "",
+    "src/data/repos.generated.json is machine-owned — a scheduled workflow rewrites",
+    "it and hand edits there are lost. This file is human-owned: it is the only",
+    "place where a title, summary, audience or type is written by hand, and it is",
+    "safe to edit directly.",
+    "",
+    "Keys are repo names from the generated data. Every entry should carry:",
+    "  type      app | report | ebook | dataset | source   (what it is)",
+    "  audiences farmer | officer | policy | learning     (who it is for; one or more)",
+    "  titleEn / titleBn    display name (falls back to the GitHub 'homepage' title)",
+    "  summaryEn / summaryBn  one line for cards, search and previews",
+    "  notesEn / notesBn    optional longer paragraph shown on the detail page",
+    "",
+    "An unknown key is ignored at build time; a missing key falls back to the",
+    "generated description with type 'app' and no audience. Nothing here can break",
+    "the site, and nothing here changes any count: numbers stay computed."
+  ],
+  "apps": {
+    "portfolio": {
+      "type": "app",
+      "audiences": ["officer", "policy", "learning"],
+      "titleEn": "Portfolio & catalogue site",
+      "titleBn": "পোর্টফোলিও ও ক্যাটালগ সাইট",
+      "summaryEn": "This site: every tool, note and document in one bilingual catalogue, built with zero API keys.",
+      "summaryBn": "এই সাইট: প্রতিটি টুল, নোট ও নথির দ্বিভাষিক ক্যাটালগ — কোনো এপিআই কী ছাড়াই তৈরি।",
+      "notesEn": "A static GitHub Pages site. Repository listings are generated from the GitHub dashboard by a scheduled workflow, so the catalogue cannot drift from what is actually published."
+    },
+    "cabi-diagnosis": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "CABI Plant Diagnosis",
+      "titleBn": "সিএবিআই উদ্ভিদ রোগ নির্ণয়",
+      "summaryEn": "Identify crop pests, diseases and deficiencies from photos, with CABI guidance.",
+      "summaryBn": "ছবি থেকে ফসলের পোকা, রোগ ও পুষ্টিঘাট শনাক্ত করুন — সিএবিআই নির্দেশনাসহ।"
+    },
+    "kaggle-dataset": {
+      "type": "dataset",
+      "audiences": ["learning", "officer"],
+      "titleEn": "Crop Pest & Disease Dataset",
+      "titleBn": "ফসলের পোকা ও রোগ ডেটাসেট",
+      "summaryEn": "The labelled image dataset behind the diagnosis tools, published for reuse.",
+      "summaryBn": "রোগ নির্ণয়ের টুলগুলোর পেছনের লেবেলযুক্ত ছবির ডেটাসেট — পুনর্ব্যবহারের জন্য প্রকাশিত।"
+    },
+    "AgriChem-Guide-Pest-Control-Database": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "PesticideNext — Insecticide Registry Field Guide",
+      "titleBn": "পেস্টিসাইডনেক্সট — কীটনাশক রেজিস্ট্রি মাঠ নির্দেশিকা",
+      "summaryEn": "Check IRAC/FRAC/MOA groups, rotation and mixing before the next spray.",
+      "summaryBn": "পরের স্প্রে আগে আইর‍্যাক/এফর‍্যাক/এমওএ গ্রুপ, রোটেশন ও মিশ্রণ যাচাই করুন।",
+      "notesEn": "Registered under the brand PesticideNext at pesticide.krishiai.live. Bilingual, offline-capable PWA."
+    },
+    "rashtra_teen_chokhe": {
+      "type": "report",
+      "audiences": ["policy", "learning"],
+      "titleEn": "রাষ্ট্রকে দেখা তিন চোখে",
+      "titleBn": "রাষ্ট্রকে দেখা তিন চোখে",
+      "summaryEn": "Three lenses on the state — a long-form reflective essay.",
+      "summaryBn": "রাষ্ট্রকে দেখার তিনটি দৃষ্টি — একটি দীর্ঘ ভাবনাপ্রবন্ধ।"
+    },
+    "fertilizer": {
+      "type": "report",
+      "audiences": ["policy", "officer"],
+      "titleEn": "Fertilizer Management — Burden to Bloom",
+      "titleBn": "সার ব্যবস্থাপনা — বোঝা থেকে ফুলে",
+      "summaryEn": "An argument for transparency, accountability and precision in fertilizer management.",
+      "summaryBn": "সার ব্যবস্থাপনায় স্বচ্ছতা, জবাবদিহি ও যথার্থতার পক্ষে যুক্তি।"
+    },
+    "fertilizer-nationalism": {
+      "type": "report",
+      "audiences": ["policy"],
+      "titleEn": "Krishak Card & Land Authentication Pilot",
+      "titleBn": "কৃষক কার্ড ও জমি যাচাই পাইলট",
+      "summaryEn": "Bangladesh Before All — an integrated Kurigram path linking krishak card to land records.",
+      "summaryBn": "বাংলাদেশ সবুর আগে — কুড়িগ্রামের সমন্বিত পথে কৃষক কার্ড ও জমির তথ্যের সংযোগ।"
+    },
+    "rastro-tin-ayna": {
+      "type": "report",
+      "audiences": ["policy", "learning"],
+      "titleEn": "তিন আয়না",
+      "titleBn": "তিন আয়না",
+      "summaryEn": "Three mirrors held up to agricultural policy and practice.",
+      "summaryBn": "কৃষিনিতি ও কর্মকাণ্ডের সামনে ধরা তিনটি দর্পণ।"
+    },
+    "AgriChem_Registry": {
+      "type": "app",
+      "audiences": ["officer", "policy"],
+      "titleEn": "AgriChem Registry",
+      "titleBn": "অ্যাগ্রিকেম রেজিস্ট্রি",
+      "summaryEn": "The registered agri-chemical list as a searchable working database.",
+      "summaryBn": "নিবন্ধিত কৃষি-রাসায়নিকের তালিকা — অনুসন্ধানযোগ্য কার্যকরী ডেটাবেস।"
+    },
+    "self-learning": {
+      "type": "app",
+      "audiences": ["farmer", "learning"],
+      "titleEn": "স্বশিক্ষা কৃষি",
+      "titleBn": "স্বশিক্ষা কৃষি",
+      "summaryEn": "Self-paced Bangla agriculture course for progressive, self-reliant farmers.",
+      "summaryBn": "অগ্রসর ও স্বনির্ভর কৃষকের জন্য স্বগতির বাংলা কৃষি কোর্স।"
+    },
+    "pesticide-field-guide": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "Pesticide Field Guide",
+      "titleBn": "কীটনাশক মাঠ নির্দেশিকা",
+      "summaryEn": "Searchable, resistance-aware pesticide guide with MoA rotation advice.",
+      "summaryBn": "অনুসন্ধানযোগ্য, প্রতিরোধ-সচেতন কীটনাশক নির্দেশিকা — মোআ রোটেশন পরামর্শসহ।"
+    },
+    "web.krishiai.live": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "KrishiAI Web Portal",
+      "titleBn": "কৃষিএআই ওয়েব পোর্টাল",
+      "summaryEn": "The front door of the KrishiAI ecosystem on its own domain.",
+      "summaryBn": "নিজস্ব ডোমেইনে কৃষিএআই ইকোসিস্টেমের প্রধান দরজা।"
+    },
+    "knowledge-hub": {
+      "type": "app",
+      "audiences": ["officer", "learning"],
+      "titleEn": "Knowledge Hub",
+      "titleBn": "নলেজ হাব",
+      "summaryEn": "Extension knowledge gathered in one browsable, searchable hub.",
+      "summaryBn": "সম্প্রসারণ জ্ঞান এক জায়গায় — ব্রাউজ ও অনুসন্ধানযোগ্য হাবে।"
+    },
+    "plantation-tracker": {
+      "type": "app",
+      "audiences": ["officer", "policy"],
+      "titleEn": "Plantation Tracker",
+      "titleBn": "বৃক্ষরোপণ ট্র্যাকার",
+      "summaryEn": "Field reporting for the national 25-crore plantation programme.",
+      "summaryBn": "জাতীয় ২৫ কোটি বৃক্ষরোপণ কর্মসূচির মাঠ প্রতিবেদন ব্যবস্থা।",
+      "notesEn": "Collects, stores and transmits plantation data under the government's five-year programme."
+    },
+    "pesticide-reform": {
+      "type": "report",
+      "audiences": ["policy"],
+      "titleEn": "Pesticide Reform — DAE Kurigram",
+      "titleBn": "কীটনাশক সংস্কার — ডিএই কুড়িগ্রাম",
+      "summaryEn": "Proposal to add MoA number, rotation and mixing rules to pesticide labels.",
+      "summaryBn": "কীটনাশকের লেবেলে মোআ নম্বর, রোটেশন ও মিশ্রণের তথ্য যোগ করার প্রস্তাবনা।"
+    },
+    "pesticide_regulatory": {
+      "type": "source",
+      "audiences": ["policy", "officer"],
+      "titleEn": "Pesticide Regulatory Documents",
+      "titleBn": "কীটনাশক নিয়ন্ত্রক নথি",
+      "summaryEn": "Working collection of regulatory material behind the reform papers.",
+      "summaryBn": "সংস্কার নথির পেছনের নিয়ন্ত্রক উপকরণের কর্মসংগ্রহ।"
+    },
+    "krishi-ai-gateway": {
+      "type": "source",
+      "audiences": ["learning"],
+      "titleEn": "KrishiAI Gateway",
+      "titleBn": "কৃষিএআই গেটওয়ে",
+      "summaryEn": "Backend gateway that routes AI advisory requests for the KrishiAI apps.",
+      "summaryBn": "কৃষিএআই অ্যাপগুলোর এআই পরামর্শ অনুরোধ পাঠানোর ব্যাকএন্ড গেটওয়ে।"
+    },
+    "path-to-bloom": {
+      "type": "report",
+      "audiences": ["policy", "learning"],
+      "titleEn": "Fertilizer Management — The Path to Bloom",
+      "titleBn": "সার ব্যবস্থাপনা — ফুলে ফোটার পথ",
+      "summaryEn": "Interactive report on fertilizer management for Bangladesh agriculture.",
+      "summaryBn": "বাংলাদেশ কৃষিতে সার ব্যবস্থাপনা নিয়ে ইন্টারঅ্যাকটিভ প্রতিবেদন।"
+    },
+    "fertilizer-reform": {
+      "type": "report",
+      "audiences": ["policy"],
+      "titleEn": "Fertilizer Distribution Reform Package",
+      "titleBn": "সার বিতরণ সংস্কার প্যাকেজ",
+      "summaryEn": "A phased reform package for the fertilizer distribution system.",
+      "summaryBn": "সার বিতরণ ব্যবস্থার ধাপে ধাপে সংস্কার প্যাকেজ।"
+    },
+    "biopesticide-policy": {
+      "type": "report",
+      "audiences": ["policy", "officer"],
+      "titleEn": "Biopesticide Transition Blueprint",
+      "titleBn": "জৈব কীটনাশক সংক্রমণ নকশা",
+      "summaryEn": "From dependency to resilience — a phased policy blueprint for biopesticides.",
+      "summaryBn": "নির্ভরতা থেকে আত্মনির্ভরশীলতা — জৈব কীটনাশকের ধাপে ধাপে নীতি নকশা।"
+    },
+    "soil-media-portal": {
+      "type": "app",
+      "audiences": ["officer", "learning"],
+      "titleEn": "Soil Health Media Portal",
+      "titleBn": "মাটি স্বাস্থ্য মিডিয়া পোর্টাল",
+      "summaryEn": "Multimedia portal on soil health — media built for field training.",
+      "summaryBn": "মাটির স্বাস্থ্য বিষয়ে মাল্টিমিডিয়া পোর্টাল — মাঠ প্রশিক্ষণের জন্য নির্মিত মিডিয়া।"
+    },
+    "e-bill-system": {
+      "type": "app",
+      "audiences": ["officer", "policy"],
+      "titleEn": "E-Bill System Demo",
+      "titleBn": "ই-বিল সিস্টেম ডেমো",
+      "summaryEn": "Concept demo for e-billing in the fertilizer supply chain.",
+      "summaryBn": "সার সরবরাহ শৃঙ্খলে ই-বিলিং ধারণার ডেমো।"
+    },
+    "diagnosis-assistant": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "Diagnosis Assistant",
+      "titleBn": "রোগ নির্ণয় সহকারী",
+      "summaryEn": "Simulation-based pest and disease diagnosis assistant built on CABI content.",
+      "summaryBn": "সিএবিআই উপকরণে তৈরি সিমুলেশন-ভিত্তিক পোকা ও রোগ নির্ণয় সহকারী।"
+    },
+    "nursery-report": {
+      "type": "report",
+      "audiences": ["officer", "policy"],
+      "titleEn": "Nursery Report",
+      "titleBn": "নার্সারি প্রতিবেদন",
+      "summaryEn": "Report view of nursery registration and sapling supply data.",
+      "summaryBn": "নার্সারি নিবন্ধন ও চারা সরবরাহের তথ্যের প্রতিবেদন।"
+    },
+    "pesticide_act_2018": {
+      "type": "app",
+      "audiences": ["officer", "policy"],
+      "titleEn": "Pesticide Act 2018",
+      "titleBn": "বালাইনাশক আইন ২০১৮",
+      "summaryEn": "The Pesticide Act 2018 as a readable, searchable Bangla reference.",
+      "summaryBn": "পড়া ও খোঁজা যায় এমন বাংলা রেফারেন্স হিসেবে বালাইনাশক আইন ২০১৮।"
+    },
+    "krishiai": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "KrishiAI Studio",
+      "titleBn": "কৃষিএআই স্টুডিও",
+      "summaryEn": "Digital agri-ecosystem studio — the design system for KrishiAI products.",
+      "summaryBn": "ডিজিটাল কৃষি ইকোসিস্টেম স্টুডিও — কৃষিএআই পণ্যের ডিজাইন সিস্টেম।"
+    },
+    "plantation-tracker-app": {
+      "type": "app",
+      "audiences": ["officer"],
+      "titleEn": "Plantation Tracker App",
+      "titleBn": "বৃক্ষরোপণ ট্র্যাকার অ্যাপ",
+      "summaryEn": "Mobile collection app for plantation programme field data.",
+      "summaryBn": "বৃক্ষরোপণ কর্মসূচির মাঠ তথ্য সংগ্রহের মোবাইল অ্যাপ।"
+    },
+    "krishi-ai": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "KrishiAI — Smart Agriculture Assistant",
+      "titleBn": "কৃষিএআই — স্মার্ট কৃষি সহায়ক",
+      "summaryEn": "Bangla-first AI assistant for crop, pest and advisory questions.",
+      "summaryBn": "ফসল, পোকা ও পরামর্শের প্রশ্নে বাংলাপ্রধান এআই সহায়ক।",
+      "notesEn": "Installable PWA. Bengali-first interface with crop-disease identification support."
+    },
+    "bnp_policy": {
+      "type": "report",
+      "audiences": ["policy"],
+      "titleEn": "BNP Policy — Agriculture & Governance Portal",
+      "titleBn": "বিএনপি নীতি — কৃষি ও সুশাসন পোর্টাল",
+      "summaryEn": "Multimedia portal supporting agriculture and governance reform actions.",
+      "summaryBn": "কৃষি ও সুশাসন সংস্কারকে সমর্থনকারী মাল্টিমিডিয়া পোর্টাল।",
+      "notesEn": "A policy-communication piece: a presentation portal, not an operational tool. It is listed with the reports so it is not mistaken for a working app."
+    },
+    "plantation-submission-system": {
+      "type": "app",
+      "audiences": ["officer"],
+      "titleEn": "Plantation Submission System",
+      "titleBn": "বৃক্ষরোপণ দাখিল ব্যবস্থা",
+      "summaryEn": "Mobile-first, offline GIS submission for plantation records.",
+      "summaryBn": "বৃক্ষরোপণের তথ্য দাখিলে মোবাইলপ্রধান, অফলাইন জিআইএস ব্যবস্থা।"
+    },
+    "krishiai-antigravity": {
+      "type": "source",
+      "audiences": ["learning"],
+      "titleEn": "KrishiAI Antigravity",
+      "titleBn": "কৃষিএআই অ্যান্টিগ্রাভিটি",
+      "summaryEn": "Experimental editor/tooling branch of the KrishiAI project.",
+      "summaryBn": "কৃষিএআই প্রকল্পের পরীক্ষামূলক এডিটর/টুলিং শাখা।"
+    },
+    "plantation-tracker-v1": {
+      "type": "app",
+      "audiences": ["officer"],
+      "titleEn": "Plantation Tracker v1",
+      "titleBn": "বৃক্ষরোপণ ট্র্যাকার ভি১",
+      "summaryEn": "First public version of the plantation tracker, kept for reference.",
+      "summaryBn": "বৃক্ষরোপণ ট্র্যাকারের প্রথম প্রকাশিত সংস্করণ — রেফারেন্স হিসেবে সংরক্ষিত।"
+    },
+    "kurigram_nursery_registry": {
+      "type": "app",
+      "audiences": ["officer", "farmer"],
+      "titleEn": "Kurigram Nursery Registry",
+      "titleBn": "কুড়িগ্রাম নার্সারি রেজিস্ট্রি",
+      "summaryEn": "Fully offline, zero-API-key mobile GIS for nursery data collection.",
+      "summaryBn": "নার্সারির তথ্য সংগ্রহে সম্পূর্ণ অফলাইন, কী-মুক্ত মোবাইল জিআইএস।"
+    },
+    "krishak-card": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "Krishak Card",
+      "titleBn": "কৃষক কার্ড",
+      "summaryEn": "The farmer-facing dashboard for benefits, entitlements and records.",
+      "summaryBn": "ভাতা, প্রাপ্যতা ও তথ্যের কৃষকমুখী ড্যাশবোর্ড।"
+    },
+    "kurigram-nursery-2026": {
+      "type": "report",
+      "audiences": ["officer", "policy"],
+      "titleEn": "Kurigram Nursery Dashboard 2026",
+      "titleBn": "কুড়িগ্রাম নার্সারি ড্যাশবোর্ড ২০২৬",
+      "summaryEn": "Dashboard of nursery registration for the 2026 plantation season.",
+      "summaryBn": "২০২৬ বৃক্ষরোপণ মৌসুমের নার্সারি নিবন্ধনের ড্যাশবোর্ড।"
+    },
+    "nursery-form-2": {
+      "type": "app",
+      "audiences": ["officer", "farmer"],
+      "titleEn": "Private Nursery Proposal Form",
+      "titleBn": "বেসরকারি নার্সারি প্রস্তাব ফরম",
+      "summaryEn": "Online proposal form for private nurseries supplying 2026 saplings.",
+      "summaryBn": "২০২৬ সালের চারা সরবরাহকারী বেসরকারি নার্সারির অনলাইন প্রস্তাব ফরম।"
+    },
+    "app.krishiai": {
+      "type": "app",
+      "audiences": ["farmer"],
+      "titleEn": "KrishiAI Mobile App",
+      "titleBn": "কৃষিএআই মোবাইল অ্যাপ",
+      "summaryEn": "Expo mobile build of KrishiAI for farmers' phones.",
+      "summaryBn": "কৃষকের ফোনের জন্য এক্সপো-ভিত্তিক কৃষিএআই মোবাইল সংস্করণ।"
+    },
+    "krishiai4.0": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "KrishiAI 4.0",
+      "titleBn": "কৃষিএআই ৪.০",
+      "summaryEn": "Current release of the KrishiAI digital agri-ecosystem.",
+      "summaryBn": "কৃষিএআই ডিজিটাল কৃষি ইকোসিস্টেমের বর্তমান রিলিজ।"
+    },
+    "KrishiAI-3.0": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "KrishiAI 3.0",
+      "titleBn": "কৃষিএআই ৩.০",
+      "summaryEn": "Smart Agri Ecosystem release 3 — multi-crop advisory and diagnostics.",
+      "summaryBn": "স্মার্ট এগ্রি ইকোসিস্টেম সংস্করণ ৩ — বহুফসল পরামর্শ ও রোগ নির্ণয়।"
+    },
+    "krishiai-v2": {
+      "type": "app",
+      "audiences": ["farmer"],
+      "titleEn": "KrishiAI v2",
+      "titleBn": "কৃষিএআই ভি২",
+      "summaryEn": "Second public version of the Bangla AI farming assistant.",
+      "summaryBn": "বাংলা এআই কৃষি সহায়কের দ্বিতীয় প্রকাশিত সংস্করণ।"
+    },
+    "producer-register": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "Bangladesh GAP Producer Register",
+      "titleBn": "বাংলাদেশ গ্যাপ প্রোডিউজার রেজিস্টার",
+      "summaryEn": "Digital logbook of GAP practice data for producer groups.",
+      "summaryBn": "প্রোডিউসার গোষ্ঠীর গ্যাপ চাষ তথ্যের ডিজিটাল লগবই।"
+    },
+    "nursery-form": {
+      "type": "app",
+      "audiences": ["officer"],
+      "titleEn": "Nursery Registration Form",
+      "titleBn": "নার্সারি নিবন্ধন ফরম",
+      "summaryEn": "First nursery registration form for the plantation programme.",
+      "summaryBn": "বৃক্ষরোপণ কর্মসূচির প্রথম নার্সারি নিবন্ধন ফরম।"
+    },
+    "gap-brinjal": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "GAP Brinjal Advisory",
+      "titleBn": "গ্যাপ বেগুন পরামর্শ",
+      "summaryEn": "Good Agricultural Practice guidance for brinjal growers.",
+      "summaryBn": "বেগুন চাষিদের জন্য উত্তম কৃষি চর্চার পরামর্শ।",
+      "notesEn": "Built as a competition submission. Useful as a worked example of a GAP advisory, but not in day-to-day departmental use."
+    },
+    "cabi-diagnosis-builder": {
+      "type": "source",
+      "audiences": ["learning"],
+      "titleEn": "CABI Diagnosis Builder",
+      "titleBn": "সিএবিআই ডায়াগনোসিস বিল্ডার",
+      "summaryEn": "Pipeline that turns CABI diagnosis PDFs into a structured app.",
+      "summaryBn": "সিএবিআই রোগ নির্ণয়ের পিডিএফকে কাঠামোগত অ্যাপে রূপান্তরের পাইপলাইন।"
+    },
+    "krishak-card-v2": {
+      "type": "app",
+      "audiences": ["farmer", "officer"],
+      "titleEn": "Krishak Card v2",
+      "titleBn": "কৃষক কার্ড ভি২",
+      "summaryEn": "Rebuilt farmer card with stronger authentication and clearer entitlements.",
+      "summaryBn": "শক্তিশালী যাচাই ও স্পষ্ট প্রাপ্যতাসহ পুনর্গঠিত কৃষক কার্ড।"
+    },
+    "diagnosis_game": {
+      "type": "app",
+      "audiences": ["learning", "officer"],
+      "titleEn": "ফসল ফতোয়া (Crop Call)",
+      "titleBn": "ফসল ফতোয়া (ক্রপ কল)",
+      "summaryEn": "Decision simulation game for farm diagnosis — play the call, see the cost.",
+      "summaryBn": "খামার রোগ নির্ণয়ের সিদ্ধান্ত-সিমুলেশন খেলা — সিদ্ধান্ত নিন, খরচ দেখুন।"
+    },
+    "cirdap-greenloop3.0": {
+      "type": "app",
+      "audiences": ["policy", "learning"],
+      "titleEn": "GreenLoop 3.0",
+      "titleBn": "গ্রিনলুপ ৩.০",
+      "summaryEn": "Circular nutrient-loop concept entered in the CIRDAP-REEDS challenge.",
+      "summaryBn": "সিআরডিএপি-রீডস চ্যালেঞ্জে উপস্থাপিত পুষ্টি-চক্র ধারণা।"
+    }
+  }
+}

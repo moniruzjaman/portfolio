@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T10:37:00.381Z",
+  "generatedAt": "2026-10-26T12:33:40.082Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -25,11 +25,11 @@
         {
           "id": "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k",
           "collection": "pdf",
-          "name": "Kempf Health Pyramid Guide.pdf",
-          "title": "Kempf Health Pyramid Guide",
+          "name": "Plant Health Guide.pdf",
+          "title": "Plant Health Guide",
           "kind": "pdf",
           "mime": "application/pdf",
-          "modified": "2026-10-24T18:23:15.272Z",
+          "modified": "2026-10-26T11:29:13.780Z",
           "size": 22798883,
           "path": []
         },
@@ -1184,17 +1184,6 @@
           "mime": "application/pdf",
           "modified": "2026-04-26T12:57:31.936Z",
           "size": 244760,
-          "path": []
-        },
-        {
-          "id": "1KeO2I8IQcwqUEX77Bkl0BBpjxDdGXfNW",
-          "collection": "pdf",
-          "name": "nursery seedling kurigram.pdf",
-          "title": "nursery seedling kurigram",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-04-12T07:00:55.783Z",
-          "size": 785118,
           "path": []
         },
         {
@@ -2769,19 +2758,6 @@
           ]
         },
         {
-          "id": "1AnAjlUDMoEwWfl-UI9MFjaIeQx1Ra4Yc",
-          "collection": "pdf",
-          "name": "Learning_from_Asia___54316289_20260226_926202626.pdf",
-          "title": "Learning from Asia 54316289 20260226 926202626",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-02-27T05:48:41.747Z",
-          "size": 126295428,
-          "path": [
-            "Web upload "
-          ]
-        },
-        {
           "id": "1-0I67MJCcGyUXOAZCS29wf8yO3wMTVQT",
           "collection": "pdf",
           "name": "Learning_from_Asia__A_Blueprint_for_Sustainable_Fertilizer_Management_in_Bangladesh_s_Smallholder_Farms6522.pdf",
@@ -2832,20 +2808,6 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
-        },
-        {
-          "id": "1F327rhT1A8Fgx-NvvG18fZuMnHLXMDmN",
-          "collection": "pdf",
-          "name": "Plantwise_Diagnostic_Guide_Core_Principles.pdf",
-          "title": "Plantwise Diagnostic Guide Core Principles",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-01-09T20:04:52.678Z",
-          "size": 15008197,
-          "path": [
-            "Web upload ",
-            "cabi diagnosis"
           ]
         },
         {
@@ -2913,34 +2875,6 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
-        },
-        {
-          "id": "1JZkpJdUn3OipF-YVNANlQjjufaTHb0hI",
-          "collection": "pdf",
-          "name": "Diagnostic-Field-Guide.pdf",
-          "title": "Diagnostic – Field – Guide",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2025-12-11T07:33:18.870Z",
-          "size": 6468341,
-          "path": [
-            "Web upload ",
-            "cabi diagnosis"
-          ]
-        },
-        {
-          "id": "18FcG1GM7YnDGhsdhG5lCbizgwmVdi0Cc",
-          "collection": "pdf",
-          "name": "CABI-BioProtection-Portal_Practical-biocontrol-guide_Bengali.pdf",
-          "title": "CABI – BioProtection – Portal Practical – biocontrol – guide Bengali",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2025-12-11T07:24:54.676Z",
-          "size": 17438984,
-          "path": [
-            "Web upload ",
-            "cabi diagnosis"
           ]
         },
         {
@@ -4248,19 +4182,6 @@
           ]
         },
         {
-          "id": "1dCGcLNDb0IH83n73P_20JsWGYgcTO12E",
-          "collection": "pptx",
-          "name": "Producer Register on Bangladesh GAP.pptx",
-          "title": "Producer Register on Bangladesh GAP",
-          "kind": "slides",
-          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "modified": "2026-02-09T02:48:05.735Z",
-          "size": 2430182,
-          "path": [
-            "Web upload "
-          ]
-        },
-        {
           "id": "1yEP-QiVywj8lnvKENgsA7D961MGbml_nY6-gOzeEBxQ",
           "collection": "pptx",
           "name": "OUTLOOK 2050 AD Rangpur PPT 2025.pptx_20251009_224931_0000.pptx (Converted - 2025-11-24 00:33)",
@@ -4322,6 +4243,19 @@
       "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
       "folderId": null,
       "items": [
+        {
+          "id": "14sj1whP-x6zaJ4HAuYZtFnxqsXRhhEAu",
+          "collection": "other",
+          "name": "MoA_Mapping_PTAC_Bangladesh_PolicyEnhanced.xlsx",
+          "title": "MoA Mapping PTAC Bangladesh PolicyEnhanced",
+          "kind": "sheet",
+          "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "modified": "2026-10-26T11:45:00.036Z",
+          "size": 1013512,
+          "path": [
+            "Pesticides_Crisis"
+          ]
+        },
         {
           "id": "13WwKejKX7lY3wCU4sEsqvHGwhhkTJwsJ",
           "collection": "other",
@@ -5066,19 +5000,6 @@
           "mime": "application/vnd.google-apps.spreadsheet",
           "modified": "2026-10-14T11:49:02.507Z",
           "size": 462383,
-          "path": [
-            "Pesticides_Crisis"
-          ]
-        },
-        {
-          "id": "14sj1whP-x6zaJ4HAuYZtFnxqsXRhhEAu",
-          "collection": "other",
-          "name": "MoA_Mapping_PTAC_Bangladesh_PolicyEnhanced.xlsx",
-          "title": "MoA Mapping PTAC Bangladesh PolicyEnhanced",
-          "kind": "sheet",
-          "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "modified": "2026-10-13T15:25:25.222Z",
-          "size": 1013701,
           "path": [
             "Pesticides_Crisis"
           ]
@@ -7889,19 +7810,6 @@
           "size": 54781,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
-        },
-        {
-          "id": "1Pp0eWBp6JTU3HhYpAHeOeJx2rILNH0m0",
-          "collection": "other",
-          "name": "bd_crop_advisory_system_kimi",
-          "title": "bd crop advisory system kimi",
-          "kind": "other",
-          "mime": "application/zip",
-          "modified": "2026-07-22T19:24:31.272Z",
-          "size": 78846,
-          "path": [
-            "Web upload "
           ]
         },
         {
@@ -13463,17 +13371,6 @@
             "Kimi_Agent_Deployment_Krishiai PWA Build_v1 (Unzipped Files)",
             "data"
           ]
-        },
-        {
-          "id": "1khJ0WHXV8MGHkoUPI_QrHDMPl7Ux9f8J",
-          "collection": "other",
-          "name": "kaggle dataset.zip",
-          "title": "kaggle dataset",
-          "kind": "other",
-          "mime": "application/zip",
-          "modified": "2026-05-27T09:28:43.684Z",
-          "size": 689512690,
-          "path": []
         },
         {
           "id": "12W7KCb8omL1pUeVdIN7AxJrnux5iWILb",
@@ -20936,19 +20833,6 @@
           "mime": "image/png",
           "modified": "2026-02-27T10:02:45.209Z",
           "size": 454565,
-          "path": [
-            "Web upload "
-          ]
-        },
-        {
-          "id": "1GkI9PisXcoRmQLLb0n7Wh4MkgEyjp898",
-          "collection": "other",
-          "name": "Kimi_Agent_Agri Wisdom Video Agent(2).zip",
-          "title": "Kimi Agent Agri Wisdom Video Agent(2)",
-          "kind": "other",
-          "mime": "application/zip",
-          "modified": "2026-02-04T11:00:35.311Z",
-          "size": 59197,
           "path": [
             "Web upload "
           ]

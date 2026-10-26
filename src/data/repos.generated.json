@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T12:33:14.238Z",
+  "generatedAt": "2026-10-26T12:40:25.855Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
@@ -18,7 +18,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-26T12:32:21Z",
+      "pushedAt": "2026-10-26T12:39:39Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -28,7 +28,7 @@
       ],
       "readmeBytes": 10586,
       "brand": {
-        "name": "Abu Md. Moniruzjaman",
+        "name": "Abu Md. Moniruzzaman",
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
         "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
@@ -345,7 +345,7 @@
       ],
       "readmeBytes": 6629,
       "brand": {
-        "name": "Abu Md. Moniruzjaman — Agricultural Extension & Digital Innovation",
+        "name": "Abu Md. Moniruzzaman — Agricultural Extension & Digital Innovation",
         "icon": "https://knowledge-hub-alpha-khaki.vercel.app/favicon.svg",
         "source": "html"
       },

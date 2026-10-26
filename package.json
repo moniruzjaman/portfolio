@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzzaman — agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzjaman — agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",

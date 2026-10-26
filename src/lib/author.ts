@@ -12,9 +12,9 @@
  */
 
 export const author = {
-  name: "Abu Md. Moniruzzaman",
+  name: "Abu Md. Moniruzjaman",
   nameAlt: "Abu Md. Moniruzjaman",
-  short: "Moniruzzaman",
+  short: "Moniruzjaman",
   initials: "AM",
   role: "Additional Deputy Director (Horticulture)",
   org: "Department of Agricultural Extension (DAE)",

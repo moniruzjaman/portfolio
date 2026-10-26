@@ -1,6 +1,6 @@
 # moniruzjaman.github.io
 
-Personal portfolio and showcase site for **Abu Md. Moniruzzaman** —
+Personal portfolio and showcase site for **Abu Md. Moniruzjaman** —
 Additional Deputy Director (Horticulture), Department of Agricultural Extension,
 Kurigram, Bangladesh.
 

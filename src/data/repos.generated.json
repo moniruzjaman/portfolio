@@ -1,15 +1,41 @@
 {
-  "generatedAt": "2026-10-26T08:27:43.116Z",
+  "generatedAt": "2026-10-26T08:53:55.020Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
+    "vercel": 26,
     "github-pages": 30,
     "custom-domain": 4,
-    "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-26T08:39:04Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 17671,
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
     {
       "name": "portfolio",
       "slug": "portfolio",
@@ -18,7 +44,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-26T08:26:43Z",
+      "pushedAt": "2026-10-26T08:27:43Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -30,7 +56,7 @@
       "brand": {
         "name": "Abu Md. Moniruzzaman",
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portrait.jpg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
       },
       "featured": false
@@ -269,32 +295,6 @@
       ],
       "readmeBytes": 0,
       "brand": null,
-      "featured": false
-    },
-    {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-15T13:57:30Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "readmeBytes": 17671,
-      "brand": {
-        "name": "উদ্ভিদ গোয়েন্দা",
-        "themeColor": "#046a1a",
-        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
-        "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
       "featured": false
     },
     {

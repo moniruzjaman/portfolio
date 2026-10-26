@@ -1,15 +1,40 @@
 {
-  "generatedAt": "2026-10-26T08:53:55.020Z",
+  "generatedAt": "2026-10-26T10:36:25.988Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
-    "vercel": 26,
     "github-pages": 30,
+    "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-26T08:53:55Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 10586,
+      "brand": {
+        "name": "Abu Md. Moniruzzaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "cabi-diagnosis",
       "slug": "cabi-diagnosis",
@@ -33,31 +58,6 @@
         "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
         "image": "https://cabi.krishiai.live/og-share.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-26T08:27:43Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 10586,
-      "brand": {
-        "name": "Abu Md. Moniruzzaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
       },
       "featured": false
     },

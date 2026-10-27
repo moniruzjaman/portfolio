@@ -13,6 +13,7 @@ import { notes } from "@/content/notes";
 import { author, figures } from "@/lib/author";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "@/components/Section";
+import { ConnectSection } from "@/components/ConnectSection";
 
 /** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
 const FEATURED = FLAGSHIP_NAMES
@@ -83,7 +84,23 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Live counts — computed from generated data, never hand-typed. */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <span className="u-eyebrow text-moss-400">{t("Follow:", "অনুসরণ করুন:")}</span>
+            {socials.map(({ key, label, href }) => (
+              <a
+                key={key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${label} (opens in a new tab)`}
+                className="text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {/* Live counts — computed from generated data, never hand-typed. */}
             <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-forest-300 pt-8">
               {[
                 { n: stats.repos, l: t("published works", "প্রকাশিত কাজ") },
@@ -407,6 +424,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── connect & follow ─────────────────────────────── */}
+      <ConnectSection />
+
       {/* ── contact ──────────────────────────────────────────── */}
       <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-forest-800 px-5 py-24 text-center sm:px-8 lg:px-12">
         <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-forest-400/10 blur-3xl" />
@@ -440,7 +460,7 @@ export default function Home() {
                 key={key}
                 href={href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
               >
                 <Icon size={16} /> {label}

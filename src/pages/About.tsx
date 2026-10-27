@@ -114,7 +114,7 @@ export default function About() {
                 )}
                 {socials.map(({ key, href, handle, Icon }) => (
                   <li key={key}>
-                    <a href={href} target="_blank" rel="noreferrer" className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
                       <Icon size={15} className="shrink-0 text-forest-500" />
                       <span className="break-all">{handle}</span>
                     </a>

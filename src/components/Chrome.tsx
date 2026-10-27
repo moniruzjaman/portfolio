@@ -3,7 +3,13 @@ import { Link, useLocation } from "wouter";
 import { Search, Menu, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { socials } from "@/components/Socials";
+import { GithubMark, LinkedinMark, FacebookMark, YoutubeMark } from "@/components/icons";
 import { author } from "@/lib/author";
+
+const FOOTER_ICONS = { github: GithubMark, linkedin: LinkedinMark, youtube: YoutubeMark, facebook: FacebookMark } as const;
+
+/** Compact icon row for the footer — mirrors the "Connect & Follow" card order. */
+const FOOTER_SOCIALS = ["facebook", "linkedin", "youtube", "github"] as const;
 
 const LINKS = [
   { href: "/works", en: "Work", bn: "কাজ" },
@@ -137,10 +143,29 @@ export function Footer() {
           </a>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             {socials.map(({ key, label, href }) => (
-              <a key={key} href={href} target="_blank" rel="noreferrer" className="text-moss-500 transition-colors hover:text-forest-900">
+              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="text-moss-500 transition-colors hover:text-forest-900">
                 {label}
               </a>
             ))}
+          </div>
+          {/* Recognisable platform marks — same URLs as the text links above. */}
+          <div className="flex items-center gap-2.5">
+            {FOOTER_SOCIALS.map((key) => {
+              const s = socials.find((x) => x.key === key)!;
+              const Icon = FOOTER_ICONS[key];
+              return (
+                <a
+                  key={key}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} (opens in a new tab)`}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-forest-300 text-moss-500 transition-colors hover:border-forest-500 hover:bg-white hover:text-forest-900"
+                >
+                  <Icon size={15} />
+                </a>
+              );
+            })}
           </div>
           <p className="text-xs text-moss-400">
             © {new Date().getFullYear()} {author.name} · {t("Personal portfolio", "ব্যক্তিগত পোর্টফোলিও")}

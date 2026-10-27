@@ -1,15 +1,108 @@
 {
-  "generatedAt": "2026-10-26T12:40:25.855Z",
+  "generatedAt": "2026-10-27T08:59:00.508Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
+    "custom-domain": 4,
     "github-pages": 30,
     "vercel": 26,
-    "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "AgriChem-Guide-Pest-Control-Database",
+      "slug": "agrichem-guide-pest-control-database",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "bangladesh",
+        "bilingual",
+        "dae",
+        "frac",
+        "hrac",
+        "irac",
+        "moa",
+        "pesticide",
+        "progressive-web-app",
+        "pwa",
+        "react",
+        "typescript",
+        "vite-react"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-10-27T07:00:10Z",
+      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
+      "live": "https://pest-next.krishiai.live",
+      "customDomain": "https://pest-next.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 15803,
+      "brand": {
+        "name": "PesticideNext",
+        "themeColor": "#006a4e",
+        "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
+        "image": "https://pesticide.krishiai.live/og-image.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "fertilizer",
+      "slug": "fertilizer",
+      "title": "Fertilizer Management — Burden to Bloom",
+      "description": "The path leads toward transparency, accountability, precision and dignity.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-27T06:02:30Z",
+      "url": "https://github.com/moniruzjaman/fertilizer",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 5008,
+      "brand": {
+        "name": "Fertilizer Management — Burden to Bloom",
+        "themeColor": "#006a4e",
+        "icon": "https://moniruzjaman.github.io/fertilizer/apple-touch-icon.png",
+        "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-26T12:53:08Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "portfolio",
       "slug": "portfolio",
@@ -18,7 +111,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-26T12:39:39Z",
+      "pushedAt": "2026-10-26T12:40:51Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -28,7 +121,7 @@
       ],
       "readmeBytes": 10586,
       "brand": {
-        "name": "Abu Md. Moniruzzaman",
+        "name": "Abu Md. Moniruzjaman",
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
         "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
@@ -79,99 +172,6 @@
       ],
       "readmeBytes": 12064,
       "brand": null,
-      "featured": false
-    },
-    {
-      "name": "AgriChem-Guide-Pest-Control-Database",
-      "slug": "agrichem-guide-pest-control-database",
-      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
-      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 5,711+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
-      "language": "TypeScript",
-      "topics": [
-        "agriculture",
-        "bangladesh",
-        "bilingual",
-        "dae",
-        "frac",
-        "hrac",
-        "irac",
-        "moa",
-        "pesticide",
-        "progressive-web-app",
-        "pwa",
-        "react",
-        "typescript",
-        "vite"
-      ],
-      "stars": 0,
-      "pushedAt": "2026-10-25T17:45:01Z",
-      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
-      "live": "https://pesticide.krishiai.live",
-      "customDomain": "https://pesticide.krishiai.live",
-      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
-      "channels": [
-        "custom-domain",
-        "github-pages"
-      ],
-      "readmeBytes": 15803,
-      "brand": {
-        "name": "PesticideNext",
-        "themeColor": "#006a4e",
-        "icon": "https://pesticide.krishiai.live/icons/icon-192.png",
-        "image": "https://pesticide.krishiai.live/og-image.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-25T11:18:56Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "fertilizer",
-      "slug": "fertilizer",
-      "title": "Fertilizer Management — Burden to Bloom",
-      "description": "The path leads toward transparency, accountability, precision and dignity.",
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-22T22:00:48Z",
-      "url": "https://github.com/moniruzjaman/fertilizer",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/fertilizer/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 1679,
-      "brand": {
-        "name": "Fertilizer Management — Burden to Bloom",
-        "themeColor": "#006a4e",
-        "icon": "https://moniruzjaman.github.io/apple-touch-icon.png",
-        "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
-        "source": "html"
-      },
       "featured": false
     },
     {

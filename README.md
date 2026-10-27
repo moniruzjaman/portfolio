@@ -122,6 +122,13 @@ thesis, study, গবেষণা) becomes **Research**; every other file goes b
 **PDF**, slides to **Presentations**, the rest to **Other files**. Sub-folders are
 walked (up to `maxDepth`) and shown as a label on each card.
 
+**What is published.** Only the file types in `kinds` (default PDF, slides, Word-style
+documents). Images, zips, HTML, audio/video, code and spreadsheets are never listed,
+so a working-directory folder cannot become a public file listing. To keep a folder
+out entirely, add its name to `excludeFolders` — it is never entered, which the
+tests verify. Counts of everything skipped are written to
+`src/data/library-skipped.generated.json`.
+
 **Zero credentials (works today):** share the folder as *Anyone with the link →
 Viewer*. The page shows Drive's own folder view, click-to-load.
 

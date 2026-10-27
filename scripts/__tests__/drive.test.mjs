@@ -161,7 +161,7 @@ test("root mode: one folder is crawled once and sorted into collections", async 
     [id(2)]: [{ id: id(5), name: "Trial.pdf", mimeType: "application/pdf", modifiedTime: "2026-02-01T00:00:00Z" }],
     [id(3)]: [{ id: id(6), name: "Deck.pptx", mimeType: PPTX, modifiedTime: "2026-03-01T00:00:00Z" }],
   });
-  const config = { root: { folderId: "ROOTFOLDER01", researchPattern: "research" }, collections: ["research", "pdf", "pptx", "other"].map((k) => col(k, null)) };
+  const config = { kinds: ["pdf", "slides", "doc", "sheet"], root: { folderId: "ROOTFOLDER01", researchPattern: "research" }, collections: ["research", "pdf", "pptx", "other"].map((k) => col(k, null)) };
   const paths = await setup(config);
   const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
   m.s.close();
@@ -179,4 +179,67 @@ test("root mode, no credentials: root is kept so the site can embed the folder",
   assert.equal(kept.collections[0].items.length, 1, "same root keeps its index");
   const dropped = mergeWithoutCredentials({ root: { folderId: "OTHERFOLDER01" }, collections: [{ ...col("pdf", null), items: [{ id: "a" }] }] }, config);
   assert.equal(dropped.collections[0].items.length, 0, "changed root drops stale files");
+});
+
+/* ── publish documents only; never enter excluded folders ────────────── */
+import { DEFAULT_KINDS } from "../sync-drive.mjs";
+
+test("a project-dump folder publishes documents only, and counts what it skipped", async () => {
+  const m = await mockDrive({
+    ROOTFOLDER01: [
+      { id: id(1), name: "Report.pdf", mimeType: "application/pdf", modifiedTime: "2026-01-01T00:00:00Z" },
+      { id: id(2), name: "logo.png", mimeType: "image/png" },
+      { id: id(3), name: "site.zip", mimeType: "application/zip" },
+      { id: id(4), name: "index.html", mimeType: "text/html" },
+      { id: id(5), name: "clip.mp4", mimeType: "video/mp4" },
+      { id: id(6), name: "budget.xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+      { id: id(7), name: "Notes.docx", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", modifiedTime: "2026-02-01T00:00:00Z" },
+    ],
+  });
+  const config = { root: { folderId: "ROOTFOLDER01" }, collections: ["research", "pdf", "pptx", "other"].map((k) => col(k, null)) };
+  const paths = await setup(config);
+  const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
+  m.s.close();
+  assert.deepEqual(DEFAULT_KINDS, ["pdf", "slides", "doc"]);
+  const titles = out.collections.flatMap((c) => c.items.map((i) => i.title)).sort();
+  assert.deepEqual(titles, ["Notes", "Report"], "images, zips, html, video and spreadsheets are not published");
+  const audit = JSON.parse(await readFile(paths.skipped));
+  assert.equal(audit.counts["file type not published: image"], 1);
+  assert.equal(audit.counts["file type not published: sheet"], 1);
+  assert.equal(audit.total, 0, "bulk type skips are counted, not listed file by file");
+});
+
+test("config.kinds can widen what is published", async () => {
+  const m = await mockDrive({ ROOTFOLDER01: [{ id: id(1), name: "data.xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }] });
+  const config = { kinds: ["pdf", "sheet"], root: { folderId: "ROOTFOLDER01" }, collections: [col("other", null)] };
+  const paths = await setup(config);
+  const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
+  m.s.close();
+  assert.equal(out.collections[0].items.length, 1);
+});
+
+test("excludeFolders: matched case-insensitively at any depth and NEVER entered", async () => {
+  const m = await mockDrive({
+    ROOTFOLDER01: [
+      { id: id(1), name: "Keep", mimeType: FOLDER },
+      { id: id(2), name: "Private Stuff", mimeType: FOLDER },
+    ],
+    [id(1)]: [
+      { id: id(3), name: "Nested", mimeType: FOLDER },
+      { id: id(4), name: "ok.pdf", mimeType: "application/pdf" },
+    ],
+    [id(3)]: [{ id: id(5), name: "PRIVATE STUFF", mimeType: FOLDER }],
+    [id(2)]: [{ id: id(6), name: "secret.pdf", mimeType: "application/pdf" }],
+    [id(5)]: [{ id: id(7), name: "deep-secret.pdf", mimeType: "application/pdf" }],
+  });
+  const config = { excludeFolders: ["private stuff"], root: { folderId: "ROOTFOLDER01" }, collections: [col("pdf", null)] };
+  const paths = await setup(config);
+  const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
+  m.s.close();
+  assert.deepEqual(out.collections[0].items.map((i) => i.title), ["ok"]);
+  const listed = m.seen.map((r) => r.q).join(" ");
+  assert.ok(!listed.includes(id(2)) && !listed.includes(id(5)), "an excluded folder must never be listed from Drive at all");
+  const audit = JSON.parse(await readFile(paths.skipped));
+  assert.equal(audit.counts["folder excluded by config: Private Stuff"], 1);
+  assert.equal(audit.counts["folder excluded by config: PRIVATE STUFF"], 1);
 });

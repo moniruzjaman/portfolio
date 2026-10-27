@@ -44,6 +44,9 @@ const TOKEN_URL = "https://oauth2.googleapis.com/token";
 const SCOPE = "https://www.googleapis.com/auth/drive.readonly";
 const ID_RE = /^[A-Za-z0-9_-]{10,}$/;
 const MAX_ITEMS = 2000;
+/** Only these are published unless config.kinds says otherwise. A shared folder is often
+ *  a working directory (images, zips, site source) — listing all of it publicly is a leak. */
+export const DEFAULT_KINDS = ["pdf", "slides", "doc"];
 const FOLDER = "application/vnd.google-apps.folder";
 const SHORTCUT = "application/vnd.google-apps.shortcut";
 
@@ -186,9 +189,13 @@ function makeClient({ apiKey, bearer, fetchImpl, base }) {
  * Walk one collection's folder tree. Returns { items, skipped }.
  * `verify` = true in service-account mode: skip anything not publicly readable.
  */
-export async function crawl(list, col, { maxDepth, verify }) {
+export async function crawl(list, col, { maxDepth, verify, kinds = null, excludeFolders = [] }) {
   const items = [];
   const skipped = [];
+  // Bulk reasons are counted, not listed: 1,100 "image" lines would bury the ones that matter.
+  const tally = {};
+  const bump = (r) => (tally[r] = (tally[r] || 0) + 1);
+  const excluded = new Set(excludeFolders.map((n) => String(n).trim().toLowerCase()));
   const headers = col.resourceKey ? { "X-Goog-Drive-Resource-Keys": `${col.folderId}/${col.resourceKey}` } : {};
   const fields =
     "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey" + (verify ? ",permissions(type,role)" : "") + ")";
@@ -230,12 +237,18 @@ export async function crawl(list, col, { maxDepth, verify }) {
           continue;
         }
         if (f.mimeType === FOLDER) {
-          if (depth + 1 > maxDepth) skipped.push({ id: f.id, name: f.name, reason: `deeper than maxDepth=${maxDepth}` });
+          if (excluded.has(f.name.trim().toLowerCase())) bump(`folder excluded by config: ${f.name}`);
+          else if (depth + 1 > maxDepth) bump(`folder deeper than maxDepth=${maxDepth}`);
           else queue.push({ id: f.id, path: [...path, f.name], depth: depth + 1 });
           continue;
         }
         if (f.mimeType === SHORTCUT) {
           skipped.push({ id: f.id, name: f.name, reason: "shortcut (target not followed)" });
+          continue;
+        }
+        const kind0 = kindOf(f.mimeType, f.name);
+        if (kinds && !kinds.includes(kind0)) {
+          bump(`file type not published: ${kind0}`);
           continue;
         }
         if (verify && !isPublic(f)) {
@@ -258,7 +271,7 @@ export async function crawl(list, col, { maxDepth, verify }) {
   }
 
   items.sort((a, b) => (b.modified || "").localeCompare(a.modified || "") || a.title.localeCompare(b.title));
-  return { items, skipped };
+  return { items, skipped, tally };
 }
 
 /* ── output assembly ───────────────────────────────────────────────────── */
@@ -349,6 +362,7 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
   console.log(`▸ syncing Drive library (${mode})`);
   const collections = [];
   const skippedAll = [];
+  let skipCounts = {};
 
   const root = rootMeta(config);
   if (config.root?.folderId && !root) throw new Error(`root.folderId "${config.root.folderId}" does not look like a Drive id`);
@@ -357,7 +371,7 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
     // One folder, sorted into the configured collections by assignCollection().
     const researchRe = new RegExp(config.root.researchPattern || "research", "i");
     const known = new Set(config.collections.map((c) => c.key));
-    const { items, skipped } = await crawl(
+    const { items, skipped, tally } = await crawl(
       list,
       {
         key: "root",
@@ -369,9 +383,15 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
           return known.has(k) ? k : "other";
         },
       },
-      { maxDepth, verify: mode === "service-account" },
+      {
+        maxDepth,
+        verify: mode === "service-account",
+        kinds: Array.isArray(config.kinds) ? config.kinds : DEFAULT_KINDS,
+        excludeFolders: config.excludeFolders || [],
+      },
     );
     skippedAll.push(...skipped.map((s) => ({ collection: "root", ...s })));
+    skipCounts = tally;
     for (const c of config.collections) {
       const mine = items.filter((i) => i.collection === c.key);
       collections.push({ ...collectionMeta(c), folderId: null, items: mine });
@@ -386,11 +406,13 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
     await write(paths.out, payload);
     await write(paths.skipped, {
       generatedAt: payload.generatedAt,
-      note: "Audit trail — files seen in the configured folder but NOT published, and why.",
+      note: "Audit trail — what was seen in the configured folder but NOT published, and why. 'counts' are bulk reasons; 'skipped' lists individual files.",
+      counts: skipCounts,
       total: skippedAll.length,
       skipped: skippedAll,
     });
-    console.log(`\n✔ ${items.length} file(s) indexed · ${skippedAll.length} skipped`);
+    for (const [r, n] of Object.entries(skipCounts).sort((a, b) => b[1] - a[1])) console.log(`  · ${n} × ${r}`);
+    console.log(`\n✔ ${items.length} file(s) published · ${skippedAll.length} individually skipped`);
     return payload;
   }
 

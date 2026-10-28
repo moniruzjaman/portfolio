@@ -1,38 +1,59 @@
 {
-  "generatedAt": "2026-10-27T13:27:42.507Z",
+  "generatedAt": "2026-10-28T09:39:17.690Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
+    "vercel": 26,
     "github-pages": 30,
     "custom-domain": 4,
-    "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
     {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-27T13:26:54Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
+      "pushedAt": "2026-10-27T23:02:10Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 17671,
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "kaggle-dataset",
+      "slug": "kaggle-dataset",
+      "title": "Plant Disease Detection System",
+      "description": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-27T22:38:03Z",
+      "url": "https://github.com/moniruzjaman/kaggle-dataset",
       "live": null,
       "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "pages": "https://moniruzjaman.github.io/kaggle-dataset/",
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 11024,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
-      },
+      "readmeBytes": 12933,
+      "brand": null,
       "featured": false
     },
     {
@@ -58,7 +79,7 @@
         "vite-react"
       ],
       "stars": 0,
-      "pushedAt": "2026-10-27T12:35:17Z",
+      "pushedAt": "2026-10-27T19:36:43Z",
       "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
       "live": "https://pest-next.krishiai.live",
       "customDomain": "https://pest-next.krishiai.live",
@@ -74,6 +95,31 @@
         "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
         "image": "https://pesticide.krishiai.live/og-image.png",
         "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-27T13:28:08Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11024,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
       },
       "featured": false
     },
@@ -126,52 +172,6 @@
         "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
         "source": "html"
       },
-      "featured": false
-    },
-    {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-26T08:39:04Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "readmeBytes": 17671,
-      "brand": {
-        "name": "উদ্ভিদ গোয়েন্দা",
-        "themeColor": "#046a1a",
-        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
-        "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "kaggle-dataset",
-      "slug": "kaggle-dataset",
-      "title": "Plant Disease Detection System",
-      "description": null,
-      "language": "Python",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-25T19:51:31Z",
-      "url": "https://github.com/moniruzjaman/kaggle-dataset",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/kaggle-dataset/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 12064,
-      "brand": null,
       "featured": false
     },
     {

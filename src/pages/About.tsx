@@ -99,14 +99,14 @@ export default function About() {
               <p className="u-eyebrow mb-5 text-moss-400">{t("Contact", "যোগাযোগ")}</p>
               <ul className="space-y-4 text-sm">
                 <li>
-                  <a href={`mailto:${author.email}`} className="flex items-start gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                  <a href={`mailto:${author.email}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
                     <Mail size={15} className="mt-0.5 shrink-0 text-forest-500" />
                     <span className="break-all">{author.email}</span>
                   </a>
                 </li>
                 {author.showPhone && (
                 <li>
-                  <a href={`tel:+${author.phone.replace(/^\+/, "")}`} className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                  <a href={`tel:+${author.phone.replace(/^\+/, "")}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
                     <Phone size={15} className="shrink-0 text-forest-500" />
                     {author.phoneDisplay}
                   </a>
@@ -114,13 +114,13 @@ export default function About() {
                 )}
                 {socials.map(({ key, href, handle, Icon }) => (
                   <li key={key}>
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
                       <Icon size={15} className="shrink-0 text-forest-500" />
                       <span className="break-all">{handle}</span>
                     </a>
                   </li>
                 ))}
-                <li className="flex items-start gap-2.5 text-moss-600">
+                <li className="flex min-h-11 items-center gap-2.5 text-moss-600">
                   <MapPin size={15} className="mt-0.5 shrink-0 text-forest-500" />
                   <span>
                     {author.org}, {author.location}

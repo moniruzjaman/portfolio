@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
-import { brandOf, primaryEndpoint, relativeDate, CHANNEL_COLOR, CHANNEL_LABEL, type Repo } from "@/lib/data";
+import { brandOf, primaryEndpoint, relativeDate, CHANNEL_LABEL, type Repo } from "@/lib/data";
+import { AUDIENCE_LABEL, audiencesOf, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
 import type { Brand } from "@/lib/brand";
 import { Chip } from "@/components/Section";
 import { useI18n } from "@/lib/i18n";
@@ -57,6 +58,8 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
   const { lang } = useI18n();
   const brand = brandOf(repo);
   const ep = primaryEndpoint(repo);
+  const summary = summaryFor(repo, lang);
+  const audiences = audiencesOf(repo).slice(0, 2);
 
   return (
     <Link
@@ -67,7 +70,7 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
         <BrandMark brand={brand} size={compact ? 38 : 44} />
         <span className="min-w-0 flex-1">
           <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em] opacity-90">
-            {ep ? ep.label : repo.name}
+            {ep ? ep.short : repo.name}
           </span>
           <span className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] opacity-75">
             {repo.channels.map((c) => CHANNEL_LABEL[c][lang]).join(" · ")}
@@ -81,21 +84,21 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{repo.title}</h3>
-        {repo.description && (
+        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{titleFor(repo, lang)}</h3>
+        {summary && (
           <p className={`mt-2 flex-1 text-sm leading-relaxed text-moss-600 ${compact ? "line-clamp-2" : "line-clamp-3"}`}>
-            {repo.description}
+            {summary}
           </p>
         )}
-        <div className="mt-4 flex flex-wrap items-center gap-1.5">
-          {repo.channels.map((c) => (
-            <Chip key={c} color={CHANNEL_COLOR[c]}>
-              {CHANNEL_LABEL[c][lang]}
-            </Chip>
-          ))}
-        </div>
+        {audiences.length > 0 && (
+          <div className="mt-4 flex flex-wrap items-center gap-1.5">
+            {audiences.map((a) => (
+              <Chip key={a}>{AUDIENCE_LABEL[a][lang]}</Chip>
+            ))}
+          </div>
+        )}
         <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
-          <span>{repo.language ?? "—"}</span>
+          <span>{TYPE_LABEL[typeOf(repo)][lang]}</span>
           <span className="flex items-center gap-1.5">
             {ep && <span className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400" aria-label={lang === "bn" ? "চালু" : "live"} />}
             {relativeDate(repo.pushedAt)}

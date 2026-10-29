@@ -43,7 +43,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
       }`}
     >
       <div className="u-container flex items-center justify-between py-4">
-        <Link href="/" className="group flex items-center gap-3" aria-label={author.name}>
+        <Link href="/" className="group flex min-h-11 min-w-11 items-center gap-3" aria-label={author.name}>
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-900 font-serif text-sm font-black text-gold-400 transition-transform group-hover:-rotate-6">
             {author.initials}
           </span>
@@ -71,7 +71,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
           <button
             onClick={onSearch}
             aria-label={t("Search", "অনুসন্ধান")}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 transition-colors hover:bg-forest-900 hover:text-cream-100"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 transition-colors hover:bg-forest-900 hover:text-cream-100"
           >
             <Search size={15} />
           </button>
@@ -80,7 +80,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
             onClick={toggle}
             aria-label={t("Switch language", "ভাষা পরিবর্তন")}
             aria-live="polite"
-            className="rounded-full bg-forest-900 px-4 py-2 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
+            className="flex min-h-11 items-center rounded-full bg-forest-900 px-5 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
           >
             {lang === "en" ? "বাংলা" : "EN"}
           </button>
@@ -89,7 +89,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
             onClick={() => setOpen((o) => !o)}
             aria-label={t("Menu", "মেনু")}
             aria-expanded={open}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
           >
             {open ? <X size={16} /> : <Menu size={16} />}
           </button>
@@ -103,7 +103,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
               <Link
                 key={l.href}
                 href={l.href}
-                className="u-eyebrow py-3 text-moss-500 transition-colors hover:text-forest-900"
+                className="u-eyebrow flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
               >
                 {t(l.en, l.bn)}
               </Link>
@@ -129,21 +129,21 @@ export function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-col gap-2 text-sm" aria-label="Footer">
+        <nav className="flex flex-col text-sm" aria-label="Footer">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="text-moss-500 transition-colors hover:text-forest-900">
+            <Link key={l.href} href={l.href} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
               {t(l.en, l.bn)}
             </Link>
           ))}
         </nav>
 
-        <div className="flex flex-col gap-2 text-sm">
-          <a href={`mailto:${author.email}`} className="text-moss-500 transition-colors hover:text-forest-900">
+        <div className="flex flex-col text-sm">
+          <a href={`mailto:${author.email}`} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
             {author.email}
           </a>
-          <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <div className="flex flex-wrap gap-x-5">
             {socials.map(({ key, label, href }) => (
-              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="text-moss-500 transition-colors hover:text-forest-900">
+              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
                 {label}
               </a>
             ))}
@@ -160,7 +160,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${s.label} (opens in a new tab)`}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-forest-300 text-moss-500 transition-colors hover:border-forest-500 hover:bg-white hover:text-forest-900"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-300 text-moss-500 transition-colors hover:border-forest-500 hover:bg-white hover:text-forest-900"
                 >
                   <Icon size={15} />
                 </a>

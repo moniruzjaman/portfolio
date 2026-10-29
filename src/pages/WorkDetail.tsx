@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { GithubMark } from "@/components/icons";
 import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
 import { BrandMark } from "@/components/AppCard";
+import { AUDIENCE_BLURB, AUDIENCE_LABEL, audiencesOf, isLaunchable, notesFor, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
 import { notes } from "@/content/notes";
 import { PageHeader, Chip } from "@/components/Section";
 import { useI18n } from "@/lib/i18n";
@@ -17,6 +18,11 @@ export default function WorkDetail() {
 
   const brand = brandOf(repo);
   const endpoints = endpointsOf(repo);
+  const title = titleFor(repo, lang);
+  const summary = summaryFor(repo, lang);
+  const notesText = notesFor(repo, lang);
+  const audiences = audiencesOf(repo);
+  const launchable = isLaunchable(repo);
 
   const related = notes
     .filter((n) =>
@@ -33,10 +39,10 @@ export default function WorkDetail() {
         lang={lang}
         eyebrowEn={repo.name}
         eyebrowBn={repo.name}
-        titleEn={repo.title}
-        titleBn={repo.title}
-        ledeEn={repo.description ?? undefined}
-        ledeBn={repo.description ?? undefined}
+        titleEn={title}
+        titleBn={title}
+        ledeEn={summary || undefined}
+        ledeBn={summary || undefined}
       />
 
       <section className="px-5 py-12 sm:px-8 lg:px-12">
@@ -44,7 +50,7 @@ export default function WorkDetail() {
           <div>
             <Link
               href="/works"
-              className="mb-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500 transition-colors hover:text-forest-900"
+              className="mb-4 inline-flex min-h-11 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500 transition-colors hover:text-forest-900"
             >
               <ArrowLeft size={13} /> {t("All works", "সব কাজ")}
             </Link>
@@ -79,21 +85,28 @@ export default function WorkDetail() {
               </div>
             </div>
 
-            {repo.description && (
-              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">
-                {repo.description}
-              </p>
+            <div className="mb-6 flex flex-wrap items-center gap-2">
+              <Chip>{TYPE_LABEL[typeOf(repo)][lang]}</Chip>
+              {audiences.map((a) => (
+                <span key={a} title={AUDIENCE_BLURB[a][lang]}>
+                  <Chip color="var(--color-gold-400)">{AUDIENCE_LABEL[a][lang]}</Chip>
+                </span>
+              ))}
+            </div>
+
+            {notesText && (
+              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">{notesText}</p>
             )}
 
             <div className="mt-10 flex flex-wrap gap-3">
-              {repo.live && (
+              {(repo.live ?? repo.customDomain) && (
                 <a
-                  href={repo.live}
+                  href={(repo.live ?? repo.customDomain)!}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-forest-900 px-5 py-2.5 text-sm font-bold text-cream-100 transition-transform hover:-translate-y-0.5"
                 >
-                  <Globe size={15} /> {t("Live site", "সরাসরি")} <ExternalLink size={12} />
+                  <Globe size={15} /> {launchable ? t("Launch app", "অ্যাপ চালু করুন") : t("Open", "খুলুন")} <ExternalLink size={12} />
                 </a>
               )}
               {repo.pages && (

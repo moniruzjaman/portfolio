@@ -5,42 +5,58 @@ import { repos, endpointDirectory, stats, CHANNEL_LABEL, CHANNEL_COLOR, meta, ty
 import { PageHeader, Chip } from "@/components/Section";
 import { AppCard } from "@/components/AppCard";
 import { PlatformTiles } from "@/components/PlatformTiles";
+import { FLAGSHIP_NAMES } from "@/content/apps";
+import { AUDIENCES, AUDIENCE_LABEL, AUDIENCE_BLURB, audiencesOf, summaryFor, titleFor, typeOf, type Audience, type AppType } from "@/lib/curation";
 import { useI18n } from "@/lib/i18n";
 
 type View = "catalogue" | "endpoints";
+
+/** Visitors think in "tools / documents / code", not in five internal types. */
+type Group = "apps" | "documents" | "code" | "all";
+const GROUP_OF: Record<AppType, Exclude<Group, "all">> = { app: "apps", report: "documents", ebook: "documents", dataset: "code", source: "code" };
+const GROUPS: { key: Group; en: string; bn: string }[] = [
+  { key: "apps", en: "Apps", bn: "অ্যাপ" },
+  { key: "documents", en: "Documents", bn: "নথি" },
+  { key: "code", en: "Code", bn: "কোড" },
+  { key: "all", en: "All", bn: "সব" },
+];
 
 export default function Works() {
   const { t, lang } = useI18n();
   const [channel, setChannel] = useState<Channel | "all">("all");
   const [view, setView] = useState<View>("catalogue");
-  const [langFilter, setLangFilter] = useState<string>("all");
+  const [group, setGroup] = useState<Group>("apps");
+  const [audience, setAudience] = useState<Audience | "all">("all");
   const [q, setQ] = useState("");
-
-  const languages = useMemo(
-    () => [...new Set(repos.map((r) => r.language).filter(Boolean))].sort() as string[],
-    [],
-  );
   const needle = q.trim().toLowerCase();
 
-  const shown = useMemo(
-    () =>
-      repos.filter((r) => {
-        if (channel !== "all" && !r.channels.includes(channel)) return false;
-        if (langFilter !== "all" && r.language !== langFilter) return false;
-        if (!needle) return true;
-        return [r.name, r.title, r.description ?? "", ...r.topics].join(" ").toLowerCase().includes(needle);
-      }),
-    [channel, langFilter, needle],
+  /** One predicate for both views, so the Apps and Addresses views never disagree. */
+  const matches = useMemo(
+    () => (r: (typeof repos)[number]) => {
+      if (channel !== "all" && !r.channels.includes(channel)) return false;
+      if (group !== "all" && GROUP_OF[typeOf(r)] !== group) return false;
+      if (audience !== "all" && !audiencesOf(r).includes(audience)) return false;
+      if (!needle) return true;
+      return [r.name, r.title, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...r.topics]
+        .join(" ")
+        .toLowerCase()
+        .includes(needle);
+    },
+    [channel, group, audience, needle],
   );
+
+  // Flagship apps lead (curated order in src/content/apps.ts); the rest follow by recent activity.
+  const rank = (name: string) => {
+    const i = (FLAGSHIP_NAMES as readonly string[]).indexOf(name);
+    return i === -1 ? FLAGSHIP_NAMES.length : i;
+  };
+  const shown = useMemo(() => repos.filter(matches).sort((a, b) => rank(a.name) - rank(b.name)), [matches]); // eslint-disable-line react-hooks/exhaustive-deps
+  const groupCount = (g: Group) => repos.filter((r) => g === "all" || GROUP_OF[typeOf(r)] === g).length;
 
   const rows = useMemo(
     () =>
-      endpointDirectory.filter(
-        (e) =>
-          (channel === "all" || e.channel === channel) &&
-          (!needle || [e.label, e.repo.title, e.repo.name].join(" ").toLowerCase().includes(needle)),
-      ),
-    [channel, needle],
+      endpointDirectory.filter((e) => (channel === "all" || e.channel === channel) && matches(e.repo)),
+    [channel, matches],
   );
 
   return (
@@ -59,54 +75,70 @@ export default function Works() {
         <div className="u-container">
           <PlatformTiles value={channel} onSelect={setChannel} />
 
-          <div className="mb-8 mt-10 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
-            <div role="group" aria-label={t("View", "দৃশ্য")} className="flex gap-2">
-              {(["catalogue", "endpoints"] as const).map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  aria-pressed={view === v}
-                  onClick={() => setView(v)}
-                  className={`min-h-11 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
-                    view === v ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
-                  }`}
-                >
-                  {v === "catalogue" ? t("Apps", "অ্যাপ") : t("Addresses", "ঠিকানা")}
-                </button>
-              ))}
+          <div className="mb-8 mt-10 space-y-4 border-b border-forest-300 pb-6">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div role="group" aria-label={t("What to show", "কী দেখাবেন")} className="flex flex-wrap gap-2">
+                {GROUPS.map((g) => (
+                  <button
+                    key={g.key}
+                    type="button"
+                    aria-pressed={group === g.key}
+                    onClick={() => setGroup(g.key)}
+                    className={`min-h-11 shrink-0 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                      group === g.key ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                    }`}
+                  >
+                    {t(g.en, g.bn)} · {groupCount(g.key)}
+                  </button>
+                ))}
+              </div>
+              <div className="flex gap-3">
+                <div role="group" aria-label={t("View", "দৃশ্য")} className="flex shrink-0 gap-0.5 rounded-full border border-forest-300 p-0.5">
+                  {(["catalogue", "endpoints"] as const).map((v) => (
+                    <button
+                      key={v}
+                      type="button"
+                      aria-pressed={view === v}
+                      onClick={() => setView(v)}
+                      className={`min-h-11 rounded-full px-4 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+                        view === v ? "bg-forest-900 text-cream-100" : "text-moss-500 hover:text-forest-900"
+                      }`}
+                    >
+                      {v === "catalogue" ? t("Cards", "কার্ড") : t("Addresses", "ঠিকানা")}
+                    </button>
+                  ))}
+                </div>
+                <label className="min-w-0 flex-1">
+                  <span className="sr-only">{t("Filter", "ফিল্টার")}</span>
+                  <input
+                    id="work-search"
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    placeholder={t("Filter…", "খুঁজুন…")}
+                    className="min-h-11 w-full rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400 lg:w-56"
+                  />
+                </label>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              {view === "catalogue" && (
-                <>
-                  <label className="sr-only" htmlFor="lang-filter">
-                    {t("Filter by language", "ভাষা অনুযায়ী ফিল্টার")}
-                  </label>
-                  <select
-                    id="lang-filter"
-                    value={langFilter}
-                    onChange={(e) => setLangFilter(e.target.value)}
-                    className="min-h-11 rounded-full border border-forest-300 bg-white px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-moss-500"
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="u-eyebrow shrink-0 text-moss-400">{t("For", "যাদের জন্য")}</span>
+              <div role="group" aria-label={t("Audience", "ব্যবহারকারী")} className="flex flex-wrap gap-2">
+                {AUDIENCES.map((a) => (
+                  <button
+                    key={a}
+                    type="button"
+                    aria-pressed={audience === a}
+                    title={AUDIENCE_BLURB[a][lang]}
+                    onClick={() => setAudience(audience === a ? "all" : a)}
+                    className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-bold transition-colors ${
+                      audience === a ? "border-gold-500 bg-gold-400/20 text-forest-900" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                    }`}
                   >
-                    <option value="all">{t("Any language", "যেকোনো ভাষা")}</option>
-                    {languages.map((l) => (
-                      <option key={l} value={l}>
-                        {l}
-                      </option>
-                    ))}
-                  </select>
-                </>
-              )}
-              <label className="sr-only" htmlFor="work-search">
-                {t("Filter", "ফিল্টার")}
-              </label>
-              <input
-                id="work-search"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder={t("Filter…", "খুঁজুন…")}
-                className="min-h-11 rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
-              />
+                    {AUDIENCE_LABEL[a][lang]}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

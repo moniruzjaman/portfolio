@@ -3,6 +3,7 @@ import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileI
 import { PageHeader, Chip } from "@/components/Section";
 import { DocPreview } from "@/components/DocPreview";
 import { useI18n } from "@/lib/i18n";
+import { libCurationFor, SHELF_LABEL, SHELVES } from "@/lib/curation";
 import {
   folderEmbedUrl,
   folderUrl,
@@ -19,6 +20,11 @@ const PAGE = 24;
 
 /** "Web upload " / "Pesticides_Crisis" → "Web upload" / "Pesticides Crisis". */
 const topicLabel = (i: LibItem) => (i.path[0] ?? "").replace(/_/g, " ").trim();
+
+/** Shelf + subjects per file, resolved once (curation is static). */
+const CURATION = new Map(libraryItems.map((i) => [i.id, libCurationFor(i.id, i.path)]));
+const shelfOf = (i: LibItem) => CURATION.get(i.id)!.shelf;
+const subjectsOf = (i: LibItem) => CURATION.get(i.id)!.subjects;
 
 const KIND_ICON: Record<Kind, typeof FileText> = {
   pdf: FileText,
@@ -66,16 +72,16 @@ export default function Library() {
 
   const topics = useMemo(() => {
     const n = new Map<string, number>();
-    for (const i of libraryItems) if (tab === "all" || i.collection === tab) n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
+    for (const i of libraryItems) if (tab === "all" || shelfOf(i) === tab) n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
     return [...n.entries()].sort((a, b) => b[1] - a[1]);
   }, [tab]);
 
   const shown = useMemo(() => {
     const needle = q.trim().toLowerCase();
     return libraryItems
-      .filter((i) => tab === "all" || i.collection === tab)
+      .filter((i) => tab === "all" || shelfOf(i) === tab)
       .filter((i) => topic === "all" || topicLabel(i) === topic)
-      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind].join(" ").toLowerCase().includes(needle))
+      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind, subjectsOf(i).join(" ")].join(" ").toLowerCase().includes(needle))
       .sort((a, b) =>
         sort === "title" ? a.title.localeCompare(b.title) : (b.modified ?? "").localeCompare(a.modified ?? ""),
       );
@@ -87,7 +93,7 @@ export default function Library() {
   const indexed = libraryItems.length > 0;
   const tabs = [
     { key: "all", label: t("All", "সব"), n: libraryItems.length },
-    ...library.collections.filter((c) => c.items.length > 0).map((c) => ({ key: c.key, label: lang === "bn" ? c.titleBn : c.title, n: c.items.length })),
+    ...SHELVES.map((k) => ({ key: k as string, label: SHELF_LABEL[k][lang], n: libraryItems.filter((i) => shelfOf(i) === k).length })).filter((x) => x.n > 0),
   ];
 
   return (
@@ -188,7 +194,9 @@ export default function Library() {
                         <span className="flex flex-1 flex-col p-4">
                           <span className="mb-2 flex flex-wrap items-center gap-1.5">
                             <Chip>{KIND_LABEL[i.kind][lang]}</Chip>
-                            {topicLabel(i) && <Chip>{topicLabel(i)}</Chip>}
+                            {(subjectsOf(i).length ? subjectsOf(i).slice(0, 2) : [topicLabel(i)]).filter(Boolean).map((x) => (
+                              <Chip key={x}>{x}</Chip>
+                            ))}
                           </span>
                           <span className="line-clamp-3 font-serif text-base font-black leading-snug text-forest-900">{i.title}</span>
                           <span className="mt-auto pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">

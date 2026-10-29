@@ -1,0 +1,1004 @@
+From f2049b099df9b4afd28b32ba2e840bd9a2edd9d7 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 29 Oct 2026 04:01:58 +0000
+Subject: [PATCH] feat: wire curation into the UI, library shelves, 44px touch
+ targets, mobile fixes
+
+- cards, detail, search and filters now use content-data/apps.json (curated bilingual
+  titles/summaries, audience, type); filters: Apps/Documents/Code x audience
+- flagship apps lead the catalogue in curated order (src/content/apps.ts)
+- library tabs are the curated shelves; folder matching is tolerant of case,
+  underscores, trailing spaces and word-boundary prefixes (src/lib/shelf.ts)
+- every interactive element >= 44px on all 7 pages (was 33-36px in header, 16-24px links)
+- platform tiles: round dots, tidy captions, honest Cloudflare state
+- card addresses show the informative part (/path on github.io); no duplicate platform
+- phone home: name + portrait above the fold
+- tests: shelf resolver, curation data integrity (32 total)
+---
+ scripts/__tests__/curation.test.mjs |  74 +++++++++++++
+ src/components/AppCard.tsx          |  29 ++---
+ src/components/Chrome.tsx           |  24 ++--
+ src/components/KnowledgeGraph.tsx   |   2 +-
+ src/components/PlatformTiles.tsx    |  15 +--
+ src/components/SearchDialog.tsx     |   7 +-
+ src/lib/curation.ts                 |  22 ++--
+ src/lib/data.ts                     |   7 +-
+ src/lib/shelf.ts                    |  38 +++++++
+ src/pages/About.tsx                 |   8 +-
+ src/pages/Expertise.tsx             |   6 +-
+ src/pages/Home.tsx                  |  35 ++++--
+ src/pages/Library.tsx               |  18 ++-
+ src/pages/Notes.tsx                 |   4 +-
+ src/pages/WorkDetail.tsx            |  37 +++++--
+ src/pages/Works.tsx                 | 164 +++++++++++++++++-----------
+ 16 files changed, 335 insertions(+), 155 deletions(-)
+ create mode 100644 scripts/__tests__/curation.test.mjs
+ create mode 100644 src/lib/shelf.ts
+
+diff --git a/scripts/__tests__/curation.test.mjs b/scripts/__tests__/curation.test.mjs
+new file mode 100644
+index 0000000..8d749b5
+--- /dev/null
++++ b/scripts/__tests__/curation.test.mjs
+@@ -0,0 +1,74 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import { readFileSync } from "node:fs";
++import { resolveShelf, norm } from "../../src/lib/shelf.ts";
++
++const json = (p) => JSON.parse(readFileSync(new URL(`../../${p}`, import.meta.url), "utf8"));
++const apps = json("content-data/apps.json").apps;
++const lib = json("content-data/library-curation.json");
++const repos = json("src/data/repos.generated.json").repos;
++const lj = json("src/data/library.generated.json");
++
++const DATA = {
++  default: { shelf: "other", subjects: [] },
++  byPath: {
++    Pesticides_Crisis: { shelf: "research", subjects: ["pesticide"] },
++    "Krishak Card": { shelf: "report", subjects: ["krishak-card"] },
++    Gap: { shelf: "guide", subjects: ["gap"] },
++    "Krishak Card Extra": { shelf: "training", subjects: ["x"] },
++  },
++  entries: { file_override_0001: { shelf: "ebook" } },
++};
++
++test("shelf: exact, case, underscore and stray-whitespace matching", () => {
++  assert.equal(resolveShelf(DATA, "a", ["Pesticides_Crisis"]).shelf, "research");
++  assert.equal(resolveShelf(DATA, "a", ["pesticides crisis "]).shelf, "research");
++  assert.equal(resolveShelf(DATA, "a", [" GAP"]).shelf, "guide");
++});
++
++test("shelf: a key matches a folder that STARTS with it on a word boundary only", () => {
++  assert.equal(resolveShelf(DATA, "a", ["Krishak card multimedia portal resources "]).shelf, "report");
++  assert.equal(resolveShelf(DATA, "a", ["Gapminder"]).shelf, "other", "'Gap' must not swallow 'Gapminder'");
++  assert.equal(resolveShelf(DATA, "a", ["Krishak cards"]).shelf, "other");
++});
++
++test("shelf: longest matching key wins; per-file entry overrides folder; unknown → default", () => {
++  assert.equal(resolveShelf(DATA, "a", ["Krishak card extra stuff"]).shelf, "training");
++  assert.equal(resolveShelf(DATA, "file_override_0001", ["Gap"]).shelf, "ebook");
++  assert.deepEqual(resolveShelf(DATA, "a", ["Nope"]), DATA.default);
++  assert.deepEqual(resolveShelf(DATA, "a", []), DATA.default);
++});
++
++test("norm", () => assert.equal(norm("  Web_upload  Files "), "web upload files"));
++
++/* ── integrity of the human-owned files ─────────────────────────────── */
++const TYPES = ["app", "report", "ebook", "dataset", "source"];
++const AUD = ["farmer", "officer", "policy", "learning"];
++const SHELVES = ["research", "report", "ebook", "guide", "training", "other"];
++
++test("apps.json: every entry is well-formed (a typo in a hand-edited file must fail loudly)", () => {
++  const bad = [];
++  for (const [name, e] of Object.entries(apps)) {
++    if (!TYPES.includes(e.type)) bad.push(`${name}: type "${e.type}"`);
++    if (!Array.isArray(e.audiences) || !e.audiences.length || e.audiences.some((a) => !AUD.includes(a))) bad.push(`${name}: audiences ${JSON.stringify(e.audiences)}`);
++    for (const f of ["titleEn", "titleBn", "summaryEn", "summaryBn"]) if (typeof e[f] !== "string" || !e[f].trim()) bad.push(`${name}: missing ${f}`);
++  }
++  assert.deepEqual(bad, []);
++});
++
++test("library-curation.json: only valid shelves", () => {
++  assert.ok(SHELVES.includes(lib.default.shelf));
++  for (const [k, v] of Object.entries(lib.byPath)) assert.ok(SHELVES.includes(v.shelf), `${k} → ${v.shelf}`);
++});
++
++test("coverage report (informational — never fails, because the daily sync adds/renames repos)", () => {
++  const names = new Set(repos.map((r) => r.name));
++  const orphans = Object.keys(apps).filter((k) => !names.has(k));
++  const uncurated = repos.filter((r) => !apps[r.name]).map((r) => r.name);
++  const items = lj.collections.flatMap((c) => c.items);
++  const unmapped = {};
++  for (const i of items) if (resolveShelf(lib, i.id, i.path).shelf === "other") unmapped[i.path[0]?.trim() || "(root)"] = (unmapped[i.path[0]?.trim() || "(root)"] || 0) + 1;
++  console.log(`  curation: ${Object.keys(apps).length} entries · ${orphans.length} orphaned ${JSON.stringify(orphans)} · ${uncurated.length} repos uncurated ${JSON.stringify(uncurated)}`);
++  console.log(`  library: ${items.length} files · unmapped folders → "Other": ${JSON.stringify(unmapped)}`);
++  assert.ok(true);
++});
+diff --git a/src/components/AppCard.tsx b/src/components/AppCard.tsx
+index dcf6147..048fd51 100644
+--- a/src/components/AppCard.tsx
++++ b/src/components/AppCard.tsx
+@@ -1,7 +1,8 @@
+ import { useState } from "react";
+ import { Link } from "wouter";
+ import { ArrowUpRight } from "lucide-react";
+-import { brandOf, primaryEndpoint, relativeDate, CHANNEL_COLOR, CHANNEL_LABEL, type Repo } from "@/lib/data";
++import { brandOf, primaryEndpoint, relativeDate, CHANNEL_LABEL, type Repo } from "@/lib/data";
++import { AUDIENCE_LABEL, audiencesOf, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
+ import type { Brand } from "@/lib/brand";
+ import { Chip } from "@/components/Section";
+ import { useI18n } from "@/lib/i18n";
+@@ -57,6 +58,8 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
+   const { lang } = useI18n();
+   const brand = brandOf(repo);
+   const ep = primaryEndpoint(repo);
++  const summary = summaryFor(repo, lang);
++  const audiences = audiencesOf(repo).slice(0, 2);
+ 
+   return (
+     <Link
+@@ -67,7 +70,7 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
+         <BrandMark brand={brand} size={compact ? 38 : 44} />
+         <span className="min-w-0 flex-1">
+           <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em] opacity-90">
+-            {ep ? ep.label : repo.name}
++            {ep ? ep.short : repo.name}
+           </span>
+           <span className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] opacity-75">
+             {repo.channels.map((c) => CHANNEL_LABEL[c][lang]).join(" · ")}
+@@ -81,21 +84,21 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
+       </div>
+ 
+       <div className="flex flex-1 flex-col p-5">
+-        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{repo.title}</h3>
+-        {repo.description && (
++        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{titleFor(repo, lang)}</h3>
++        {summary && (
+           <p className={`mt-2 flex-1 text-sm leading-relaxed text-moss-600 ${compact ? "line-clamp-2" : "line-clamp-3"}`}>
+-            {repo.description}
++            {summary}
+           </p>
+         )}
+-        <div className="mt-4 flex flex-wrap items-center gap-1.5">
+-          {repo.channels.map((c) => (
+-            <Chip key={c} color={CHANNEL_COLOR[c]}>
+-              {CHANNEL_LABEL[c][lang]}
+-            </Chip>
+-          ))}
+-        </div>
++        {audiences.length > 0 && (
++          <div className="mt-4 flex flex-wrap items-center gap-1.5">
++            {audiences.map((a) => (
++              <Chip key={a}>{AUDIENCE_LABEL[a][lang]}</Chip>
++            ))}
++          </div>
++        )}
+         <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
+-          <span>{repo.language ?? "—"}</span>
++          <span>{TYPE_LABEL[typeOf(repo)][lang]}</span>
+           <span className="flex items-center gap-1.5">
+             {ep && <span className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400" aria-label={lang === "bn" ? "চালু" : "live"} />}
+             {relativeDate(repo.pushedAt)}
+diff --git a/src/components/Chrome.tsx b/src/components/Chrome.tsx
+index 89bfc42..9ec3263 100644
+--- a/src/components/Chrome.tsx
++++ b/src/components/Chrome.tsx
+@@ -43,7 +43,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+       }`}
+     >
+       <div className="u-container flex items-center justify-between py-4">
+-        <Link href="/" className="group flex items-center gap-3" aria-label={author.name}>
++        <Link href="/" className="group flex min-h-11 min-w-11 items-center gap-3" aria-label={author.name}>
+           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-900 font-serif text-sm font-black text-gold-400 transition-transform group-hover:-rotate-6">
+             {author.initials}
+           </span>
+@@ -71,7 +71,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+           <button
+             onClick={onSearch}
+             aria-label={t("Search", "অনুসন্ধান")}
+-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 transition-colors hover:bg-forest-900 hover:text-cream-100"
++            className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 transition-colors hover:bg-forest-900 hover:text-cream-100"
+           >
+             <Search size={15} />
+           </button>
+@@ -80,7 +80,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+             onClick={toggle}
+             aria-label={t("Switch language", "ভাষা পরিবর্তন")}
+             aria-live="polite"
+-            className="rounded-full bg-forest-900 px-4 py-2 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
++            className="flex min-h-11 items-center rounded-full bg-forest-900 px-5 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
+           >
+             {lang === "en" ? "বাংলা" : "EN"}
+           </button>
+@@ -89,7 +89,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+             onClick={() => setOpen((o) => !o)}
+             aria-label={t("Menu", "মেনু")}
+             aria-expanded={open}
+-            className="flex h-9 w-9 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
++            className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-900/15 text-forest-900 lg:hidden"
+           >
+             {open ? <X size={16} /> : <Menu size={16} />}
+           </button>
+@@ -103,7 +103,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
+               <Link
+                 key={l.href}
+                 href={l.href}
+-                className="u-eyebrow py-3 text-moss-500 transition-colors hover:text-forest-900"
++                className="u-eyebrow flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
+               >
+                 {t(l.en, l.bn)}
+               </Link>
+@@ -129,21 +129,21 @@ export function Footer() {
+           </p>
+         </div>
+ 
+-        <nav className="flex flex-col gap-2 text-sm" aria-label="Footer">
++        <nav className="flex flex-col text-sm" aria-label="Footer">
+           {LINKS.map((l) => (
+-            <Link key={l.href} href={l.href} className="text-moss-500 transition-colors hover:text-forest-900">
++            <Link key={l.href} href={l.href} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+               {t(l.en, l.bn)}
+             </Link>
+           ))}
+         </nav>
+ 
+-        <div className="flex flex-col gap-2 text-sm">
+-          <a href={`mailto:${author.email}`} className="text-moss-500 transition-colors hover:text-forest-900">
++        <div className="flex flex-col text-sm">
++          <a href={`mailto:${author.email}`} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+             {author.email}
+           </a>
+-          <div className="flex flex-wrap gap-x-4 gap-y-1">
++          <div className="flex flex-wrap gap-x-5">
+             {socials.map(({ key, label, href }) => (
+-              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="text-moss-500 transition-colors hover:text-forest-900">
++              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+                 {label}
+               </a>
+             ))}
+@@ -160,7 +160,7 @@ export function Footer() {
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label={`${s.label} (opens in a new tab)`}
+-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-forest-300 text-moss-500 transition-colors hover:border-forest-500 hover:bg-white hover:text-forest-900"
++                  className="flex h-11 w-11 items-center justify-center rounded-full border border-forest-300 text-moss-500 transition-colors hover:border-forest-500 hover:bg-white hover:text-forest-900"
+                 >
+                   <Icon size={15} />
+                 </a>
+diff --git a/src/components/KnowledgeGraph.tsx b/src/components/KnowledgeGraph.tsx
+index 14910d8..0c8b539 100644
+--- a/src/components/KnowledgeGraph.tsx
++++ b/src/components/KnowledgeGraph.tsx
+@@ -135,7 +135,7 @@ export function KnowledgeGraph({
+         </span>
+         {linked[0] && (
+           <a
+-            className="inline-flex shrink-0 items-center gap-1 font-semibold text-gold-400 transition-colors hover:text-white"
++            className="inline-flex min-h-11 shrink-0 items-center gap-1 font-semibold text-gold-400 transition-colors hover:text-white"
+             href={linked[0].url}
+             target="_blank"
+             rel="noreferrer"
+diff --git a/src/components/PlatformTiles.tsx b/src/components/PlatformTiles.tsx
+index c91ef23..45d67f0 100644
+--- a/src/components/PlatformTiles.tsx
++++ b/src/components/PlatformTiles.tsx
+@@ -30,17 +30,18 @@ export function PlatformTiles({
+         const body = (
+           <>
+             <span className="flex items-center gap-2">
+-              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: CHANNEL_COLOR[p.channel] }} />
++              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: CHANNEL_COLOR[p.channel] }} />
+               <span className="font-serif text-lg font-black leading-none">{CHANNEL_LABEL[p.channel][lang]}</span>
+             </span>
+-            <span className="mt-4 flex items-baseline gap-2">
+-              <span className="font-serif text-4xl font-black leading-none">{p.apps}</span>
+-              <span className={`font-mono text-[10px] uppercase tracking-[0.14em] ${dark ? "text-forest-200" : "text-moss-500"}`}>
+-                {t("apps", "অ্যাপ")} · {p.endpoints} {t(p.endpoints === 1 ? "address" : "addresses", "ঠিকানা")}
+-              </span>
++            <span className="mt-4 block font-serif text-4xl font-black leading-none">{p.apps}</span>
++            <span className={`mt-1.5 block font-mono text-[10px] uppercase leading-snug tracking-[0.12em] ${dark ? "text-forest-200" : "text-moss-500"}`}>
++              {t("apps", "অ্যাপ")}
++              {p.endpoints > 0 ? ` · ${p.endpoints} ${t(p.endpoints === 1 ? "address" : "addresses", "ঠিকানা")}` : ""}
+             </span>
+             <span className={`mt-3 block text-xs leading-relaxed ${dark ? "text-forest-200" : "text-moss-500"}`}>
+-              {CHANNEL_BLURB[p.channel][lang]}
++              {p.endpoints === 0 && p.apps > 0
++                ? t("Deployed; no public address recorded yet", "ডিপ্লয় করা; এখনও প্রকাশ্য ঠিকানা নেই")
++                : CHANNEL_BLURB[p.channel][lang]}
+             </span>
+           </>
+         );
+diff --git a/src/components/SearchDialog.tsx b/src/components/SearchDialog.tsx
+index f1e0deb..73e9086 100644
+--- a/src/components/SearchDialog.tsx
++++ b/src/components/SearchDialog.tsx
+@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
+ import { useLocation } from "wouter";
+ import { Search, CornerDownLeft } from "lucide-react";
+ import { repos } from "@/lib/data";
++import { summaryFor, titleFor } from "@/lib/curation";
+ import { libraryItems, KIND_LABEL } from "@/lib/library";
+ import { notes } from "@/content/notes";
+ import { useI18n } from "@/lib/i18n";
+@@ -58,11 +59,11 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () =>
+     const repoHits: Hit[] = repos
+       .map((r) => ({
+         kind: "repo" as const,
+-        title: r.title,
+-        subtitle: `${r.name} · ${r.description ?? r.language ?? ""}`,
++        title: titleFor(r, lang),
++        subtitle: summaryFor(r, lang) || r.name,
+         href: `/works/${r.slug}`,
+         score:
+-          score(q, r.name, r.title, r.description ?? "", ...(r.topics ?? [])) +
++          score(q, r.name, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...(r.topics ?? [])) +
+           (Date.now() - new Date(r.pushedAt).getTime() < 86_400_000 * 30 ? 5 : 0),
+       }))
+       .filter((h) => h.score > 0);
+diff --git a/src/lib/curation.ts b/src/lib/curation.ts
+index 3e5453f..4c4191a 100644
+--- a/src/lib/curation.ts
++++ b/src/lib/curation.ts
+@@ -2,6 +2,9 @@ import raw from "../../content-data/apps.json";
+ import libRaw from "../../content-data/library-curation.json";
+ import type { Repo } from "./data";
+ import type { Lang } from "./i18n";
++import { resolveShelf, type LibCuration, type LibData, type Shelf } from "./shelf";
++
++export type { Shelf, LibCuration };
+ 
+ /**
+  * Curation layer over the generated catalogue.
+@@ -127,8 +130,6 @@ export const isLaunchable = (r: Repo): boolean => typeOf(r) === "app" || typeOf(
+ 
+ /* ── library shelves ─────────────────────────────────────────────────────── */
+ 
+-export type Shelf = "research" | "report" | "ebook" | "guide" | "training" | "other";
+-
+ export const SHELF_LABEL: Record<Shelf, { en: string; bn: string }> = {
+   research: { en: "Research", bn: "গবেষণা" },
+   report: { en: "Reports", bn: "প্রতিবেদন" },
+@@ -138,18 +139,9 @@ export const SHELF_LABEL: Record<Shelf, { en: string; bn: string }> = {
+   other: { en: "Other files", bn: "অন্যান্য ফাইল" },
+ };
+ 
+-type LibCuration = { shelf: Shelf; subjects: string[]; titleBn?: string };
+-
+-const LIB = libRaw as unknown as {
+-  default: LibCuration;
+-  byPath: Record<string, Omit<LibCuration, "titleBn">>;
+-  entries: Record<string, Partial<LibCuration>>;
+-};
++const LIB = libRaw as unknown as LibData;
+ 
+ /** Resolve a Drive file's shelf + subject chips from its id and folder path. */
+-export function libCurationFor(id: string, path: string[]): LibCuration {
+-  const explicit = LIB.entries[id];
+-  const top = path[0]?.toLowerCase();
+-  const byPath = top ? Object.entries(LIB.byPath).find(([k]) => k.toLowerCase() === top)?.[1] : undefined;
+-  return { ...LIB.default, ...(byPath ?? {}), ...(explicit ?? {}) } as LibCuration;
+-}
++export const libCurationFor = (id: string, path: string[]): LibCuration => resolveShelf(LIB, id, path);
++
++export const SHELVES: Shelf[] = ["research", "report", "ebook", "guide", "training", "other"];
+diff --git a/src/lib/data.ts b/src/lib/data.ts
+index 5bcd332..f4c46c7 100644
+--- a/src/lib/data.ts
++++ b/src/lib/data.ts
+@@ -61,7 +61,7 @@ export const brandOf = (r: Repo): Brand => brandFor(r.name, r.brand);
+ /* ── endpoints ─────────────────────────────────────────────────────────── */
+ 
+ /** `label` is host + path ("moniruzjaman.github.io/soil-media-portal"): on GitHub Pages the host alone is shared by every site. */
+-export type Endpoint = { channel: Channel; url: string; host: string; label: string };
++export type Endpoint = { channel: Channel; url: string; host: string; label: string; short: string };
+ 
+ const hostOf = (u: string): string => {
+   try {
+@@ -94,7 +94,10 @@ export function endpointsOf(r: Repo): Endpoint[] {
+     const label = host + new URL(url).pathname.replace(/\/$/, "");
+     if (seen.has(label)) return;
+     seen.add(label);
+-    out.push({ channel: channelOfHost(host) ?? fallback, url, host, label });
++    const channel = channelOfHost(host) ?? fallback;
++    // On GitHub Pages every site shares one host, so the PATH is the informative part.
++    const path = new URL(url).pathname.replace(/\/$/, "");
++    out.push({ channel, url, host, label, short: channel === "github-pages" && path ? path : host });
+   };
+   add(r.customDomain, "custom-domain");
+   add(r.live, "vercel");
+diff --git a/src/lib/shelf.ts b/src/lib/shelf.ts
+new file mode 100644
+index 0000000..fcb5f15
+--- /dev/null
++++ b/src/lib/shelf.ts
+@@ -0,0 +1,38 @@
++/**
++ * Library shelf resolution — pure, no imports, unit-tested by node directly.
++ *
++ * content-data/library-curation.json maps a Drive folder to a shelf (Research,
++ * Reports, …). Real folder names are messy ("Krishak card multimedia portal resources ",
++ * "Pesticides_Crisis"), so matching normalises case, underscores and stray
++ * whitespace, and a key matches a folder that STARTS WITH it on a word boundary
++ * ("krishak card" matches "krishak card multimedia portal resources"). The longest
++ * matching key wins, and a per-file entry (by Drive id) overrides everything.
++ */
++
++export type Shelf = "research" | "report" | "ebook" | "guide" | "training" | "other";
++
++export type LibCuration = { shelf: Shelf; subjects: string[]; titleBn?: string };
++
++export type LibData = {
++  default: LibCuration;
++  byPath: Record<string, Omit<LibCuration, "titleBn">>;
++  entries: Record<string, Partial<LibCuration>>;
++};
++
++export const norm = (s: string): string => s.replace(/[_\s]+/g, " ").trim().toLowerCase();
++
++export function resolveShelf(data: LibData, id: string, path: string[]): LibCuration {
++  const top = path[0] ? norm(path[0]) : "";
++  let best: Omit<LibCuration, "titleBn"> | undefined;
++  let bestLen = -1;
++  if (top) {
++    for (const [key, value] of Object.entries(data.byPath)) {
++      const k = norm(key);
++      if ((top === k || top.startsWith(k + " ")) && k.length > bestLen) {
++        best = value;
++        bestLen = k.length;
++      }
++    }
++  }
++  return { ...data.default, ...(best ?? {}), ...(data.entries[id] ?? {}) } as LibCuration;
++}
+diff --git a/src/pages/About.tsx b/src/pages/About.tsx
+index a339c83..9647a7a 100644
+--- a/src/pages/About.tsx
++++ b/src/pages/About.tsx
+@@ -99,14 +99,14 @@ export default function About() {
+               <p className="u-eyebrow mb-5 text-moss-400">{t("Contact", "যোগাযোগ")}</p>
+               <ul className="space-y-4 text-sm">
+                 <li>
+-                  <a href={`mailto:${author.email}`} className="flex items-start gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
++                  <a href={`mailto:${author.email}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                     <Mail size={15} className="mt-0.5 shrink-0 text-forest-500" />
+                     <span className="break-all">{author.email}</span>
+                   </a>
+                 </li>
+                 {author.showPhone && (
+                 <li>
+-                  <a href={`tel:+${author.phone.replace(/^\+/, "")}`} className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
++                  <a href={`tel:+${author.phone.replace(/^\+/, "")}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                     <Phone size={15} className="shrink-0 text-forest-500" />
+                     {author.phoneDisplay}
+                   </a>
+@@ -114,13 +114,13 @@ export default function About() {
+                 )}
+                 {socials.map(({ key, href, handle, Icon }) => (
+                   <li key={key}>
+-                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
++                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                       <Icon size={15} className="shrink-0 text-forest-500" />
+                       <span className="break-all">{handle}</span>
+                     </a>
+                   </li>
+                 ))}
+-                <li className="flex items-start gap-2.5 text-moss-600">
++                <li className="flex min-h-11 items-center gap-2.5 text-moss-600">
+                   <MapPin size={15} className="mt-0.5 shrink-0 text-forest-500" />
+                   <span>
+                     {author.org}, {author.location}
+diff --git a/src/pages/Expertise.tsx b/src/pages/Expertise.tsx
+index 491372f..dc5d1ea 100644
+--- a/src/pages/Expertise.tsx
++++ b/src/pages/Expertise.tsx
+@@ -30,7 +30,7 @@ export default function Expertise() {
+                 key={g.id}
+                 onClick={() => setActive(g)}
+                 aria-pressed={active.id === g.id}
+-                className={`rounded-full border px-4 py-2 text-xs font-bold transition-colors ${
++                className={`min-h-11 rounded-full border px-4 text-xs font-bold transition-colors ${
+                   active.id === g.id
+                     ? "border-forest-900 bg-forest-900 text-cream-100"
+                     : "border-forest-300 text-moss-500 hover:border-forest-500"
+@@ -62,7 +62,7 @@ export default function Expertise() {
+                       <li key={r.name}>
+                         <Link
+                           href={`/works/${r.slug}`}
+-                          className="text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
++                          className="inline-flex min-h-11 items-center text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
+                         >
+                           {r.title}
+                         </Link>
+@@ -80,7 +80,7 @@ export default function Expertise() {
+                       <li key={n.slug}>
+                         <Link
+                           href={`/notes/${n.slug}`}
+-                          className="text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
++                          className="inline-flex min-h-11 items-center text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
+                         >
+                           {lang === "bn" && n.titleBn ? n.titleBn : n.title}
+                         </Link>
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 1de6736..03c261e 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -48,12 +48,27 @@ export default function Home() {
+ 
+         <div className="u-container grid items-center gap-16 lg:grid-cols-[1.12fr_.88fr]">
+           <div className="max-w-3xl">
++            {/* On a phone the full portrait card sits far below the fold; show who this is immediately. */}
++            <div className="mb-6 flex items-center gap-3.5 lg:hidden">
++              <img
++                src={asset("portrait.jpg")}
++                alt=""
++                width={56}
++                height={56}
++                className="h-14 w-14 rounded-full border-2 border-white bg-white object-cover object-top shadow-md"
++              />
++              <div>
++                <p className="font-serif text-lg font-black leading-tight text-forest-900">{author.name}</p>
++                <p className="text-xs text-moss-500">{author.role}</p>
++              </div>
++            </div>
++
+             <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-forest-200 bg-white/50 px-4 py-2">
+               <span className="h-2 w-2 animate-pulse rounded-full bg-forest-400" />
+               <span className="u-eyebrow text-forest-500">{t("Portfolio", "পোর্টফোলিও")} · DAE Bangladesh</span>
+             </div>
+ 
+-            <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold-500">
++            <p className="mb-4 hidden font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold-500 lg:block">
+               {author.name}
+             </p>
+ 
+@@ -72,19 +87,19 @@ export default function Home() {
+             <div className="mt-9 flex flex-wrap gap-3">
+               <a
+                 href="#work"
+-                className="inline-flex items-center rounded-full bg-forest-900 px-7 py-3.5 text-sm font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
++                className="inline-flex items-center rounded-full bg-forest-900 px-5 py-3.5 text-sm sm:px-7 font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
+               >
+                 {t("See my work", "আমার কাজ দেখুন")} <ArrowDown className="ml-2" size={16} />
+               </a>
+               <a
+                 href="#contact"
+-                className="inline-flex items-center rounded-full border border-forest-900/25 bg-white/40 px-7 py-3.5 text-sm font-bold text-forest-900 transition-colors hover:bg-white"
++                className="inline-flex items-center rounded-full border border-forest-900/25 bg-white/40 px-5 py-3.5 text-sm sm:px-7 font-bold text-forest-900 transition-colors hover:bg-white"
+               >
+                 {t("Get in touch", "যোগাযোগ করুন")} <Mail className="ml-2" size={16} />
+               </a>
+             </div>
+ 
+-            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
++            <div className="mt-6 flex flex-wrap items-center gap-x-5">
+             <span className="u-eyebrow text-moss-400">{t("Follow:", "অনুসরণ করুন:")}</span>
+             {socials.map(({ key, label, href }) => (
+               <a
+@@ -93,7 +108,7 @@ export default function Home() {
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label={`${label} (opens in a new tab)`}
+-                className="text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
++                className="inline-flex min-h-11 items-center text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
+               >
+                 {label}
+               </a>
+@@ -171,7 +186,7 @@ export default function Home() {
+             </div>
+             <Link
+               href="/works"
+-              className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
++              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+             >
+               {t(`All ${stats.repos} works`, `সব ${stats.repos}টি কাজ`)} <ArrowUpRight size={16} />
+             </Link>
+@@ -238,7 +253,7 @@ export default function Home() {
+                 {t("From the haor to the river delta.", "হাওর থেকে নদীবিধৌত জনপদ।")}
+               </h2>
+             </div>
+-            <Link href="/about" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
++            <Link href="/about" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+               {t("Full career & education", "পূর্ণ কর্মজীবন ও শিক্ষা")} <ArrowUpRight size={16} />
+             </Link>
+           </div>
+@@ -326,7 +341,7 @@ export default function Home() {
+                 </div>
+                 <Link
+                   href="/expertise"
+-                  className="mt-8 inline-flex items-center gap-2 border-t border-white/10 pt-5 text-xs font-bold text-gold-400 transition-colors hover:text-white"
++                  className="mt-8 inline-flex min-h-11 items-center gap-2 border-t border-white/10 pt-3 text-xs font-bold text-gold-400 transition-colors hover:text-white"
+                 >
+                   {t("All expertise", "সব দক্ষতা")} <ArrowUpRight size={14} />
+                 </Link>
+@@ -347,7 +362,7 @@ export default function Home() {
+                   {t("Research, PDFs and slide decks.", "গবেষণা, পিডিএফ ও স্লাইড।")}
+                 </h2>
+               </div>
+-              <Link href="/library" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
++              <Link href="/library" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+                 {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)} <ArrowUpRight size={16} />
+               </Link>
+             </div>
+@@ -390,7 +405,7 @@ export default function Home() {
+             </div>
+             <Link
+               href="/notes"
+-              className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
++              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+             >
+               {t("All writing", "সব লেখা")} <ArrowUpRight size={16} />
+             </Link>
+diff --git a/src/pages/Library.tsx b/src/pages/Library.tsx
+index 0df99fb..b706d41 100644
+--- a/src/pages/Library.tsx
++++ b/src/pages/Library.tsx
+@@ -3,6 +3,7 @@ import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileI
+ import { PageHeader, Chip } from "@/components/Section";
+ import { DocPreview } from "@/components/DocPreview";
+ import { useI18n } from "@/lib/i18n";
++import { libCurationFor, SHELF_LABEL, SHELVES } from "@/lib/curation";
+ import {
+   folderEmbedUrl,
+   folderUrl,
+@@ -20,6 +21,11 @@ const PAGE = 24;
+ /** "Web upload " / "Pesticides_Crisis" → "Web upload" / "Pesticides Crisis". */
+ const topicLabel = (i: LibItem) => (i.path[0] ?? "").replace(/_/g, " ").trim();
+ 
++/** Shelf + subjects per file, resolved once (curation is static). */
++const CURATION = new Map(libraryItems.map((i) => [i.id, libCurationFor(i.id, i.path)]));
++const shelfOf = (i: LibItem) => CURATION.get(i.id)!.shelf;
++const subjectsOf = (i: LibItem) => CURATION.get(i.id)!.subjects;
++
+ const KIND_ICON: Record<Kind, typeof FileText> = {
+   pdf: FileText,
+   slides: Presentation,
+@@ -66,16 +72,16 @@ export default function Library() {
+ 
+   const topics = useMemo(() => {
+     const n = new Map<string, number>();
+-    for (const i of libraryItems) if (tab === "all" || i.collection === tab) n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
++    for (const i of libraryItems) if (tab === "all" || shelfOf(i) === tab) n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
+     return [...n.entries()].sort((a, b) => b[1] - a[1]);
+   }, [tab]);
+ 
+   const shown = useMemo(() => {
+     const needle = q.trim().toLowerCase();
+     return libraryItems
+-      .filter((i) => tab === "all" || i.collection === tab)
++      .filter((i) => tab === "all" || shelfOf(i) === tab)
+       .filter((i) => topic === "all" || topicLabel(i) === topic)
+-      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind].join(" ").toLowerCase().includes(needle))
++      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind, subjectsOf(i).join(" ")].join(" ").toLowerCase().includes(needle))
+       .sort((a, b) =>
+         sort === "title" ? a.title.localeCompare(b.title) : (b.modified ?? "").localeCompare(a.modified ?? ""),
+       );
+@@ -87,7 +93,7 @@ export default function Library() {
+   const indexed = libraryItems.length > 0;
+   const tabs = [
+     { key: "all", label: t("All", "সব"), n: libraryItems.length },
+-    ...library.collections.filter((c) => c.items.length > 0).map((c) => ({ key: c.key, label: lang === "bn" ? c.titleBn : c.title, n: c.items.length })),
++    ...SHELVES.map((k) => ({ key: k as string, label: SHELF_LABEL[k][lang], n: libraryItems.filter((i) => shelfOf(i) === k).length })).filter((x) => x.n > 0),
+   ];
+ 
+   return (
+@@ -188,7 +194,9 @@ export default function Library() {
+                         <span className="flex flex-1 flex-col p-4">
+                           <span className="mb-2 flex flex-wrap items-center gap-1.5">
+                             <Chip>{KIND_LABEL[i.kind][lang]}</Chip>
+-                            {topicLabel(i) && <Chip>{topicLabel(i)}</Chip>}
++                            {(subjectsOf(i).length ? subjectsOf(i).slice(0, 2) : [topicLabel(i)]).filter(Boolean).map((x) => (
++                              <Chip key={x}>{x}</Chip>
++                            ))}
+                           </span>
+                           <span className="line-clamp-3 font-serif text-base font-black leading-snug text-forest-900">{i.title}</span>
+                           <span className="mt-auto pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
+diff --git a/src/pages/Notes.tsx b/src/pages/Notes.tsx
+index 209234e..059e4c4 100644
+--- a/src/pages/Notes.tsx
++++ b/src/pages/Notes.tsx
+@@ -41,7 +41,7 @@ export default function Notes() {
+                   key={ty}
+                   onClick={() => setType(ty as NoteType | "all")}
+                   aria-pressed={type === ty}
+-                  className={`rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
++                  className={`min-h-11 rounded-full border px-4 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+                     type === ty
+                       ? "border-forest-900 bg-forest-900 text-cream-100"
+                       : "border-forest-300 text-moss-500 hover:border-forest-500"
+@@ -56,7 +56,7 @@ export default function Notes() {
+               onChange={(e) => setQ(e.target.value)}
+               placeholder={t("Filter notes…", "নোট খুঁজুন…")}
+               aria-label={t("Filter notes", "নোট ফিল্টার")}
+-              className="rounded-full border border-forest-300 bg-white px-4 py-1.5 text-sm text-forest-900 outline-none placeholder:text-moss-400"
++              className="min-h-11 rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
+             />
+           </div>
+ 
+diff --git a/src/pages/WorkDetail.tsx b/src/pages/WorkDetail.tsx
+index 7cae6e5..8d44be6 100644
+--- a/src/pages/WorkDetail.tsx
++++ b/src/pages/WorkDetail.tsx
+@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
+ import { GithubMark } from "@/components/icons";
+ import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
+ import { BrandMark } from "@/components/AppCard";
++import { AUDIENCE_BLURB, AUDIENCE_LABEL, audiencesOf, isLaunchable, notesFor, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
+ import { notes } from "@/content/notes";
+ import { PageHeader, Chip } from "@/components/Section";
+ import { useI18n } from "@/lib/i18n";
+@@ -17,6 +18,11 @@ export default function WorkDetail() {
+ 
+   const brand = brandOf(repo);
+   const endpoints = endpointsOf(repo);
++  const title = titleFor(repo, lang);
++  const summary = summaryFor(repo, lang);
++  const notesText = notesFor(repo, lang);
++  const audiences = audiencesOf(repo);
++  const launchable = isLaunchable(repo);
+ 
+   const related = notes
+     .filter((n) =>
+@@ -33,10 +39,10 @@ export default function WorkDetail() {
+         lang={lang}
+         eyebrowEn={repo.name}
+         eyebrowBn={repo.name}
+-        titleEn={repo.title}
+-        titleBn={repo.title}
+-        ledeEn={repo.description ?? undefined}
+-        ledeBn={repo.description ?? undefined}
++        titleEn={title}
++        titleBn={title}
++        ledeEn={summary || undefined}
++        ledeBn={summary || undefined}
+       />
+ 
+       <section className="px-5 py-12 sm:px-8 lg:px-12">
+@@ -44,7 +50,7 @@ export default function WorkDetail() {
+           <div>
+             <Link
+               href="/works"
+-              className="mb-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500 transition-colors hover:text-forest-900"
++              className="mb-4 inline-flex min-h-11 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500 transition-colors hover:text-forest-900"
+             >
+               <ArrowLeft size={13} /> {t("All works", "সব কাজ")}
+             </Link>
+@@ -79,21 +85,28 @@ export default function WorkDetail() {
+               </div>
+             </div>
+ 
+-            {repo.description && (
+-              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">
+-                {repo.description}
+-              </p>
++            <div className="mb-6 flex flex-wrap items-center gap-2">
++              <Chip>{TYPE_LABEL[typeOf(repo)][lang]}</Chip>
++              {audiences.map((a) => (
++                <span key={a} title={AUDIENCE_BLURB[a][lang]}>
++                  <Chip color="var(--color-gold-400)">{AUDIENCE_LABEL[a][lang]}</Chip>
++                </span>
++              ))}
++            </div>
++
++            {notesText && (
++              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">{notesText}</p>
+             )}
+ 
+             <div className="mt-10 flex flex-wrap gap-3">
+-              {repo.live && (
++              {(repo.live ?? repo.customDomain) && (
+                 <a
+-                  href={repo.live}
++                  href={(repo.live ?? repo.customDomain)!}
+                   target="_blank"
+                   rel="noreferrer"
+                   className="inline-flex items-center gap-2 rounded-full bg-forest-900 px-5 py-2.5 text-sm font-bold text-cream-100 transition-transform hover:-translate-y-0.5"
+                 >
+-                  <Globe size={15} /> {t("Live site", "সরাসরি")} <ExternalLink size={12} />
++                  <Globe size={15} /> {launchable ? t("Launch app", "অ্যাপ চালু করুন") : t("Open", "খুলুন")} <ExternalLink size={12} />
+                 </a>
+               )}
+               {repo.pages && (
+diff --git a/src/pages/Works.tsx b/src/pages/Works.tsx
+index bfc0844..cf061c9 100644
+--- a/src/pages/Works.tsx
++++ b/src/pages/Works.tsx
+@@ -5,42 +5,58 @@ import { repos, endpointDirectory, stats, CHANNEL_LABEL, CHANNEL_COLOR, meta, ty
+ import { PageHeader, Chip } from "@/components/Section";
+ import { AppCard } from "@/components/AppCard";
+ import { PlatformTiles } from "@/components/PlatformTiles";
++import { FLAGSHIP_NAMES } from "@/content/apps";
++import { AUDIENCES, AUDIENCE_LABEL, AUDIENCE_BLURB, audiencesOf, summaryFor, titleFor, typeOf, type Audience, type AppType } from "@/lib/curation";
+ import { useI18n } from "@/lib/i18n";
+ 
+ type View = "catalogue" | "endpoints";
+ 
++/** Visitors think in "tools / documents / code", not in five internal types. */
++type Group = "apps" | "documents" | "code" | "all";
++const GROUP_OF: Record<AppType, Exclude<Group, "all">> = { app: "apps", report: "documents", ebook: "documents", dataset: "code", source: "code" };
++const GROUPS: { key: Group; en: string; bn: string }[] = [
++  { key: "apps", en: "Apps", bn: "অ্যাপ" },
++  { key: "documents", en: "Documents", bn: "নথি" },
++  { key: "code", en: "Code", bn: "কোড" },
++  { key: "all", en: "All", bn: "সব" },
++];
++
+ export default function Works() {
+   const { t, lang } = useI18n();
+   const [channel, setChannel] = useState<Channel | "all">("all");
+   const [view, setView] = useState<View>("catalogue");
+-  const [langFilter, setLangFilter] = useState<string>("all");
++  const [group, setGroup] = useState<Group>("apps");
++  const [audience, setAudience] = useState<Audience | "all">("all");
+   const [q, setQ] = useState("");
+-
+-  const languages = useMemo(
+-    () => [...new Set(repos.map((r) => r.language).filter(Boolean))].sort() as string[],
+-    [],
+-  );
+   const needle = q.trim().toLowerCase();
+ 
+-  const shown = useMemo(
+-    () =>
+-      repos.filter((r) => {
+-        if (channel !== "all" && !r.channels.includes(channel)) return false;
+-        if (langFilter !== "all" && r.language !== langFilter) return false;
+-        if (!needle) return true;
+-        return [r.name, r.title, r.description ?? "", ...r.topics].join(" ").toLowerCase().includes(needle);
+-      }),
+-    [channel, langFilter, needle],
++  /** One predicate for both views, so the Apps and Addresses views never disagree. */
++  const matches = useMemo(
++    () => (r: (typeof repos)[number]) => {
++      if (channel !== "all" && !r.channels.includes(channel)) return false;
++      if (group !== "all" && GROUP_OF[typeOf(r)] !== group) return false;
++      if (audience !== "all" && !audiencesOf(r).includes(audience)) return false;
++      if (!needle) return true;
++      return [r.name, r.title, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...r.topics]
++        .join(" ")
++        .toLowerCase()
++        .includes(needle);
++    },
++    [channel, group, audience, needle],
+   );
+ 
++  // Flagship apps lead (curated order in src/content/apps.ts); the rest follow by recent activity.
++  const rank = (name: string) => {
++    const i = (FLAGSHIP_NAMES as readonly string[]).indexOf(name);
++    return i === -1 ? FLAGSHIP_NAMES.length : i;
++  };
++  const shown = useMemo(() => repos.filter(matches).sort((a, b) => rank(a.name) - rank(b.name)), [matches]); // eslint-disable-line react-hooks/exhaustive-deps
++  const groupCount = (g: Group) => repos.filter((r) => g === "all" || GROUP_OF[typeOf(r)] === g).length;
++
+   const rows = useMemo(
+     () =>
+-      endpointDirectory.filter(
+-        (e) =>
+-          (channel === "all" || e.channel === channel) &&
+-          (!needle || [e.label, e.repo.title, e.repo.name].join(" ").toLowerCase().includes(needle)),
+-      ),
+-    [channel, needle],
++      endpointDirectory.filter((e) => (channel === "all" || e.channel === channel) && matches(e.repo)),
++    [channel, matches],
+   );
+ 
+   return (
+@@ -59,54 +75,70 @@ export default function Works() {
+         <div className="u-container">
+           <PlatformTiles value={channel} onSelect={setChannel} />
+ 
+-          <div className="mb-8 mt-10 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
+-            <div role="group" aria-label={t("View", "দৃশ্য")} className="flex gap-2">
+-              {(["catalogue", "endpoints"] as const).map((v) => (
+-                <button
+-                  key={v}
+-                  type="button"
+-                  aria-pressed={view === v}
+-                  onClick={() => setView(v)}
+-                  className={`min-h-11 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+-                    view === v ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
+-                  }`}
+-                >
+-                  {v === "catalogue" ? t("Apps", "অ্যাপ") : t("Addresses", "ঠিকানা")}
+-                </button>
+-              ))}
++          <div className="mb-8 mt-10 space-y-4 border-b border-forest-300 pb-6">
++            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
++              <div role="group" aria-label={t("What to show", "কী দেখাবেন")} className="flex flex-wrap gap-2">
++                {GROUPS.map((g) => (
++                  <button
++                    key={g.key}
++                    type="button"
++                    aria-pressed={group === g.key}
++                    onClick={() => setGroup(g.key)}
++                    className={`min-h-11 shrink-0 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
++                      group === g.key ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
++                    }`}
++                  >
++                    {t(g.en, g.bn)} · {groupCount(g.key)}
++                  </button>
++                ))}
++              </div>
++              <div className="flex gap-3">
++                <div role="group" aria-label={t("View", "দৃশ্য")} className="flex shrink-0 gap-0.5 rounded-full border border-forest-300 p-0.5">
++                  {(["catalogue", "endpoints"] as const).map((v) => (
++                    <button
++                      key={v}
++                      type="button"
++                      aria-pressed={view === v}
++                      onClick={() => setView(v)}
++                      className={`min-h-11 rounded-full px-4 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
++                        view === v ? "bg-forest-900 text-cream-100" : "text-moss-500 hover:text-forest-900"
++                      }`}
++                    >
++                      {v === "catalogue" ? t("Cards", "কার্ড") : t("Addresses", "ঠিকানা")}
++                    </button>
++                  ))}
++                </div>
++                <label className="min-w-0 flex-1">
++                  <span className="sr-only">{t("Filter", "ফিল্টার")}</span>
++                  <input
++                    id="work-search"
++                    value={q}
++                    onChange={(e) => setQ(e.target.value)}
++                    placeholder={t("Filter…", "খুঁজুন…")}
++                    className="min-h-11 w-full rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400 lg:w-56"
++                  />
++                </label>
++              </div>
+             </div>
+ 
+-            <div className="flex flex-wrap gap-3">
+-              {view === "catalogue" && (
+-                <>
+-                  <label className="sr-only" htmlFor="lang-filter">
+-                    {t("Filter by language", "ভাষা অনুযায়ী ফিল্টার")}
+-                  </label>
+-                  <select
+-                    id="lang-filter"
+-                    value={langFilter}
+-                    onChange={(e) => setLangFilter(e.target.value)}
+-                    className="min-h-11 rounded-full border border-forest-300 bg-white px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-moss-500"
++            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
++              <span className="u-eyebrow shrink-0 text-moss-400">{t("For", "যাদের জন্য")}</span>
++              <div role="group" aria-label={t("Audience", "ব্যবহারকারী")} className="flex flex-wrap gap-2">
++                {AUDIENCES.map((a) => (
++                  <button
++                    key={a}
++                    type="button"
++                    aria-pressed={audience === a}
++                    title={AUDIENCE_BLURB[a][lang]}
++                    onClick={() => setAudience(audience === a ? "all" : a)}
++                    className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-bold transition-colors ${
++                      audience === a ? "border-gold-500 bg-gold-400/20 text-forest-900" : "border-forest-300 text-moss-500 hover:border-forest-500"
++                    }`}
+                   >
+-                    <option value="all">{t("Any language", "যেকোনো ভাষা")}</option>
+-                    {languages.map((l) => (
+-                      <option key={l} value={l}>
+-                        {l}
+-                      </option>
+-                    ))}
+-                  </select>
+-                </>
+-              )}
+-              <label className="sr-only" htmlFor="work-search">
+-                {t("Filter", "ফিল্টার")}
+-              </label>
+-              <input
+-                id="work-search"
+-                value={q}
+-                onChange={(e) => setQ(e.target.value)}
+-                placeholder={t("Filter…", "খুঁজুন…")}
+-                className="min-h-11 rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
+-              />
++                    {AUDIENCE_LABEL[a][lang]}
++                  </button>
++                ))}
++              </div>
+             </div>
+           </div>
+ 
+-- 
+2.43.0
+

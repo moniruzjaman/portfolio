@@ -30,7 +30,7 @@ export default function Expertise() {
                 key={g.id}
                 onClick={() => setActive(g)}
                 aria-pressed={active.id === g.id}
-                className={`rounded-full border px-4 py-2 text-xs font-bold transition-colors ${
+                className={`min-h-11 rounded-full border px-4 text-xs font-bold transition-colors ${
                   active.id === g.id
                     ? "border-forest-900 bg-forest-900 text-cream-100"
                     : "border-forest-300 text-moss-500 hover:border-forest-500"
@@ -62,7 +62,7 @@ export default function Expertise() {
                       <li key={r.name}>
                         <Link
                           href={`/works/${r.slug}`}
-                          className="text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
+                          className="inline-flex min-h-11 items-center text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
                         >
                           {r.title}
                         </Link>
@@ -80,7 +80,7 @@ export default function Expertise() {
                       <li key={n.slug}>
                         <Link
                           href={`/notes/${n.slug}`}
-                          className="text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
+                          className="inline-flex min-h-11 items-center text-sm font-medium text-forest-600 transition-colors hover:text-forest-900"
                         >
                           {lang === "bn" && n.titleBn ? n.titleBn : n.title}
                         </Link>

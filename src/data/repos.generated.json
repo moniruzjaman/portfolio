@@ -1,15 +1,91 @@
 {
-  "generatedAt": "2026-10-29T09:57:39.192Z",
+  "generatedAt": "2026-10-30T10:00:16.701Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
-    "vercel": 26,
     "github-pages": 30,
+    "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "AgriChem_Registry",
+      "slug": "agrichem-registry",
+      "title": "AgriChem_Registry",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-29T15:10:08Z",
+      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "brand": {
+        "name": "AgriChem",
+        "themeColor": "#0f3d2e",
+        "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
+        "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-29T12:54:53Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-29T09:58:16Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11024,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "cabi-diagnosis",
       "slug": "cabi-diagnosis",
@@ -33,31 +109,6 @@
         "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
         "image": "https://cabi.krishiai.live/og-share.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-29T04:17:43Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11024,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
       },
       "featured": false
     },
@@ -100,31 +151,6 @@
         "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
         "image": "https://pesticide.krishiai.live/og-image.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-28T12:45:20Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
       },
       "featured": false
     },
@@ -220,32 +246,6 @@
         "themeColor": "#d97706",
         "icon": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-192.png",
         "image": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-512.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "AgriChem_Registry",
-      "slug": "agrichem-registry",
-      "title": "AgriChem_Registry",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-20T12:22:00Z",
-      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 0,
-      "brand": {
-        "name": "AgriChem",
-        "themeColor": "#0f3d2e",
-        "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
-        "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
         "source": "manifest"
       },
       "featured": false

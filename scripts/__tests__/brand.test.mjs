@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import http from "node:http";
 import { parseHtml, parseManifest, normaliseHex, probeBrand } from "../lib/brand-probe.mjs";
 import { urlAllowed } from "../lib/hosts.mjs";
-import { brandFor, FALLBACK_PALETTE, contrast, monogramOf } from "../../src/lib/brand.ts";
+import { brandFor, fitBand, BAND_MIN_CONTRAST, FALLBACK_PALETTE, contrast, monogramOf } from "../../src/lib/brand.ts";
 
 const BASE = "https://app.krishiai.live/";
 
@@ -119,4 +119,29 @@ test("monogramOf", () => {
   assert.equal(monogramOf("web.krishiai.live"), "WK");
   assert.equal(monogramOf("krishak"), "KR");
   assert.equal(monogramOf("পেস্টি"), "?");
+});
+
+test("fitBand: EVERY colour on the wheel ends up with text that clears the band minimum", () => {
+  const hsl = (h, s, l) => {
+    const a = s * Math.min(l, 1 - l), f = (n) => l - a * Math.max(-1, Math.min((n + h / 30) % 12 - 3, Math.min(9 - ((n + h / 30) % 12), 1)));
+    return "#" + [f(0), f(8), f(4)].map((v) => Math.round(v * 255).toString(16).padStart(2, "0")).join("");
+  };
+  let checked = 0, changed = 0;
+  for (let h = 0; h < 360; h += 7) for (const s of [0.3, 0.6, 0.9]) for (const l of [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]) {
+    const c = hsl(h, s, l);
+    const x = brandFor("n", { themeColor: c, source: "html" });
+    assert.ok(contrast(x.color, x.fg) >= BAND_MIN_CONTRAST - 0.01, `${c} -> ${x.color} fg ${x.fg} = ${contrast(x.color, x.fg).toFixed(2)}`);
+    checked++; if (x.color !== c.toLowerCase() && !x.derived) changed++;
+  }
+  assert.ok(checked > 700);
+  console.log(`  fitBand: ${checked} colours checked, ${changed} adjusted`);
+});
+
+test("fitBand: leaves readable colours untouched and keeps hue when adjusting", () => {
+  assert.equal(fitBand("#0a2e1a"), "#0a2e1a");
+  assert.equal(fitBand("#f7e7a0"), "#f7e7a0", "a light colour dark text can carry stays light");
+  const adj = fitBand("#16a34a");
+  assert.notEqual(adj, "#16a34a");
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(adj.slice(i, i + 2), 16));
+  assert.ok(g > r && g > b, "still green: " + adj);
 });

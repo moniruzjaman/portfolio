@@ -41,7 +41,7 @@ export default function Notes() {
                   key={ty}
                   onClick={() => setType(ty as NoteType | "all")}
                   aria-pressed={type === ty}
-                  className={`rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+                  className={`min-h-11 rounded-full border px-4 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
                     type === ty
                       ? "border-forest-900 bg-forest-900 text-cream-100"
                       : "border-forest-300 text-moss-500 hover:border-forest-500"
@@ -56,7 +56,7 @@ export default function Notes() {
               onChange={(e) => setQ(e.target.value)}
               placeholder={t("Filter notes…", "নোট খুঁজুন…")}
               aria-label={t("Filter notes", "নোট ফিল্টার")}
-              className="rounded-full border border-forest-300 bg-white px-4 py-1.5 text-sm text-forest-900 outline-none placeholder:text-moss-400"
+              className="min-h-11 rounded-full border border-forest-300 bg-white px-4 text-sm text-forest-900 outline-none placeholder:text-moss-400"
             />
           </div>
 

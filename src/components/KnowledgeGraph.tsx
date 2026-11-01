@@ -135,7 +135,7 @@ export function KnowledgeGraph({
         </span>
         {linked[0] && (
           <a
-            className="inline-flex shrink-0 items-center gap-1 font-semibold text-gold-400 transition-colors hover:text-white"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1 font-semibold text-gold-400 transition-colors hover:text-white"
             href={linked[0].url}
             target="_blank"
             rel="noreferrer"

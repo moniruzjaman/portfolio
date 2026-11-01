@@ -331,3 +331,47 @@ Things that must not appear, and why.
 - Hardened: secrets gate scans `.json` and built output; host allowlist now shared
   (`scripts/lib/hosts.mjs`).
 - Nav links now collapse below `lg` (six items overflowed the bar at `md`).
+
+**v1.2** — measured accessibility pass (axe-core + real browser, `scripts/ui-audit.mjs`).
+
+The audit found failures no screenshot showed. Cause was the palette, not scattered mistakes:
+
+| Token | Was | Now | Contrast on cream (was → now) |
+| --- | --- | --- | --- |
+| `moss-400` | `#7a9b7c` | `#566e58` | 2.5 → 4.6 |
+| `moss-500` | `#527059` | `#475f4d` | kept a distinct tone after 400 moved |
+| `moss-600` | `#6b826e` | `#596d5c` | 3.4 → 4.6 (was *lighter* than 500: scale inverted) |
+| `forest-500` | `#2d8a4e` | `#267643` | 3.6 → 4.6 |
+| `gold-500` | `#c09a24` | `#7e6517` | 2.2 → 4.6 |
+| `gold-600` | `#a8861d` | `#6a530f` | 2.8 → darker than 500 |
+
+- **Rule:** `gold-300/400` are for text on dark; `gold-500/600` for text on light. Using
+  `gold-400` on `forest-800` at 11px measured 4.3:1 — use `gold-300` there.
+- **Brand bands:** an app's own theme colour is nudged darker (same hue) by `fitBand`
+  when neither white nor dark text reaches 5:1 — typical app greens sit in that dead
+  zone. The monogram tint moves *away* from the text colour (a white tint under white
+  text lowered contrast). Property-tested over 936 colours.
+- **Label in name (WCAG 2.5.3):** an `aria-label` must contain the visible text. Fixed
+  on the logo (real whitespace between the two spans), the language toggle (visible
+  "বাংলা" is in its label) and connect cards (name now derived from their content).
+- **Gate:** `ui-audit.yml` runs on pull requests. It is not deploy-blocking.
+
+**v1.3** — typography, phone layout, detail page.
+
+- **Fixed: headings never used Playfair Display.** The code uses Tailwind's `font-serif`
+  (46 places) but the theme only defined `--font-display`, so `font-serif` resolved to
+  the browser's default serif. The display face was downloaded and never applied.
+  `--font-serif` now carries the display stack (Playfair → Noto Serif Bengali →
+  Georgia). Rule: **define a face under the Tailwind key the code actually uses.**
+- **Fonts are self-hosted** (`@fontsource*`, variable where available). No request to
+  Google Fonts, one origin, and Bangla glyph subsets download only when a page contains
+  Bangla. `fonts.googleapis.com` / `fonts.gstatic.com` were removed from the host
+  allowlist, so re-adding a Google Fonts link fails the build.
+- **Phone:** hero buttons sit side by side; platform tiles drop their blurb below `sm`;
+  the audience filter is a single `<select>` below `sm` (chips from `sm` up). The first
+  app card moved from 1,418px to 1,184px down the page.
+- **Detail page:** the app's own social/preview image (when it publishes one) is shown
+  as a figure, and **"Open on a phone"** shows a QR code of the app's address. The QR is
+  generated in the browser by a lazy 7.7 KB (gzip) chunk — no third-party QR service,
+  and the address never leaves the page. Verified by decoding 12 rendered codes with an
+  independent reader.

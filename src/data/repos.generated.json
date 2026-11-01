@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-10-26T10:36:25.988Z",
+  "generatedAt": "2026-11-01T12:35:02.463Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
-    "github-pages": 30,
+    "github-pages": 31,
     "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
@@ -18,7 +18,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-26T08:53:55Z",
+      "pushedAt": "2026-11-01T12:34:01Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -26,12 +26,75 @@
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 10586,
+      "readmeBytes": 11871,
       "brand": {
         "name": "Abu Md. Moniruzjaman",
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
         "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "diagnosis-assistant",
+      "slug": "diagnosis-assistant",
+      "title": "CABI Plant Diagnosis Assistant",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T11:49:08Z",
+      "url": "https://github.com/moniruzjaman/diagnosis-assistant",
+      "live": "https://diagnosis-assistant-eosin.vercel.app",
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/diagnosis-assistant/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 4730,
+      "brand": null,
+      "featured": false
+    },
+    {
+      "name": "AgriChem-Guide-Pest-Control-Database",
+      "slug": "agrichem-guide-pest-control-database",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "bangladesh",
+        "bilingual",
+        "dae",
+        "frac",
+        "hrac",
+        "irac",
+        "moa",
+        "pesticide",
+        "progressive-web-app",
+        "pwa",
+        "react",
+        "typescript",
+        "vite-react"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-11-01T11:01:56Z",
+      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
+      "live": "https://pest-next.krishiai.live",
+      "customDomain": "https://pest-next.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 15803,
+      "brand": {
+        "name": "PesticideNext",
+        "themeColor": "#006a4e",
+        "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
+        "image": "https://pesticide.krishiai.live/og-image.png",
+        "source": "manifest"
       },
       "featured": false
     },
@@ -43,7 +106,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-26T08:39:04Z",
+      "pushedAt": "2026-11-01T09:32:09Z",
       "url": "https://github.com/moniruzjaman/cabi-diagnosis",
       "live": "https://cabi-diagnosis.vercel.app",
       "customDomain": null,
@@ -62,68 +125,6 @@
       "featured": false
     },
     {
-      "name": "kaggle-dataset",
-      "slug": "kaggle-dataset",
-      "title": "Plant Disease Detection System",
-      "description": null,
-      "language": "Python",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-25T19:51:31Z",
-      "url": "https://github.com/moniruzjaman/kaggle-dataset",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/kaggle-dataset/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 12064,
-      "brand": null,
-      "featured": false
-    },
-    {
-      "name": "AgriChem-Guide-Pest-Control-Database",
-      "slug": "agrichem-guide-pest-control-database",
-      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
-      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 5,711+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
-      "language": "TypeScript",
-      "topics": [
-        "agriculture",
-        "bangladesh",
-        "bilingual",
-        "dae",
-        "frac",
-        "hrac",
-        "irac",
-        "moa",
-        "pesticide",
-        "progressive-web-app",
-        "pwa",
-        "react",
-        "typescript",
-        "vite"
-      ],
-      "stars": 0,
-      "pushedAt": "2026-10-25T17:45:01Z",
-      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
-      "live": "https://pesticide.krishiai.live",
-      "customDomain": "https://pesticide.krishiai.live",
-      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
-      "channels": [
-        "custom-domain",
-        "github-pages"
-      ],
-      "readmeBytes": 15803,
-      "brand": {
-        "name": "PesticideNext",
-        "themeColor": "#006a4e",
-        "icon": "https://pesticide.krishiai.live/icons/icon-192.png",
-        "image": "https://pesticide.krishiai.live/og-image.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
       "name": "rashtra_teen_chokhe",
       "slug": "rashtra-teen-chokhe",
       "title": "রাষ্ট্রকে দেখা তিন চোখে",
@@ -131,7 +132,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-25T11:18:56Z",
+      "pushedAt": "2026-10-31T12:18:22Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -149,6 +150,52 @@
       "featured": false
     },
     {
+      "name": "AgriChem_Registry",
+      "slug": "agrichem-registry",
+      "title": "AgriChem_Registry",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-30T13:06:38Z",
+      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "brand": {
+        "name": "AgriChem",
+        "themeColor": "#0f3d2e",
+        "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
+        "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "kaggle-dataset",
+      "slug": "kaggle-dataset",
+      "title": "Plant Disease Detection System",
+      "description": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-27T22:38:03Z",
+      "url": "https://github.com/moniruzjaman/kaggle-dataset",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/kaggle-dataset/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 12933,
+      "brand": null,
+      "featured": false
+    },
+    {
       "name": "fertilizer",
       "slug": "fertilizer",
       "title": "Fertilizer Management — Burden to Bloom",
@@ -156,7 +203,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-22T22:00:48Z",
+      "pushedAt": "2026-10-27T06:02:30Z",
       "url": "https://github.com/moniruzjaman/fertilizer",
       "live": null,
       "customDomain": null,
@@ -164,11 +211,11 @@
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 1679,
+      "readmeBytes": 5008,
       "brand": {
         "name": "Fertilizer Management — Burden to Bloom",
         "themeColor": "#006a4e",
-        "icon": "https://moniruzjaman.github.io/apple-touch-icon.png",
+        "icon": "https://moniruzjaman.github.io/fertilizer/apple-touch-icon.png",
         "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
         "source": "html"
       },
@@ -220,32 +267,6 @@
         "themeColor": "#d97706",
         "icon": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-192.png",
         "image": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-512.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "AgriChem_Registry",
-      "slug": "agrichem-registry",
-      "title": "AgriChem_Registry",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-20T12:22:00Z",
-      "url": "https://github.com/moniruzjaman/AgriChem_Registry",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/AgriChem_Registry/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 0,
-      "brand": {
-        "name": "AgriChem",
-        "themeColor": "#0f3d2e",
-        "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
-        "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
         "source": "manifest"
       },
       "featured": false
@@ -345,7 +366,7 @@
       ],
       "readmeBytes": 6629,
       "brand": {
-        "name": "Abu Md. Moniruzjaman — Agricultural Extension & Digital Innovation",
+        "name": "Abu Md. Moniruzzaman — Agricultural Extension & Digital Innovation",
         "icon": "https://knowledge-hub-alpha-khaki.vercel.app/favicon.svg",
         "source": "html"
       },
@@ -559,26 +580,6 @@
         "image": "https://e-bill-system.vercel.app/social-preview.png",
         "source": "manifest"
       },
-      "featured": false
-    },
-    {
-      "name": "diagnosis-assistant",
-      "slug": "diagnosis-assistant",
-      "title": "CABI Plant Diagnosis Assistant",
-      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-09-22T23:02:13Z",
-      "url": "https://github.com/moniruzjaman/diagnosis-assistant",
-      "live": "https://diagnosis-assistant-eosin.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "readmeBytes": 4730,
-      "brand": null,
       "featured": false
     },
     {

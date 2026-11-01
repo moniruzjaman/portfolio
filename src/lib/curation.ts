@@ -2,6 +2,9 @@ import raw from "../../content-data/apps.json";
 import libRaw from "../../content-data/library-curation.json";
 import type { Repo } from "./data";
 import type { Lang } from "./i18n";
+import { resolveShelf, type LibCuration, type LibData, type Shelf } from "./shelf";
+
+export type { Shelf, LibCuration };
 
 /**
  * Curation layer over the generated catalogue.
@@ -127,8 +130,6 @@ export const isLaunchable = (r: Repo): boolean => typeOf(r) === "app" || typeOf(
 
 /* ── library shelves ─────────────────────────────────────────────────────── */
 
-export type Shelf = "research" | "report" | "ebook" | "guide" | "training" | "other";
-
 export const SHELF_LABEL: Record<Shelf, { en: string; bn: string }> = {
   research: { en: "Research", bn: "গবেষণা" },
   report: { en: "Reports", bn: "প্রতিবেদন" },
@@ -138,18 +139,9 @@ export const SHELF_LABEL: Record<Shelf, { en: string; bn: string }> = {
   other: { en: "Other files", bn: "অন্যান্য ফাইল" },
 };
 
-type LibCuration = { shelf: Shelf; subjects: string[]; titleBn?: string };
-
-const LIB = libRaw as unknown as {
-  default: LibCuration;
-  byPath: Record<string, Omit<LibCuration, "titleBn">>;
-  entries: Record<string, Partial<LibCuration>>;
-};
+const LIB = libRaw as unknown as LibData;
 
 /** Resolve a Drive file's shelf + subject chips from its id and folder path. */
-export function libCurationFor(id: string, path: string[]): LibCuration {
-  const explicit = LIB.entries[id];
-  const top = path[0]?.toLowerCase();
-  const byPath = top ? Object.entries(LIB.byPath).find(([k]) => k.toLowerCase() === top)?.[1] : undefined;
-  return { ...LIB.default, ...(byPath ?? {}), ...(explicit ?? {}) } as LibCuration;
-}
+export const libCurationFor = (id: string, path: string[]): LibCuration => resolveShelf(LIB, id, path);
+
+export const SHELVES: Shelf[] = ["research", "report", "ebook", "guide", "training", "other"];

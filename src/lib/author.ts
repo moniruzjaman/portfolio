@@ -26,11 +26,12 @@ export const author = {
   phoneDisplay: "01712663740",
   /** Portfolio default: phone is not published. Flip to true to show it on Home/About. */
   showPhone: false as boolean,
+  // Social profile URLs — single source of truth (see src/components/Socials.tsx).
   github: "https://github.com/moniruzjaman",
   githubHandle: "moniruzjaman",
-  linkedin: "https://www.linkedin.com/in/abu-md-moniruzjaman",
+  linkedin: "https://www.linkedin.com/in/abu-md-moniruzjaman-a55b5034/",
   facebook: "https://www.facebook.com/moniruzjaman2021",
-  youtube: "https://youtube.com/@agriwisdombd",
+  youtube: "https://www.youtube.com/@AgriWisdomBd",
   site: "https://moniruzjaman.github.io",
 
   vision:

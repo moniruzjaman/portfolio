@@ -88,12 +88,35 @@ export function readableOn(bg: string): string {
   return contrast(bg, WHITE) >= contrast(bg, INK) ? WHITE : INK;
 }
 
+/** Minimum text contrast on a brand band. Above 4.5 so the 90%-opacity secondary line still passes. */
+export const BAND_MIN_CONTRAST = 5;
+
+const toHex = (r: number, g: number, b: number) =>
+  "#" + [r, g, b].map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+
+/**
+ * Mid-tone colours (a typical app green like #16a34a) sit in a dead zone where
+ * neither white nor dark text reaches 4.5:1. Keep the hue, darken until white text
+ * clears BAND_MIN_CONTRAST. Colours that are already readable are returned unchanged,
+ * and a light colour that dark text can carry is left light.
+ */
+export function fitBand(hex: string): string {
+  if (Math.max(contrast(hex, WHITE), contrast(hex, INK)) >= BAND_MIN_CONTRAST) return hex;
+  const n = parseInt(hex.slice(1), 16);
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  for (let k = 0.97; k > 0.2; k -= 0.03) {
+    const c = toHex(r * k, g * k, b * k);
+    if (contrast(c, WHITE) >= BAND_MIN_CONTRAST) return c;
+  }
+  return INK;
+}
+
 export function brandFor(repoName: string, raw?: RawBrand | null): Brand {
   const real = raw && isHex(raw.themeColor) ? raw.themeColor.toLowerCase() : null;
   // A near-white theme colour (very common: #ffffff) would make the card band
   // invisible against the cream page, so treat it as "no usable colour".
   const usable = real && luminance(real) < 0.8 ? real : null;
-  const color = usable ?? FALLBACK_PALETTE[hash(repoName) % FALLBACK_PALETTE.length];
+  const color = fitBand(usable ?? FALLBACK_PALETTE[hash(repoName) % FALLBACK_PALETTE.length]);
   return {
     color,
     fg: readableOn(color),

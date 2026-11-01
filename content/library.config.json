@@ -1,6 +1,16 @@
 {
-  "$comment": "One Drive folder feeds /library. 'root.folderId' is the folder's ID (drive.google.com/drive/folders/<ID>). Everything inside is sorted automatically: a top-level subfolder whose name matches 'researchPattern' becomes Research; otherwise a file goes by type (PDF, Presentations); anything else lands in 'Other files'. Folder IDs are not secrets. With no credentials the page offers Drive's own folder view; add GOOGLE_API_KEY (or GOOGLE_SERVICE_ACCOUNT_JSON) as a repository secret to index the files. Share the folder as 'Anyone with the link: Viewer'. Per-collection folderId is still supported if you later split into separate folders.",
+  "$comment": "One Drive folder feeds /library. 'root.folderId' is the folder's ID. WHAT GETS PUBLISHED: only the file types in 'kinds' (default: PDF, slides, Word-style docs). Images, zips, HTML, audio/video, code and spreadsheets are never listed, so a project-dump folder does not turn into a public file listing. 'excludeFolders' (exact folder names, case-insensitive, matched at any depth) are skipped entirely and never entered. SORTING: a top-level folder matching 'researchPattern' → Research; otherwise by type (PDF / Presentations / Documents). Share the folder as 'Anyone with the link: Viewer'. Credentials (GOOGLE_API_KEY) live only in repository secrets.",
   "maxDepth": 4,
+  "kinds": [
+    "pdf",
+    "slides",
+    "doc"
+  ],
+  "excludeFolders": [],
+  "root": {
+    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t",
+    "researchPattern": "research|paper|journal|thesis|study|গবেষণা"
+  },
   "collections": [
     {
       "key": "research",
@@ -12,8 +22,8 @@
     },
     {
       "key": "pdf",
-      "title": "PDF documents",
-      "titleBn": "পিডিএফ নথি",
+      "title": "PDFs",
+      "titleBn": "পিডিএফ",
       "description": "Guides, reports and reference documents.",
       "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
       "folderId": null
@@ -28,15 +38,11 @@
     },
     {
       "key": "other",
-      "title": "Other files",
-      "titleBn": "অন্যান্য ফাইল",
-      "description": "Documents, spreadsheets and other material.",
-      "descriptionBn": "নথি, স্প্রেডশিট ও অন্যান্য উপকরণ।",
+      "title": "Documents",
+      "titleBn": "নথি",
+      "description": "Word-style documents and other text material.",
+      "descriptionBn": "ওয়ার্ড-ধরনের নথি ও অন্যান্য লেখা উপকরণ।",
       "folderId": null
     }
-  ],
-  "root": {
-    "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t",
-    "researchPattern": "research|paper|journal|thesis|study|গবেষণা"
-  }
+  ]
 }

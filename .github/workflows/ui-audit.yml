@@ -1,0 +1,46 @@
+name: UI audit
+
+# Real-browser check of every route at phone and desktop width: WCAG 2.x A/AA (axe),
+# horizontal overflow, 40px touch targets, runtime errors. It needs a browser, so it
+# runs on pull requests (and on demand) instead of slowing every deploy.
+#
+# NOT deploy-blocking: it can only be required if you add it as a branch-protection
+# check. The browser packages are installed with --no-save, so they never touch
+# package.json, the lockfile, or the deploy workflow.
+on:
+  pull_request:
+    paths: ["src/**", "index.html", "scripts/ui-audit.mjs", "package*.json", ".github/workflows/ui-audit.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install audit tooling (not saved)
+        run: npm i --no-save puppeteer-core @sparticuz/chromium axe-core
+
+      - name: Serve and audit
+        run: |
+          npx vite preview --port 4173 --strictPort > /tmp/preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -fs http://localhost:4173/portfolio/ >/dev/null && break; sleep 1; done
+          node scripts/ui-audit.mjs http://localhost:4173/portfolio

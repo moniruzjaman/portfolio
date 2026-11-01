@@ -61,7 +61,7 @@ export const brandOf = (r: Repo): Brand => brandFor(r.name, r.brand);
 /* ── endpoints ─────────────────────────────────────────────────────────── */
 
 /** `label` is host + path ("moniruzjaman.github.io/soil-media-portal"): on GitHub Pages the host alone is shared by every site. */
-export type Endpoint = { channel: Channel; url: string; host: string; label: string };
+export type Endpoint = { channel: Channel; url: string; host: string; label: string; short: string };
 
 const hostOf = (u: string): string => {
   try {
@@ -94,7 +94,10 @@ export function endpointsOf(r: Repo): Endpoint[] {
     const label = host + new URL(url).pathname.replace(/\/$/, "");
     if (seen.has(label)) return;
     seen.add(label);
-    out.push({ channel: channelOfHost(host) ?? fallback, url, host, label });
+    const channel = channelOfHost(host) ?? fallback;
+    // On GitHub Pages every site shares one host, so the PATH is the informative part.
+    const path = new URL(url).pathname.replace(/\/$/, "");
+    out.push({ channel, url, host, label, short: channel === "github-pages" && path ? path : host });
   };
   add(r.customDomain, "custom-domain");
   add(r.live, "vercel");

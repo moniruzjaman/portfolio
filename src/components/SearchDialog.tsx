@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { Search, CornerDownLeft } from "lucide-react";
 import { repos } from "@/lib/data";
+import { summaryFor, titleFor } from "@/lib/curation";
 import { libraryItems, KIND_LABEL } from "@/lib/library";
 import { notes } from "@/content/notes";
 import { useI18n } from "@/lib/i18n";
@@ -58,11 +59,11 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     const repoHits: Hit[] = repos
       .map((r) => ({
         kind: "repo" as const,
-        title: r.title,
-        subtitle: `${r.name} · ${r.description ?? r.language ?? ""}`,
+        title: titleFor(r, lang),
+        subtitle: summaryFor(r, lang) || r.name,
         href: `/works/${r.slug}`,
         score:
-          score(q, r.name, r.title, r.description ?? "", ...(r.topics ?? [])) +
+          score(q, r.name, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...(r.topics ?? [])) +
           (Date.now() - new Date(r.pushedAt).getTime() < 86_400_000 * 30 ? 5 : 0),
       }))
       .filter((h) => h.score > 0);

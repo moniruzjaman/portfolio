@@ -36,6 +36,7 @@ npm test             # script unit tests + server-render of every route at its b
 npm run build        # generate static files + typecheck + vite build + no-credentials gate
 npm run preview      # serve dist/
 npm run sync         # refresh repos + Drive library (needs GITHUB_TOKEN; see .env.example)
+node scripts/ui-audit.mjs <url>   # real-browser a11y/overflow/touch-target audit (see below)
 ```
 
 `npm run build` runs every gate in sequence. A build that passes is a build that
@@ -98,6 +99,23 @@ static file.
 
 ---
 
+## UI audit
+
+`scripts/ui-audit.mjs` opens every route at phone (390px) and desktop (1280px) width
+in a real headless Chromium and fails on: WCAG 2.x A/AA violations of serious/critical
+impact (axe-core), sideways scrolling, touch targets under 40px, and runtime errors.
+It runs on pull requests via `.github/workflows/ui-audit.yml`. It needs a browser, so
+it is not part of `npm test` or the deploy path; the workflow installs its tooling with
+`npm i --no-save`. To run it locally:
+
+```bash
+npm run build && npm i --no-save puppeteer-core @sparticuz/chromium axe-core
+npx vite preview --port 4173 &
+node scripts/ui-audit.mjs http://localhost:4173/portfolio
+```
+
+(`npm i` of any real dependency prunes `--no-save` packages — reinstall them afterwards.)
+
 ## App branding
 
 Each card shows the app's **own** colour and icon, read at sync time from the app's
@@ -121,6 +139,13 @@ subfolder whose name matches `researchPattern` (default: research, paper, journa
 thesis, study, গবেষণা) becomes **Research**; every other file goes by type — PDFs to
 **PDF**, slides to **Presentations**, the rest to **Other files**. Sub-folders are
 walked (up to `maxDepth`) and shown as a label on each card.
+
+**What is published.** Only the file types in `kinds` (default PDF, slides, Word-style
+documents). Images, zips, HTML, audio/video, code and spreadsheets are never listed,
+so a working-directory folder cannot become a public file listing. To keep a folder
+out entirely, add its name to `excludeFolders` — it is never entered, which the
+tests verify. Counts of everything skipped are written to
+`src/data/library-skipped.generated.json`.
 
 **Zero credentials (works today):** share the folder as *Anyone with the link →
 Viewer*. The page shows Drive's own folder view, click-to-load.

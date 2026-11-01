@@ -13,6 +13,7 @@ import { notes } from "@/content/notes";
 import { author, figures } from "@/lib/author";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "@/components/Section";
+import { ConnectSection } from "@/components/ConnectSection";
 
 /** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
 const FEATURED = FLAGSHIP_NAMES
@@ -47,12 +48,27 @@ export default function Home() {
 
         <div className="u-container grid items-center gap-16 lg:grid-cols-[1.12fr_.88fr]">
           <div className="max-w-3xl">
+            {/* On a phone the full portrait card sits far below the fold; show who this is immediately. */}
+            <div className="mb-6 flex items-center gap-3.5 lg:hidden">
+              <img
+                src={asset("portrait.jpg")}
+                alt=""
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-full border-2 border-white bg-white object-cover object-top shadow-md"
+              />
+              <div>
+                <p className="font-serif text-lg font-black leading-tight text-forest-900">{author.name}</p>
+                <p className="text-xs text-moss-500">{author.role}</p>
+              </div>
+            </div>
+
             <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-forest-200 bg-white/50 px-4 py-2">
               <span className="h-2 w-2 animate-pulse rounded-full bg-forest-400" />
               <span className="u-eyebrow text-forest-500">{t("Portfolio", "পোর্টফোলিও")} · DAE Bangladesh</span>
             </div>
 
-            <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold-500">
+            <p className="mb-4 hidden font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold-500 lg:block">
               {author.name}
             </p>
 
@@ -68,22 +84,38 @@ export default function Home() {
               )}
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <a
                 href="#work"
-                className="inline-flex items-center rounded-full bg-forest-900 px-7 py-3.5 text-sm font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
+                className="inline-flex items-center justify-center rounded-full bg-forest-900 px-4 py-3.5 text-center text-sm sm:px-7 font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
               >
                 {t("See my work", "আমার কাজ দেখুন")} <ArrowDown className="ml-2" size={16} />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center rounded-full border border-forest-900/25 bg-white/40 px-7 py-3.5 text-sm font-bold text-forest-900 transition-colors hover:bg-white"
+                className="inline-flex items-center justify-center rounded-full border border-forest-900/25 bg-white/40 px-4 py-3.5 text-center text-sm sm:px-7 font-bold text-forest-900 transition-colors hover:bg-white"
               >
                 {t("Get in touch", "যোগাযোগ করুন")} <Mail className="ml-2" size={16} />
               </a>
             </div>
 
-            {/* Live counts — computed from generated data, never hand-typed. */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-5">
+            <span className="u-eyebrow text-moss-400">{t("Follow:", "অনুসরণ করুন:")}</span>
+            {socials.map(({ key, label, href }) => (
+              <a
+                key={key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${label} (opens in a new tab)`}
+                className="inline-flex min-h-11 items-center text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {/* Live counts — computed from generated data, never hand-typed. */}
             <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-forest-300 pt-8">
               {[
                 { n: stats.repos, l: t("published works", "প্রকাশিত কাজ") },
@@ -154,7 +186,7 @@ export default function Home() {
             </div>
             <Link
               href="/works"
-              className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
             >
               {t(`All ${stats.repos} works`, `সব ${stats.repos}টি কাজ`)} <ArrowUpRight size={16} />
             </Link>
@@ -221,7 +253,7 @@ export default function Home() {
                 {t("From the haor to the river delta.", "হাওর থেকে নদীবিধৌত জনপদ।")}
               </h2>
             </div>
-            <Link href="/about" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+            <Link href="/about" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
               {t("Full career & education", "পূর্ণ কর্মজীবন ও শিক্ষা")} <ArrowUpRight size={16} />
             </Link>
           </div>
@@ -309,7 +341,7 @@ export default function Home() {
                 </div>
                 <Link
                   href="/expertise"
-                  className="mt-8 inline-flex items-center gap-2 border-t border-white/10 pt-5 text-xs font-bold text-gold-400 transition-colors hover:text-white"
+                  className="mt-8 inline-flex min-h-11 items-center gap-2 border-t border-white/10 pt-3 text-xs font-bold text-gold-400 transition-colors hover:text-white"
                 >
                   {t("All expertise", "সব দক্ষতা")} <ArrowUpRight size={14} />
                 </Link>
@@ -330,7 +362,7 @@ export default function Home() {
                   {t("Research, PDFs and slide decks.", "গবেষণা, পিডিএফ ও স্লাইড।")}
                 </h2>
               </div>
-              <Link href="/library" className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+              <Link href="/library" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
                 {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)} <ArrowUpRight size={16} />
               </Link>
             </div>
@@ -373,7 +405,7 @@ export default function Home() {
             </div>
             <Link
               href="/notes"
-              className="inline-flex items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
             >
               {t("All writing", "সব লেখা")} <ArrowUpRight size={16} />
             </Link>
@@ -407,11 +439,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── connect & follow ─────────────────────────────── */}
+      <ConnectSection />
+
       {/* ── contact ──────────────────────────────────────────── */}
       <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-forest-800 px-5 py-24 text-center sm:px-8 lg:px-12">
         <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-forest-400/10 blur-3xl" />
         <div className="relative mx-auto max-w-3xl">
-          <p className="u-eyebrow mb-4 text-gold-400">
+          <p className="u-eyebrow mb-4 text-gold-300">
             {t("Contact", "যোগাযোগ")}
           </p>
           <h2 className="font-serif text-5xl font-black leading-tight text-white sm:text-6xl">
@@ -440,7 +475,7 @@ export default function Home() {
                 key={key}
                 href={href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
               >
                 <Icon size={16} /> {label}

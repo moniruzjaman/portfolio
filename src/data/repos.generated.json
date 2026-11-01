@@ -1,15 +1,57 @@
 {
-  "generatedAt": "2026-10-31T09:37:54.402Z",
+  "generatedAt": "2026-11-01T10:26:52.226Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
-    "vercel": 26,
-    "github-pages": 30,
     "custom-domain": 4,
+    "github-pages": 30,
+    "vercel": 26,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "AgriChem-Guide-Pest-Control-Database",
+      "slug": "agrichem-guide-pest-control-database",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "bangladesh",
+        "bilingual",
+        "dae",
+        "frac",
+        "hrac",
+        "irac",
+        "moa",
+        "pesticide",
+        "progressive-web-app",
+        "pwa",
+        "react",
+        "typescript",
+        "vite-react"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-11-01T09:54:28Z",
+      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
+      "live": "https://pest-next.krishiai.live",
+      "customDomain": "https://pest-next.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
+      "channels": [
+        "custom-domain",
+        "github-pages"
+      ],
+      "readmeBytes": 15803,
+      "brand": {
+        "name": "PesticideNext",
+        "themeColor": "#006a4e",
+        "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
+        "image": "https://pesticide.krishiai.live/og-image.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
     {
       "name": "cabi-diagnosis",
       "slug": "cabi-diagnosis",
@@ -18,7 +60,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-10-30T17:54:31Z",
+      "pushedAt": "2026-11-01T09:32:09Z",
       "url": "https://github.com/moniruzjaman/cabi-diagnosis",
       "live": "https://cabi-diagnosis.vercel.app",
       "customDomain": null,
@@ -33,6 +75,56 @@
         "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
         "image": "https://cabi.krishiai.live/og-share.png",
         "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-31T12:18:22Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-10-31T09:38:20Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11024,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
       },
       "featured": false
     },
@@ -58,98 +150,6 @@
         "themeColor": "#0f3d2e",
         "icon": "https://moniruzjaman.github.io/AgriChem_Registry/icon.svg",
         "image": "https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-30T12:47:34Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-30T10:00:51Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11024,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "AgriChem-Guide-Pest-Control-Database",
-      "slug": "agrichem-guide-pest-control-database",
-      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
-      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
-      "language": "TypeScript",
-      "topics": [
-        "agriculture",
-        "bangladesh",
-        "bilingual",
-        "dae",
-        "frac",
-        "hrac",
-        "irac",
-        "moa",
-        "pesticide",
-        "progressive-web-app",
-        "pwa",
-        "react",
-        "typescript",
-        "vite-react"
-      ],
-      "stars": 0,
-      "pushedAt": "2026-10-28T23:30:50Z",
-      "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
-      "live": "https://pest-next.krishiai.live",
-      "customDomain": "https://pest-next.krishiai.live",
-      "pages": "https://moniruzjaman.github.io/AgriChem-Guide-Pest-Control-Database/",
-      "channels": [
-        "custom-domain",
-        "github-pages"
-      ],
-      "readmeBytes": 15803,
-      "brand": {
-        "name": "PesticideNext",
-        "themeColor": "#006a4e",
-        "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
-        "image": "https://pesticide.krishiai.live/og-image.png",
         "source": "manifest"
       },
       "featured": false

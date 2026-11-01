@@ -25,7 +25,9 @@ export function BrandMark({ brand, size = 44, radius = 12 }: { brand: Brand; siz
         borderRadius: radius,
         fontSize: size * 0.38,
         // A real icon sits on white so a transparent PNG/SVG is legible on any brand colour.
-        background: showIcon ? "#ffffff" : "rgba(255,255,255,0.16)",
+        // The tint must move AWAY from the text colour, never toward it: white text gets a dark
+        // overlay, dark text a light one. (A white overlay under white text lowered contrast.)
+        background: showIcon ? "#ffffff" : brand.fg === "#ffffff" ? "rgba(0,0,0,0.22)" : "rgba(255,255,255,0.35)",
         color: brand.fg,
         boxShadow: showIcon ? "0 0 0 1px rgba(255,255,255,0.35)" : "inset 0 0 0 1px rgba(255,255,255,0.28)",
       }}
@@ -69,10 +71,10 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
       <div className="flex items-center gap-3 px-5 py-4" style={{ background: brand.color, color: brand.fg }}>
         <BrandMark brand={brand} size={compact ? 38 : 44} />
         <span className="min-w-0 flex-1">
-          <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em] opacity-90">
+          <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em]">
             {ep ? ep.short : repo.name}
           </span>
-          <span className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] opacity-75">
+          <span className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em]">
             {repo.channels.map((c) => CHANNEL_LABEL[c][lang]).join(" · ")}
           </span>
         </span>

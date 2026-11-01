@@ -122,8 +122,25 @@ export default function Works() {
             </div>
 
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="u-eyebrow shrink-0 text-moss-400">{t("For", "যাদের জন্য")}</span>
-              <div role="group" aria-label={t("Audience", "ব্যবহারকারী")} className="flex flex-wrap gap-2">
+              <span className="u-eyebrow hidden shrink-0 text-moss-400 sm:block">{t("For", "যাদের জন্য")}</span>
+              {/* Phones: one compact control instead of a block of chips. */}
+              <label className="w-full sm:hidden">
+                <span className="sr-only">{t("Audience", "ব্যবহারকারী")}</span>
+                <select
+                  value={audience}
+                  onChange={(e) => setAudience(e.target.value as Audience | "all")}
+                  className="min-h-11 w-full rounded-full border border-forest-300 bg-white px-4 text-sm font-bold text-forest-900"
+                >
+                  <option value="all">{t("For: everyone", "সবার জন্য")}</option>
+                  {AUDIENCES.map((a) => (
+                    <option key={a} value={a}>
+                      {t("For: ", "জন্য: ")}
+                      {AUDIENCE_LABEL[a][lang]}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div role="group" aria-label={t("Audience", "ব্যবহারকারী")} className="hidden flex-wrap gap-2 sm:flex">
                 {AUDIENCES.map((a) => (
                   <button
                     key={a}

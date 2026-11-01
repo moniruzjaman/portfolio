@@ -36,6 +36,7 @@ npm test             # script unit tests + server-render of every route at its b
 npm run build        # generate static files + typecheck + vite build + no-credentials gate
 npm run preview      # serve dist/
 npm run sync         # refresh repos + Drive library (needs GITHUB_TOKEN; see .env.example)
+node scripts/ui-audit.mjs <url>   # real-browser a11y/overflow/touch-target audit (see below)
 ```
 
 `npm run build` runs every gate in sequence. A build that passes is a build that
@@ -97,6 +98,23 @@ everyone behind them sees a broken page. CI has 5,000/hour. The browser reads a
 static file.
 
 ---
+
+## UI audit
+
+`scripts/ui-audit.mjs` opens every route at phone (390px) and desktop (1280px) width
+in a real headless Chromium and fails on: WCAG 2.x A/AA violations of serious/critical
+impact (axe-core), sideways scrolling, touch targets under 40px, and runtime errors.
+It runs on pull requests via `.github/workflows/ui-audit.yml`. It needs a browser, so
+it is not part of `npm test` or the deploy path; the workflow installs its tooling with
+`npm i --no-save`. To run it locally:
+
+```bash
+npm run build && npm i --no-save puppeteer-core @sparticuz/chromium axe-core
+npx vite preview --port 4173 &
+node scripts/ui-audit.mjs http://localhost:4173/portfolio
+```
+
+(`npm i` of any real dependency prunes `--no-save` packages — reinstall them afterwards.)
 
 ## App branding
 

@@ -37,7 +37,6 @@ export function ConnectSection() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`${label} (opens in a new tab)`}
                 className="group flex h-full flex-col rounded-[1.5rem] border border-forest-400 bg-cream-50 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-forest-300"
               >
                 <div className="mb-5 flex items-center justify-between">
@@ -57,6 +56,7 @@ export function ConnectSection() {
                   {handle}
                 </p>
                 <p className="mt-4 flex-1 text-sm leading-relaxed text-moss-600">{t(en, bn)}</p>
+                <span className="sr-only">{t("(opens in a new tab)", "(নতুন ট্যাবে খুলবে)")}</span>
               </a>
             </li>
           ))}

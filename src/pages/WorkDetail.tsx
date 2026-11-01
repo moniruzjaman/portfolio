@@ -3,6 +3,7 @@ import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { GithubMark } from "@/components/icons";
 import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
 import { BrandMark } from "@/components/AppCard";
+import { QrCode } from "@/components/QrCode";
 import { AUDIENCE_BLURB, AUDIENCE_LABEL, audiencesOf, isLaunchable, notesFor, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
 import { notes } from "@/content/notes";
 import { PageHeader, Chip } from "@/components/Section";
@@ -59,17 +60,6 @@ export default function WorkDetail() {
               className="relative mb-8 flex items-center gap-5 overflow-hidden rounded-2xl p-6"
               style={{ background: brand.color, color: brand.fg }}
             >
-              {brand.image && (
-                <img
-                  src={brand.image}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                  className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity"
-                  onError={(e) => (e.currentTarget.style.display = "none")}
-                />
-              )}
               <div className="relative">
                 <BrandMark brand={brand} size={72} radius={18} />
               </div>
@@ -84,6 +74,20 @@ export default function WorkDetail() {
                 </p>
               </div>
             </div>
+
+            {brand.image && (
+              <figure className="mb-8">
+                <img
+                  src={brand.image}
+                  alt={t(`${title} — preview as the app presents itself`, `${title} — অ্যাপটির নিজস্ব প্রিভিউ`)}
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  className="aspect-[1.91/1] w-full rounded-2xl border border-forest-300 bg-cream-200 object-cover"
+                  onError={(e) => (e.currentTarget.closest("figure")!.style.display = "none")}
+                />
+              </figure>
+            )}
 
             <div className="mb-6 flex flex-wrap items-center gap-2">
               <Chip>{TYPE_LABEL[typeOf(repo)][lang]}</Chip>
@@ -219,6 +223,14 @@ export default function WorkDetail() {
                           <ExternalLink size={12} aria-hidden="true" className="shrink-0" />
                         </a>
                       ))}
+                    </dd>
+                  </div>
+                )}
+                {launchable && endpoints[0] && (
+                  <div>
+                    <dt className="sr-only">{t("Open on a phone", "ফোনে খুলুন")}</dt>
+                    <dd>
+                      <QrCode url={endpoints[0].url} name={title} />
                     </dd>
                   </div>
                 )}

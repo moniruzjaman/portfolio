@@ -84,16 +84,16 @@ export default function Home() {
               )}
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <a
                 href="#work"
-                className="inline-flex items-center rounded-full bg-forest-900 px-5 py-3.5 text-sm sm:px-7 font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
+                className="inline-flex items-center justify-center rounded-full bg-forest-900 px-4 py-3.5 text-center text-sm sm:px-7 font-bold text-cream-100 shadow-xl shadow-forest-900/15 transition-transform hover:-translate-y-1 hover:bg-forest-600"
               >
                 {t("See my work", "আমার কাজ দেখুন")} <ArrowDown className="ml-2" size={16} />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center rounded-full border border-forest-900/25 bg-white/40 px-5 py-3.5 text-sm sm:px-7 font-bold text-forest-900 transition-colors hover:bg-white"
+                className="inline-flex items-center justify-center rounded-full border border-forest-900/25 bg-white/40 px-4 py-3.5 text-center text-sm sm:px-7 font-bold text-forest-900 transition-colors hover:bg-white"
               >
                 {t("Get in touch", "যোগাযোগ করুন")} <Mail className="ml-2" size={16} />
               </a>
@@ -446,7 +446,7 @@ export default function Home() {
       <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-forest-800 px-5 py-24 text-center sm:px-8 lg:px-12">
         <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-forest-400/10 blur-3xl" />
         <div className="relative mx-auto max-w-3xl">
-          <p className="u-eyebrow mb-4 text-gold-400">
+          <p className="u-eyebrow mb-4 text-gold-300">
             {t("Contact", "যোগাযোগ")}
           </p>
           <h2 className="font-serif text-5xl font-black leading-tight text-white sm:text-6xl">

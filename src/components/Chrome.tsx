@@ -43,13 +43,15 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
       }`}
     >
       <div className="u-container flex items-center justify-between py-4">
-        <Link href="/" className="group flex min-h-11 min-w-11 items-center gap-3" aria-label={author.name}>
+        <Link href="/" className="group flex min-h-11 min-w-11 items-center gap-3" aria-label={`${author.initials} ${author.short} — ${author.name}`}>
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-900 font-serif text-sm font-black text-gold-400 transition-transform group-hover:-rotate-6">
             {author.initials}
           </span>
+          {/* Real whitespace between the spans: the visible text must read "AM MONIRUZJAMAN" so it matches the link's accessible name. */}
+          {" "}
           <span className="hidden text-sm font-black tracking-[0.18em] text-forest-900 sm:block">
             {author.short.toUpperCase()}
-            <span className="text-gold-500">.</span>
+            <span aria-hidden="true" className="text-gold-500 after:content-['.']" />
           </span>
         </Link>
 
@@ -78,7 +80,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
 
           <button
             onClick={toggle}
-            aria-label={t("Switch language", "ভাষা পরিবর্তন")}
+            aria-label={`${lang === "en" ? "বাংলা" : "EN"} — ${t("Switch language", "ভাষা পরিবর্তন")}`}
             aria-live="polite"
             className="flex min-h-11 items-center rounded-full bg-forest-900 px-5 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
           >

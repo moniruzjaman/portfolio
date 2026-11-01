@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (no request to Google; one origin; works on slow rural links).
+   Each package splits by unicode-range, so the browser fetches only the subsets a page
+   uses — e.g. Bangla glyphs download only on Bangla pages. */
+@import "@fontsource-variable/playfair-display/wght.css";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "@fontsource-variable/dm-sans/wght.css";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+@import "@fontsource-variable/noto-sans-bengali/wght.css";
+@import "@fontsource-variable/noto-serif-bengali/wght.css";
+
 /* ══════════════════════════════════════════════════════════════
    DESIGN TOKENS — Abu Md. Moniruzjaman portfolio
    Carried over unchanged from the Manus build. Values match
@@ -13,14 +24,14 @@
   --color-forest-800: #103c25;
   --color-forest-700: #164a2d;
   --color-forest-600: #1a5c32;
-  --color-forest-500: #2d8a4e;
+  --color-forest-500: #267643;
   --color-forest-400: #4ab870;
   --color-forest-300: #70c98a;
   --color-forest-200: #a8d8b0;
 
   /* Accent — gold (innovation, achievement) */
-  --color-gold-600: #a8861d;
-  --color-gold-500: #c09a24;
+  --color-gold-600: #6a530f;
+  --color-gold-500: #7e6517;
   --color-gold-400: #c9a227;
   --color-gold-300: #e3ba45;
 
@@ -32,13 +43,16 @@
   --color-cream-400: #d6e4d7;
 
   /* Text */
-  --color-moss-500: #527059;
-  --color-moss-600: #6b826e;
-  --color-moss-400: #7a9b7c;
+  --color-moss-500: #475f4d;
+  --color-moss-600: #596d5c;
+  --color-moss-400: #566e58;
 
   /* Type */
-  --font-display: "Playfair Display", "Noto Serif Bengali", Georgia, serif;
-  --font-sans: "DM Sans", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-display: "Playfair Display Variable", "Noto Serif Bengali Variable", Georgia, serif;
+  /* Tailwind's `font-serif` (46 uses) previously fell through to the browser default —
+     the display face in the design system was loaded but never applied. */
+  --font-serif: "Playfair Display Variable", "Noto Serif Bengali Variable", Georgia, serif;
+  --font-sans: "DM Sans Variable", "Noto Sans Bengali Variable", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* Motion */

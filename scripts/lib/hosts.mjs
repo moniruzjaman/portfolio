@@ -7,9 +7,7 @@
  */
 
 export const ALLOWED_HOSTS = [
-  // fonts
-  "fonts.googleapis.com",
-  "fonts.gstatic.com",
+  // (fonts are self-hosted via @fontsource — Google Fonts is deliberately NOT allowed)
   // source + published sites
   "github.com",
   "moniruzjaman.github.io",

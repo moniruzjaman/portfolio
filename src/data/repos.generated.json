@@ -1,15 +1,61 @@
 {
-  "generatedAt": "2026-11-01T10:26:52.226Z",
+  "generatedAt": "2026-11-01T12:35:02.463Z",
   "source": "moniruzjaman",
   "total": 47,
   "scanned": 75,
   "channels": {
-    "custom-domain": 4,
-    "github-pages": 30,
+    "github-pages": 31,
     "vercel": 26,
+    "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T12:34:01Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11871,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "diagnosis-assistant",
+      "slug": "diagnosis-assistant",
+      "title": "CABI Plant Diagnosis Assistant",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T11:49:08Z",
+      "url": "https://github.com/moniruzjaman/diagnosis-assistant",
+      "live": "https://diagnosis-assistant-eosin.vercel.app",
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/diagnosis-assistant/",
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 4730,
+      "brand": null,
+      "featured": false
+    },
     {
       "name": "AgriChem-Guide-Pest-Control-Database",
       "slug": "agrichem-guide-pest-control-database",
@@ -33,7 +79,7 @@
         "vite-react"
       ],
       "stars": 0,
-      "pushedAt": "2026-11-01T09:54:28Z",
+      "pushedAt": "2026-11-01T11:01:56Z",
       "url": "https://github.com/moniruzjaman/AgriChem-Guide-Pest-Control-Database",
       "live": "https://pest-next.krishiai.live",
       "customDomain": "https://pest-next.krishiai.live",
@@ -99,31 +145,6 @@
         "name": "রাষ্ট্রকে দেখা তিন চোখে",
         "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
         "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-31T09:38:20Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11024,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
       },
       "featured": false
@@ -559,26 +580,6 @@
         "image": "https://e-bill-system.vercel.app/social-preview.png",
         "source": "manifest"
       },
-      "featured": false
-    },
-    {
-      "name": "diagnosis-assistant",
-      "slug": "diagnosis-assistant",
-      "title": "CABI Plant Diagnosis Assistant",
-      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-09-22T23:02:13Z",
-      "url": "https://github.com/moniruzjaman/diagnosis-assistant",
-      "live": "https://diagnosis-assistant-eosin.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "readmeBytes": 4730,
-      "brand": null,
       "featured": false
     },
     {

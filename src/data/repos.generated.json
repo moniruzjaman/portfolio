@@ -1,15 +1,66 @@
 {
-  "generatedAt": "2026-11-01T12:35:02.463Z",
+  "generatedAt": "2026-11-02T11:03:17.450Z",
   "source": "moniruzjaman",
-  "total": 47,
-  "scanned": 75,
+  "total": 48,
+  "scanned": 76,
   "channels": {
-    "github-pages": 31,
     "vercel": 26,
+    "github-pages": 32,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-02T10:41:58Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "readmeBytes": 17671,
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "daily-report-pipeline",
+      "slug": "daily-report-pipeline",
+      "title": "Daily Report Pipeline",
+      "description": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-02T09:02:32Z",
+      "url": "https://github.com/moniruzjaman/daily-report-pipeline",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/daily-report-pipeline/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 5175,
+      "brand": {
+        "name": "DailyReport",
+        "themeColor": "#16323f",
+        "icon": "https://moniruzjaman.github.io/daily-report-pipeline/icons/icon-192.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
     {
       "name": "portfolio",
       "slug": "portfolio",
@@ -18,7 +69,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-01T12:34:01Z",
+      "pushedAt": "2026-11-02T07:13:22Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -36,6 +87,35 @@
       "featured": false
     },
     {
+      "name": "web.krishiai.live",
+      "slug": "web-krishiai-live",
+      "title": "KrishiAI — বাংলাদেশ কৃষি AI প্ল্যাটফর্ম",
+      "description": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T21:16:00Z",
+      "url": "https://github.com/moniruzjaman/web.krishiai.live",
+      "live": "https://web-krishiai-live.vercel.app",
+      "customDomain": "https://web.krishiai.live",
+      "pages": "https://moniruzjaman.github.io/web.krishiai.live/",
+      "channels": [
+        "custom-domain",
+        "vercel",
+        "cloudflare",
+        "github-pages"
+      ],
+      "readmeBytes": 7384,
+      "brand": {
+        "name": "KrishiAI",
+        "themeColor": "#0b6623",
+        "icon": "https://web.krishiai.live/icons/icon-192.png",
+        "image": "https://web.krishiai.live/og-image.jpeg",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
       "name": "diagnosis-assistant",
       "slug": "diagnosis-assistant",
       "title": "CABI Plant Diagnosis Assistant",
@@ -43,7 +123,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-01T11:49:08Z",
+      "pushedAt": "2026-11-01T19:47:43Z",
       "url": "https://github.com/moniruzjaman/diagnosis-assistant",
       "live": "https://diagnosis-assistant-eosin.vercel.app",
       "customDomain": null,
@@ -52,8 +132,54 @@
         "vercel",
         "github-pages"
       ],
-      "readmeBytes": 4730,
+      "readmeBytes": 6516,
       "brand": null,
+      "featured": false
+    },
+    {
+      "name": "pesticide-field-guide",
+      "slug": "pesticide-field-guide",
+      "title": "pesticide-field-guide",
+      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T19:37:55Z",
+      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
+      "live": "https://pesticide-field-guide.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "readmeBytes": 0,
+      "brand": null,
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-01T13:14:44Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -95,57 +221,6 @@
         "icon": "https://pest-next.krishiai.live/icons/icon-192.png",
         "image": "https://pesticide.krishiai.live/og-image.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-01T09:32:09Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "readmeBytes": 17671,
-      "brand": {
-        "name": "উদ্ভিদ গোয়েন্দা",
-        "themeColor": "#046a1a",
-        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
-        "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-31T12:18:22Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
       },
       "featured": false
     },
@@ -293,56 +368,6 @@
         "themeColor": "#145a32",
         "icon": "https://moniruzjaman.github.io/self-learning/apple-touch-icon.png",
         "image": "https://moniruzjaman.github.io/self-learning/og-image.jpg",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "pesticide-field-guide",
-      "slug": "pesticide-field-guide",
-      "title": "pesticide-field-guide",
-      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-15T14:35:26Z",
-      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
-      "live": "https://pesticide-field-guide.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel",
-        "github-pages"
-      ],
-      "readmeBytes": 0,
-      "brand": null,
-      "featured": false
-    },
-    {
-      "name": "web.krishiai.live",
-      "slug": "web-krishiai-live",
-      "title": "KrishiAI — বাংলাদেশ কৃষি AI প্ল্যাটফর্ম",
-      "description": null,
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-13T18:56:27Z",
-      "url": "https://github.com/moniruzjaman/web.krishiai.live",
-      "live": "https://web-krishiai-live.vercel.app",
-      "customDomain": "https://web.krishiai.live",
-      "pages": "https://moniruzjaman.github.io/web.krishiai.live/",
-      "channels": [
-        "custom-domain",
-        "vercel",
-        "cloudflare",
-        "github-pages"
-      ],
-      "readmeBytes": 7384,
-      "brand": {
-        "name": "KrishiAI",
-        "themeColor": "#0b6623",
-        "icon": "https://web.krishiai.live/icons/icon-192.png",
-        "image": "https://web.krishiai.live/og-image.jpeg",
         "source": "manifest"
       },
       "featured": false

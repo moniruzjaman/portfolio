@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T12:35:33.184Z",
+  "generatedAt": "2026-11-02T11:03:41.590Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -23,6 +23,17 @@
       "folderId": null,
       "items": [
         {
+          "id": "1_wA9kD2_7T5D21huPprlsiPLAvJp_jsW",
+          "collection": "pdf",
+          "name": "From Field Symptom to_cabi_app_research.pdf",
+          "title": "From Field Symptom to cabi app research",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-01T19:16:43.768Z",
+          "size": 486832,
+          "path": []
+        },
+        {
           "id": "1HRB_2bLwEQbEsddxggvsRdBfCFoau2IL",
           "collection": "pdf",
           "name": "“Legal Issues Related to International Trading of Agricultural Products” ছাড়পত্র_copy.pdf",
@@ -31,7 +42,9 @@
           "mime": "application/pdf",
           "modified": "2026-10-29T09:43:32.410Z",
           "size": 148609,
-          "path": []
+          "path": [
+            "Web upload "
+          ]
         },
         {
           "id": "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k",
@@ -916,20 +929,6 @@
           ]
         },
         {
-          "id": "1Mmkmfa94V2hdehP68uGZwQKMiHWeV3Nx",
-          "collection": "pdf",
-          "name": "Farmer_Card_Technical_Report.pdf",
-          "title": "Farmer Card Technical Report",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-07-14T10:19:50.629Z",
-          "size": 62962,
-          "path": [
-            "bnp_policy",
-            "Farmers Card App_analysis"
-          ]
-        },
-        {
           "id": "16k5xlQjiKVip-QzTnr9489khkfc-aBsy",
           "collection": "pdf",
           "name": "Farmer_Card_App_Technical_Report.pdf",
@@ -953,7 +952,8 @@
           "modified": "2026-07-14T05:43:58.000Z",
           "size": 406524,
           "path": [
-            "bnp_policy"
+            "bnp_policy",
+            "Farmers Card App_analysis"
           ]
         },
         {
@@ -965,7 +965,9 @@
           "mime": "application/pdf",
           "modified": "2026-07-06T13:51:53.253Z",
           "size": 666169,
-          "path": []
+          "path": [
+            "Plantation tracker "
+          ]
         },
         {
           "id": "14U-vajNZ58V2ZIi0kC5vxJskEnvCQprG",
@@ -1174,17 +1176,6 @@
           "path": [
             "Gap"
           ]
-        },
-        {
-          "id": "1K2N0QwJY-3qUhLVrdtM4B-AAf0zEZIZd",
-          "collection": "pdf",
-          "name": "Enhancing Kurigram District partner report document.pdf",
-          "title": "Enhancing Kurigram District partner report document",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-05-04T21:50:03.713Z",
-          "size": 163784,
-          "path": []
         },
         {
           "id": "1jRaWXpSYuCm4zsixjwWiovI47GUqFDNM",
@@ -2615,17 +2606,6 @@
           ]
         },
         {
-          "id": "1_wA9kD2_7T5D21huPprlsiPLAvJp_jsW",
-          "collection": "pdf",
-          "name": "From Field Symptom t_41268136_20260304_1320202620.pdf",
-          "title": "From Field Symptom t 41268136 20260304 1320202620",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-03-12T15:38:52.380Z",
-          "size": 486832,
-          "path": []
-        },
-        {
           "id": "1EGgeFQsOCPVFrHhDHwTlC7b1V0E51-8z",
           "collection": "pdf",
           "name": "Efficiency_3.0_Rural_Bangladesh.pdf",
@@ -3146,7 +3126,7 @@
           "modified": "2025-08-29T09:59:37.157Z",
           "size": 3651865,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3159,7 +3139,7 @@
           "modified": "2025-08-29T09:01:56.808Z",
           "size": 3549262,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3172,7 +3152,7 @@
           "modified": "2025-08-29T08:27:37.966Z",
           "size": 4435078,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3185,7 +3165,7 @@
           "modified": "2025-08-29T08:20:02.720Z",
           "size": 3619928,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3198,7 +3178,7 @@
           "modified": "2025-08-29T08:12:25.249Z",
           "size": 3886332,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3211,7 +3191,7 @@
           "modified": "2025-08-29T07:49:14.518Z",
           "size": 3613065,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3224,7 +3204,7 @@
           "modified": "2025-08-29T07:35:49.117Z",
           "size": 3884003,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3237,7 +3217,7 @@
           "modified": "2025-08-28T21:26:52.517Z",
           "size": 9006538,
           "path": [
-            "Web upload "
+            "Gap"
           ]
         },
         {
@@ -3482,17 +3462,6 @@
           "path": [
             "Web upload "
           ]
-        },
-        {
-          "id": "1WiO942awfCyIbt06uuJHoYEQeCtM26lq",
-          "collection": "pptx",
-          "name": "Kurigram_Enhanced_with_Crop_Pictures.pptx",
-          "title": "Kurigram Enhanced with Crop Pictures",
-          "kind": "slides",
-          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "modified": "2026-07-08T05:37:02.048Z",
-          "size": 10327596,
-          "path": []
         },
         {
           "id": "1sK_Pi8_7vznX25koqaKPPDuq5De9mCzS",
@@ -4455,7 +4424,8 @@
           "modified": "2026-07-22T19:17:09.000Z",
           "size": 37767,
           "path": [
-            "Web upload "
+            "Web upload ",
+            "State_ebook"
           ]
         },
         {
@@ -4482,72 +4452,8 @@
           "modified": "2026-07-14T08:57:41.631Z",
           "size": 92878,
           "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1bNxu3RidmLcfhgS-QknKHRCgaoIo-4xi",
-          "collection": "other",
-          "name": "BNP_Enhanced_Executive_Profile.docx",
-          "title": "BNP Enhanced Executive Profile",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-21T08:21:25.368Z",
-          "size": 568657,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1cZHlV_uG6N8bhgATbReZjCJoEg_zq25n",
-          "collection": "other",
-          "name": "BNP_Enhanced_Executive_Profile.docx",
-          "title": "BNP Enhanced Executive Profile",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-21T08:10:20.411Z",
-          "size": 39740,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1eRtszSEUiHRa8Fuha7vCNxrS_4cknilK",
-          "collection": "other",
-          "name": "BNP_Leadership_Engagement_Letter.docx",
-          "title": "BNP Leadership Engagement Letter",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-21T08:10:06.842Z",
-          "size": 41492,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1Qc164AZLituUnJQN1Ehf5wYc4XN4_Hjd",
-          "collection": "other",
-          "name": "BNP_Policy_Brief_Digital_Agriculture.docx",
-          "title": "BNP Policy Brief Digital Agriculture",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-21T08:09:56.198Z",
-          "size": 41350,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1lkK2SrLYqY7kpK_AWff1JtVl01WovNnE",
-          "collection": "other",
-          "name": "BNP_Enhanced_Executive_Profile.docx",
-          "title": "BNP Enhanced Executive Profile",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-15T13:30:15.481Z",
-          "size": 568843,
-          "path": [
-            "bnp_policy"
+            "bnp_policy",
+            "Farmers Card App_analysis"
           ]
         },
         {
@@ -4559,32 +4465,6 @@
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           "modified": "2026-06-15T13:15:48.968Z",
           "size": 41350,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1hZNO2eb_HUVKrIbQ4ZHyKujbJ3n1WMd6NuNZTchRIt0",
-          "collection": "other",
-          "name": "BNP_Profile_Moniruzjaman",
-          "title": "BNP Profile Moniruzjaman",
-          "kind": "doc",
-          "mime": "application/vnd.google-apps.document",
-          "modified": "2026-06-15T12:26:50.477Z",
-          "size": 943235,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1YWN8Ng9geAKc-v5wPtK0qJencQPMCvGP",
-          "collection": "other",
-          "name": "BNP_Profile_Moniruzjaman.docx",
-          "title": "BNP Profile Moniruzjaman",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-06-15T11:19:12.598Z",
-          "size": 949491,
           "path": [
             "bnp_policy"
           ]

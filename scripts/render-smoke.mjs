@@ -14,10 +14,10 @@ const CASES = [
   ["/portfolio/", "", "I build digital tools", "This page does not exist"],
   ["/portfolio/", "works", "The live ecosystem", "This page does not exist"],
   ["/portfolio/", "works/web-krishiai-live", "web.krishiai.live", "This page does not exist"],
-  ["/portfolio/", "library", "Research, documents and presentations", "This page does not exist"],
+  ["/portfolio/", "library", "Research, documents, presentations and videos", "This page does not exist"],
   ["/portfolio/", "definitely-not-a-page", "This page does not exist", null],
   ["/", "works", "The live ecosystem", "This page does not exist"],
-  ["/", "library", "Research, documents and presentations", "This page does not exist"],
+  ["/", "library", "Research, documents, presentations and videos", "This page does not exist"],
 ];
 
 let failed = 0;

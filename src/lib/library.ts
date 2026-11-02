@@ -1,6 +1,6 @@
 import raw from "../data/library.generated.json";
 
-export type Kind = "pdf" | "slides" | "doc" | "sheet" | "image" | "other";
+export type Kind = "pdf" | "slides" | "doc" | "sheet" | "image" | "video" | "other";
 
 export type LibItem = {
   id: string;
@@ -11,6 +11,8 @@ export type LibItem = {
   mime: string;
   modified: string | null;
   size: number | null;
+  /** Video length, from Drive; absent for other kinds. */
+  durationMs?: number;
   /** Sub-folder names below the collection root. */
   path: string[];
   resourceKey?: string;
@@ -43,6 +45,7 @@ export const KIND_LABEL: Record<Kind, { en: string; bn: string }> = {
   doc: { en: "Document", bn: "নথি" },
   sheet: { en: "Sheet", bn: "স্প্রেডশিট" },
   image: { en: "Image", bn: "ছবি" },
+  video: { en: "Video", bn: "ভিডিও" },
   other: { en: "File", bn: "ফাইল" },
 };
 
@@ -85,4 +88,25 @@ export function formatBytes(n: number | null): string {
   if (!n) return "";
   if (n < 1024 * 1024) return `${Math.max(1, Math.round(n / 1024))} KB`;
   return `${(n / 1024 / 1024).toFixed(n < 10 * 1024 * 1024 ? 1 : 0)} MB`;
+}
+
+/** The formats offered as a filter, in display order. (Sheets/images are never published.) */
+export const FORMATS: { key: Kind; en: string; bn: string }[] = [
+  { key: "pdf", en: "PDF", bn: "পিডিএফ" },
+  { key: "slides", en: "Slides", bn: "স্লাইড" },
+  { key: "doc", en: "Documents", bn: "নথি" },
+  { key: "video", en: "Videos", bn: "ভিডিও" },
+];
+
+/** "PPTX", "DOCX", "MP4"… from the filename — what a visitor actually recognises. */
+export const extOf = (i: LibItem): string => (i.name.match(/\.([A-Za-z0-9]{1,5})$/)?.[1] ?? "").toUpperCase();
+
+/** 312000 → "5:12", 3725000 → "1:02:05". Empty when unknown. */
+export function formatDuration(ms?: number): string {
+  if (!ms || ms < 1000) return "";
+  const s = Math.round(ms / 1000);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return h ? `${h}:${pad(m)}:${pad(s % 60)}` : `${m}:${pad(s % 60)}`;
 }

@@ -46,7 +46,7 @@ const ID_RE = /^[A-Za-z0-9_-]{10,}$/;
 const MAX_ITEMS = 2000;
 /** Only these are published unless config.kinds says otherwise. A shared folder is often
  *  a working directory (images, zips, site source) — listing all of it publicly is a leak. */
-export const DEFAULT_KINDS = ["pdf", "slides", "doc"];
+export const DEFAULT_KINDS = ["pdf", "slides", "doc", "video"];
 const FOLDER = "application/vnd.google-apps.folder";
 const SHORTCUT = "application/vnd.google-apps.shortcut";
 
@@ -57,6 +57,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /** Map a MIME type to the small vocabulary the UI renders. */
 export function kindOf(mime, name = "") {
   const ext = (name.match(/\.([A-Za-z0-9]+)$/)?.[1] || "").toLowerCase();
+  // Video first. TRAP: Drive labels TypeScript source (.ts) with the MPEG-transport-stream type
+  // "video/vnd.dlna.mpeg-tts", so a bare `startsWith("video/")` publishes code files as videos
+  // (seen in the real folder: `reportAdapter.ts`, 12 KB). That type is never trusted by itself.
+  const VIDEO_EXT = ["mp4", "mov", "m4v", "webm", "mkv", "avi"];
+  if (VIDEO_EXT.includes(ext) || (mime.startsWith("video/") && mime !== "video/vnd.dlna.mpeg-tts")) return "video";
   if (mime === "application/pdf" || ext === "pdf") return "pdf";
   if (
     mime === "application/vnd.google-apps.presentation" ||
@@ -117,6 +122,8 @@ export function shapeItem(f, path, collection) {
     mime: f.mimeType,
     modified: f.modifiedTime || null,
     size: f.size ? Number(f.size) : null,
+    // Drive reports duration for video files at no extra cost.
+    ...(f.videoMediaMetadata?.durationMillis ? { durationMs: Number(f.videoMediaMetadata.durationMillis) } : {}),
     path,
     ...(f.resourceKey ? { resourceKey: f.resourceKey } : {}),
   };
@@ -198,7 +205,7 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
   const excluded = new Set(excludeFolders.map((n) => String(n).trim().toLowerCase()));
   const headers = col.resourceKey ? { "X-Goog-Drive-Resource-Keys": `${col.folderId}/${col.resourceKey}` } : {};
   const fields =
-    "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey" + (verify ? ",permissions(type,role)" : "") + ")";
+    "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey,videoMediaMetadata(durationMillis)" + (verify ? ",permissions(type,role)" : "") + ")";
 
   const queue = [{ id: col.folderId, path: [], depth: 0 }];
   while (queue.length) {

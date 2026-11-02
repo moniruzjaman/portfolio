@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileIcon, Image as ImageIcon, Search } from "lucide-react";
+import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileIcon, Image as ImageIcon, Search, Play, Video as VideoIcon } from "lucide-react";
 import { PageHeader, Chip } from "@/components/Section";
 import { DocPreview } from "@/components/DocPreview";
 import { useI18n } from "@/lib/i18n";
@@ -7,7 +7,10 @@ import { libCurationFor, SHELF_LABEL, SHELVES } from "@/lib/curation";
 import {
   folderEmbedUrl,
   folderUrl,
+  extOf,
   formatBytes,
+  formatDuration,
+  FORMATS,
   KIND_LABEL,
   library,
   libraryItems,
@@ -32,6 +35,7 @@ const KIND_ICON: Record<Kind, typeof FileText> = {
   doc: FileText,
   sheet: Table2,
   image: ImageIcon,
+  video: VideoIcon,
   other: FileIcon,
 };
 
@@ -40,7 +44,7 @@ function Thumb({ item }: { item: LibItem }) {
   const Icon = KIND_ICON[item.kind];
   return (
     <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden border-b border-forest-300 bg-cream-200">
-      <Icon size={36} className="text-moss-400" aria-hidden="true" />
+      {item.kind !== "video" && <Icon size={36} className="text-moss-400" aria-hidden="true" />}
       {!failed && (
         <img
           src={thumbUrl(item)}
@@ -52,6 +56,21 @@ function Thumb({ item }: { item: LibItem }) {
           onError={() => setFailed(true)}
         />
       )}
+      {item.kind === "video" && (
+        <>
+          {/* Decorative: the card's own text says "Video". Dark disc keeps the arrow readable on any poster frame. */}
+          <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest-950/75 text-white shadow-lg">
+              <Play size={20} className="ml-0.5 fill-current" />
+            </span>
+          </span>
+          {item.durationMs ? (
+            <span className="absolute bottom-2 right-2 rounded-md bg-forest-950/80 px-1.5 py-0.5 font-mono text-[11px] font-bold text-white">
+              {formatDuration(item.durationMs)}
+            </span>
+          ) : null}
+        </>
+      )}
     </div>
   );
 }
@@ -62,6 +81,7 @@ export default function Library() {
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"new" | "title">("new");
   const [topic, setTopic] = useState("all");
+  const [format, setFormat] = useState<Kind | "all">("all");
   const [limit, setLimit] = useState(PAGE);
   const [open, setOpen] = useState<LibItem | null>(null);
   // Any change to what is being filtered starts the list again from the top.
@@ -81,11 +101,19 @@ export default function Library() {
     return libraryItems
       .filter((i) => tab === "all" || shelfOf(i) === tab)
       .filter((i) => topic === "all" || topicLabel(i) === topic)
+      .filter((i) => format === "all" || i.kind === format)
       .filter((i) => !needle || [i.title, i.path.join(" "), i.kind, subjectsOf(i).join(" ")].join(" ").toLowerCase().includes(needle))
       .sort((a, b) =>
         sort === "title" ? a.title.localeCompare(b.title) : (b.modified ?? "").localeCompare(a.modified ?? ""),
       );
-  }, [tab, q, sort, topic]);
+  }, [tab, q, sort, topic, format]);
+
+  // Format counts follow the shelf/topic the visitor is already in, so a chip never promises files that are not there.
+  const formatCounts = useMemo(() => {
+    const n = new Map<string, number>();
+    for (const i of libraryItems) if ((tab === "all" || shelfOf(i) === tab) && (topic === "all" || topicLabel(i) === topic)) n.set(i.kind, (n.get(i.kind) ?? 0) + 1);
+    return n;
+  }, [tab, topic]);
   const visible = shown.slice(0, limit);
 
   const linked = library.collections.filter((c) => c.folderId);
@@ -102,8 +130,8 @@ export default function Library() {
         lang={lang}
         eyebrowEn="Library"
         eyebrowBn="লাইব্রেরি"
-        titleEn="Research, documents and presentations"
-        titleBn="গবেষণা, নথি ও উপস্থাপনা"
+        titleEn="Research, documents, presentations and videos"
+        titleBn="গবেষণা, নথি, উপস্থাপনা ও ভিডিও"
         ledeEn="Open-access material from the field — read it here or open the original in Google Drive."
         ledeBn="মাঠ থেকে উন্মুক্ত উপকরণ — এখানে পড়ুন অথবা গুগল ড্রাইভে মূল ফাইল খুলুন।"
       />
@@ -174,6 +202,42 @@ export default function Library() {
                 </div>
               </div>
 
+              <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="u-eyebrow hidden shrink-0 text-moss-400 sm:block">{t("Format", "ধরন")}</span>
+                {/* Phones: one compact control; chips from sm up (same pattern as the audience filter). */}
+                <label className="w-full sm:hidden">
+                  <span className="sr-only">{t("Format", "ধরন")}</span>
+                  <select
+                    value={format}
+                    onChange={(e) => refilter(setFormat)(e.target.value as Kind | "all")}
+                    className="min-h-11 w-full rounded-full border border-forest-300 bg-white px-4 text-sm font-bold text-forest-900"
+                  >
+                    <option value="all">{t("All formats", "সব ধরন")}</option>
+                    {FORMATS.filter((f) => formatCounts.get(f.key)).map((f) => (
+                      <option key={f.key} value={f.key}>
+                        {f[lang]} · {formatCounts.get(f.key)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <div role="group" aria-label={t("Format", "ধরন")} className="hidden flex-wrap gap-2 sm:flex">
+                  {[{ key: "all" as const, en: "All formats", bn: "সব ধরন" }, ...FORMATS.filter((f) => formatCounts.get(f.key))].map((f) => (
+                    <button
+                      key={f.key}
+                      type="button"
+                      aria-pressed={format === f.key}
+                      onClick={() => refilter(setFormat)(f.key)}
+                      className={`min-h-11 rounded-full border px-4 text-sm font-bold transition-colors ${
+                        format === f.key ? "border-gold-500 bg-gold-400/20 text-forest-900" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                      }`}
+                    >
+                      {f[lang]}
+                      {f.key !== "all" && <span className="ml-1.5 font-mono text-[11px] font-normal">{formatCounts.get(f.key)}</span>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500" aria-live="polite">
                 {visible.length} {t("of", "/")} {shown.length} {t("shown", "দেখানো হচ্ছে")}
                 {library.generatedAt && ` · ${t("indexed", "সূচিবদ্ধ")} ${library.generatedAt.slice(0, 10)}`}
@@ -193,7 +257,7 @@ export default function Library() {
                         <Thumb item={i} />
                         <span className="flex flex-1 flex-col p-4">
                           <span className="mb-2 flex flex-wrap items-center gap-1.5">
-                            <Chip>{KIND_LABEL[i.kind][lang]}</Chip>
+                            <Chip>{extOf(i) || KIND_LABEL[i.kind][lang]}</Chip>
                             {(subjectsOf(i).length ? subjectsOf(i).slice(0, 2) : [topicLabel(i)]).filter(Boolean).map((x) => (
                               <Chip key={x}>{x}</Chip>
                             ))}

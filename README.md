@@ -141,7 +141,7 @@ thesis, study, গবেষণা) becomes **Research**; every other file goes b
 walked (up to `maxDepth`) and shown as a label on each card.
 
 **What is published.** Only the file types in `kinds` (default PDF, slides, Word-style
-documents). Images, zips, HTML, audio/video, code and spreadsheets are never listed,
+documents, video). Images, zips, HTML, audio, code and spreadsheets are never listed,
 so a working-directory folder cannot become a public file listing. To keep a folder
 out entirely, add its name to `excludeFolders` — it is never entered, which the
 tests verify. Counts of everything skipped are written to

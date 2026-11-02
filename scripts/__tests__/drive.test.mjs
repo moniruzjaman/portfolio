@@ -15,7 +15,7 @@ function mockDrive(tree, { status = {} } = {}) {
   const seen = [];
   const s = http.createServer((req, res) => {
     const u = new URL(req.url, "http://x");
-    seen.push({ path: u.pathname, q: u.searchParams.get("q"), key: u.searchParams.get("key"), auth: req.headers.authorization });
+    seen.push({ path: u.pathname, q: u.searchParams.get("q"), fields: u.searchParams.get("fields"), key: u.searchParams.get("key"), auth: req.headers.authorization });
     if (u.pathname === "/token") {
       res.writeHead(200, { "content-type": "application/json" }).end(JSON.stringify({ access_token: "tok123" }));
       return;
@@ -191,7 +191,7 @@ test("a project-dump folder publishes documents only, and counts what it skipped
       { id: id(2), name: "logo.png", mimeType: "image/png" },
       { id: id(3), name: "site.zip", mimeType: "application/zip" },
       { id: id(4), name: "index.html", mimeType: "text/html" },
-      { id: id(5), name: "clip.mp4", mimeType: "video/mp4" },
+      { id: id(5), name: "clip.mp4", mimeType: "video/mp4", modifiedTime: "2026-03-01T00:00:00Z", videoMediaMetadata: { durationMillis: "125000" } },
       { id: id(6), name: "budget.xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
       { id: id(7), name: "Notes.docx", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", modifiedTime: "2026-02-01T00:00:00Z" },
     ],
@@ -200,9 +200,9 @@ test("a project-dump folder publishes documents only, and counts what it skipped
   const paths = await setup(config);
   const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
   m.s.close();
-  assert.deepEqual(DEFAULT_KINDS, ["pdf", "slides", "doc"]);
+  assert.deepEqual(DEFAULT_KINDS, ["pdf", "slides", "doc", "video"]);
   const titles = out.collections.flatMap((c) => c.items.map((i) => i.title)).sort();
-  assert.deepEqual(titles, ["Notes", "Report"], "images, zips, html, video and spreadsheets are not published");
+  assert.deepEqual(titles, ["Notes", "Report", "clip"], "documents and video are published; images, zips, html and spreadsheets are not");
   const audit = JSON.parse(await readFile(paths.skipped));
   assert.equal(audit.counts["file type not published: image"], 1);
   assert.equal(audit.counts["file type not published: sheet"], 1);
@@ -242,4 +242,29 @@ test("excludeFolders: matched case-insensitively at any depth and NEVER entered"
   const audit = JSON.parse(await readFile(paths.skipped));
   assert.equal(audit.counts["folder excluded by config: Private Stuff"], 1);
   assert.equal(audit.counts["folder excluded by config: PRIVATE STUFF"], 1);
+});
+
+/* ── video ───────────────────────────────────────────────────────────── */
+test("kindOf: video by MIME or extension, including odd exported MIME types", () => {
+  assert.equal(kindOf("video/mp4", "a.mp4"), "video");
+  assert.equal(kindOf("video/vnd.dlna.mpeg-tts", "Lesson.mp4"), "video", "an .mp4 is a video whatever MIME Drive assigned");
+  assert.equal(kindOf("video/vnd.dlna.mpeg-tts", "reportAdapter.ts"), "other", "Drive labels TypeScript source with this type — it is code, not video");
+  assert.equal(kindOf("video/vnd.dlna.mpeg-tts", "all pesticides.ts"), "other");
+  assert.equal(kindOf("application/octet-stream", "talk.MOV"), "video");
+  assert.equal(kindOf("audio/mpeg", "song.mp3"), "other", "audio is not video");
+  assert.equal(kindOf("text/html", "page.html"), "other");
+});
+
+test("video: duration is captured and published by default", async () => {
+  const m = await mockDrive({
+    ROOTFOLDER01: [{ id: id(1), name: "Soil_pH_guide.mp4", mimeType: "video/mp4", size: "52000000", modifiedTime: "2026-02-01T00:00:00Z", videoMediaMetadata: { durationMillis: "312000" } }],
+  });
+  const paths = await setup({ root: { folderId: "ROOTFOLDER01" }, collections: [col("other", null)] });
+  const out = await quiet(() => run({ GOOGLE_API_KEY: "k" }, { fetchImpl: fetch, base: m.url, tokenUrl: "", paths }));
+  m.s.close();
+  const v = out.collections[0].items[0];
+  assert.equal(v.kind, "video");
+  assert.equal(v.durationMs, 312000);
+  assert.equal(v.title, "Soil pH guide");
+  assert.ok(m.seen.some((r) => r.fields?.includes("videoMediaMetadata(durationMillis)")), "the sync must request the duration field from Drive");
 });

@@ -375,3 +375,19 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   generated in the browser by a lazy 7.7 KB (gzip) chunk — no third-party QR service,
   and the address never leaves the page. Verified by decoding 12 rendered codes with an
   independent reader.
+
+**v1.4** — video and format filter in the Library.
+
+- Videos are published (46 `.mp4` in the Drive folder) with a play badge and, once the
+  sync has run against Drive, a duration. A **format filter** (PDF / Slides / Documents /
+  Videos, with counts that follow the current shelf and topic) sits beside the shelves,
+  because format and subject are different questions. Cards show the real extension
+  (PDF, PPTX, DOCX, MP4) rather than a generic "Document".
+- **Trap — Drive labels `.ts` files as video.** TypeScript source is given the MIME type
+  `video/vnd.dlna.mpeg-tts` (MPEG transport stream), so trusting `video/*` alone published
+  three code files (`reportAdapter.ts`, 12 KB) as videos. That MIME is never trusted on
+  its own; an `.mp4` is a video whatever MIME Drive assigns. Caught by looking at the
+  rendered cards, then locked in with tests.
+- Drive's in-page player handles MP4 but is not guaranteed for every codec/size; "Open in
+  Drive" and "Download" are always offered next to the preview.
+

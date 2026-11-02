@@ -1,15 +1,65 @@
 {
-  "generatedAt": "2026-11-02T11:03:17.450Z",
+  "generatedAt": "2026-11-02T21:53:45.128Z",
   "source": "moniruzjaman",
   "total": 48,
   "scanned": 76,
   "channels": {
-    "vercel": 26,
     "github-pages": 32,
+    "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-02T21:52:29Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11872,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-02T15:41:29Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "cabi-diagnosis",
       "slug": "cabi-diagnosis",
@@ -18,7 +68,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-02T10:41:58Z",
+      "pushedAt": "2026-11-02T14:14:17Z",
       "url": "https://github.com/moniruzjaman/cabi-diagnosis",
       "live": "https://cabi-diagnosis.vercel.app",
       "customDomain": null,
@@ -44,7 +94,7 @@
       "language": "JavaScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-02T09:02:32Z",
+      "pushedAt": "2026-11-02T11:03:52Z",
       "url": "https://github.com/moniruzjaman/daily-report-pipeline",
       "live": null,
       "customDomain": null,
@@ -52,37 +102,12 @@
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 5175,
+      "readmeBytes": 6223,
       "brand": {
         "name": "DailyReport",
         "themeColor": "#16323f",
         "icon": "https://moniruzjaman.github.io/daily-report-pipeline/icons/icon-192.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-02T07:13:22Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11871,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
       },
       "featured": false
     },
@@ -155,31 +180,6 @@
       ],
       "readmeBytes": 0,
       "brand": null,
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-01T13:14:44Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
       "featured": false
     },
     {

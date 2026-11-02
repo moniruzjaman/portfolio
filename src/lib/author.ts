@@ -12,8 +12,8 @@
  */
 
 export const author = {
-  name: "Abu Md. Moniruzjaman",
-  nameAlt: "Abu Md. Moniruzjaman",
+  name: "Abu Md. Moniruzzaman",
+  nameAlt: "Abu Md. Moniruzzaman",
   short: "Moniruzjaman",
   initials: "AM",
   role: "Additional Deputy Director (Horticulture)",
@@ -35,7 +35,7 @@ export const author = {
   site: "https://moniruzjaman.github.io",
 
   vision:
-    "Transforming Bangladesh's agricultural extension from paper-based to AI-powered — bringing science, data, and connectivity directly into the hands of smallholder farmers.",
+    "Transforming Bangladesh's agricultural extension from paper-based to AI-powered — bringing science, data, and connectivity directly into the hands of smallholder farmers, while building a Smart Bangladesh through technology, transparency, and field-level innovation.",
 
   education: [
     {
@@ -49,10 +49,26 @@ export const author = {
     {
       degree: "B.Sc. Ag. (Hons.)",
       field: "Agriculture Science",
-      org: "Hajee Mohammad Danesh S&T University",
+      org: "Hajee Mohammad Danesh Science & Technology University",
       orgBn: "হাজী মোহাম্মদ দানেশ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়",
       year: 2008,
       detail: "CGPA 2.91 / 4.00",
+    },
+    {
+      degree: "HSC (Science)",
+      field: "Science",
+      org: "Rangpur Cantonment Public School & College",
+      orgBn: "রংপুর ক্যান্টনমেন্ট পাবলিক স্কুল অ্যান্ড কলেজ",
+      year: 2002,
+      detail: "First Division",
+    },
+    {
+      degree: "SSC (Science)",
+      field: "Science",
+      org: "Dinajpur Zilla School",
+      orgBn: "দিনাজপুর জিলা স্কুল",
+      year: 2000,
+      detail: "First Division",
     },
   ],
 
@@ -70,7 +86,7 @@ export const author = {
       to: "2024",
       role: "Upazila Agriculture Officer",
       place: "Rangpur Sadar & Kaunia, Rangpur",
-      placeBn: "রংপুর",
+      placeBn: "রংপুর সদর ও কাউনিয়া, রংপুর",
       note: "Digital farmer services and crop advisory across the fertile Rangpur plains.",
     },
     {
@@ -78,7 +94,7 @@ export const author = {
       to: "2022",
       role: "Upazila Agriculture Officer",
       place: "Rangamati Sadar & Naniarchar, Rangamati",
-      placeBn: "রাঙ্গামাটি",
+      placeBn: "রাঙ্গামাটি সদর ও নানিয়ারচর, রাঙ্গামাটি",
       note: "Hill tracts agriculture extension in the CHT — indigenous farming systems and upland crop management.",
     },
     {
@@ -94,7 +110,7 @@ export const author = {
       to: "2021",
       role: "Upazila Agriculture Officer",
       place: "Dirai & Shalla, Sunamganj",
-      placeBn: "সুনামগঞ্জ",
+      placeBn: "দিরাই ও শাল্লা, সুনামগঞ্জ",
       note: "Haor wetland crop management — flood-resilient, disaster-adaptive farming for the seasonally inundated haor ecosystem.",
     },
     {
@@ -102,8 +118,84 @@ export const author = {
       to: "2018",
       role: "Agricultural Extension Officer",
       place: "Natore Sadar, Natore",
-      placeBn: "নাটোর",
-      note: "Commencement of civil service. Field-level extension work for smallholder farmers.",
+      placeBn: "নাটোর সদর, নাটোর",
+      note: "Commencement of civil service (31st BCS Agriculture Cadre). Field-level extension work for smallholder farmers.",
+    },
+  ],
+
+  preService: [
+    {
+      from: "2010",
+      to: "2011",
+      role: "CEO & Founder",
+      place: "Nagar Krishak Limited, Dhaka",
+      placeBn: "নগর কৃষক লিমিটেড, ঢাকা",
+      note: "Pioneered urban rooftop farming solutions in Mirpur-Gabtoli and expanded across Dhaka.",
+    },
+    {
+      from: "—",
+      to: "—",
+      role: "Area Sales Manager",
+      place: "Transcom Mobile Ltd. (Samsung)",
+      placeBn: "ট্রান্সকম মোবাইল লিমিটেড (স্যামসাং)",
+      note: "Regional sales force management and market expansion.",
+    },
+    {
+      from: "—",
+      to: "—",
+      role: "Regional Sales Manager",
+      place: "SB Tel Ltd. (Symphony)",
+      placeBn: "এসবি টেল লিমিটেড (সিম্ফনি)",
+      note: "Multi-district sales operations and distribution across assigned territories.",
+    },
+    {
+      from: "—",
+      to: "—",
+      role: "Executive Officer",
+      place: "Giant Agro Processing Ltd. (Bangla Seed)",
+      placeBn: "জায়ান্ট অ্যাগ্রো প্রসেসিং লিমিটেড (বাংলা সীড)",
+      note: "Seed systems, agro-processing, and rural supply chain operations.",
+    },
+  ],
+
+  digitalInnovations: [
+    {
+      title: "CABI Diagnosis Web App",
+      titleBn: "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      period: "2025–Present",
+      description:
+        "React/Vite app integrating Claude AI with CABI Plantwise Ready Reckoner. Bilingual Bengali/English, voice I/O, TTS, 94+ DAE pesticides, weather via Open-Meteo, Plantix-inspired UI.",
+      repo: "https://github.com/moniruzjaman/cabi-diagnosis",
+    },
+    {
+      title: "Krishi AI Mobile App",
+      titleBn: "কৃষি AI মোবাইল অ্যাপ",
+      period: "Present",
+      description:
+        "React Native app with Cloudflare Worker backend, MobileNetV2 TFLite disease detection, 17 tool screens, Bengali errors, secure EAS build.",
+    },
+    {
+      title: "Krishak Card (কৃষককার্ড)",
+      titleBn: "কৃষককার্ড",
+      period: "Present",
+      description:
+        "Digital farmer services portal with live DAE market prices, 11 services, Noto Serif Bengali, Bangladesh emblem.",
+      repo: "https://github.com/moniruzjaman/krishak-card",
+    },
+    {
+      title: "IPM/FFS Educational Game",
+      titleBn: "স্বশিক্ষা কৃষি প্রকল্প",
+      period: "Present",
+      description:
+        "HTML5 Bengali IPM decision game across rice scenarios with AI-generated SVG illustrations via Anthropic API.",
+    },
+    {
+      title: "AgriWisdom YouTube Channel",
+      titleBn: "এগ্রিওয়াইজডম ইউটিউব চ্যানেল",
+      period: "Present",
+      description:
+        "Bilingual agri-extension videos semi-automated via Google Sheets + Apps Script, Claude API for metadata, YouTube Data API.",
+      repo: "https://www.youtube.com/@AgriWisdomBd",
     },
   ],
 
@@ -113,31 +205,42 @@ export const author = {
       groupBn: "কৃষি বিজ্ঞান",
       items: [
         "CABI Plantwise Diagnostics",
-        "IPM / Crop Protection",
+        "IPM / Integrated Crop Management",
         "Horticulture Management",
-        "Haor & Hill Tract Agronomy",
-        "Farmer Field Schools",
+        "Haor, Hill Tract & Plains Agronomy",
+        "Farmer Field Schools (FFS)",
+        "DAE Extension Programme Management",
       ],
     },
     {
       group: "Software Development",
       groupBn: "সফটওয়্যার উন্নয়ন",
       items: [
-        "React / React Native",
-        "Vite / Node.js",
+        "React / React Native / Vite",
         "Vercel Serverless Functions",
         "Cloudflare Workers",
         "Google Apps Script",
+        "AppSheet Development",
       ],
     },
     {
       group: "AI & Data",
       groupBn: "এআই ও তথ্য",
       items: [
+        "Claude AI API Integration",
         "Multimodal LLM orchestration",
-        "Bengali NLP / TTS / ASR",
-        "On-device model inference",
+        "Bengali NLP / TTS / ASR (Web Speech API)",
+        "On-device ML (MobileNetV2 TFLite)",
         "Retrieval over field datasets",
+      ],
+    },
+    {
+      group: "Emerging Tech",
+      groupBn: "উদীয়মান প্রযুক্তি",
+      items: [
+        "Blockchain (Hyperledger Fabric)",
+        "Smart AgriTech / Digital Extension",
+        "Data Automation & Dashboards (Chart.js)",
       ],
     },
     {

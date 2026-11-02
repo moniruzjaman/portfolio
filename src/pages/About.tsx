@@ -24,12 +24,12 @@ export default function About() {
       <section className="px-5 py-14 sm:px-8 lg:px-12">
         <div className="u-container grid gap-12 lg:grid-cols-[1fr_300px]">
           <div>
-            {/* career */}
-            <h2 className="mb-8 font-serif text-2xl font-black text-forest-900">
-              {t("Career", "কর্মজীবন")}
+            {/* pre-service */}
+            <h2 className="mb-8 mt-16 font-serif text-2xl font-black text-forest-900">
+              {t("Pre-Service Career", "পূর্ব-সেবার কর্মজীবন")}
             </h2>
             <ol className="relative space-y-8 border-l-2 border-forest-200 pl-8">
-              {author.career.map((c, i) => (
+              {(author.preService || []).map((c, i) => (
                 <li key={i} className="relative">
                   <span className="absolute -left-[41px] top-1.5 h-3 w-3 rounded-full border-2 border-cream-100 bg-forest-500" />
                   <p className="font-mono text-xs uppercase tracking-[0.14em] text-gold-500">
@@ -43,6 +43,38 @@ export default function About() {
                 </li>
               ))}
             </ol>
+
+            {/* digital innovations */}
+            {(author.digitalInnovations || []).length > 0 && (
+              <>
+                <h2 className="mb-8 mt-16 font-serif text-2xl font-black text-forest-900">
+                  {t("Digital Innovation & AgriTech", "ডিজিটাল উদ্ভাবন ও এগ্রিটেক")}
+                </h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {(author.digitalInnovations || []).map((d) => (
+                    <div key={d.title} className="rounded-2xl border border-forest-300 bg-white p-6">
+                      <p className="font-mono text-xs uppercase tracking-[0.14em] text-gold-500">
+                        {d.period}
+                      </p>
+                      <p className="mt-1 font-serif text-lg font-black text-forest-900">
+                        {lang === "bn" && d.titleBn ? d.titleBn : d.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-moss-500">{d.description}</p>
+                      {d.repo && (
+                        <a
+                          href={d.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-block text-sm text-forest-600 underline hover:text-forest-900"
+                        >
+                          {d.repo}
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* education */}
             <h2 className="mb-8 mt-16 font-serif text-2xl font-black text-forest-900">

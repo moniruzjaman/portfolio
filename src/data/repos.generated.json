@@ -1,15 +1,117 @@
 {
-  "generatedAt": "2026-11-03T10:51:39.601Z",
+  "generatedAt": "2026-11-03T20:16:26.473Z",
   "source": "moniruzjaman",
-  "total": 48,
-  "scanned": 76,
+  "total": 49,
+  "scanned": 77,
   "channels": {
-    "github-pages": 32,
+    "github-pages": 33,
     "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-03T20:15:02Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11872,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "cabinet-division-bangladesh-before-all",
+      "slug": "cabinet-division-bangladesh-before-all",
+      "title": "Bangladesh Before All — Cabinet Division Fertilizer Governance Reform Portal",
+      "description": "The path leads toward transparency, accountability, precision and dignity.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-03T18:15:09Z",
+      "url": "https://github.com/moniruzjaman/cabinet-division-bangladesh-before-all",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/cabinet-division-bangladesh-before-all/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 9649,
+      "brand": {
+        "name": "Bangladesh Before All",
+        "themeColor": "#051d15",
+        "icon": "https://moniruzjaman.github.io/cabinet-division-bangladesh-before-all/assets/img/android-chrome-192x192.png",
+        "image": "https://moniruzjaman.github.io/cabinet-division-bangladesh-before-all/assets/img/og-image.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "fertilizer-nationalism",
+      "slug": "fertilizer-nationalism",
+      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
+      "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-03T14:38:13Z",
+      "url": "https://github.com/moniruzjaman/fertilizer-nationalism",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/fertilizer-nationalism/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 769,
+      "brand": {
+        "name": "Bangladesh Before All",
+        "themeColor": "#006a4e",
+        "icon": "https://moniruzjaman.github.io/fertilizer-nationalism/social/square-1080.png",
+        "image": "https://moniruzjaman.github.io/fertilizer-nationalism/og-image.png",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-03T14:04:38Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "daily-report-pipeline",
       "slug": "daily-report-pipeline",
@@ -32,56 +134,6 @@
         "themeColor": "#16323f",
         "icon": "https://moniruzjaman.github.io/daily-report-pipeline/icons/icon-192.png",
         "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-02T21:54:18Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11872,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-02T15:41:29Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
       },
       "featured": false
     },
@@ -292,30 +344,6 @@
         "themeColor": "#006a4e",
         "icon": "https://moniruzjaman.github.io/fertilizer/apple-touch-icon.png",
         "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "fertilizer-nationalism",
-      "slug": "fertilizer-nationalism",
-      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
-      "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-10-22T19:12:24Z",
-      "url": "https://github.com/moniruzjaman/fertilizer-nationalism",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/fertilizer-nationalism/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 769,
-      "brand": {
-        "name": "Bangladesh Before All — Kurigram Integrated Fertilizer Governance & Farmer Card Pilot",
-        "themeColor": "#006a4e",
         "source": "html"
       },
       "featured": false

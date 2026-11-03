@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T21:54:17.518Z",
+  "generatedAt": "2026-11-03T10:52:04.417Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -22,6 +22,17 @@
       "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
       "folderId": null,
       "items": [
+        {
+          "id": "1VDfS6s-Ch90JSIhTXhBCryu8XisxvS9N",
+          "collection": "pdf",
+          "name": "daily report 3-11.pdf",
+          "title": "daily report 3 – 11",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-03T05:57:23.055Z",
+          "size": 1435261,
+          "path": []
+        },
         {
           "id": "1_wA9kD2_7T5D21huPprlsiPLAvJp_jsW",
           "collection": "pdf",

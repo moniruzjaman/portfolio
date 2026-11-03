@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T21:53:45.128Z",
+  "generatedAt": "2026-11-03T10:51:39.601Z",
   "source": "moniruzjaman",
   "total": 48,
   "scanned": 76,
@@ -11,6 +11,31 @@
   },
   "repos": [
     {
+      "name": "daily-report-pipeline",
+      "slug": "daily-report-pipeline",
+      "title": "Daily Report Pipeline",
+      "description": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-03T08:08:44Z",
+      "url": "https://github.com/moniruzjaman/daily-report-pipeline",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/daily-report-pipeline/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 6223,
+      "brand": {
+        "name": "DailyReport",
+        "themeColor": "#16323f",
+        "icon": "https://moniruzjaman.github.io/daily-report-pipeline/icons/icon-192.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
       "name": "portfolio",
       "slug": "portfolio",
       "title": "moniruzjaman.github.io",
@@ -18,7 +43,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-02T21:52:29Z",
+      "pushedAt": "2026-11-02T21:54:18Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -82,31 +107,6 @@
         "themeColor": "#046a1a",
         "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
         "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "daily-report-pipeline",
-      "slug": "daily-report-pipeline",
-      "title": "Daily Report Pipeline",
-      "description": null,
-      "language": "JavaScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-02T11:03:52Z",
-      "url": "https://github.com/moniruzjaman/daily-report-pipeline",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/daily-report-pipeline/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 6223,
-      "brand": {
-        "name": "DailyReport",
-        "themeColor": "#16323f",
-        "icon": "https://moniruzjaman.github.io/daily-report-pipeline/icons/icon-192.png",
         "source": "manifest"
       },
       "featured": false

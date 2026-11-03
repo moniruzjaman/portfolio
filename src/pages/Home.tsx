@@ -42,7 +42,7 @@ export default function Home() {
   return (
     <>
       {/* ── hero ─────────────────────────────────────────────── */}
-      <section className="relative isolate overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:px-12">
+      <section className="paper-noise surface-grid relative isolate overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:px-12">
         <div className="pointer-events-none absolute -right-24 -top-20 -z-10 h-[520px] w-[520px] rounded-full bg-gold-400/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-48 left-[-10%] -z-10 h-[540px] w-[540px] rounded-full bg-forest-400/10 blur-3xl" />
 
@@ -63,7 +63,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-forest-200 bg-white/50 px-4 py-2">
+            <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-forest-200 bg-white/70 px-4 py-2 shadow-sm shadow-forest-900/5">
               <span className="h-2 w-2 animate-pulse rounded-full bg-forest-400" />
               <span className="u-eyebrow text-forest-500">{t("Portfolio", "পোর্টফোলিও")} · DAE Bangladesh</span>
             </div>
@@ -72,7 +72,8 @@ export default function Home() {
               {author.name}
             </p>
 
-            <h1 tabIndex={-1} className="max-w-4xl outline-none font-serif text-5xl font-black leading-[0.98] tracking-[-0.04em] text-forest-900 sm:text-7xl">
+            <p className="u-rule-label u-eyebrow mb-4 text-gold-600 lg:hidden">FIELD NOTES · 2026</p>
+            <h1 tabIndex={-1} className="u-display max-w-4xl outline-none text-5xl leading-[0.98] text-forest-900 sm:text-7xl">
               {t("I build digital tools for", "আমি ডিজিটাল টুল তৈরি করি")}{" "}
               <span className="italic text-forest-500">{t("agricultural extension.", "কৃষি সম্প্রসারণের জন্য।")}</span>
             </h1>
@@ -131,9 +132,9 @@ export default function Home() {
           </div>
 
           {/* Profile card */}
-          <div className="relative mx-auto w-full max-w-[460px]">
+          <div className="relative mx-auto w-full max-w-[460px] lg:translate-y-5">
             <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-forest-400/20 via-transparent to-gold-400/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-forest-200/70 bg-forest-900 p-8 text-white shadow-[0_30px_80px_rgba(10,46,26,0.22)]">
+            <div className="surface-grid-dark relative overflow-hidden rounded-[2rem] border border-forest-200/70 bg-forest-900 p-8 text-white shadow-[0_30px_80px_rgba(10,46,26,0.22)]">
               <img
                 src={asset("portrait.jpg")}
                 alt={author.name}
@@ -153,7 +154,7 @@ export default function Home() {
                   [t("Service", "ক্যাডার"), author.cadre],
                   [t("Education", "শিক্ষা"), "MBA · B.Sc. Ag. (Hons.)"],
                 ].map(([k, v]) => (
-                  <div key={k} className="flex gap-4">
+              <div key={k} className="flex gap-4">
                     <dt className="w-24 shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-gold-400">{k}</dt>
                     <dd className="text-forest-100">{v}</dd>
                   </div>
@@ -177,10 +178,10 @@ export default function Home() {
         <div className="u-container">
           <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="u-eyebrow mb-3 text-gold-500">
+              <p className="u-rule-label u-eyebrow mb-3 text-gold-600">
                 {t("Selected work", "নির্বাচিত কাজ")}
               </p>
-              <h2 className="font-serif text-4xl font-black text-forest-900 sm:text-5xl">
+              <h2 className="u-display text-4xl text-forest-900 sm:text-5xl">
                 {t("Built for the field, documented for the future.", "মাঠের জন্য তৈরি, ভবিষ্যতের জন্য নথিভুক্ত।")}
               </h2>
             </div>
@@ -259,7 +260,7 @@ export default function Home() {
           </div>
           <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {author.career.filter((c) => c.role !== "Instructor, Agriculture Training Institute (ATI)").slice(0, 4).map((c) => (
-              <li key={c.from + c.place} className="rounded-[1.5rem] border border-forest-300 bg-cream-50 p-6">
+              <li key={c.from + c.place} className="u-card-lift rounded-[1.5rem] border border-forest-300 bg-cream-50 p-6">
                 <p className="font-mono text-xs uppercase tracking-[0.14em] text-gold-500">{c.from} — {c.to}</p>
                 <h3 className="mt-3 font-serif text-lg font-black leading-snug text-forest-900">{c.role}</h3>
                 <p className="mt-1 text-sm font-medium text-forest-500">{lang === "bn" ? c.placeBn : c.place}</p>
@@ -270,11 +271,11 @@ export default function Home() {
       </section>
 
       {/* ── expertise graphs ─────────────────────────────────── */}
-      <section id="graphs" className="bg-forest-900 px-5 py-24 text-white sm:px-8 lg:px-12">
+      <section id="graphs" className="surface-grid-dark bg-forest-900 px-5 py-24 text-white sm:px-8 lg:px-12">
         <div className="u-container">
           <div className="mb-14 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
-              <p className="u-eyebrow mb-4 text-gold-400">
+              <p className="u-rule-label u-eyebrow mb-4 text-gold-400">
                 {t("What I work on", "যে ক্ষেত্রে কাজ করি")}
               </p>
               <h2 className="max-w-3xl font-serif text-4xl font-black leading-tight sm:text-6xl">
@@ -374,7 +375,7 @@ export default function Home() {
                   <li key={i.id}>
                     <Link
                       href="/library"
-                      className="flex h-full gap-4 rounded-2xl border border-forest-400 bg-white p-5 transition-colors hover:border-forest-300"
+                      className="u-card-lift flex h-full gap-4 rounded-2xl border border-forest-400 bg-white p-5"
                     >
                       <FileText size={22} className="mt-1 shrink-0 text-forest-500" aria-hidden="true" />
                       <span>
@@ -416,7 +417,7 @@ export default function Home() {
               <Link
                 key={n.slug}
                 href={`/notes/${n.slug}`}
-                className="group flex flex-col rounded-[1.5rem] border border-forest-400 bg-cream-50 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-forest-300"
+                className="u-card-lift group flex flex-col rounded-[1.5rem] border border-forest-400 bg-cream-50 p-6 hover:border-forest-300"
               >
                 <div className="mb-4 flex items-center gap-2">
                   <span className="u-eyebrow rounded-full bg-forest-200/60 px-2.5 py-1 text-forest-600">

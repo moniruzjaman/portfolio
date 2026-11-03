@@ -60,8 +60,11 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
             <Link
               key={l.href}
               href={l.href}
+              aria-current={location.startsWith(l.href) ? "page" : undefined}
               className={`u-eyebrow transition-colors hover:text-forest-900 ${
-                location.startsWith(l.href) ? "text-forest-900" : "text-moss-500"
+                location.startsWith(l.href)
+                  ? "text-forest-900 after:ml-2 after:inline-block after:h-1 after:w-1 after:rounded-full after:bg-gold-400 after:align-middle after:content-['']"
+                  : "text-moss-500"
               }`}
             >
               {t(l.en, l.bn)}
@@ -105,6 +108,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
               <Link
                 key={l.href}
                 href={l.href}
+                aria-current={location.startsWith(l.href) ? "page" : undefined}
                 className="u-eyebrow flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
               >
                 {t(l.en, l.bn)}

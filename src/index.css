@@ -65,6 +65,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    background: var(--color-cream-100);
   }
 
   body {
@@ -91,6 +92,11 @@
   ::selection {
     background-color: var(--color-gold-400);
     color: var(--color-forest-900);
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -134,6 +140,65 @@
     background: var(--color-forest-900);
     color: white;
     border-radius: 0.5rem;
+  }
+
+  .u-display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+  }
+
+  .surface-grid {
+    background-image:
+      linear-gradient(rgba(22, 74, 45, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22, 74, 45, 0.055) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .surface-grid-dark {
+    background-image:
+      linear-gradient(rgba(168, 216, 176, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 216, 176, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .paper-noise {
+    position: relative;
+  }
+
+  .paper-noise::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.28;
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .u-card-lift {
+    transition: transform 220ms var(--ease-out-soft), box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .u-card-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 44px rgba(10, 46, 26, 0.11);
+  }
+
+  .u-rule-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .u-rule-label::after {
+    display: block;
+    width: 3.5rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.45;
+    content: "";
   }
 }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T20:17:02.289Z",
+  "generatedAt": "2026-11-04T10:54:58.120Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -22,6 +22,32 @@
       "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
       "folderId": null,
       "items": [
+        {
+          "id": "15MYIGM4jM5vyG9BCBxkSTPupuabpXnr2",
+          "collection": "pdf",
+          "name": "bangladesh-zindabad-3ed6db_copy.pdf",
+          "title": "bangladesh – zindabad – 3ed6db copy",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-03T22:04:26.722Z",
+          "size": 3807459,
+          "path": [
+            "bnp_policy"
+          ]
+        },
+        {
+          "id": "1Zu0UsFFvxbBd8vAlul-l9QsaiFnodj_r",
+          "collection": "pdf",
+          "name": "the-political-thought-of-tarique-rahman-e161_copy.pdf",
+          "title": "the – political – thought – of – tarique – rahman – e161 copy",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-03T22:03:46.427Z",
+          "size": 5074250,
+          "path": [
+            "bnp_policy"
+          ]
+        },
         {
           "id": "1VDfS6s-Ch90JSIhTXhBCryu8XisxvS9N",
           "collection": "pdf",
@@ -3514,19 +3540,6 @@
           ]
         },
         {
-          "id": "1GUxo3b0o1OLKPQA7NVSrd7xNhYwUKn8U",
-          "collection": "pptx",
-          "name": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল.pptx",
-          "title": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল",
-          "kind": "slides",
-          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "modified": "2026-05-19T15:13:57.465Z",
-          "size": 6187936,
-          "path": [
-            "Gap"
-          ]
-        },
-        {
           "id": "11inm1iJEVurWOH4I_UqEN_5jb6bGGFGK",
           "collection": "pptx",
           "name": "GAP ppt__V1 (1).pptx",
@@ -3548,19 +3561,6 @@
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-05-09T07:03:15.234Z",
           "size": 30420828,
-          "path": [
-            "Gap"
-          ]
-        },
-        {
-          "id": "1lF8EuNow6-jADPfX3QPC7w0WgR01rJ1m",
-          "collection": "pptx",
-          "name": "GAP ppt__V1 (1).pptx",
-          "title": "GAP ppt V1 (1)",
-          "kind": "slides",
-          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          "modified": "2026-05-09T06:59:57.722Z",
-          "size": 17378868,
           "path": [
             "Gap"
           ]
@@ -4492,19 +4492,6 @@
           "size": 41350,
           "path": [
             "bnp_policy"
-          ]
-        },
-        {
-          "id": "12W7KCb8omL1pUeVdIN7AxJrnux5iWILb",
-          "collection": "other",
-          "name": "Producer_Register_GAP_DAE_Enhanced.docx",
-          "title": "Producer Register GAP DAE Enhanced",
-          "kind": "doc",
-          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "modified": "2026-05-12T17:02:47.308Z",
-          "size": 48079,
-          "path": [
-            "Gap"
           ]
         },
         {

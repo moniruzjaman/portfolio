@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-04T10:54:33.521Z",
+  "generatedAt": "2026-11-05T10:54:45.230Z",
   "note": "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
-  "total": 29,
+  "total": 27,
   "excluded": [
     {
       "name": "Agri-Tracker",
@@ -29,19 +29,9 @@
       "url": "https://github.com/moniruzjaman/AgriTechOS"
     },
     {
-      "name": "bangladesh-zindabad",
-      "reason": "empty repository (no commits)",
-      "url": "https://github.com/moniruzjaman/bangladesh-zindabad"
-    },
-    {
       "name": "bd_crop_advisory",
       "reason": "no qualifying deployment channel",
       "url": "https://github.com/moniruzjaman/bd_crop_advisory"
-    },
-    {
-      "name": "crop-diagnosis",
-      "reason": "no qualifying deployment channel",
-      "url": "https://github.com/moniruzjaman/crop-diagnosis"
     },
     {
       "name": "cultivating-knowledge",

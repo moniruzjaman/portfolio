@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T10:54:58.120Z",
+  "generatedAt": "2026-11-05T10:55:19.431Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -1811,19 +1811,6 @@
           "mime": "application/pdf",
           "modified": "2026-03-24T17:26:12.147Z",
           "size": 14450756,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1nmISFCkIZ0WYwg0H8xlKALwcmGsaVrCr",
-          "collection": "pdf",
-          "name": "Agricultural_Roots_State_Transformation.pdf",
-          "title": "Agricultural Roots State Transformation",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-03-24T17:26:11.826Z",
-          "size": 23379460,
           "path": [
             "bnp_policy"
           ]

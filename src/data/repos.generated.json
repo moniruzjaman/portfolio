@@ -1,38 +1,67 @@
 {
-  "generatedAt": "2026-11-05T10:54:45.230Z",
+  "generatedAt": "2026-11-06T10:52:02.750Z",
   "source": "moniruzjaman",
-  "total": 51,
-  "scanned": 78,
+  "total": 52,
+  "scanned": 79,
   "channels": {
-    "github-pages": 35,
-    "vercel": 26,
     "custom-domain": 4,
-    "cloudflare": 5
+    "cloudflare": 5,
+    "github-pages": 36,
+    "vercel": 26
   },
   "repos": [
     {
-      "name": "bangladesh-zindabad",
-      "slug": "bangladesh-zindabad",
-      "title": "বাংলাদেশ জিন্দাবাদ — মূল পুস্তিকার সৌজন্য ই-বুক সংস্করণ",
-      "description": "ebook",
-      "language": "JavaScript",
+      "name": "krishi-ai",
+      "slug": "krishi-ai",
+      "title": "কৃষি এআই (Krishi AI)",
+      "description": "কৃষি এআই — বাংলাদেশের কৃষকদের জন্য এআই চালিত স্মার্ট কৃষি সহায়ক | Bengali-first Agricultural AI Assistant with Android-native PWA",
+      "language": "TypeScript",
+      "topics": [
+        "agriculture",
+        "ai",
+        "bangladesh",
+        "bengali",
+        "crop-disease",
+        "farming",
+        "gemini",
+        "nextjs",
+        "pwa"
+      ],
+      "stars": 0,
+      "pushedAt": "2026-11-05T23:10:44Z",
+      "url": "https://github.com/moniruzjaman/krishi-ai",
+      "live": "https://krishiai.live",
+      "customDomain": "https://krishiai.live",
+      "pages": null,
+      "channels": [
+        "custom-domain",
+        "cloudflare"
+      ],
+      "readmeBytes": 5612,
+      "brand": null,
+      "featured": false
+    },
+    {
+      "name": "solar-rooftop",
+      "slug": "solar-rooftop",
+      "title": "solar-rooftop",
+      "description": null,
+      "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-05T07:38:39Z",
-      "url": "https://github.com/moniruzjaman/bangladesh-zindabad",
+      "pushedAt": "2026-11-05T15:09:20Z",
+      "url": "https://github.com/moniruzjaman/solar-rooftop",
       "live": null,
       "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/bangladesh-zindabad/",
+      "pages": "https://moniruzjaman.github.io/solar-rooftop/",
       "channels": [
         "github-pages"
       ],
-      "readmeBytes": 7210,
+      "readmeBytes": 0,
       "brand": {
-        "name": "জিন্দাবাদ",
+        "name": "Solar Rooftop Project Bangladesh",
         "themeColor": "#006a4e",
-        "icon": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
-        "image": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
-        "source": "manifest"
+        "source": "html"
       },
       "featured": false
     },
@@ -44,7 +73,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-04T14:25:24Z",
+      "pushedAt": "2026-11-05T14:33:50Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -69,7 +98,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-04T10:55:06Z",
+      "pushedAt": "2026-11-05T10:55:20Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -83,6 +112,32 @@
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
         "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "bangladesh-zindabad",
+      "slug": "bangladesh-zindabad",
+      "title": "বাংলাদেশ জিন্দাবাদ — মূল পুস্তিকার সৌজন্য ই-বুক সংস্করণ",
+      "description": "ebook",
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-05T07:38:39Z",
+      "url": "https://github.com/moniruzjaman/bangladesh-zindabad",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/bangladesh-zindabad/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 7210,
+      "brand": {
+        "name": "জিন্দাবাদ",
+        "themeColor": "#006a4e",
+        "icon": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
+        "image": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
+        "source": "manifest"
       },
       "featured": false
     },
@@ -604,7 +659,7 @@
       "url": "https://github.com/moniruzjaman/biopesticide-policy",
       "live": null,
       "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/biopesticide-policy/",
+      "pages": null,
       "channels": [
         "github-pages"
       ],
@@ -772,37 +827,6 @@
         "github-pages"
       ],
       "readmeBytes": 3150,
-      "brand": null,
-      "featured": false
-    },
-    {
-      "name": "krishi-ai",
-      "slug": "krishi-ai",
-      "title": "কৃষি এআই (Krishi AI)",
-      "description": "কৃষি এআই — বাংলাদেশের কৃষকদের জন্য এআই চালিত স্মার্ট কৃষি সহায়ক | Bengali-first Agricultural AI Assistant with Android-native PWA",
-      "language": "TypeScript",
-      "topics": [
-        "agriculture",
-        "ai",
-        "bangladesh",
-        "bengali",
-        "crop-disease",
-        "farming",
-        "gemini",
-        "nextjs",
-        "pwa"
-      ],
-      "stars": 0,
-      "pushedAt": "2026-09-07T21:14:21Z",
-      "url": "https://github.com/moniruzjaman/krishi-ai",
-      "live": "https://krishiai.live",
-      "customDomain": "https://krishiai.live",
-      "pages": null,
-      "channels": [
-        "custom-domain",
-        "cloudflare"
-      ],
-      "readmeBytes": 5612,
       "brand": null,
       "featured": false
     },

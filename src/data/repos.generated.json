@@ -1,15 +1,40 @@
 {
-  "generatedAt": "2026-11-06T10:52:02.750Z",
+  "generatedAt": "2026-11-07T10:05:53.589Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 79,
   "channels": {
+    "github-pages": 36,
     "custom-domain": 4,
     "cloudflare": 5,
-    "github-pages": 36,
     "vercel": 26
   },
   "repos": [
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": null,
+      "language": "HTML",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-06T14:11:24Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 14013,
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
     {
       "name": "krishi-ai",
       "slug": "krishi-ai",
@@ -28,7 +53,7 @@
         "pwa"
       ],
       "stars": 0,
-      "pushedAt": "2026-11-05T23:10:44Z",
+      "pushedAt": "2026-11-06T12:39:29Z",
       "url": "https://github.com/moniruzjaman/krishi-ai",
       "live": "https://krishiai.live",
       "customDomain": "https://krishiai.live",
@@ -39,6 +64,31 @@
       ],
       "readmeBytes": 5612,
       "brand": null,
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-06T10:52:37Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11872,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "source": "html"
+      },
       "featured": false
     },
     {
@@ -61,56 +111,6 @@
       "brand": {
         "name": "Solar Rooftop Project Bangladesh",
         "themeColor": "#006a4e",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": null,
-      "language": "HTML",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-05T14:33:50Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 14013,
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-05T10:55:20Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11872,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
       },
       "featured": false
@@ -659,7 +659,7 @@
       "url": "https://github.com/moniruzjaman/biopesticide-policy",
       "live": null,
       "customDomain": null,
-      "pages": null,
+      "pages": "https://moniruzjaman.github.io/biopesticide-policy/",
       "channels": [
         "github-pages"
       ],

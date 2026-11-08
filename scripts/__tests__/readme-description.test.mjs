@@ -35,7 +35,10 @@ test("descriptionFromReadme: skips badges, code, tables, lists and nav headings"
     "",
     "The real description lives here after the ceremony.",
   ].join("\n");
-  assert.equal(descriptionFromReadme(readme), "The real description lives here after the ceremony.");
+  assert.equal(
+    descriptionFromReadme(readme),
+    "The real description lives here after the ceremony.",
+  );
 });
 
 test("descriptionFromReadme: caps at 160 characters with an ellipsis", () => {
@@ -52,6 +55,8 @@ test("descriptionFromReadme: returns null for ceremony-only readmes", () => {
 });
 
 test("descriptionFromReadme: accepts Bangla prose", () => {
-  const out = descriptionFromReadme("# শিরোনাম\n\nকৃষকদের জন্য বাংলা ভাষার একটি স্মার্ট কৃষি সহায়ক অ্যাপ্লিকেশন।");
+  const out = descriptionFromReadme(
+    "# শিরোনাম\n\nকৃষকদের জন্য বাংলা ভাষার একটি স্মার্ট কৃষি সহায়ক অ্যাপ্লিকেশন।",
+  );
   assert.ok(out && out.includes("কৃষকদের"));
 });

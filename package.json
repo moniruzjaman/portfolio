@@ -1,9 +1,9 @@
 {
-  "name": "moniruzjaman-github-io",
+  "name": "portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzjaman — agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzjaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
@@ -37,6 +37,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.72.1",
     "vite": "^6.0.5"
   }
 }

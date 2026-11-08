@@ -183,7 +183,8 @@ function channelsFor(repo, tree, customDomain) {
   if (home.endsWith(".vercel.app")) ch.push("vercel");
   // A Cloudflare Pages / Workers homepage is proof on its own; marker files cover
   // repos whose deployment URL is not recorded in the homepage field.
-  if (/\.(pages|workers)\.dev\/?$/.test(home) || CLOUDFLARE_MARKERS.some(has)) ch.push("cloudflare");
+  if (/\.(pages|workers)\.dev\/?$/.test(home) || CLOUDFLARE_MARKERS.some(has))
+    ch.push("cloudflare");
   if (repo.has_pages || PAGES_MARKERS.some(has)) ch.push("github-pages");
 
   return [...new Set(ch)];
@@ -259,9 +260,7 @@ async function main() {
     // laundered into an exclusion.
     let tree = [];
     try {
-      const t = await gh(
-        `/repos/${OWNER}/${name}/git/trees/${repo.default_branch}?recursive=1`,
-      );
+      const t = await gh(`/repos/${OWNER}/${name}/git/trees/${repo.default_branch}?recursive=1`);
       tree = (t.tree || []).filter((n) => n.type === "blob");
     } catch (err) {
       if (err instanceof HttpError && err.status === 409) {
@@ -306,9 +305,16 @@ async function main() {
 
     included.push({
       name,
-      slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+      slug: name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
       title: await titleFrom(readme, name),
-      description: (repo.description || "").trim() || null,
+      // GitHub descriptions can carry a builder-marketplace suffix ("· Built
+      // with Manus"); the site should not advertise a tool the owner stopped
+      // using. Strip the suffix, never the owner's own text.
+      description:
+        (repo.description || "").replace(/\s*[·—-]\s*Built with Manus\s*$/i, "").trim() || null,
       language: repo.language || null,
       topics: repo.topics || [],
       stars: repo.stargazers_count,
@@ -323,7 +329,9 @@ async function main() {
       featured: false, // flagship order is curated in src/content/apps.ts
     });
 
-    process.stdout.write(`  ✓ ${name}${brand ? `  [brand: ${brand.source}${brand.themeColor ? " " + brand.themeColor : ""}]` : ""}\n`);
+    process.stdout.write(
+      `  ✓ ${name}${brand ? `  [brand: ${brand.source}${brand.themeColor ? " " + brand.themeColor : ""}]` : ""}\n`,
+    );
   }
 
   // Deterministic order: most recently pushed first, then name.
@@ -365,7 +373,9 @@ async function main() {
   const branded = included.filter((r) => r.brand).length;
   console.log(
     `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL · ${branded} branded from the app itself\n` +
-      `  channels: ${Object.entries(counts).map(([k, v]) => `${k}=${v}`).join("  ")}\n` +
+      `  channels: ${Object.entries(counts)
+        .map(([k, v]) => `${k}=${v}`)
+        .join("  ")}\n` +
       `  took ${((Date.now() - t0) / 1000).toFixed(1)}s → ${OUT.replace(ROOT + "/", "")}`,
   );
 }

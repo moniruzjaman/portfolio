@@ -1,4 +1,4 @@
-# moniruzjaman.github.io
+# portfolio
 
 Personal portfolio and showcase site for **Abu Md. Moniruzjaman** —
 Additional Deputy Director (Horticulture), Department of Agricultural Extension,
@@ -74,12 +74,12 @@ daily 03:17 UTC  ──▶  .github/workflows/sync-repos.yml
 
 A repository is included if it matches **any** channel:
 
-| Channel | Test |
-|---|---|
-| `custom-domain` | homepage or `CNAME` contents reference `*.krishiai.live` |
-| `vercel` | homepage ends in `.vercel.app` |
-| `cloudflare` | tree contains `wrangler.{jsonc,toml}`, `worker.js`, or `functions/api/` |
-| `github-pages` | `has_pages`, or a `.nojekyll` / `CNAME` / pages workflow exists |
+| Channel         | Test                                                                    |
+| --------------- | ----------------------------------------------------------------------- |
+| `custom-domain` | homepage or `CNAME` contents reference `*.krishiai.live`                |
+| `vercel`        | homepage ends in `.vercel.app`                                          |
+| `cloudflare`    | tree contains `wrangler.{jsonc,toml}`, `worker.js`, or `functions/api/` |
+| `github-pages`  | `has_pages`, or a `.nojekyll` / `CNAME` / pages workflow exists         |
 
 Then excluded regardless, with the reason recorded in
 `src/data/excluded.generated.json`: forks, empty repositories, and anything in the
@@ -147,16 +147,16 @@ out entirely, add its name to `excludeFolders` — it is never entered, which th
 tests verify. Counts of everything skipped are written to
 `src/data/library-skipped.generated.json`.
 
-**Zero credentials (works today):** share the folder as *Anyone with the link →
-Viewer*. The page shows Drive's own folder view, click-to-load.
+**Zero credentials (works today):** share the folder as _Anyone with the link →
+Viewer_. The page shows Drive's own folder view, click-to-load.
 
 **Indexed (cards, thumbnails, search, in-page preview):** add a repository secret
 (**Settings → Secrets and variables → Actions**):
 
-| Secret | When | Notes |
-| --- | --- | --- |
-| `GOOGLE_API_KEY` | recommended | Google Cloud → enable *Google Drive API* → create an API key and restrict it to that API. Anonymous, so it can only ever see public files. |
-| `GOOGLE_SERVICE_ACCOUNT_JSON` | alternative | whole JSON key on one line. Share the folders with its `client_email`. Files that are not public are **skipped**, never listed. |
+| Secret                        | When        | Notes                                                                                                                                      |
+| ----------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GOOGLE_API_KEY`              | recommended | Google Cloud → enable _Google Drive API_ → create an API key and restrict it to that API. Anonymous, so it can only ever see public files. |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | alternative | whole JSON key on one line. Share the folders with its `client_email`. Files that are not public are **skipped**, never listed.            |
 
 Never paste these into a chat, issue or commit — they belong only in repository
 secrets. The next scheduled run (or **Actions → Run workflow**) indexes the files.
@@ -227,11 +227,11 @@ export const myNote: Omit<Note, "readingTime"> = {
   title: "A clear English title",
   titleBn: "একটি স্পষ্ট বাংলা শিরোনাম",
   summary: "One or two sentences for the index and search.",
-  type: "field-guide",           // policy-brief | field-guide | proposal | article | note
+  type: "field-guide", // policy-brief | field-guide | proposal | article | note
   year: 2026,
   org: "DAE Bangladesh",
   tags: ["soil", "method"],
-  expertise: ["plantwise"],      // must match a graph id
+  expertise: ["plantwise"], // must match a graph id
   featured: false,
   body: `## Heading
 

@@ -4,6 +4,7 @@ import { ROUTER_BASE } from "@/lib/site";
 import { useDocumentMeta } from "@/lib/seo";
 import { LangProvider } from "@/lib/i18n";
 import { Nav, Footer } from "@/components/Chrome";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { useRouteReset } from "@/components/Section";
 import Home from "@/pages/Home";
 import Works from "@/pages/Works";
@@ -61,20 +62,22 @@ function Shell() {
 
       <Nav onSearch={() => setSearchOpen(true)} />
 
-      <main id="main">
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/works" component={Works} />
-          <Route path="/works/:slug" component={WorkDetail} />
-          <Route path="/topics" component={Topics} />
-          <Route path="/library" component={Library} />
-          <Route path="/expertise" component={Expertise} />
-          <Route path="/notes" component={Notes} />
-          <Route path="/notes/:slug" component={NoteDetail} />
-          <Route path="/about" component={About} />
-          <Route component={NotFound} />
-        </Switch>
-      </main>
+      <ErrorBoundary>
+        <main id="main">
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/works" component={Works} />
+            <Route path="/works/:slug" component={WorkDetail} />
+            <Route path="/topics" component={Topics} />
+            <Route path="/library" component={Library} />
+            <Route path="/expertise" component={Expertise} />
+            <Route path="/notes" component={Notes} />
+            <Route path="/notes/:slug" component={NoteDetail} />
+            <Route path="/about" component={About} />
+            <Route component={NotFound} />
+          </Switch>
+        </main>
+      </ErrorBoundary>
 
       <Footer />
       {searchOpen && (

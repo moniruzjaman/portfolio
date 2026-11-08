@@ -7,16 +7,19 @@
  * disagreed with each other. Deriving all three from BASE_PATH / SITE_ORIGIN — the
  * same inputs vite.config.ts reads — removes that class of drift.
  */
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const BASE = process.env.BASE_PATH || "/portfolio/";
 const ORIGIN = (process.env.SITE_ORIGIN || "https://moniruzjaman.github.io").replace(/\/$/, "");
 const SITE = `${ORIGIN}${BASE}`;
 
 const repos = JSON.parse(readFileSync("src/data/repos.generated.json", "utf8")).repos;
-const noteSlugs = readdirSync("src/content/notes")
-  .filter((f) => f.endsWith(".ts"))
-  .map((f) => readFileSync(`src/content/notes/${f}`, "utf8").match(/slug:\s*"([^"]+)"/)?.[1])
+// Registered notes only: the registry, not the directory, defines what is
+// published — unregistered template case studies live in the same folder and
+// must not appear in the sitemap (scripts/prerender.mjs cross-checks this).
+const registry = readFileSync("src/content/notes.ts", "utf8");
+const noteSlugs = [...registry.matchAll(/from "\.\/notes\/([A-Za-z0-9_-]+)"/g)]
+  .map((m) => readFileSync(`src/content/notes/${m[1]}.ts`, "utf8").match(/slug:\s*"([^"]+)"/)?.[1])
   .filter(Boolean);
 
 const paths = [

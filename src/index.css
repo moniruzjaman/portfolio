@@ -93,6 +93,37 @@
   }
 }
 
+/* ── print ──────────────────────────────────────────────────
+   Notes and the About page are print surfaces (brief 3.5): nav, footer and
+   overlays vanish, links show their URLs, and the paper background wins. */
+
+@media print {
+  header,
+  footer,
+  .print-hide {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  main img,
+  main figure,
+  main table {
+    break-inside: avoid;
+  }
+}
+
 /* ── components ───────────────────────────────────────────── */
 
 @layer components {

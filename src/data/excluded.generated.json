@@ -138,5 +138,14 @@
       "reason": "empty repository (no commits)",
       "url": "https://github.com/moniruzjaman/rastro_tin_ayna"
     }
+  ],
+  "needsDescription": [
+    "solar-rooftop",
+    "AgriChem_Registry",
+    "pesticide_regulatory",
+    "fertilizer-reform",
+    "nursery-report",
+    "nursery-form",
+    "krishak-card-v2"
   ]
 }

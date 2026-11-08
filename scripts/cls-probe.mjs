@@ -3,10 +3,7 @@
  * moved: PerformanceObserver('layout-shift'), sources mapped to node labels.
  * Diagnostic companion to ui-audit for CLS budget failures.
  */
-import { createRequire } from "node:module";
-
 const url = process.argv[2] || "http://localhost:4173/notes/plantation-tracker-field-system/";
-const require = createRequire(import.meta.url);
 const puppeteer = (await import("puppeteer-core")).default;
 const chromium = (await import("@sparticuz/chromium")).default;
 

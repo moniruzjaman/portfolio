@@ -1,5 +1,6 @@
 {
   "generatedAt": "2026-11-08T16:23:18.764Z",
+  "generatedAt": "2026-11-08T18:31:43.267Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 79,
@@ -20,6 +21,12 @@
       "topics": [],
       "stars": 0,
       "pushedAt": "2026-11-08T16:19:01Z",
+      "title": "portfolio",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-08T18:30:53Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -32,6 +39,12 @@
         "name": "Abu Md. Moniruzjaman",
         "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
         "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+      "readmeBytes": 12434,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "themeColor": "#f7f3ec",
+        "icon": "https://moniruzjaman.github.io/portfolio/apple-touch-icon.png",
+        "image": "https://moniruzjaman.github.io/portfolio/og/.png",
         "source": "html"
       },
       "featured": false
@@ -42,6 +55,7 @@
       "title": "রাষ্ট্রকে দেখা তিন চোখে",
       "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
       "descriptionSource": "readme",
+      "description": null,
       "language": "HTML",
       "topics": [],
       "stars": 0,

@@ -1,4 +1,5 @@
-export type NoteType = "policy-brief" | "field-guide" | "proposal" | "article" | "note";
+export type NoteType =
+  "policy-brief" | "field-guide" | "proposal" | "article" | "note" | "case-study";
 
 export type Note = {
   slug: string;
@@ -59,4 +60,5 @@ export const NOTE_TYPE_LABEL: Record<NoteType, { en: string; bn: string }> = {
   proposal: { en: "Proposal", bn: "প্রস্তাব" },
   article: { en: "Article", bn: "নিবন্ধ" },
   note: { en: "Note", bn: "নোট" },
+  "case-study": { en: "Case study", bn: "কেস স্টাডি" },
 };

@@ -175,9 +175,6 @@ export function routeMeta(path: string): RouteMeta {
     if (n) {
       const title = `${n.title} — Writing`;
       const url = canonicalFor(path);
-      // Only the publication year is known for the existing notes; day-precision
-      // dates are an owner question (brief 2.5). Year precision is stated as such.
-      const datePublished = `${n.year}-01-01`;
       return {
         title,
         description: n.summary,
@@ -191,8 +188,8 @@ export function routeMeta(path: string): RouteMeta {
             headline: n.title,
             alternateHeadline: n.titleBn || undefined,
             description: n.summary,
-            // Year-precision: real publication dates are pending (owner question).
-            datePublished,
+            // Year-precision (registry derives YYYY-01-01); real dates pending.
+            datePublished: n.datePublished || `${n.year}-01-01`,
             author: { "@type": "Person", name: AUTHOR.name, url: AUTHOR.url },
             mainEntityOfPage: url,
             inLanguage: ["en", "bn"],

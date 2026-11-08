@@ -140,6 +140,46 @@ for (const path of routePaths) {
   writeFileSync(file, html);
   console.log(`✔ ${path || "/"}`);
 }
+
+// ── Atom feed of the notes registry (brief 2.5) ──────────────────────────────
+// Full summaries, absolute URLs, year-precision publication dates (the
+// registry records the year only — real dates are an owner question).
+const { notes } = await vite.ssrLoadModule("/src/content/notes.ts");
+const xmlEsc = (s) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const entries = [...notes]
+  .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
+  .map((n) => {
+    const url = canonicalFor(`/notes/${n.slug}`);
+    return [
+      "  <entry>",
+      `    <id>${url}</id>`,
+      `    <link rel="alternate" href="${url}" />`,
+      `    <title>${xmlEsc(n.title)}</title>`,
+      `    <summary>${xmlEsc(n.summary)}</summary>`,
+      `    <published>${n.datePublished}</published>`,
+      `    <updated>${n.datePublished}</updated>`,
+      "    <author><name>Abu Md. Moniruzjaman</name></author>",
+      "  </entry>",
+    ].join("\n");
+  })
+  .join("\n");
+writeFileSync(
+  "dist/feed.xml",
+  `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>${SITE}</id>
+  <title>Writing — Abu Md. Moniruzjaman</title>
+  <subtitle>Field guides, policy briefs and method notes on agricultural extension in Bangladesh.</subtitle>
+  <link rel="alternate" href="${SITE}" />
+  <link rel="self" href="${SITE}feed.xml" />
+  <updated>${new Date().toISOString()}</updated>
+  <author><name>Abu Md. Moniruzjaman</name></author>
+${entries}
+</feed>
+`,
+);
+console.log(`✔ feed.xml — ${notes.length} entries`);
 await vite.close();
 
 if (failed) {

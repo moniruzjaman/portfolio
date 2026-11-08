@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzjaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzjaman — agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/verify-no-secrets.mjs dist",
@@ -30,6 +30,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/noto-serif-bengali": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^22.10.0",
     "@types/react": "^19.0.0",
@@ -41,6 +44,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
     "prettier": "^3.9.10",
+    "satori": "^0.63.2",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.72.1",

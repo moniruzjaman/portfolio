@@ -81,6 +81,10 @@ type RouteMeta = {
   ogType: "website" | "article";
   /** JSON-LD objects, injected as one <script type="application/ld+json"> each. */
   jsonLd: object[];
+  /** Clean card title for the generated OG image (no site suffix). */
+  ogTitle?: string;
+  /** Bangla card title, when the content has one. */
+  bnTitle?: string;
 };
 
 const STATIC_META: Record<string, { title: string; description: string }> = {
@@ -127,19 +131,23 @@ export function routeMeta(path: string): RouteMeta {
   if (staticMeta) {
     // The Person record belongs on the two identity pages only (brief 2.2).
     const jsonLd = path === "/" || path === "/about" ? [personJsonLd] : [];
-    return { ...staticMeta, ogType: "website", jsonLd };
+    const ogTitle = staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
+    return { ...staticMeta, ogType: "website", jsonLd, ogTitle };
   }
 
   if (path.startsWith("/works/")) {
     const r = workBySlug(path.slice("/works/".length));
     if (r) {
       const title = `${titleFor(r, "en") || r.name} — Work`;
+      const cleanTitle = titleFor(r, "en") || r.name;
       const description = summaryFor(r, "en") || r.description || r.name;
       const url = canonicalFor(path);
       return {
         title,
         description,
         ogType: "website",
+        ogTitle: cleanTitle,
+        bnTitle: titleFor(r, "bn") || undefined,
         jsonLd: [
           {
             "@context": "https://schema.org",
@@ -174,6 +182,8 @@ export function routeMeta(path: string): RouteMeta {
         title,
         description: n.summary,
         ogType: "article",
+        ogTitle: n.title,
+        bnTitle: n.titleBn || undefined,
         jsonLd: [
           {
             "@context": "https://schema.org",
@@ -204,6 +214,13 @@ export function routeMeta(path: string): RouteMeta {
     jsonLd: [],
   };
 }
+
+/**
+ * The generated OG card for a route, relative to SITE (brief 2.3). The image
+ * itself is produced by scripts/prerender.mjs with satori at build time.
+ */
+export const ogImageFor = (path: string): string =>
+  `og/${path === "/" ? "home" : path.replace(/^\//, "")}.png`;
 
 /** Every routable path, for the prerenderer. Must agree with public/sitemap.xml. */
 export const routePaths: string[] = [

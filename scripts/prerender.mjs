@@ -33,20 +33,23 @@ const vite = await createServer({
 });
 
 const { renderAt } = await vite.ssrLoadModule("/src/test/ssr-probe.tsx");
-const { routePaths, routeMeta, canonicalFor } = await vite.ssrLoadModule("/src/lib/seo.ts");
+const { routePaths, routeMeta, canonicalFor, ogImageFor } =
+  await vite.ssrLoadModule("/src/lib/seo.ts");
+const { renderOgCard } = await import("./lib/og-card.mjs");
 
 const template = readFileSync("dist/index.html", "utf8");
 
 // The shell's own title/description/canonical/og values are home-page defaults
 // and the Person JSON-LD lived in index.html — all of that is replaced by the
-// per-route values. og:image / og:site_name / twitter:card / fonts / icons stay.
+// per-route values (each route gets its own generated og:image card).
+// og:site_name / twitter:card / fonts / icons stay.
 const stripShellMeta = (html) =>
   html
     .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/i, "")
     .replace(/<title>[\s\S]*?<\/title>/i, "")
     .replace(/<meta\s+name="description"[^>]*>/i, "")
     .replace(/<link\s+rel="canonical"[^>]*>/i, "")
-    .replace(/<meta\s+property="og:(?:title|description|url|type)"[^>]*>/g, "");
+    .replace(/<meta\s+property="og:(?:title|description|url|type|image)"[^>]*>/g, "");
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const jsonld = (o) =>
@@ -97,6 +100,23 @@ for (const path of routePaths) {
   }
   titles.set(m.title, path);
 
+  // Open Graph card: generated per route (brief 2.3), referenced as og:image.
+  const ogRel = ogImageFor(path);
+  const ogFile = `dist/${ogRel}`;
+  try {
+    const png = await renderOgCard({
+      title: m.ogTitle || m.title,
+      bnTitle: m.bnTitle,
+      description: m.description,
+      site: SITE.replace(/^https?:\/\//, "").replace(/\/$/, ""),
+    });
+    mkdirSync(dirname(ogFile), { recursive: true });
+    writeFileSync(ogFile, png);
+  } catch (e) {
+    console.error(`✖ ${path || "/"} — OG card failed: ${e.message}`);
+    failed++;
+  }
+
   const html = shell
     .replace("__PRERENDERED__", markup)
     .replace(
@@ -109,6 +129,7 @@ for (const path of routePaths) {
         `    <meta property="og:description" content="${esc(m.description)}" />`,
         `    <meta property="og:url" content="${esc(canonical)}" />`,
         `    <meta property="og:type" content="${m.ogType}" />`,
+        `    <meta property="og:image" content="${esc(`${SITE}${ogRel}`)}" />`,
         ...m.jsonLd.map(jsonld),
         "  </head>",
       ].join("\n"),

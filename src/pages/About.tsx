@@ -90,6 +90,8 @@ export default function About() {
           <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
             <img
               src={`${import.meta.env.BASE_URL}portrait.jpg`}
+              srcSet={`${import.meta.env.BASE_URL}portrait-480.webp 480w, ${import.meta.env.BASE_URL}portrait-720.webp 720w`}
+              sizes="(min-width: 1024px) 384px, (min-width: 640px) 50vw, 100vw"
               alt={author.name}
               width={720}
               height={693}

@@ -1,0 +1,38 @@
+name: Lighthouse CI
+
+# Records the performance budgets from the enhancement brief (§2.4) against the
+# built site, on mobile emulation. Baseline phase: most assertions are `warn`
+# so the numbers are visible without blocking; they flip to `error` once the
+# remaining first-load work (per-repo data slimming) lands. CLS is enforced
+# already — aspect boxes should keep it near zero.
+on:
+  pull_request:
+    paths: ["src/**", "index.html", "lighthouserc.json", ".github/workflows/lighthouse.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lhci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun

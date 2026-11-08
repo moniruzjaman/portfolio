@@ -6,7 +6,12 @@ import { socials } from "@/components/Socials";
 import { GithubMark, LinkedinMark, FacebookMark, YoutubeMark } from "@/components/icons";
 import { author } from "@/lib/author";
 
-const FOOTER_ICONS = { github: GithubMark, linkedin: LinkedinMark, youtube: YoutubeMark, facebook: FacebookMark } as const;
+const FOOTER_ICONS = {
+  github: GithubMark,
+  linkedin: LinkedinMark,
+  youtube: YoutubeMark,
+  facebook: FacebookMark,
+} as const;
 
 /** Compact icon row for the footer — mirrors the "Connect & Follow" card order. */
 const FOOTER_SOCIALS = ["facebook", "linkedin", "youtube", "github"] as const;
@@ -33,8 +38,6 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [location]);
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -44,12 +47,15 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
       }`}
     >
       <div className="u-container flex items-center justify-between py-4">
-        <Link href="/" className="group flex min-h-11 min-w-11 items-center gap-3" aria-label={`${author.initials} ${author.short} — ${author.name}`}>
+        <Link
+          href="/"
+          className="group flex min-h-11 min-w-11 items-center gap-3"
+          aria-label={`${author.initials} ${author.short} — ${author.name}`}
+        >
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest-900 font-serif text-sm font-black text-gold-400 transition-transform group-hover:-rotate-6">
             {author.initials}
           </span>
-          {/* Real whitespace between the spans: the visible text must read "AM MONIRUZJAMAN" so it matches the link's accessible name. */}
-          {" "}
+          {/* Real whitespace between the spans: the visible text must read "AM MONIRUZJAMAN" so it matches the link's accessible name. */}{" "}
           <span className="hidden text-sm font-black tracking-[0.18em] text-forest-900 sm:block">
             {author.short.toUpperCase()}
             <span aria-hidden="true" className="text-gold-500 after:content-['.']" />
@@ -109,6 +115,7 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
               <Link
                 key={l.href}
                 href={l.href}
+                onClick={() => setOpen(false)}
                 aria-current={location.startsWith(l.href) ? "page" : undefined}
                 className="u-eyebrow flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
               >
@@ -138,19 +145,32 @@ export function Footer() {
 
         <nav className="flex flex-col text-sm" aria-label="Footer">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
+            >
               {t(l.en, l.bn)}
             </Link>
           ))}
         </nav>
 
         <div className="flex flex-col text-sm">
-          <a href={`mailto:${author.email}`} className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+          <a
+            href={`mailto:${author.email}`}
+            className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
+          >
             {author.email}
           </a>
           <div className="flex flex-wrap gap-x-5">
             {socials.map(({ key, label, href }) => (
-              <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900">
+              <a
+                key={key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
+              >
                 {label}
               </a>
             ))}
@@ -175,7 +195,8 @@ export function Footer() {
             })}
           </div>
           <p className="text-xs text-moss-400">
-            © {new Date().getFullYear()} {author.name} · {t("Personal portfolio", "ব্যক্তিগত পোর্টফোলিও")}
+            © {new Date().getFullYear()} {author.name} ·{" "}
+            {t("Personal portfolio", "ব্যক্তিগত পোর্টফোলিও")}
           </p>
         </div>
       </div>

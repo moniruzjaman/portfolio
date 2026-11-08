@@ -37,7 +37,8 @@ export const library = {
 };
 
 export const libraryItems: LibItem[] = library.collections.flatMap((c) => c.items);
-export const hasLibrary = Boolean(library.root) || library.collections.some((c) => c.items.length > 0 || c.folderId);
+export const hasLibrary =
+  Boolean(library.root) || library.collections.some((c) => c.items.length > 0 || c.folderId);
 
 export const KIND_LABEL: Record<Kind, { en: string; bn: string }> = {
   pdf: { en: "PDF", bn: "পিডিএফ" },
@@ -60,29 +61,36 @@ const NATIVE = {
   sheet: "application/vnd.google-apps.spreadsheet",
 };
 
-const rk = (i: LibItem, sep: "?" | "&") => (i.resourceKey ? `${sep}resourcekey=${encodeURIComponent(i.resourceKey)}` : "");
+const rk = (i: LibItem, sep: "?" | "&") =>
+  i.resourceKey ? `${sep}resourcekey=${encodeURIComponent(i.resourceKey)}` : "";
 
 /** Opens the file in Drive itself — works for every type. */
 export const openUrl = (i: LibItem) => `https://drive.google.com/open?id=${i.id}${rk(i, "&")}`;
 
 /** Embeddable preview, loaded only after the visitor asks for it. */
 export function previewUrl(i: LibItem): string {
-  if (i.mime === NATIVE.slides) return `https://docs.google.com/presentation/d/${i.id}/embed?start=false&loop=false${rk(i, "&")}`;
-  if (i.mime === NATIVE.doc) return `https://docs.google.com/document/d/${i.id}/preview${rk(i, "?")}`;
-  if (i.mime === NATIVE.sheet) return `https://docs.google.com/spreadsheets/d/${i.id}/preview${rk(i, "?")}`;
+  if (i.mime === NATIVE.slides)
+    return `https://docs.google.com/presentation/d/${i.id}/embed?start=false&loop=false${rk(i, "&")}`;
+  if (i.mime === NATIVE.doc)
+    return `https://docs.google.com/document/d/${i.id}/preview${rk(i, "?")}`;
+  if (i.mime === NATIVE.sheet)
+    return `https://docs.google.com/spreadsheets/d/${i.id}/preview${rk(i, "?")}`;
   return `https://drive.google.com/file/d/${i.id}/preview${rk(i, "?")}`;
 }
 
 export function downloadUrl(i: LibItem): string {
   if (i.mime === NATIVE.slides) return `https://docs.google.com/presentation/d/${i.id}/export/pptx`;
   if (i.mime === NATIVE.doc) return `https://docs.google.com/document/d/${i.id}/export?format=pdf`;
-  if (i.mime === NATIVE.sheet) return `https://docs.google.com/spreadsheets/d/${i.id}/export?format=xlsx`;
+  if (i.mime === NATIVE.sheet)
+    return `https://docs.google.com/spreadsheets/d/${i.id}/export?format=xlsx`;
   return `https://drive.google.com/uc?export=download&id=${i.id}${rk(i, "&")}`;
 }
 
-export const thumbUrl = (i: LibItem, w = 480) => `https://drive.google.com/thumbnail?id=${i.id}&sz=w${w}${rk(i, "&")}`;
+export const thumbUrl = (i: LibItem, w = 480) =>
+  `https://drive.google.com/thumbnail?id=${i.id}&sz=w${w}${rk(i, "&")}`;
 export const folderUrl = (id: string) => `https://drive.google.com/drive/folders/${id}`;
-export const folderEmbedUrl = (id: string) => `https://drive.google.com/embeddedfolderview?id=${id}#grid`;
+export const folderEmbedUrl = (id: string) =>
+  `https://drive.google.com/embeddedfolderview?id=${id}#grid`;
 
 export function formatBytes(n: number | null): string {
   if (!n) return "";
@@ -99,7 +107,8 @@ export const FORMATS: { key: Kind; en: string; bn: string }[] = [
 ];
 
 /** "PPTX", "DOCX", "MP4"… from the filename — what a visitor actually recognises. */
-export const extOf = (i: LibItem): string => (i.name.match(/\.([A-Za-z0-9]{1,5})$/)?.[1] ?? "").toUpperCase();
+export const extOf = (i: LibItem): string =>
+  (i.name.match(/\.([A-Za-z0-9]{1,5})$/)?.[1] ?? "").toUpperCase();
 
 /** 312000 → "5:12", 3725000 → "1:02:05". Empty when unknown. */
 export function formatDuration(ms?: number): string {

@@ -3,7 +3,14 @@ import assert from "node:assert/strict";
 import http from "node:http";
 import { parseHtml, parseManifest, normaliseHex, probeBrand } from "../lib/brand-probe.mjs";
 import { urlAllowed } from "../lib/hosts.mjs";
-import { brandFor, fitBand, BAND_MIN_CONTRAST, FALLBACK_PALETTE, contrast, monogramOf } from "../../src/lib/brand.ts";
+import {
+  brandFor,
+  fitBand,
+  BAND_MIN_CONTRAST,
+  FALLBACK_PALETTE,
+  contrast,
+  monogramOf,
+} from "../../src/lib/brand.ts";
 
 const BASE = "https://app.krishiai.live/";
 
@@ -23,22 +30,34 @@ test("parseHtml reads theme colour, touch icon, og image regardless of attribute
 });
 
 test("off-allowlist icon hosts are dropped, not stored", () => {
-  const r = parseHtml(`<link rel="icon" href="https://evil.example/i.png"><meta property="og:image" content="https://tracker.example/x.png">`, BASE);
+  const r = parseHtml(
+    `<link rel="icon" href="https://evil.example/i.png"><meta property="og:image" content="https://tracker.example/x.png">`,
+    BASE,
+  );
   assert.equal(r.icon, null);
   assert.equal(r.image, null);
 });
 
 test("normaliseHex accepts only real hex colours", () => {
   assert.equal(normaliseHex("#abc"), "#aabbcc");
-  for (const bad of ["red", "rgb(0,0,0)", "#12", "#gggggg", "", null, undefined, 5]) assert.equal(normaliseHex(bad), null);
+  for (const bad of ["red", "rgb(0,0,0)", "#12", "#gggggg", "", null, undefined, 5])
+    assert.equal(normaliseHex(bad), null);
 });
 
 test("parseManifest picks the smallest sharp icon, skips maskable, rejects non-manifests", () => {
   const m = parseManifest(
-    { short_name: "Krishak", theme_color: "#0f5c6b", icons: [
-      { src: "a-48.png", sizes: "48x48" }, { src: "a-192.png", sizes: "192x192" },
-      { src: "a-512.png", sizes: "512x512" }, { src: "a-mask.png", sizes: "192x192", purpose: "maskable" } ] },
-    "https://app.krishiai.live/manifest.json");
+    {
+      short_name: "Krishak",
+      theme_color: "#0f5c6b",
+      icons: [
+        { src: "a-48.png", sizes: "48x48" },
+        { src: "a-192.png", sizes: "192x192" },
+        { src: "a-512.png", sizes: "512x512" },
+        { src: "a-mask.png", sizes: "192x192", purpose: "maskable" },
+      ],
+    },
+    "https://app.krishiai.live/manifest.json",
+  );
   assert.equal(m.icon, "https://app.krishiai.live/a-192.png");
   assert.equal(m.themeColor, "#0f5c6b");
   assert.equal(parseManifest({ nope: 1 }, BASE), null);
@@ -48,19 +67,32 @@ test("parseManifest picks the smallest sharp icon, skips maskable, rejects non-m
 /* ── end-to-end against a local server ─────────────────────────────── */
 function serve(routes) {
   return new Promise((ok) => {
-    const s = http.createServer((req, res) => {
-      const r = routes[req.url];
-      if (!r) { res.writeHead(404).end("nope"); return; }
-      res.writeHead(r.status ?? 200, { "content-type": r.type ?? "text/html" }).end(r.body);
-    }).listen(0, "127.0.0.1", () => ok({ s, url: `http://127.0.0.1:${s.address().port}` }));
+    const s = http
+      .createServer((req, res) => {
+        const r = routes[req.url];
+        if (!r) {
+          res.writeHead(404).end("nope");
+          return;
+        }
+        res.writeHead(r.status ?? 200, { "content-type": r.type ?? "text/html" }).end(r.body);
+      })
+      .listen(0, "127.0.0.1", () => ok({ s, url: `http://127.0.0.1:${s.address().port}` }));
   });
 }
 const any = { allowUrl: () => true };
 
 test("probeBrand: manifest wins over <head>, source recorded", async () => {
   const { s, url } = await serve({
-    "/": { body: `<meta name="theme-color" content="#111111"><link rel="manifest" href="/m.json"><link rel="icon" href="/f.png">` },
-    "/m.json": { type: "application/json", body: JSON.stringify({ theme_color: "#1a5c32", icons: [{ src: "/i.png", sizes: "192x192" }] }) },
+    "/": {
+      body: `<meta name="theme-color" content="#111111"><link rel="manifest" href="/m.json"><link rel="icon" href="/f.png">`,
+    },
+    "/m.json": {
+      type: "application/json",
+      body: JSON.stringify({
+        theme_color: "#1a5c32",
+        icons: [{ src: "/i.png", sizes: "192x192" }],
+      }),
+    },
   });
   const b = await probeBrand(url + "/", any);
   s.close();
@@ -70,7 +102,12 @@ test("probeBrand: manifest wins over <head>, source recorded", async () => {
 });
 
 test("probeBrand: a 401 (Vercel deployment protection) is NOT read as the app's brand", async () => {
-  const { s, url } = await serve({ "/": { status: 401, body: `<meta name="theme-color" content="#000000"><link rel="icon" href="/vercel-logo.svg">` } });
+  const { s, url } = await serve({
+    "/": {
+      status: 401,
+      body: `<meta name="theme-color" content="#000000"><link rel="icon" href="/vercel-logo.svg">`,
+    },
+  });
   const b = await probeBrand(url + "/", any);
   s.close();
   assert.equal(b, null);
@@ -78,7 +115,9 @@ test("probeBrand: a 401 (Vercel deployment protection) is NOT read as the app's 
 
 test("probeBrand: broken manifest degrades to <head>, never throws", async () => {
   const { s, url } = await serve({
-    "/": { body: `<meta name="theme-color" content="#3b4a8c"><link rel="manifest" href="/m.json">` },
+    "/": {
+      body: `<meta name="theme-color" content="#3b4a8c"><link rel="manifest" href="/m.json">`,
+    },
     "/m.json": { type: "application/json", body: "{not json" },
   });
   const b = await probeBrand(url + "/", any);
@@ -96,15 +135,25 @@ test("probeBrand: refuses off-allowlist URLs by default (SSRF / wrong-host guard
 
 /* ── front-end fallback ────────────────────────────────────────────── */
 test("every fallback colour clears 4.5:1 with white text", () => {
-  for (const c of FALLBACK_PALETTE) assert.ok(contrast(c, "#ffffff") >= 4.5, `${c} = ${contrast(c, "#ffffff").toFixed(2)}`);
+  for (const c of FALLBACK_PALETTE)
+    assert.ok(contrast(c, "#ffffff") >= 4.5, `${c} = ${contrast(c, "#ffffff").toFixed(2)}`);
 });
 
 test("brandFor: deterministic, never blank, honest about derived colours", () => {
-  const a = brandFor("krishak-card"), b = brandFor("krishak-card");
+  const a = brandFor("krishak-card"),
+    b = brandFor("krishak-card");
   assert.deepEqual(a, b);
   assert.equal(a.derived, true);
-  assert.equal(brandFor("x", { themeColor: "#ffffff", source: "html" }).derived, true, "near-white is unusable as a band colour");
-  const real = brandFor("x", { themeColor: "#1a5c32", icon: "https://a.vercel.app/i.png", source: "manifest" });
+  assert.equal(
+    brandFor("x", { themeColor: "#ffffff", source: "html" }).derived,
+    true,
+    "near-white is unusable as a band colour",
+  );
+  const real = brandFor("x", {
+    themeColor: "#1a5c32",
+    icon: "https://a.vercel.app/i.png",
+    source: "manifest",
+  });
   assert.equal(real.derived, false);
   assert.equal(real.color, "#1a5c32");
   assert.equal(real.icon, "https://a.vercel.app/i.png");
@@ -123,16 +172,35 @@ test("monogramOf", () => {
 
 test("fitBand: EVERY colour on the wheel ends up with text that clears the band minimum", () => {
   const hsl = (h, s, l) => {
-    const a = s * Math.min(l, 1 - l), f = (n) => l - a * Math.max(-1, Math.min((n + h / 30) % 12 - 3, Math.min(9 - ((n + h / 30) % 12), 1)));
-    return "#" + [f(0), f(8), f(4)].map((v) => Math.round(v * 255).toString(16).padStart(2, "0")).join("");
+    const a = s * Math.min(l, 1 - l),
+      f = (n) =>
+        l -
+        a * Math.max(-1, Math.min(((n + h / 30) % 12) - 3, Math.min(9 - ((n + h / 30) % 12), 1)));
+    return (
+      "#" +
+      [f(0), f(8), f(4)]
+        .map((v) =>
+          Math.round(v * 255)
+            .toString(16)
+            .padStart(2, "0"),
+        )
+        .join("")
+    );
   };
-  let checked = 0, changed = 0;
-  for (let h = 0; h < 360; h += 7) for (const s of [0.3, 0.6, 0.9]) for (const l of [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]) {
-    const c = hsl(h, s, l);
-    const x = brandFor("n", { themeColor: c, source: "html" });
-    assert.ok(contrast(x.color, x.fg) >= BAND_MIN_CONTRAST - 0.01, `${c} -> ${x.color} fg ${x.fg} = ${contrast(x.color, x.fg).toFixed(2)}`);
-    checked++; if (x.color !== c.toLowerCase() && !x.derived) changed++;
-  }
+  let checked = 0,
+    changed = 0;
+  for (let h = 0; h < 360; h += 7)
+    for (const s of [0.3, 0.6, 0.9])
+      for (const l of [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]) {
+        const c = hsl(h, s, l);
+        const x = brandFor("n", { themeColor: c, source: "html" });
+        assert.ok(
+          contrast(x.color, x.fg) >= BAND_MIN_CONTRAST - 0.01,
+          `${c} -> ${x.color} fg ${x.fg} = ${contrast(x.color, x.fg).toFixed(2)}`,
+        );
+        checked++;
+        if (x.color !== c.toLowerCase() && !x.derived) changed++;
+      }
   assert.ok(checked > 700);
   console.log(`  fitBand: ${checked} colours checked, ${changed} adjusted`);
 });

@@ -1,0 +1,35 @@
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
+import reactHooks from "eslint-plugin-react-hooks";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-config-prettier";
+import globals from "globals";
+
+export default tseslint.config(
+  { ignores: ["dist/**", "node_modules/**"] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  reactHooks.configs.flat.recommended,
+  jsxA11y.flatConfigs.recommended,
+  prettier,
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      globals: { ...globals.browser },
+    },
+  },
+  {
+    files: ["scripts/**/*.mjs", "*.mjs"],
+    languageOptions: {
+      globals: { ...globals.node },
+    },
+  },
+  {
+    // ui-audit.mjs passes callbacks into page.evaluate(), which execute in the
+    // browser context, not Node.
+    files: ["scripts/ui-audit.mjs"],
+    languageOptions: {
+      globals: { ...globals.browser },
+    },
+  },
+);

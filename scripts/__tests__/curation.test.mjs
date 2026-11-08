@@ -27,8 +27,15 @@ test("shelf: exact, case, underscore and stray-whitespace matching", () => {
 });
 
 test("shelf: a key matches a folder that STARTS with it on a word boundary only", () => {
-  assert.equal(resolveShelf(DATA, "a", ["Krishak card multimedia portal resources "]).shelf, "report");
-  assert.equal(resolveShelf(DATA, "a", ["Gapminder"]).shelf, "other", "'Gap' must not swallow 'Gapminder'");
+  assert.equal(
+    resolveShelf(DATA, "a", ["Krishak card multimedia portal resources "]).shelf,
+    "report",
+  );
+  assert.equal(
+    resolveShelf(DATA, "a", ["Gapminder"]).shelf,
+    "other",
+    "'Gap' must not swallow 'Gapminder'",
+  );
   assert.equal(resolveShelf(DATA, "a", ["Krishak cards"]).shelf, "other");
 });
 
@@ -50,15 +57,22 @@ test("apps.json: every entry is well-formed (a typo in a hand-edited file must f
   const bad = [];
   for (const [name, e] of Object.entries(apps)) {
     if (!TYPES.includes(e.type)) bad.push(`${name}: type "${e.type}"`);
-    if (!Array.isArray(e.audiences) || !e.audiences.length || e.audiences.some((a) => !AUD.includes(a))) bad.push(`${name}: audiences ${JSON.stringify(e.audiences)}`);
-    for (const f of ["titleEn", "titleBn", "summaryEn", "summaryBn"]) if (typeof e[f] !== "string" || !e[f].trim()) bad.push(`${name}: missing ${f}`);
+    if (
+      !Array.isArray(e.audiences) ||
+      !e.audiences.length ||
+      e.audiences.some((a) => !AUD.includes(a))
+    )
+      bad.push(`${name}: audiences ${JSON.stringify(e.audiences)}`);
+    for (const f of ["titleEn", "titleBn", "summaryEn", "summaryBn"])
+      if (typeof e[f] !== "string" || !e[f].trim()) bad.push(`${name}: missing ${f}`);
   }
   assert.deepEqual(bad, []);
 });
 
 test("library-curation.json: only valid shelves", () => {
   assert.ok(SHELVES.includes(lib.default.shelf));
-  for (const [k, v] of Object.entries(lib.byPath)) assert.ok(SHELVES.includes(v.shelf), `${k} → ${v.shelf}`);
+  for (const [k, v] of Object.entries(lib.byPath))
+    assert.ok(SHELVES.includes(v.shelf), `${k} → ${v.shelf}`);
 });
 
 test("coverage report (informational — never fails, because the daily sync adds/renames repos)", () => {
@@ -67,8 +81,14 @@ test("coverage report (informational — never fails, because the daily sync add
   const uncurated = repos.filter((r) => !apps[r.name]).map((r) => r.name);
   const items = lj.collections.flatMap((c) => c.items);
   const unmapped = {};
-  for (const i of items) if (resolveShelf(lib, i.id, i.path).shelf === "other") unmapped[i.path[0]?.trim() || "(root)"] = (unmapped[i.path[0]?.trim() || "(root)"] || 0) + 1;
-  console.log(`  curation: ${Object.keys(apps).length} entries · ${orphans.length} orphaned ${JSON.stringify(orphans)} · ${uncurated.length} repos uncurated ${JSON.stringify(uncurated)}`);
-  console.log(`  library: ${items.length} files · unmapped folders → "Other": ${JSON.stringify(unmapped)}`);
+  for (const i of items)
+    if (resolveShelf(lib, i.id, i.path).shelf === "other")
+      unmapped[i.path[0]?.trim() || "(root)"] = (unmapped[i.path[0]?.trim() || "(root)"] || 0) + 1;
+  console.log(
+    `  curation: ${Object.keys(apps).length} entries · ${orphans.length} orphaned ${JSON.stringify(orphans)} · ${uncurated.length} repos uncurated ${JSON.stringify(uncurated)}`,
+  );
+  console.log(
+    `  library: ${items.length} files · unmapped folders → "Other": ${JSON.stringify(unmapped)}`,
+  );
   assert.ok(true);
 });

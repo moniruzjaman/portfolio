@@ -59,7 +59,11 @@ export const TOPICS: readonly TopicMeta[] = [
     blurbBn:
       "CABI পাঁচ-ধাপ নির্ণয় পদ্ধতির টুল, প্ল্যান্ট ডিটেকটিভ সিরিজ, ধান-ডাক্তার সিমুলেশন খেলা ও একটি এমএল রোগ ডেটাসেট।",
     color: "var(--color-forest-600)",
-    noteSlugs: ["cabi-plantwise-ready-reckoner", "ipm-game-field-method", "greenhouse-advisory-tools"],
+    noteSlugs: [
+      "cabi-plantwise-ready-reckoner",
+      "ipm-game-field-method",
+      "greenhouse-advisory-tools",
+    ],
   },
   {
     id: "pesticide",
@@ -78,8 +82,7 @@ export const TOPICS: readonly TopicMeta[] = [
     bn: "সার ও মাটি ব্যবস্থাপনা",
     blurbEn:
       "Subsidy transparency, distribution reform and soil-health media — the path from burden to bloom.",
-    blurbBn:
-      "ভর্তুকির স্বচ্ছতা, বিতরণ সংস্কার ও মাটির স্বাস্থ্য মিডিয়া — বোঝা থেকে ফুলের পথ।",
+    blurbBn: "ভর্তুকির স্বচ্ছতা, বিতরণ সংস্কার ও মাটির স্বাস্থ্য মিডিয়া — বোঝা থেকে ফুলের পথ।",
     color: "var(--color-gold-500)",
     noteSlugs: ["smart-integrated-nutrient-management-t-aman", "soil-health-media-hub"],
   },
@@ -122,8 +125,7 @@ export const TOPICS: readonly TopicMeta[] = [
     bn: "প্রকাশনা ও ই-বুক",
     blurbEn:
       "Bengali e-books and audiobooks — statecraft titles and self-reliant farming education.",
-    blurbBn:
-      "বাংলা ই-বুক ও অডিওবুক — রাষ্ট্রচিন্তার গ্রন্থ ও স্বশিক্ষিত কৃষিশিক্ষা।",
+    blurbBn: "বাংলা ই-বুক ও অডিওবুক — রাষ্ট্রচিন্তার গ্রন্থ ও স্বশিক্ষিত কৃষিশিক্ষা।",
     color: "var(--color-moss-500)",
     noteSlugs: [],
   },
@@ -133,8 +135,7 @@ export const TOPICS: readonly TopicMeta[] = [
     bn: "অফিস ব্যবস্থা ও প্ল্যাটফর্ম",
     blurbEn:
       "The daily reporting pipeline, an e-billing concept demo and the knowledge-hub platform itself.",
-    blurbBn:
-      "দৈনিক প্রতিবেদন পাইপলাইন, ই-বিলিং ধারণা ডেমো এবং নলেজ-হাব প্ল্যাটফর্ম নিজেই।",
+    blurbBn: "দৈনিক প্রতিবেদন পাইপলাইন, ই-বিলিং ধারণা ডেমো এবং নলেজ-হাব প্ল্যাটফর্ম নিজেই।",
     color: "var(--color-forest-800)",
     noteSlugs: [],
   },
@@ -156,7 +157,14 @@ const TOPIC_REPO_NAMES: Record<TopicId, readonly string[]> = {
     "krishiai-antigravity",
     "app.krishiai",
   ],
-  diagnosis: ["cabi-diagnosis", "diagnosis-assistant", "crop-diagnosis", "cabi-diagnosis-builder", "diagnosis_game", "kaggle-dataset"],
+  diagnosis: [
+    "cabi-diagnosis",
+    "diagnosis-assistant",
+    "crop-diagnosis",
+    "cabi-diagnosis-builder",
+    "diagnosis_game",
+    "kaggle-dataset",
+  ],
   pesticide: [
     "AgriChem-Guide-Pest-Control-Database",
     "pesticide-field-guide",
@@ -166,7 +174,14 @@ const TOPIC_REPO_NAMES: Record<TopicId, readonly string[]> = {
     "pesticide_act_2018",
     "biopesticide-policy",
   ],
-  fertilizer: ["fertilizer", "fertilizer-reform", "fertilizer-nationalism", "path-to-bloom", "cabinet-division-bangladesh-before-all", "soil-media-portal"],
+  fertilizer: [
+    "fertilizer",
+    "fertilizer-reform",
+    "fertilizer-nationalism",
+    "path-to-bloom",
+    "cabinet-division-bangladesh-before-all",
+    "soil-media-portal",
+  ],
   plantation: [
     "plantation-tracker",
     "plantation-tracker-v1",
@@ -225,5 +240,6 @@ export const ACTIVE_GROUPS: GroupId[] = [
 
 // Dev-time guard: a stale name is harmless at runtime but means the map wants attention.
 for (const name of OWNER.keys()) {
-  if (!repos.some((r) => r.name === name)) console.warn(`topics: mapping references unknown repo "${name}"`);
+  if (!repos.some((r) => r.name === name))
+    console.warn(`topics: mapping references unknown repo "${name}"`);
 }

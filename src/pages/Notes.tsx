@@ -16,7 +16,14 @@ export default function Notes() {
     const n = q.trim().toLowerCase();
     return notes
       .filter((note) => type === "all" || note.type === type)
-      .filter((note) => !n || [note.title, note.titleBn, note.summary, ...note.tags].join(" ").toLowerCase().includes(n))
+      .filter(
+        (note) =>
+          !n ||
+          [note.title, note.titleBn, note.summary, ...note.tags]
+            .join(" ")
+            .toLowerCase()
+            .includes(n),
+      )
       .sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
   }, [type, q]);
 
@@ -61,7 +68,9 @@ export default function Notes() {
           </div>
 
           {shown.length === 0 ? (
-            <p className="py-20 text-center text-moss-400">{t("No notes match.", "কোনো নোট মেলেনি।")}</p>
+            <p className="py-20 text-center text-moss-400">
+              {t("No notes match.", "কোনো নোট মেলেনি।")}
+            </p>
           ) : (
             <div className="space-y-4">
               {shown.map((n) => (
@@ -81,14 +90,20 @@ export default function Notes() {
                     <p className="mt-2 text-sm leading-relaxed text-moss-600">{n.summary}</p>
                     <div className="mt-3 flex flex-wrap gap-1.5">
                       {n.tags.slice(0, 5).map((tg) => (
-                        <span key={tg} className="font-mono text-[10px] uppercase tracking-[0.1em] text-moss-400">
+                        <span
+                          key={tg}
+                          className="font-mono text-[10px] uppercase tracking-[0.1em] text-moss-400"
+                        >
                           #{tg}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div className="flex items-center gap-3 md:flex-col md:items-end">
-                    <ArrowUpRight size={18} className="text-moss-400 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                    <ArrowUpRight
+                      size={18}
+                      className="text-moss-400 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+                    />
                     <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-moss-400">
                       {n.readingTime} min
                     </span>

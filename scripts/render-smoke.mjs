@@ -15,7 +15,12 @@ const CASES = [
   ["/portfolio/", "works", "The live ecosystem", "This page does not exist"],
   ["/portfolio/", "works/web-krishiai-live", "web.krishiai.live", "This page does not exist"],
   ["/portfolio/", "topics", "Research topics", "This page does not exist"],
-  ["/portfolio/", "library", "Research, documents, presentations and videos", "This page does not exist"],
+  [
+    "/portfolio/",
+    "library",
+    "Research, documents, presentations and videos",
+    "This page does not exist",
+  ],
   ["/portfolio/", "definitely-not-a-page", "This page does not exist", null],
   ["/", "works", "The live ecosystem", "This page does not exist"],
   ["/", "topics", "Research topics", "This page does not exist"],
@@ -25,13 +30,22 @@ const CASES = [
 let failed = 0;
 for (const base of [...new Set(CASES.map((c) => c[0]))]) {
   process.env.BASE_PATH = base;
-  const vite = await createServer({ root: process.cwd(), server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
+  const vite = await createServer({
+    root: process.cwd(),
+    server: { middlewareMode: true },
+    appType: "custom",
+    logLevel: "error",
+  });
   const { renderAt } = await vite.ssrLoadModule("/src/test/ssr-probe.tsx");
   for (const [b, route, want, unwanted] of CASES.filter((c) => c[0] === base)) {
-    const html = renderAt(b + route).replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&");
+    const html = renderAt(b + route)
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&amp;/g, "&");
     const ok = html.includes(want) && (!unwanted || !html.includes(unwanted));
     if (!ok) failed++;
-    console.log(`${ok ? "✔" : "✖"} base ${b.padEnd(11)} /${route.padEnd(26)} ${ok ? "" : `expected "${want}"`}`);
+    console.log(
+      `${ok ? "✔" : "✖"} base ${b.padEnd(11)} /${route.padEnd(26)} ${ok ? "" : `expected "${want}"`}`,
+    );
   }
   await vite.close();
 }

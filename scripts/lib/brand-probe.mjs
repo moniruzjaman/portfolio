@@ -83,10 +83,11 @@ export function parseHtml(html, baseUrl, allow = urlAllowed) {
   const meta = (key) =>
     metas.find((m) => (m.name || m.property || "").toLowerCase() === key)?.content;
 
-  const themeColor = metas
-    .filter((m) => (m.name || "").toLowerCase() === "theme-color")
-    .map((m) => normaliseHex(m.content))
-    .find(Boolean) ?? null;
+  const themeColor =
+    metas
+      .filter((m) => (m.name || "").toLowerCase() === "theme-color")
+      .map((m) => normaliseHex(m.content))
+      .find(Boolean) ?? null;
 
   const rels = (rel) => links.filter((l) => (l.rel || "").toLowerCase().split(/\s+/).includes(rel));
 
@@ -167,8 +168,13 @@ export async function probeBrand(url, opts = {}) {
     let man = null;
     if (page.manifest) {
       try {
-        const mres = await get(page.manifest, fetchImpl, "application/manifest+json,application/json");
-        if (mres.status === 200) man = parseManifest(await mres.json(), mres.url || page.manifest, allow);
+        const mres = await get(
+          page.manifest,
+          fetchImpl,
+          "application/manifest+json,application/json",
+        );
+        if (mres.status === 200)
+          man = parseManifest(await mres.json(), mres.url || page.manifest, allow);
       } catch {
         /* a broken manifest is not fatal — the <head> still has brand data */
       }

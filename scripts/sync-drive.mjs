@@ -61,7 +61,8 @@ export function kindOf(mime, name = "") {
   // "video/vnd.dlna.mpeg-tts", so a bare `startsWith("video/")` publishes code files as videos
   // (seen in the real folder: `reportAdapter.ts`, 12 KB). That type is never trusted by itself.
   const VIDEO_EXT = ["mp4", "mov", "m4v", "webm", "mkv", "avi"];
-  if (VIDEO_EXT.includes(ext) || (mime.startsWith("video/") && mime !== "video/vnd.dlna.mpeg-tts")) return "video";
+  if (VIDEO_EXT.includes(ext) || (mime.startsWith("video/") && mime !== "video/vnd.dlna.mpeg-tts"))
+    return "video";
   if (mime === "application/pdf" || ext === "pdf") return "pdf";
   if (
     mime === "application/vnd.google-apps.presentation" ||
@@ -123,7 +124,9 @@ export function shapeItem(f, path, collection) {
     modified: f.modifiedTime || null,
     size: f.size ? Number(f.size) : null,
     // Drive reports duration for video files at no extra cost.
-    ...(f.videoMediaMetadata?.durationMillis ? { durationMs: Number(f.videoMediaMetadata.durationMillis) } : {}),
+    ...(f.videoMediaMetadata?.durationMillis
+      ? { durationMs: Number(f.videoMediaMetadata.durationMillis) }
+      : {}),
     path,
     ...(f.resourceKey ? { resourceKey: f.resourceKey } : {}),
   };
@@ -139,7 +142,13 @@ const b64url = (b) => Buffer.from(b).toString("base64url");
 export function signJwt(sa, now = Math.floor(Date.now() / 1000), tokenUrl = TOKEN_URL) {
   const head = b64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
   const claim = b64url(
-    JSON.stringify({ iss: sa.client_email, scope: SCOPE, aud: tokenUrl, iat: now, exp: now + 3300 }),
+    JSON.stringify({
+      iss: sa.client_email,
+      scope: SCOPE,
+      aud: tokenUrl,
+      iat: now,
+      exp: now + 3300,
+    }),
   );
   const sig = createSign("RSA-SHA256").update(`${head}.${claim}`).sign(sa.private_key);
   return `${head}.${claim}.${b64url(sig)}`;
@@ -170,7 +179,11 @@ class DriveError extends Error {
 function makeClient({ apiKey, bearer, fetchImpl, base }) {
   async function once(url, extraHeaders) {
     const res = await fetchImpl(url, {
-      headers: { Accept: "application/json", ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}), ...extraHeaders },
+      headers: {
+        Accept: "application/json",
+        ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}),
+        ...extraHeaders,
+      },
     });
     if (!res.ok) throw new DriveError(res.status, "Drive list");
     return res.json();
@@ -203,9 +216,13 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
   const tally = {};
   const bump = (r) => (tally[r] = (tally[r] || 0) + 1);
   const excluded = new Set(excludeFolders.map((n) => String(n).trim().toLowerCase()));
-  const headers = col.resourceKey ? { "X-Goog-Drive-Resource-Keys": `${col.folderId}/${col.resourceKey}` } : {};
+  const headers = col.resourceKey
+    ? { "X-Goog-Drive-Resource-Keys": `${col.folderId}/${col.resourceKey}` }
+    : {};
   const fields =
-    "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey,videoMediaMetadata(durationMillis)" + (verify ? ",permissions(type,role)" : "") + ")";
+    "nextPageToken,files(id,name,mimeType,modifiedTime,size,resourceKey,videoMediaMetadata(durationMillis)" +
+    (verify ? ",permissions(type,role)" : "") +
+    ")";
 
   const queue = [{ id: col.folderId, path: [], depth: 0 }];
   while (queue.length) {
@@ -235,7 +252,9 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
               `, then re-run. Refusing to publish an empty collection.`,
           );
         }
-        throw new Error(`Could not read "${col.title}" (${err.message}). Aborting rather than dropping files from the site.`);
+        throw new Error(
+          `Could not read "${col.title}" (${err.message}). Aborting rather than dropping files from the site.`,
+        );
       }
 
       for (const f of data.files || []) {
@@ -244,7 +263,8 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
           continue;
         }
         if (f.mimeType === FOLDER) {
-          if (excluded.has(f.name.trim().toLowerCase())) bump(`folder excluded by config: ${f.name}`);
+          if (excluded.has(f.name.trim().toLowerCase()))
+            bump(`folder excluded by config: ${f.name}`);
           else if (depth + 1 > maxDepth) bump(`folder deeper than maxDepth=${maxDepth}`);
           else queue.push({ id: f.id, path: [...path, f.name], depth: depth + 1 });
           continue;
@@ -262,7 +282,9 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
           skipped.push({
             id: f.id,
             name: f.name,
-            reason: f.permissions ? "not shared publicly" : "permissions not readable — failing closed",
+            reason: f.permissions
+              ? "not shared publicly"
+              : "permissions not readable — failing closed",
           });
           continue;
         }
@@ -277,7 +299,9 @@ export async function crawl(list, col, { maxDepth, verify, kinds = null, exclude
     } while (pageToken);
   }
 
-  items.sort((a, b) => (b.modified || "").localeCompare(a.modified || "") || a.title.localeCompare(b.title));
+  items.sort(
+    (a, b) => (b.modified || "").localeCompare(a.modified || "") || a.title.localeCompare(b.title),
+  );
   return { items, skipped, tally };
 }
 
@@ -310,8 +334,13 @@ export function mergeWithoutCredentials(prev, config) {
       const meta = collectionMeta(c);
       const old = prevByKey.get(c.key);
       // Root mode: items are keyed to the root folder, so keep them only if it is unchanged.
-      const sameRoot = rootMeta(config)?.folderId && prev?.root?.folderId === rootMeta(config).folderId;
-      const keep = sameRoot ? (old?.items ?? []) : old && old.folderId === meta.folderId && meta.folderId ? old.items : [];
+      const sameRoot =
+        rootMeta(config)?.folderId && prev?.root?.folderId === rootMeta(config).folderId;
+      const keep = sameRoot
+        ? (old?.items ?? [])
+        : old && old.folderId === meta.folderId && meta.folderId
+          ? old.items
+          : [];
       return { ...meta, items: keep };
     }),
   };
@@ -330,10 +359,14 @@ async function write(path, obj) {
   await writeFile(path, JSON.stringify(obj, null, 2) + "\n", "utf8");
 }
 
-export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIVE, tokenUrl: TOKEN_URL, paths: PATHS }) {
+export async function run(
+  env = process.env,
+  io = { fetchImpl: fetch, base: DRIVE, tokenUrl: TOKEN_URL, paths: PATHS },
+) {
   const { fetchImpl, base, tokenUrl, paths } = io;
   const config = await readJson(paths.config);
-  if (!config?.collections?.length) throw new Error(`${paths.config} is missing or has no collections`);
+  if (!config?.collections?.length)
+    throw new Error(`${paths.config} is missing or has no collections`);
   const prev = await readJson(paths.out);
   const maxDepth = Number.isInteger(config.maxDepth) ? config.maxDepth : 4;
 
@@ -361,7 +394,8 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
     } catch {
       throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is not valid JSON");
     }
-    if (!sa.client_email || !sa.private_key) throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON lacks client_email / private_key");
+    if (!sa.client_email || !sa.private_key)
+      throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON lacks client_email / private_key");
     bearer = await bearerFor(sa, { fetchImpl, tokenUrl });
   }
   const list = makeClient({ apiKey: mode === "api-key" ? apiKey : null, bearer, fetchImpl, base });
@@ -372,7 +406,8 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
   let skipCounts = {};
 
   const root = rootMeta(config);
-  if (config.root?.folderId && !root) throw new Error(`root.folderId "${config.root.folderId}" does not look like a Drive id`);
+  if (config.root?.folderId && !root)
+    throw new Error(`root.folderId "${config.root.folderId}" does not look like a Drive id`);
 
   if (root) {
     // One folder, sorted into the configured collections by assignCollection().
@@ -405,9 +440,14 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
       console.log(`  ✓ ${c.key}: ${mine.length} file(s)`);
     }
     // Guard: a populated library must not silently collapse to nothing.
-    const before = (prev?.root?.folderId === root.folderId ? prev.collections : []).reduce((n, c) => n + c.items.length, 0);
+    const before = (prev?.root?.folderId === root.folderId ? prev.collections : []).reduce(
+      (n, c) => n + c.items.length,
+      0,
+    );
     if (before >= 5 && items.length === 0) {
-      throw new Error(`The library had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`);
+      throw new Error(
+        `The library had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`,
+      );
     }
     const payload = { generatedAt: new Date().toISOString(), mode, root, collections };
     await write(paths.out, payload);
@@ -418,28 +458,42 @@ export async function run(env = process.env, io = { fetchImpl: fetch, base: DRIV
       total: skippedAll.length,
       skipped: skippedAll,
     });
-    for (const [r, n] of Object.entries(skipCounts).sort((a, b) => b[1] - a[1])) console.log(`  · ${n} × ${r}`);
-    console.log(`\n✔ ${items.length} file(s) published · ${skippedAll.length} individually skipped`);
+    for (const [r, n] of Object.entries(skipCounts).sort((a, b) => b[1] - a[1]))
+      console.log(`  · ${n} × ${r}`);
+    console.log(
+      `\n✔ ${items.length} file(s) published · ${skippedAll.length} individually skipped`,
+    );
     return payload;
   }
 
   for (const c of config.collections) {
     const meta = collectionMeta(c);
     if (!meta.folderId) {
-      if (c.folderId) throw new Error(`Collection "${c.key}": folderId "${c.folderId}" does not look like a Drive id`);
+      if (c.folderId)
+        throw new Error(
+          `Collection "${c.key}": folderId "${c.folderId}" does not look like a Drive id`,
+        );
       collections.push({ ...meta, items: [] });
       console.log(`  · ${c.key}: no folderId — skipped`);
       continue;
     }
-    const { items, skipped } = await crawl(list, { ...c, ...meta }, { maxDepth, verify: mode === "service-account" });
+    const { items, skipped } = await crawl(
+      list,
+      { ...c, ...meta },
+      { maxDepth, verify: mode === "service-account" },
+    );
     collections.push({ ...meta, items });
     skippedAll.push(...skipped.map((s) => ({ collection: c.key, ...s })));
     console.log(`  ✓ ${c.key}: ${items.length} file(s), ${skipped.length} skipped`);
 
     // Guard: a previously populated collection must not silently collapse.
-    const before = prev?.collections?.find((p) => p.key === c.key && p.folderId === meta.folderId)?.items.length ?? 0;
+    const before =
+      prev?.collections?.find((p) => p.key === c.key && p.folderId === meta.folderId)?.items
+        .length ?? 0;
     if (before >= 5 && items.length === 0) {
-      throw new Error(`"${c.key}" had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`);
+      throw new Error(
+        `"${c.key}" had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`,
+      );
     }
   }
 

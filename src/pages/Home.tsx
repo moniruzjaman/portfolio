@@ -16,9 +16,9 @@ import { SectionHeading } from "@/components/Section";
 import { ConnectSection } from "@/components/ConnectSection";
 
 /** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
-const FEATURED = FLAGSHIP_NAMES
-  .map((n) => repos.find((r) => r.name === n))
-  .filter((r): r is (typeof repos)[number] => Boolean(r));
+const FEATURED = FLAGSHIP_NAMES.map((n) => repos.find((r) => r.name === n)).filter(
+  (r): r is (typeof repos)[number] => Boolean(r),
+);
 
 export default function Home() {
   const { t, lang } = useI18n();
@@ -58,24 +58,35 @@ export default function Home() {
                 className="h-14 w-14 rounded-full border-2 border-white bg-white object-cover object-top shadow-md"
               />
               <div>
-                <p className="font-serif text-lg font-black leading-tight text-forest-900">{author.name}</p>
+                <p className="font-serif text-lg font-black leading-tight text-forest-900">
+                  {author.name}
+                </p>
                 <p className="text-xs text-moss-500">{author.role}</p>
               </div>
             </div>
 
             <div className="mb-8 inline-flex max-w-full items-center gap-2 rounded-full border border-forest-200 bg-white/70 px-4 py-2 shadow-sm shadow-forest-900/5">
               <span className="h-2 w-2 animate-pulse rounded-full bg-forest-400" />
-              <span className="u-eyebrow text-forest-500">{t("Portfolio", "পোর্টফোলিও")} · DAE Bangladesh</span>
+              <span className="u-eyebrow text-forest-500">
+                {t("Portfolio", "পোর্টফোলিও")} · DAE Bangladesh
+              </span>
             </div>
 
             <p className="mb-4 hidden font-mono text-xs font-bold uppercase tracking-[0.25em] text-gold-500 lg:block">
               {author.name}
             </p>
 
-            <p className="u-rule-label u-eyebrow mb-4 text-gold-600 lg:hidden">FIELD NOTES · 2026</p>
-            <h1 tabIndex={-1} className="u-display max-w-4xl outline-none text-5xl leading-[0.98] text-forest-900 sm:text-7xl">
+            <p className="u-rule-label u-eyebrow mb-4 text-gold-600 lg:hidden">
+              FIELD NOTES · 2026
+            </p>
+            <h1
+              tabIndex={-1}
+              className="u-display max-w-4xl outline-none text-5xl leading-[0.98] text-forest-900 sm:text-7xl"
+            >
               {t("I build digital tools for", "আমি ডিজিটাল টুল তৈরি করি")}{" "}
-              <span className="italic text-forest-500">{t("agricultural extension.", "কৃষি সম্প্রসারণের জন্য।")}</span>
+              <span className="italic text-forest-500">
+                {t("agricultural extension.", "কৃষি সম্প্রসারণের জন্য।")}
+              </span>
             </h1>
 
             <p className="mt-8 max-w-xl border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500 sm:text-xl">
@@ -101,22 +112,22 @@ export default function Home() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-5">
-            <span className="u-eyebrow text-moss-400">{t("Follow:", "অনুসরণ করুন:")}</span>
-            {socials.map(({ key, label, href }) => (
-              <a
-                key={key}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${label} (opens in a new tab)`}
-                className="inline-flex min-h-11 items-center text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+              <span className="u-eyebrow text-moss-400">{t("Follow:", "অনুসরণ করুন:")}</span>
+              {socials.map(({ key, label, href }) => (
+                <a
+                  key={key}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label} (opens in a new tab)`}
+                  className="inline-flex min-h-11 items-center text-sm font-bold text-moss-500 underline-offset-4 transition-colors hover:text-forest-900 hover:underline"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
 
-          {/* Live counts — computed from generated data, never hand-typed. */}
+            {/* Live counts — computed from generated data, never hand-typed. */}
             <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-forest-300 pt-8">
               {[
                 { n: stats.repos, l: t("published works", "প্রকাশিত কাজ") },
@@ -154,8 +165,10 @@ export default function Home() {
                   [t("Service", "ক্যাডার"), author.cadre],
                   [t("Education", "শিক্ষা"), "MBA · B.Sc. Ag. (Hons.)"],
                 ].map(([k, v]) => (
-              <div key={k} className="flex gap-4">
-                    <dt className="w-24 shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-gold-400">{k}</dt>
+                  <div key={k} className="flex gap-4">
+                    <dt className="w-24 shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-gold-400">
+                      {k}
+                    </dt>
                     <dd className="text-forest-100">{v}</dd>
                   </div>
                 ))}
@@ -163,7 +176,10 @@ export default function Home() {
 
               <div className="mt-8 flex flex-wrap gap-2 border-t border-white/10 pt-6">
                 {author.competencies.map((c) => (
-                  <span key={c.group} className="rounded-full border border-white/15 px-3 py-1 text-[11px] text-forest-200">
+                  <span
+                    key={c.group}
+                    className="rounded-full border border-white/15 px-3 py-1 text-[11px] text-forest-200"
+                  >
                     {lang === "bn" ? c.groupBn : c.group}
                   </span>
                 ))}
@@ -182,7 +198,10 @@ export default function Home() {
                 {t("Selected work", "নির্বাচিত কাজ")}
               </p>
               <h2 className="u-display text-4xl text-forest-900 sm:text-5xl">
-                {t("Built for the field, documented for the future.", "মাঠের জন্য তৈরি, ভবিষ্যতের জন্য নথিভুক্ত।")}
+                {t(
+                  "Built for the field, documented for the future.",
+                  "মাঠের জন্য তৈরি, ভবিষ্যতের জন্য নথিভুক্ত।",
+                )}
               </h2>
             </div>
             <Link
@@ -201,7 +220,10 @@ export default function Home() {
 
           <div className="mt-14">
             <p className="u-eyebrow mb-4 text-gold-600">
-              {t(`Where it runs · ${stats.addresses} live addresses`, `যেখানে চলে · ${stats.addresses}টি চালু ঠিকানা`)}
+              {t(
+                `Where it runs · ${stats.addresses} live addresses`,
+                `যেখানে চলে · ${stats.addresses}টি চালু ঠিকানা`,
+              )}
             </p>
             <PlatformTiles />
           </div>
@@ -218,20 +240,24 @@ export default function Home() {
               className="text-gold-500"
             />
             <h2 className="max-w-md font-serif text-4xl font-black leading-tight text-forest-900 sm:text-5xl">
-              {t("Knowledge should travel as far as the farmer.", "জ্ঞান কৃষক পর্যন্ত পৌঁছে যেতে হবে।")}
+              {t(
+                "Knowledge should travel as far as the farmer.",
+                "জ্ঞান কৃষক পর্যন্ত পৌঁছে যেতে হবে।",
+              )}
             </h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
-            <p className="text-lg leading-relaxed text-moss-500">
-              {author.vision}
-            </p>
+            <p className="text-lg leading-relaxed text-moss-500">{author.vision}</p>
             <div className="rounded-2xl bg-cream-100 p-6">
               <div className="mb-5 flex items-center gap-3 text-forest-500">
                 <Sparkles size={18} />
                 <span className="u-eyebrow">{t("The working principle", "কর্মপন্থা")}</span>
               </div>
               <p className="font-serif text-2xl font-bold leading-snug text-forest-900">
-                {t("Make the invisible relationships visible.", "অদৃশ্য সম্পর্কগুলোকে দৃশ্যমান করুন।")}
+                {t(
+                  "Make the invisible relationships visible.",
+                  "অদৃশ্য সম্পর্কগুলোকে দৃশ্যমান করুন।",
+                )}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-moss-400">
                 {t(
@@ -254,24 +280,42 @@ export default function Home() {
                 {t("From the haor to the river delta.", "হাওর থেকে নদীবিধৌত জনপদ।")}
               </h2>
             </div>
-            <Link href="/about" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
+            <Link
+              href="/about"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+            >
               {t("Full career & education", "পূর্ণ কর্মজীবন ও শিক্ষা")} <ArrowUpRight size={16} />
             </Link>
           </div>
           <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {author.career.filter((c) => c.role !== "Instructor, Agriculture Training Institute (ATI)").slice(0, 4).map((c) => (
-              <li key={c.from + c.place} className="u-card-lift rounded-[1.5rem] border border-forest-300 bg-cream-50 p-6">
-                <p className="font-mono text-xs uppercase tracking-[0.14em] text-gold-500">{c.from} — {c.to}</p>
-                <h3 className="mt-3 font-serif text-lg font-black leading-snug text-forest-900">{c.role}</h3>
-                <p className="mt-1 text-sm font-medium text-forest-500">{lang === "bn" ? c.placeBn : c.place}</p>
-              </li>
-            ))}
+            {author.career
+              .filter((c) => c.role !== "Instructor, Agriculture Training Institute (ATI)")
+              .slice(0, 4)
+              .map((c) => (
+                <li
+                  key={c.from + c.place}
+                  className="u-card-lift rounded-[1.5rem] border border-forest-300 bg-cream-50 p-6"
+                >
+                  <p className="font-mono text-xs uppercase tracking-[0.14em] text-gold-500">
+                    {c.from} — {c.to}
+                  </p>
+                  <h3 className="mt-3 font-serif text-lg font-black leading-snug text-forest-900">
+                    {c.role}
+                  </h3>
+                  <p className="mt-1 text-sm font-medium text-forest-500">
+                    {lang === "bn" ? c.placeBn : c.place}
+                  </p>
+                </li>
+              ))}
           </ol>
         </div>
       </section>
 
       {/* ── expertise graphs ─────────────────────────────────── */}
-      <section id="graphs" className="surface-grid-dark bg-forest-900 px-5 py-24 text-white sm:px-8 lg:px-12">
+      <section
+        id="graphs"
+        className="surface-grid-dark bg-forest-900 px-5 py-24 text-white sm:px-8 lg:px-12"
+      >
         <div className="u-container">
           <div className="mb-14 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div>
@@ -279,7 +323,10 @@ export default function Home() {
                 {t("What I work on", "যে ক্ষেত্রে কাজ করি")}
               </p>
               <h2 className="max-w-3xl font-serif text-4xl font-black leading-tight sm:text-6xl">
-                {t("An expertise map built from real field systems.", "বাস্তব মাঠ ব্যবস্থা থেকে তৈরি দক্ষতার মানচিত্র।")}
+                {t(
+                  "An expertise map built from real field systems.",
+                  "বাস্তব মাঠ ব্যবস্থা থেকে তৈরি দক্ষতার মানচিত্র।",
+                )}
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-forest-200">
@@ -295,6 +342,7 @@ export default function Home() {
               role="tablist"
               aria-label={t("Expertise areas", "দক্ষতার ক্ষেত্র")}
               onKeyDown={onGraphKey}
+              tabIndex={-1}
               className="flex gap-2 overflow-x-auto pb-2 lg:block lg:space-y-2 lg:overflow-visible"
             >
               {expertiseGraphs.map((item, index) => (
@@ -317,7 +365,9 @@ export default function Home() {
                     <span className="block truncate text-sm font-bold text-white">
                       {item.title}
                     </span>
-                    <span className="mt-1 block truncate text-[10px] text-forest-200">{item.bangla}</span>
+                    <span className="mt-1 block truncate text-[10px] text-forest-200">
+                      {item.bangla}
+                    </span>
                   </span>
                   <span
                     className={`ml-auto h-2 w-2 shrink-0 rounded-full transition-transform ${
@@ -363,8 +413,12 @@ export default function Home() {
                   {t("Research, PDFs and slide decks.", "গবেষণা, পিডিএফ ও স্লাইড।")}
                 </h2>
               </div>
-              <Link href="/library" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900">
-                {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)} <ArrowUpRight size={16} />
+              <Link
+                href="/library"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-500 transition-colors hover:text-forest-900"
+              >
+                {t(`All ${libraryItems.length} documents`, `সব ${libraryItems.length}টি নথি`)}{" "}
+                <ArrowUpRight size={16} />
               </Link>
             </div>
             <ul className="grid gap-4 md:grid-cols-3">
@@ -377,12 +431,18 @@ export default function Home() {
                       href="/library"
                       className="u-card-lift flex h-full gap-4 rounded-2xl border border-forest-400 bg-white p-5"
                     >
-                      <FileText size={22} className="mt-1 shrink-0 text-forest-500" aria-hidden="true" />
+                      <FileText
+                        size={22}
+                        className="mt-1 shrink-0 text-forest-500"
+                        aria-hidden="true"
+                      />
                       <span>
                         <span className="u-eyebrow block text-moss-500">
                           {KIND_LABEL[i.kind][lang]} · {i.modified?.slice(0, 4)}
                         </span>
-                        <span className="mt-1 block font-serif text-lg font-black leading-snug text-forest-900">{i.title}</span>
+                        <span className="mt-1 block font-serif text-lg font-black leading-snug text-forest-900">
+                          {i.title}
+                        </span>
                       </span>
                     </Link>
                   </li>
@@ -397,11 +457,12 @@ export default function Home() {
         <div className="u-container">
           <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="u-eyebrow mb-3 text-gold-500">
-                {t("Writing", "লেখা")}
-              </p>
+              <p className="u-eyebrow mb-3 text-gold-500">{t("Writing", "লেখা")}</p>
               <h2 className="max-w-2xl font-serif text-4xl font-black text-forest-900 sm:text-5xl">
-                {t("Field notes, written for use — not for display.", "মাঠের নোট, ব্যবহারের জন্য লেখা — দেখানোর জন্য নয়।")}
+                {t(
+                  "Field notes, written for use — not for display.",
+                  "মাঠের নোট, ব্যবহারের জন্য লেখা — দেখানোর জন্য নয়।",
+                )}
               </h2>
             </div>
             <Link
@@ -444,12 +505,13 @@ export default function Home() {
       <ConnectSection />
 
       {/* ── contact ──────────────────────────────────────────── */}
-      <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-forest-800 px-5 py-24 text-center sm:px-8 lg:px-12">
+      <section
+        id="contact"
+        className="relative scroll-mt-20 overflow-hidden bg-forest-800 px-5 py-24 text-center sm:px-8 lg:px-12"
+      >
         <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-forest-400/10 blur-3xl" />
         <div className="relative mx-auto max-w-3xl">
-          <p className="u-eyebrow mb-4 text-gold-300">
-            {t("Contact", "যোগাযোগ")}
-          </p>
+          <p className="u-eyebrow mb-4 text-gold-300">{t("Contact", "যোগাযোগ")}</p>
           <h2 className="font-serif text-5xl font-black leading-tight text-white sm:text-6xl">
             {t("Let's build something useful for farmers.", "কৃষকের কাজে লাগে এমন কিছু গড়ি।")}
           </h2>
@@ -464,12 +526,12 @@ export default function Home() {
               <Mail size={16} /> {author.email}
             </a>
             {author.showPhone && (
-            <a
-              href={`tel:+${author.phone.replace(/^\+/, "")}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
-            >
-              <Phone size={16} /> {author.phoneDisplay}
-            </a>
+              <a
+                href={`tel:+${author.phone.replace(/^\+/, "")}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                <Phone size={16} /> {author.phoneDisplay}
+              </a>
             )}
             {socials.map(({ key, label, href, Icon }) => (
               <a

@@ -1,10 +1,28 @@
 import { Link, useRoute } from "wouter";
 import { ArrowLeft, ExternalLink, Globe } from "lucide-react";
 import { GithubMark } from "@/components/icons";
-import { bySlug, brandOf, endpointsOf, CHANNEL_LABEL, CHANNEL_COLOR, relativeDate, type Channel } from "@/lib/data";
+import {
+  bySlug,
+  brandOf,
+  endpointsOf,
+  CHANNEL_LABEL,
+  CHANNEL_COLOR,
+  relativeDate,
+  type Channel,
+} from "@/lib/data";
 import { BrandMark } from "@/components/AppCard";
 import { QrCode } from "@/components/QrCode";
-import { AUDIENCE_BLURB, AUDIENCE_LABEL, audiencesOf, isLaunchable, notesFor, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
+import {
+  AUDIENCE_BLURB,
+  AUDIENCE_LABEL,
+  audiencesOf,
+  isLaunchable,
+  notesFor,
+  summaryFor,
+  titleFor,
+  typeOf,
+  TYPE_LABEL,
+} from "@/lib/curation";
 import { notes } from "@/content/notes";
 import { PageHeader, Chip } from "@/components/Section";
 import { useI18n } from "@/lib/i18n";
@@ -27,9 +45,10 @@ export default function WorkDetail() {
 
   const related = notes
     .filter((n) =>
-      n.expertise.some((e) =>
-        repo.channels.some((c) => c.includes(e.split("-")[0])) ||
-        n.tags.some((tag) => `${repo.name} ${repo.title}`.toLowerCase().includes(tag)),
+      n.expertise.some(
+        (e) =>
+          repo.channels.some((c) => c.includes(e.split("-")[0])) ||
+          n.tags.some((tag) => `${repo.name} ${repo.title}`.toLowerCase().includes(tag)),
       ),
     )
     .slice(0, 3);
@@ -69,7 +88,10 @@ export default function WorkDetail() {
                 </p>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] opacity-75">
                   {brand.derived
-                    ? t("Colour assigned — app publishes no brand colour", "রং নির্ধারিত — অ্যাপটি নিজস্ব রং প্রকাশ করে না")
+                    ? t(
+                        "Colour assigned — app publishes no brand colour",
+                        "রং নির্ধারিত — অ্যাপটি নিজস্ব রং প্রকাশ করে না",
+                      )
                     : t("Brand colour from the app itself", "অ্যাপের নিজস্ব ব্র্যান্ড রং")}
                 </p>
               </div>
@@ -79,7 +101,10 @@ export default function WorkDetail() {
               <figure className="mb-8">
                 <img
                   src={brand.image}
-                  alt={t(`${title} — preview as the app presents itself`, `${title} — অ্যাপটির নিজস্ব প্রিভিউ`)}
+                  alt={t(
+                    `${title} — preview as the app presents itself`,
+                    `${title} — অ্যাপটির নিজস্ব প্রিভিউ`,
+                  )}
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
@@ -99,7 +124,9 @@ export default function WorkDetail() {
             </div>
 
             {notesText && (
-              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">{notesText}</p>
+              <p className="border-l-2 border-gold-400 pl-5 text-lg leading-relaxed text-moss-500">
+                {notesText}
+              </p>
             )}
 
             <div className="mt-10 flex flex-wrap gap-3">
@@ -110,7 +137,9 @@ export default function WorkDetail() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-forest-900 px-5 py-2.5 text-sm font-bold text-cream-100 transition-transform hover:-translate-y-0.5"
                 >
-                  <Globe size={15} /> {launchable ? t("Launch app", "অ্যাপ চালু করুন") : t("Open", "খুলুন")} <ExternalLink size={12} />
+                  <Globe size={15} />{" "}
+                  {launchable ? t("Launch app", "অ্যাপ চালু করুন") : t("Open", "খুলুন")}{" "}
+                  <ExternalLink size={12} />
                 </a>
               )}
               {repo.pages && (
@@ -186,9 +215,7 @@ export default function WorkDetail() {
                   <dt className="text-xs uppercase tracking-[0.12em] text-moss-400">
                     {t("Last push", "সর্বশেষ আপডেট")}
                   </dt>
-                  <dd className="mt-1 font-bold text-forest-900">
-                    {relativeDate(repo.pushedAt)}
-                  </dd>
+                  <dd className="mt-1 font-bold text-forest-900">{relativeDate(repo.pushedAt)}</dd>
                 </div>
                 {repo.topics.length > 0 && (
                   <div>
@@ -217,7 +244,9 @@ export default function WorkDetail() {
                           className="flex min-h-11 items-center justify-between gap-2 break-all rounded-lg border border-forest-300 px-3 py-2 font-mono text-xs text-forest-600 hover:border-forest-500 hover:text-forest-900"
                         >
                           <span>
-                            <span className="block text-[9px] uppercase tracking-[0.14em] text-moss-500">{CHANNEL_LABEL[e.channel][lang]}</span>
+                            <span className="block text-[9px] uppercase tracking-[0.14em] text-moss-500">
+                              {CHANNEL_LABEL[e.channel][lang]}
+                            </span>
                             {e.label}
                           </span>
                           <ExternalLink size={12} aria-hidden="true" className="shrink-0" />

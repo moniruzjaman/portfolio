@@ -1,12 +1,7 @@
 {
   "$comment": "One Drive folder feeds /library. 'root.folderId' is the folder's ID. WHAT GETS PUBLISHED: only the file types in 'kinds' (default: PDF, slides, Word-style docs, video). Images, zips, HTML, audio, code and spreadsheets are never listed, so a project-dump folder does not turn into a public file listing. 'excludeFolders' (exact folder names, case-insensitive, matched at any depth) are skipped entirely and never entered. SORTING: a top-level folder matching 'researchPattern' → Research; otherwise by type (PDF / Presentations / Documents). Share the folder as 'Anyone with the link: Viewer'. Credentials (GOOGLE_API_KEY) live only in repository secrets.",
   "maxDepth": 4,
-  "kinds": [
-    "pdf",
-    "slides",
-    "doc",
-    "video"
-  ],
+  "kinds": ["pdf", "slides", "doc", "video"],
   "excludeFolders": [],
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t",

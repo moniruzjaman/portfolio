@@ -32,10 +32,16 @@ export function QrCode({ url, name }: { url: string; name: string }) {
   }, [open, svg, url]);
 
   return (
-    <details onToggle={(e) => setOpen(e.currentTarget.open)} className="group rounded-lg border border-forest-300">
+    <details
+      onToggle={(e) => setOpen(e.currentTarget.open)}
+      className="group rounded-lg border border-forest-300"
+    >
       <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 text-xs font-bold text-forest-600 hover:text-forest-900">
         {t("Open on a phone", "ফোনে খুলুন")}
-        <span aria-hidden="true" className="font-mono text-[10px] uppercase tracking-[0.14em] text-moss-500 group-open:hidden">
+        <span
+          aria-hidden="true"
+          className="font-mono text-[10px] uppercase tracking-[0.14em] text-moss-500 group-open:hidden"
+        >
           QR
         </span>
       </summary>
@@ -48,9 +54,13 @@ export function QrCode({ url, name }: { url: string; name: string }) {
             dangerouslySetInnerHTML={{ __html: svg }}
           />
         ) : (
-          <p className="py-6 text-center text-xs text-moss-500">{t("Generating…", "তৈরি হচ্ছে…")}</p>
+          <p className="py-6 text-center text-xs text-moss-500">
+            {t("Generating…", "তৈরি হচ্ছে…")}
+          </p>
         )}
-        <p className="mt-2 text-center text-[11px] text-moss-500">{t("Point a phone camera at this.", "ফোনের ক্যামেরা এদিকে ধরুন।")}</p>
+        <p className="mt-2 text-center text-[11px] text-moss-500">
+          {t("Point a phone camera at this.", "ফোনের ক্যামেরা এদিকে ধরুন।")}
+        </p>
       </div>
     </details>
   );

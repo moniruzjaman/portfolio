@@ -20,7 +20,15 @@ const puppeteer = (await import("puppeteer-core")).default;
 const chromium = (await import("@sparticuz/chromium")).default;
 const axeSource = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 
-const ROUTES = ["/", "/works", "/works/web-krishiai-live", "/library", "/expertise", "/notes", "/about"];
+const ROUTES = [
+  "/",
+  "/works",
+  "/works/web-krishiai-live",
+  "/library",
+  "/expertise",
+  "/notes",
+  "/about",
+];
 const VIEWPORTS = [
   { name: "phone", width: 390, height: 844, tap: true },
   { name: "desktop", width: 1280, height: 800, tap: false },
@@ -43,8 +51,15 @@ for (const vp of VIEWPORTS) {
   const errors = [];
   page.on("pageerror", (e) => errors.push(`runtime error: ${e.message}`));
   // Only first-party failures count: a blocked third-party host is the environment, not the site.
-  page.on("requestfailed", (r) => r.url().startsWith(origin) && errors.push(`failed request: ${r.url()}`));
-  page.on("response", (r) => r.url().startsWith(origin) && r.status() >= 400 && errors.push(`${r.status()} ${r.url()}`));
+  page.on(
+    "requestfailed",
+    (r) => r.url().startsWith(origin) && errors.push(`failed request: ${r.url()}`),
+  );
+  page.on(
+    "response",
+    (r) =>
+      r.url().startsWith(origin) && r.status() >= 400 && errors.push(`${r.status()} ${r.url()}`),
+  );
 
   for (const route of ROUTES) {
     errors.length = 0;
@@ -53,7 +68,9 @@ for (const vp of VIEWPORTS) {
     await wait(1200);
     for (const e of errors) failures.push(`${where}: ${e}`);
 
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth,
+    );
     if (overflow > 0) failures.push(`${where}: page scrolls sideways by ${overflow}px`);
 
     if (vp.tap) {
@@ -61,11 +78,24 @@ for (const vp of VIEWPORTS) {
         [...document.querySelectorAll("a,button,select,input,textarea")]
           .filter((e) => {
             const r = e.getBoundingClientRect();
-            return e.offsetParent !== null && r.width > 0 && !(e.textContent || "").startsWith("Skip");
+            return (
+              e.offsetParent !== null && r.width > 0 && !(e.textContent || "").startsWith("Skip")
+            );
           })
           .map((e) => {
             const r = e.getBoundingClientRect();
-            return { t: (e.innerText || e.getAttribute("aria-label") || e.getAttribute("href") || e.tagName).trim().slice(0, 24), w: Math.round(r.width), h: Math.round(r.height) };
+            return {
+              t: (
+                e.innerText ||
+                e.getAttribute("aria-label") ||
+                e.getAttribute("href") ||
+                e.tagName
+              )
+                .trim()
+                .slice(0, 24),
+              w: Math.round(r.width),
+              h: Math.round(r.height),
+            };
           })
           .filter((x) => x.h < 40 || x.w < 40),
       );
@@ -75,7 +105,9 @@ for (const vp of VIEWPORTS) {
     await page.evaluate(axeSource);
     const result = await page.evaluate(() =>
       // eslint-disable-next-line no-undef
-      axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"] } }),
+      axe.run(document, {
+        runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"] },
+      }),
     );
     for (const v of result.violations) {
       const line = `${where}: [${v.impact}] ${v.id} — ${v.help} (${v.nodes.length}× e.g. ${v.nodes[0].target.join(" ")})`;
@@ -88,7 +120,8 @@ for (const vp of VIEWPORTS) {
 await browser.close();
 
 const uniq = (a) => [...new Set(a)];
-if (warnings.length) console.log(`\n⚠ ${uniq(warnings).length} warning(s):\n  ` + uniq(warnings).join("\n  "));
+if (warnings.length)
+  console.log(`\n⚠ ${uniq(warnings).length} warning(s):\n  ` + uniq(warnings).join("\n  "));
 if (failures.length) {
   console.error(`\n✖ ${uniq(failures).length} failure(s):\n  ` + uniq(failures).join("\n  "));
   process.exit(1);

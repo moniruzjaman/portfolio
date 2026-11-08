@@ -9,7 +9,14 @@ name: UI audit
 # package.json, the lockfile, or the deploy workflow.
 on:
   pull_request:
-    paths: ["src/**", "index.html", "scripts/ui-audit.mjs", "package*.json", ".github/workflows/ui-audit.yml"]
+    paths:
+      [
+        "src/**",
+        "index.html",
+        "scripts/ui-audit.mjs",
+        "package*.json",
+        ".github/workflows/ui-audit.yml",
+      ]
   workflow_dispatch:
 
 permissions:
@@ -32,6 +39,9 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build
         run: npm run build

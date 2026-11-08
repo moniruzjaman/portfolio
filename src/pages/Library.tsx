@@ -1,5 +1,16 @@
 import { useMemo, useState } from "react";
-import { ExternalLink, FileText, FolderOpen, Presentation, Table2, File as FileIcon, Image as ImageIcon, Search, Play, Video as VideoIcon } from "lucide-react";
+import {
+  ExternalLink,
+  FileText,
+  FolderOpen,
+  Presentation,
+  Table2,
+  File as FileIcon,
+  Image as ImageIcon,
+  Search,
+  Play,
+  Video as VideoIcon,
+} from "lucide-react";
 import { PageHeader, Chip } from "@/components/Section";
 import { DocPreview } from "@/components/DocPreview";
 import { useI18n } from "@/lib/i18n";
@@ -85,14 +96,18 @@ export default function Library() {
   const [limit, setLimit] = useState(PAGE);
   const [open, setOpen] = useState<LibItem | null>(null);
   // Any change to what is being filtered starts the list again from the top.
-  const refilter = <T,>(set: (v: T) => void) => (v: T) => {
-    set(v);
-    setLimit(PAGE);
-  };
+  const refilter =
+    <T,>(set: (v: T) => void) =>
+    (v: T) => {
+      set(v);
+      setLimit(PAGE);
+    };
 
   const topics = useMemo(() => {
     const n = new Map<string, number>();
-    for (const i of libraryItems) if (tab === "all" || shelfOf(i) === tab) n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
+    for (const i of libraryItems)
+      if (tab === "all" || shelfOf(i) === tab)
+        n.set(topicLabel(i), (n.get(topicLabel(i)) ?? 0) + 1);
     return [...n.entries()].sort((a, b) => b[1] - a[1]);
   }, [tab]);
 
@@ -102,16 +117,27 @@ export default function Library() {
       .filter((i) => tab === "all" || shelfOf(i) === tab)
       .filter((i) => topic === "all" || topicLabel(i) === topic)
       .filter((i) => format === "all" || i.kind === format)
-      .filter((i) => !needle || [i.title, i.path.join(" "), i.kind, subjectsOf(i).join(" ")].join(" ").toLowerCase().includes(needle))
+      .filter(
+        (i) =>
+          !needle ||
+          [i.title, i.path.join(" "), i.kind, subjectsOf(i).join(" ")]
+            .join(" ")
+            .toLowerCase()
+            .includes(needle),
+      )
       .sort((a, b) =>
-        sort === "title" ? a.title.localeCompare(b.title) : (b.modified ?? "").localeCompare(a.modified ?? ""),
+        sort === "title"
+          ? a.title.localeCompare(b.title)
+          : (b.modified ?? "").localeCompare(a.modified ?? ""),
       );
   }, [tab, q, sort, topic, format]);
 
   // Format counts follow the shelf/topic the visitor is already in, so a chip never promises files that are not there.
   const formatCounts = useMemo(() => {
     const n = new Map<string, number>();
-    for (const i of libraryItems) if ((tab === "all" || shelfOf(i) === tab) && (topic === "all" || topicLabel(i) === topic)) n.set(i.kind, (n.get(i.kind) ?? 0) + 1);
+    for (const i of libraryItems)
+      if ((tab === "all" || shelfOf(i) === tab) && (topic === "all" || topicLabel(i) === topic))
+        n.set(i.kind, (n.get(i.kind) ?? 0) + 1);
     return n;
   }, [tab, topic]);
   const visible = shown.slice(0, limit);
@@ -121,7 +147,11 @@ export default function Library() {
   const indexed = libraryItems.length > 0;
   const tabs = [
     { key: "all", label: t("All", "সব"), n: libraryItems.length },
-    ...SHELVES.map((k) => ({ key: k as string, label: SHELF_LABEL[k][lang], n: libraryItems.filter((i) => shelfOf(i) === k).length })).filter((x) => x.n > 0),
+    ...SHELVES.map((k) => ({
+      key: k as string,
+      label: SHELF_LABEL[k][lang],
+      n: libraryItems.filter((i) => shelfOf(i) === k).length,
+    })).filter((x) => x.n > 0),
   ];
 
   return (
@@ -141,7 +171,11 @@ export default function Library() {
           {indexed && (
             <>
               <div className="mb-8 flex flex-col gap-4 border-b border-forest-300 pb-6 lg:flex-row lg:items-center lg:justify-between">
-                <div role="group" aria-label={t("Collections", "সংগ্রহ")} className="flex flex-wrap gap-2">
+                <div
+                  role="group"
+                  aria-label={t("Collections", "সংগ্রহ")}
+                  className="flex flex-wrap gap-2"
+                >
                   {tabs.map((x) => (
                     <button
                       key={x.key}
@@ -153,7 +187,9 @@ export default function Library() {
                         setLimit(PAGE);
                       }}
                       className={`min-h-11 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
-                        tab === x.key ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                        tab === x.key
+                          ? "border-forest-900 bg-forest-900 text-cream-100"
+                          : "border-forest-300 text-moss-500 hover:border-forest-500"
                       }`}
                     >
                       {x.label} · {x.n}
@@ -163,7 +199,11 @@ export default function Library() {
                 <div className="flex flex-wrap gap-3">
                   <label className="relative">
                     <span className="sr-only">{t("Search the library", "লাইব্রেরিতে খুঁজুন")}</span>
-                    <Search size={14} aria-hidden="true" className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-moss-400" />
+                    <Search
+                      size={14}
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-moss-400"
+                    />
                     <input
                       value={q}
                       onChange={(e) => refilter(setQ)(e.target.value)}
@@ -203,7 +243,9 @@ export default function Library() {
               </div>
 
               <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
-                <span className="u-eyebrow hidden shrink-0 text-moss-400 sm:block">{t("Format", "ধরন")}</span>
+                <span className="u-eyebrow hidden shrink-0 text-moss-400 sm:block">
+                  {t("Format", "ধরন")}
+                </span>
                 {/* Phones: one compact control; chips from sm up (same pattern as the audience filter). */}
                 <label className="w-full sm:hidden">
                   <span className="sr-only">{t("Format", "ধরন")}</span>
@@ -220,31 +262,50 @@ export default function Library() {
                     ))}
                   </select>
                 </label>
-                <div role="group" aria-label={t("Format", "ধরন")} className="hidden flex-wrap gap-2 sm:flex">
-                  {[{ key: "all" as const, en: "All formats", bn: "সব ধরন" }, ...FORMATS.filter((f) => formatCounts.get(f.key))].map((f) => (
+                <div
+                  role="group"
+                  aria-label={t("Format", "ধরন")}
+                  className="hidden flex-wrap gap-2 sm:flex"
+                >
+                  {[
+                    { key: "all" as const, en: "All formats", bn: "সব ধরন" },
+                    ...FORMATS.filter((f) => formatCounts.get(f.key)),
+                  ].map((f) => (
                     <button
                       key={f.key}
                       type="button"
                       aria-pressed={format === f.key}
                       onClick={() => refilter(setFormat)(f.key)}
                       className={`min-h-11 rounded-full border px-4 text-sm font-bold transition-colors ${
-                        format === f.key ? "border-gold-500 bg-gold-400/20 text-forest-900" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                        format === f.key
+                          ? "border-gold-500 bg-gold-400/20 text-forest-900"
+                          : "border-forest-300 text-moss-500 hover:border-forest-500"
                       }`}
                     >
                       {f[lang]}
-                      {f.key !== "all" && <span className="ml-1.5 font-mono text-[11px] font-normal">{formatCounts.get(f.key)}</span>}
+                      {f.key !== "all" && (
+                        <span className="ml-1.5 font-mono text-[11px] font-normal">
+                          {formatCounts.get(f.key)}
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500" aria-live="polite">
+              <p
+                className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500"
+                aria-live="polite"
+              >
                 {visible.length} {t("of", "/")} {shown.length} {t("shown", "দেখানো হচ্ছে")}
-                {library.generatedAt && ` · ${t("indexed", "সূচিবদ্ধ")} ${library.generatedAt.slice(0, 10)}`}
+                {library.generatedAt &&
+                  ` · ${t("indexed", "সূচিবদ্ধ")} ${library.generatedAt.slice(0, 10)}`}
               </p>
 
               {shown.length === 0 ? (
-                <p className="py-16 text-center text-moss-500">{t("Nothing matches that search.", "এই অনুসন্ধানে কিছু মেলেনি।")}</p>
+                <p className="py-16 text-center text-moss-500">
+                  {t("Nothing matches that search.", "এই অনুসন্ধানে কিছু মেলেনি।")}
+                </p>
               ) : (
                 <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {visible.map((i) => (
@@ -258,13 +319,19 @@ export default function Library() {
                         <span className="flex flex-1 flex-col p-4">
                           <span className="mb-2 flex flex-wrap items-center gap-1.5">
                             <Chip>{extOf(i) || KIND_LABEL[i.kind][lang]}</Chip>
-                            {(subjectsOf(i).length ? subjectsOf(i).slice(0, 2) : [topicLabel(i)]).filter(Boolean).map((x) => (
-                              <Chip key={x}>{x}</Chip>
-                            ))}
+                            {(subjectsOf(i).length ? subjectsOf(i).slice(0, 2) : [topicLabel(i)])
+                              .filter(Boolean)
+                              .map((x) => (
+                                <Chip key={x}>{x}</Chip>
+                              ))}
                           </span>
-                          <span className="line-clamp-3 font-serif text-base font-black leading-snug text-forest-900">{i.title}</span>
+                          <span className="line-clamp-3 font-serif text-base font-black leading-snug text-forest-900">
+                            {i.title}
+                          </span>
                           <span className="mt-auto pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
-                            {[i.modified?.slice(0, 4), formatBytes(i.size)].filter(Boolean).join(" · ")}
+                            {[i.modified?.slice(0, 4), formatBytes(i.size)]
+                              .filter(Boolean)
+                              .join(" · ")}
                           </span>
                         </span>
                       </button>
@@ -280,7 +347,10 @@ export default function Library() {
                     onClick={() => setLimit((n) => n + PAGE * 2)}
                     className="min-h-11 rounded-full border border-forest-900/25 px-6 text-sm font-bold text-forest-900 hover:bg-cream-100"
                   >
-                    {t(`Show more (${shown.length - visible.length} left)`, `আরও দেখুন (${shown.length - visible.length}টি বাকি)`)}
+                    {t(
+                      `Show more (${shown.length - visible.length} left)`,
+                      `আরও দেখুন (${shown.length - visible.length}টি বাকি)`,
+                    )}
                   </button>
                 </div>
               )}
@@ -291,7 +361,9 @@ export default function Library() {
               folder view, loaded only when asked. With files indexed it is a footer. */}
           {hasFolders && (
             <div className={indexed ? "mt-16 border-t border-forest-300 pt-10" : ""}>
-              <p className="u-eyebrow mb-5 text-gold-600">{t("Browse the Drive folder", "ড্রাইভ ফোল্ডার ঘুরে দেখুন")}</p>
+              <p className="u-eyebrow mb-5 text-gold-600">
+                {t("Browse the Drive folder", "ড্রাইভ ফোল্ডার ঘুরে দেখুন")}
+              </p>
               <div className={library.root ? "grid gap-5" : "grid gap-5 lg:grid-cols-3"}>
                 {library.root && (
                   <FolderCard
@@ -306,7 +378,12 @@ export default function Library() {
                 )}
                 {!library.root &&
                   linked.map((c) => (
-                    <FolderCard key={c.key} folderId={c.folderId!} title={lang === "bn" ? c.titleBn : c.title} description={lang === "bn" ? c.descriptionBn : c.description} />
+                    <FolderCard
+                      key={c.key}
+                      folderId={c.folderId!}
+                      title={lang === "bn" ? c.titleBn : c.title}
+                      description={lang === "bn" ? c.descriptionBn : c.description}
+                    />
                   ))}
               </div>
             </div>
@@ -315,9 +392,14 @@ export default function Library() {
           {!indexed && !hasFolders && (
             <div className="mx-auto max-w-xl py-16 text-center">
               <FolderOpen size={36} className="mx-auto text-moss-400" aria-hidden="true" />
-              <h2 className="mt-5 font-serif text-2xl font-black text-forest-900">{t("The library is being prepared", "লাইব্রেরি প্রস্তুত করা হচ্ছে")}</h2>
+              <h2 className="mt-5 font-serif text-2xl font-black text-forest-900">
+                {t("The library is being prepared", "লাইব্রেরি প্রস্তুত করা হচ্ছে")}
+              </h2>
               <p className="mt-3 text-moss-500">
-                {t("Research papers, PDFs and presentations will appear here.", "গবেষণাপত্র, পিডিএফ ও উপস্থাপনা এখানে প্রকাশিত হবে।")}
+                {t(
+                  "Research papers, PDFs and presentations will appear here.",
+                  "গবেষণাপত্র, পিডিএফ ও উপস্থাপনা এখানে প্রকাশিত হবে।",
+                )}
               </p>
             </div>
           )}
@@ -329,7 +411,17 @@ export default function Library() {
   );
 }
 
-function FolderCard({ folderId, title, description, wide = false }: { folderId: string; title: string; description: string; wide?: boolean }) {
+function FolderCard({
+  folderId,
+  title,
+  description,
+  wide = false,
+}: {
+  folderId: string;
+  title: string;
+  description: string;
+  wide?: boolean;
+}) {
   const { t } = useI18n();
   // Open by default for the single root folder: with no files indexed it IS the page.
   // Still click-to-load otherwise, so no request reaches Google until asked.

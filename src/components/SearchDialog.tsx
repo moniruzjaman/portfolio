@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { Search, CornerDownLeft } from "lucide-react";
-import { repos } from "@/lib/data";
+import { repos, meta } from "@/lib/data";
 import { summaryFor, titleFor } from "@/lib/curation";
 import { libraryItems, KIND_LABEL } from "@/lib/library";
 import { notes } from "@/content/notes";
@@ -47,12 +47,18 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
 
   useEffect(() => {
     if (open) {
-      setQ("");
-      setCursor(0);
       // Focus after paint so the dialog is mounted and the caret lands correctly.
       requestAnimationFrame(() => inputRef.current?.focus());
     }
   }, [open]);
+
+  // The dialog resets itself when it closes rather than when it opens: every
+  // close path funnels through here, so no state-reset effect is needed.
+  const close = () => {
+    setQ("");
+    setCursor(0);
+    onClose();
+  };
 
   const hits = useMemo<Hit[]>(() => {
     if (q.trim().length < 1) return [];
@@ -63,8 +69,20 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
         subtitle: summaryFor(r, lang) || r.name,
         href: `/works/${r.slug}`,
         score:
-          score(q, r.name, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...(r.topics ?? [])) +
-          (Date.now() - new Date(r.pushedAt).getTime() < 86_400_000 * 30 ? 5 : 0),
+          score(
+            q,
+            r.name,
+            titleFor(r, "en"),
+            titleFor(r, "bn"),
+            summaryFor(r, "en"),
+            summaryFor(r, "bn"),
+            ...(r.topics ?? []),
+          ) +
+          // Recency is measured against the sync timestamp, not the clock: the
+          // score is pure (stable across renders and identical on server/client).
+          (new Date(r.pushedAt).getTime() - new Date(meta.generatedAt).getTime() < 86_400_000 * 30
+            ? 5
+            : 0),
       }))
       .filter((h) => h.score > 0);
 
@@ -91,33 +109,39 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
     return [...repoHits, ...noteHits, ...docHits].sort((a, b) => b.score - a.score).slice(0, 8);
   }, [q, lang]);
 
-  useEffect(() => setCursor(0), [q]);
-
   if (!open) return null;
 
   const go = (h: Hit) => {
     navigate(h.href, { replace: false });
-    onClose();
+    close();
   };
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-start justify-center bg-forest-950/50 p-4 pt-[12vh] backdrop-blur-sm"
-      onClick={onClose}
+      className="fixed inset-0 z-[60] flex items-start justify-center p-4 pt-[12vh]"
       role="dialog"
       aria-modal="true"
       aria-label={t("Search", "অনুসন্ধান")}
     >
-      <div
-        className="w-full max-w-xl overflow-hidden rounded-2xl border border-forest-200 bg-cream-50 shadow-[0_30px_80px_rgba(6,26,16,0.35)]"
-        onClick={(e) => e.stopPropagation()}
-      >
+      {/* The scrim is a real button so pointer users can dismiss; keyboard users
+          have Esc in the input. It sits under the panel, which is opaque. */}
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-label={t("Close search", "অনুসন্ধান বন্ধ করুন")}
+        onClick={close}
+        className="absolute inset-0 h-full w-full cursor-default bg-forest-950/50 backdrop-blur-sm"
+      />
+      <div className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-forest-200 bg-cream-50 shadow-[0_30px_80px_rgba(6,26,16,0.35)]">
         <div className="flex items-center gap-3 border-b border-forest-200 px-4">
           <Search size={17} className="shrink-0 text-moss-400" />
           <input
             ref={inputRef}
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => {
+              setQ(e.target.value);
+              setCursor(0);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Escape") onClose();
               if (e.key === "ArrowDown") {
@@ -165,7 +189,11 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
               </span>
               <span className="flex shrink-0 items-center gap-2">
                 <span className="u-eyebrow text-moss-400">
-                  {h.kind === "repo" ? t("Work", "কাজ") : h.kind === "doc" ? t("Library", "লাইব্রেরি") : t("Note", "নোট")}
+                  {h.kind === "repo"
+                    ? t("Work", "কাজ")
+                    : h.kind === "doc"
+                      ? t("Library", "লাইব্রেরি")
+                      : t("Note", "নোট")}
                 </span>
                 {i === cursor && <CornerDownLeft size={13} className="text-moss-400" />}
               </span>

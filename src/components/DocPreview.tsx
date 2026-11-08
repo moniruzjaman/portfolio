@@ -22,14 +22,22 @@ export function DocPreview({ item, onClose }: { item: LibItem | null; onClose: (
     if (!item && d.open) d.close();
   }, [item]);
 
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    // A click on the dialog element itself (not its content) is a backdrop click.
+    // Keyboard users close with Esc (native) or the header button.
+    const onBackdrop = (e: MouseEvent) => {
+      if (e.target === d) onClose();
+    };
+    d.addEventListener("click", onBackdrop);
+    return () => d.removeEventListener("click", onBackdrop);
+  }, [onClose]);
+
   return (
     <dialog
       ref={ref}
       onClose={onClose}
-      onClick={(e) => {
-        // A click on the dialog element itself (not its content) is a backdrop click.
-        if (e.target === ref.current) onClose();
-      }}
       aria-labelledby="doc-preview-title"
       className="m-auto h-[88vh] w-[min(1100px,95vw)] overflow-hidden rounded-2xl border border-forest-200 bg-cream-50 p-0 text-forest-900 shadow-[0_30px_80px_rgba(6,26,16,0.4)] backdrop:bg-forest-950/70 backdrop:backdrop-blur-sm"
     >
@@ -48,7 +56,8 @@ export function DocPreview({ item, onClose }: { item: LibItem | null; onClose: (
               rel="noreferrer"
               className="inline-flex min-h-11 items-center gap-2 rounded-full border border-forest-900/25 px-4 text-xs font-bold hover:bg-white"
             >
-              <ExternalLink size={14} aria-hidden="true" /> <span className="hidden sm:inline">{t("Open in Drive", "ড্রাইভে খুলুন")}</span>
+              <ExternalLink size={14} aria-hidden="true" />{" "}
+              <span className="hidden sm:inline">{t("Open in Drive", "ড্রাইভে খুলুন")}</span>
               <span className="sr-only sm:hidden">{t("Open in Drive", "ড্রাইভে খুলুন")}</span>
             </a>
             <a
@@ -57,7 +66,8 @@ export function DocPreview({ item, onClose }: { item: LibItem | null; onClose: (
               rel="noreferrer"
               className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest-900 px-4 text-xs font-bold text-cream-100 hover:bg-forest-600"
             >
-              <Download size={14} aria-hidden="true" /> <span className="hidden sm:inline">{t("Download", "ডাউনলোড")}</span>
+              <Download size={14} aria-hidden="true" />{" "}
+              <span className="hidden sm:inline">{t("Download", "ডাউনলোড")}</span>
               <span className="sr-only sm:hidden">{t("Download", "ডাউনলোড")}</span>
             </a>
             <button

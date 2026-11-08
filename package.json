@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzjaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzjaman — agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
@@ -21,11 +21,6 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@fontsource-variable/dm-sans": "^5.3.0",
-    "@fontsource-variable/noto-sans-bengali": "^5.3.0",
-    "@fontsource-variable/noto-serif-bengali": "^5.3.0",
-    "@fontsource-variable/playfair-display": "^5.3.0",
-    "@fontsource/dm-mono": "^5.3.0",
     "lucide-react": "^1.54.0",
     "qrcode-generator": "^2.0.4",
     "react": "^19.0.0",

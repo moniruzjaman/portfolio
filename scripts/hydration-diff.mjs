@@ -3,11 +3,8 @@
  * diverge: parse the served root-div HTML with DOMParser, then compare it node
  * by node against the live DOM after hydration.
  */
-import { createRequire } from "node:module";
-
 const base = (process.argv[2] || "http://localhost:4173/portfolio").replace(/\/$/, "");
 const route = process.argv[3] || "/about";
-const require = createRequire(import.meta.url);
 const puppeteer = (await import("puppeteer-core")).default;
 const chromium = (await import("@sparticuz/chromium")).default;
 

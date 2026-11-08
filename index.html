@@ -28,11 +28,28 @@
     <meta name="theme-color" content="#f7f3ec" />
     <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Writing feed" />
 
-    <!-- Fonts: stable URLs under /fonts/ (works at any base path). The preload is the
-         body font every above-the-fold headline and paragraph needs. -->
+    <!-- Fonts: stable URLs under /fonts/ (works at any base path). The preloads
+         are the body font every page needs and the display font all headings
+         use — without the latter, its swap reflows long headings after first
+         paint and breaks the CLS budget (measured 0.055 on note pages under
+         Lighthouse mobile throttling). -->
     <link
       rel="preload"
       href="/fonts/dm-sans-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-latin-wght-italic.woff2"
       as="font"
       type="font/woff2"
       crossorigin

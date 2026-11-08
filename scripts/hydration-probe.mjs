@@ -3,10 +3,8 @@
  * exact hydration errors (React dev build gives the DOM diff). Diagnostic only.
  */
 import { readdirSync, existsSync } from "node:fs";
-import { createRequire } from "node:module";
 
 const base = (process.argv[2] || "http://localhost:4173/portfolio").replace(/\/$/, "");
-const require = createRequire(import.meta.url);
 const puppeteer = (await import("puppeteer-core")).default;
 const chromium = (await import("@sparticuz/chromium")).default;
 

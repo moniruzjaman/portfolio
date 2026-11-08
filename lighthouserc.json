@@ -1,7 +1,13 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "dist",
+      "url": [
+        "http://localhost:4173/",
+        "http://localhost:4173/works/",
+        "http://localhost:4173/works/krishi-ai/",
+        "http://localhost:4173/notes/plantation-tracker-field-system/",
+        "http://localhost:4173/about/"
+      ],
       "numberOfRuns": 1,
       "settings": {
         "formFactor": "mobile",
@@ -21,10 +27,7 @@
         "categories:seo": ["warn", { "minScore": 1 }],
         "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
         "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
-        "resource-summary:script:size": [
-          "warn",
-          { "maxNumericValue": 460000, "details": { "items": [{ "resourceType": "script" }] } }
-        ]
+        "resource-summary:script:size": ["warn", { "maxNumericValue": 460000 }]
       }
     }
   }

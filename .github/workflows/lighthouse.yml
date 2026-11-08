@@ -31,8 +31,21 @@ jobs:
 
       - run: npm ci
 
-      - name: Build
+      # LHCI is pointed at five representative routes over vite preview: the
+      # staticDistDir discovery would audit all 67 prerendered pages and blow
+      # the CI timeout. The build runs for a root base path because vite preview
+      # serves dist/ at the root under BASE_PATH=/.
+      - name: Build (root base path)
         run: npm run build
+        env:
+          BASE_PATH: /
+
+      - name: Serve
+        run: |
+          npx vite preview --port 4173 --strictPort > /tmp/preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -fs http://localhost:4173/ >/dev/null && break; sleep 1; done
+        env:
+          BASE_PATH: /
 
       - name: Lighthouse CI
         run: npx --yes @lhci/cli@0.14.x autorun

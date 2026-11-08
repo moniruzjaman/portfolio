@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T17:45:11.396Z",
+  "generatedAt": "2026-11-08T18:31:43.267Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 79,
@@ -18,7 +18,7 @@
       "language": "TypeScript",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-08T17:44:18Z",
+      "pushedAt": "2026-11-08T18:30:53Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -31,7 +31,7 @@
         "name": "Abu Md. Moniruzjaman",
         "themeColor": "#f7f3ec",
         "icon": "https://moniruzjaman.github.io/portfolio/apple-touch-icon.png",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
+        "image": "https://moniruzjaman.github.io/portfolio/og/.png",
         "source": "html"
       },
       "featured": false

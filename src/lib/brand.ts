@@ -57,7 +57,9 @@ const channel = (v: number) => {
 
 export function luminance(hex: string): number {
   const n = parseInt(hex.slice(1), 16);
-  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
+  return (
+    0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255)
+  );
 }
 
 export function contrast(a: string, b: string): number {
@@ -92,7 +94,14 @@ export function readableOn(bg: string): string {
 export const BAND_MIN_CONTRAST = 5;
 
 const toHex = (r: number, g: number, b: number) =>
-  "#" + [r, g, b].map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+  "#" +
+  [r, g, b]
+    .map((v) =>
+      Math.round(Math.max(0, Math.min(255, v)))
+        .toString(16)
+        .padStart(2, "0"),
+    )
+    .join("");
 
 /**
  * Mid-tone colours (a typical app green like #16a34a) sit in a dead zone where

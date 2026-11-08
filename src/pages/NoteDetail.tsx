@@ -25,8 +25,21 @@ function renderInline(text: string, keyPrefix: string) {
     if (m.index > last) out.push(text.slice(last, m.index));
     const tok = m[0];
     const key = `${keyPrefix}-${i++}`;
-    if (tok.startsWith("**")) out.push(<strong key={key} className="font-bold text-forest-900">{tok.slice(2, -2)}</strong>);
-    else if (tok.startsWith("`")) out.push(<code key={key} className="rounded bg-forest-200/60 px-1.5 py-0.5 font-mono text-[0.85em] text-forest-700">{tok.slice(1, -1)}</code>);
+    if (tok.startsWith("**"))
+      out.push(
+        <strong key={key} className="font-bold text-forest-900">
+          {tok.slice(2, -2)}
+        </strong>,
+      );
+    else if (tok.startsWith("`"))
+      out.push(
+        <code
+          key={key}
+          className="rounded bg-forest-200/60 px-1.5 py-0.5 font-mono text-[0.85em] text-forest-700"
+        >
+          {tok.slice(1, -1)}
+        </code>,
+      );
     else out.push(<em key={key}>{tok.slice(1, -1)}</em>);
     last = m.index + tok.length;
   }
@@ -81,8 +94,15 @@ function renderMarkdown(body: string) {
       i++;
       while (i < lines.length && !lines[i].trim().startsWith("```")) buf.push(lines[i++]);
       blocks.push(
-        <pre key={`pre-${key++}`} className="my-6 overflow-x-auto rounded-xl border border-forest-300 bg-forest-900 p-5 text-sm text-forest-100">
-          {lang && <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-forest-300">{lang}</span>}
+        <pre
+          key={`pre-${key++}`}
+          className="my-6 overflow-x-auto rounded-xl border border-forest-300 bg-forest-900 p-5 text-sm text-forest-100"
+        >
+          {lang && (
+            <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-forest-300">
+              {lang}
+            </span>
+          )}
           <code>{buf.join("\n")}</code>
         </pre>,
       );
@@ -98,13 +118,21 @@ function renderMarkdown(body: string) {
     if (trimmed.startsWith("## ")) {
       flushPara();
       flushList();
-      blocks.push(<h2 key={key++} className="mt-12 font-serif text-2xl font-black text-forest-900">{renderInline(trimmed.slice(3), `h-${key}`)}</h2>);
+      blocks.push(
+        <h2 key={key++} className="mt-12 font-serif text-2xl font-black text-forest-900">
+          {renderInline(trimmed.slice(3), `h-${key}`)}
+        </h2>,
+      );
       continue;
     }
     if (trimmed.startsWith("### ")) {
       flushPara();
       flushList();
-      blocks.push(<h3 key={key++} className="mt-8 font-serif text-xl font-bold text-forest-700">{renderInline(trimmed.slice(4), `h-${key}`)}</h3>);
+      blocks.push(
+        <h3 key={key++} className="mt-8 font-serif text-xl font-bold text-forest-700">
+          {renderInline(trimmed.slice(4), `h-${key}`)}
+        </h3>,
+      );
       continue;
     }
     if (/^[-*]\s+/.test(trimmed)) {
@@ -120,7 +148,14 @@ function renderMarkdown(body: string) {
     if (trimmed.startsWith("> ")) {
       flushPara();
       flushList();
-      blocks.push(<blockquote key={key++} className="my-6 border-l-2 border-gold-400 pl-5 font-serif text-lg italic text-forest-600">{renderInline(trimmed.slice(2), `q-${key}`)}</blockquote>);
+      blocks.push(
+        <blockquote
+          key={key++}
+          className="my-6 border-l-2 border-gold-400 pl-5 font-serif text-lg italic text-forest-600"
+        >
+          {renderInline(trimmed.slice(2), `q-${key}`)}
+        </blockquote>,
+      );
       continue;
     }
     if (trimmed === "---") {
@@ -144,7 +179,9 @@ export default function NoteDetail() {
 
   if (!note) return <NotFound />;
 
-  const related = notes.filter((n) => n.slug !== note.slug && n.tags.some((t) => note.tags.includes(t))).slice(0, 3);
+  const related = notes
+    .filter((n) => n.slug !== note.slug && n.tags.some((t) => note.tags.includes(t)))
+    .slice(0, 3);
 
   return (
     <>

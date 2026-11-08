@@ -19,7 +19,10 @@ export function ConnectSection() {
       <div className="u-container py-8">
         <div className="mb-12 max-w-2xl">
           <p className="u-eyebrow mb-3 text-gold-500">{t("Follow along", "অনুসরণ করুন")}</p>
-          <h2 id="connect-title" className="font-serif text-4xl font-black text-forest-900 sm:text-5xl">
+          <h2
+            id="connect-title"
+            className="font-serif text-4xl font-black text-forest-900 sm:text-5xl"
+          >
             {t("Connect & Follow", "যোগাযোগ ও ফলো")}
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-moss-500">
@@ -40,7 +43,9 @@ export function ConnectSection() {
                 className="group flex h-full flex-col rounded-[1.5rem] border border-forest-400 bg-cream-50 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-forest-300"
               >
                 <div className="mb-5 flex items-center justify-between">
-                  <span className={`flex h-11 w-11 items-center justify-center rounded-2xl border border-forest-300 bg-white ${accent}`}>
+                  <span
+                    className={`flex h-11 w-11 items-center justify-center rounded-2xl border border-forest-300 bg-white ${accent}`}
+                  >
                     <Icon size={20} />
                   </span>
                   <ArrowUpRight

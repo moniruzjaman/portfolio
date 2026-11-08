@@ -53,9 +53,7 @@ export default function About() {
                 <div key={e.degree} className="rounded-2xl border border-forest-300 bg-white p-6">
                   <GraduationCap size={20} className="mb-3 text-forest-500" />
                   <p className="font-serif text-lg font-black text-forest-900">{e.degree}</p>
-                  <p className="mt-0.5 text-sm text-moss-500">
-                    {lang === "bn" ? e.orgBn : e.org}
-                  </p>
+                  <p className="mt-0.5 text-sm text-moss-500">{lang === "bn" ? e.orgBn : e.org}</p>
                   <p className="mt-3 font-mono text-xs text-moss-400">
                     {e.year} · {e.detail}
                   </p>
@@ -69,7 +67,10 @@ export default function About() {
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {author.competencies.map((c) => (
-                <div key={c.group} className="rounded-2xl border-l-4 border-forest-400 bg-white p-6">
+                <div
+                  key={c.group}
+                  className="rounded-2xl border-l-4 border-forest-400 bg-white p-6"
+                >
                   <h3 className="font-bold text-forest-900">
                     {lang === "bn" ? c.groupBn : c.group}
                   </h3>
@@ -99,22 +100,33 @@ export default function About() {
               <p className="u-eyebrow mb-5 text-moss-400">{t("Contact", "যোগাযোগ")}</p>
               <ul className="space-y-4 text-sm">
                 <li>
-                  <a href={`mailto:${author.email}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                  <a
+                    href={`mailto:${author.email}`}
+                    className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900"
+                  >
                     <Mail size={15} className="mt-0.5 shrink-0 text-forest-500" />
                     <span className="break-all">{author.email}</span>
                   </a>
                 </li>
                 {author.showPhone && (
-                <li>
-                  <a href={`tel:+${author.phone.replace(/^\+/, "")}`} className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
-                    <Phone size={15} className="shrink-0 text-forest-500" />
-                    {author.phoneDisplay}
-                  </a>
-                </li>
+                  <li>
+                    <a
+                      href={`tel:+${author.phone.replace(/^\+/, "")}`}
+                      className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900"
+                    >
+                      <Phone size={15} className="shrink-0 text-forest-500" />
+                      {author.phoneDisplay}
+                    </a>
+                  </li>
                 )}
                 {socials.map(({ key, href, handle, Icon }) => (
                   <li key={key}>
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900">
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900"
+                    >
                       <Icon size={15} className="shrink-0 text-forest-500" />
                       <span className="break-all">{handle}</span>
                     </a>
@@ -133,8 +145,14 @@ export default function About() {
               <p className="u-eyebrow mb-4 text-forest-200">{t("By the numbers", "সংখ্যায়")}</p>
               <dl className="space-y-3 text-sm">
                 {[
-                  { n: figures.yearsField, l: t("years in field extension", "বছর মাঠ সম্প্রসারণে") },
-                  { n: figures.postings, l: t("postings across Bangladesh", "টি পদায় বাংলাদেশ জুড়ে") },
+                  {
+                    n: figures.yearsField,
+                    l: t("years in field extension", "বছর মাঠ সম্প্রসারণে"),
+                  },
+                  {
+                    n: figures.postings,
+                    l: t("postings across Bangladesh", "টি পদায় বাংলাদেশ জুড়ে"),
+                  },
                   { n: stats.repos, l: t("public repositories", "উন্মুক্ত রিপোজিটরি") },
                   { n: notes.length, l: t("published field notes", "প্রকাশিত মাঠ নোট") },
                 ].map((s) => (

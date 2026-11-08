@@ -27,6 +27,10 @@
     "Krishak Card": { "shelf": "report", "subjects": ["krishak-card"] }
   },
   "entries": {
-    "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k": { "shelf": "guide", "subjects": ["soil", "training"], "titleBn": "কেম্পফ স্বাস্থ্য পিরামিড নির্দেশিকা" }
+    "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k": {
+      "shelf": "guide",
+      "subjects": ["soil", "training"],
+      "titleBn": "কেম্পফ স্বাস্থ্য পিরামিড নির্দেশিকা"
+    }
   }
 }

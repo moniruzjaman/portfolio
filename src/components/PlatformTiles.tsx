@@ -1,5 +1,11 @@
 import { Link } from "wouter";
-import { CHANNEL_BLURB, CHANNEL_COLOR, CHANNEL_LABEL, platformStats, type Channel } from "@/lib/data";
+import {
+  CHANNEL_BLURB,
+  CHANNEL_COLOR,
+  CHANNEL_LABEL,
+  platformStats,
+  type Channel,
+} from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 
 /**
@@ -30,17 +36,33 @@ export function PlatformTiles({
         const body = (
           <>
             <span className="flex items-center gap-2">
-              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: CHANNEL_COLOR[p.channel] }} />
-              <span className="font-serif text-lg font-black leading-none">{CHANNEL_LABEL[p.channel][lang]}</span>
+              <span
+                className="h-2 w-2 shrink-0 rounded-full"
+                style={{ backgroundColor: CHANNEL_COLOR[p.channel] }}
+              />
+              <span className="font-serif text-lg font-black leading-none">
+                {CHANNEL_LABEL[p.channel][lang]}
+              </span>
             </span>
-            <span className="mt-3 block font-serif text-3xl font-black leading-none sm:mt-4 sm:text-4xl">{p.apps}</span>
-            <span className={`mt-1.5 block font-mono text-[10px] uppercase leading-snug tracking-[0.12em] ${dark ? "text-forest-200" : "text-moss-500"}`}>
+            <span className="mt-3 block font-serif text-3xl font-black leading-none sm:mt-4 sm:text-4xl">
+              {p.apps}
+            </span>
+            <span
+              className={`mt-1.5 block font-mono text-[10px] uppercase leading-snug tracking-[0.12em] ${dark ? "text-forest-200" : "text-moss-500"}`}
+            >
               {t("apps", "অ্যাপ")}
-              {p.endpoints > 0 ? ` · ${p.endpoints} ${t(p.endpoints === 1 ? "address" : "addresses", "ঠিকানা")}` : ""}
+              {p.endpoints > 0
+                ? ` · ${p.endpoints} ${t(p.endpoints === 1 ? "address" : "addresses", "ঠিকানা")}`
+                : ""}
             </span>
-            <span className={`mt-3 hidden text-xs leading-relaxed sm:block ${dark ? "text-forest-200" : "text-moss-500"}`}>
+            <span
+              className={`mt-3 hidden text-xs leading-relaxed sm:block ${dark ? "text-forest-200" : "text-moss-500"}`}
+            >
               {p.endpoints === 0 && p.apps > 0
-                ? t("Deployed; no public address recorded yet", "ডিপ্লয় করা; এখনও প্রকাশ্য ঠিকানা নেই")
+                ? t(
+                    "Deployed; no public address recorded yet",
+                    "ডিপ্লয় করা; এখনও প্রকাশ্য ঠিকানা নেই",
+                  )
                 : CHANNEL_BLURB[p.channel][lang]}
             </span>
           </>
@@ -49,7 +71,12 @@ export function PlatformTiles({
         return (
           <li key={p.channel}>
             {onSelect ? (
-              <button type="button" aria-pressed={active} onClick={() => onSelect(active ? "all" : p.channel)} className={cls}>
+              <button
+                type="button"
+                aria-pressed={active}
+                onClick={() => onSelect(active ? "all" : p.channel)}
+                className={cls}
+              >
                 {body}
               </button>
             ) : (

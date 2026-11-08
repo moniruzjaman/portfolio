@@ -18,7 +18,7 @@ on:
 
 permissions:
   contents: write
-  actions: write   # lets this job dispatch deploy.yml (token-made pushes do not trigger it)
+  actions: write # lets this job dispatch deploy.yml (token-made pushes do not trigger it)
 
 concurrency:
   group: sync-repos

@@ -19,9 +19,6 @@ export default defineConfig({
     // index.html carries __SITE_URL__ so canonical/OG URLs match the real deployment.
     { name: "site-url", transformIndexHtml: (html) => html.replaceAll("__SITE_URL__", SITE_URL) },
   ],
-  server: {
-    allowedHosts: [".monkeycode-ai.live"],
-  },
   resolve: {
     alias: { "@": resolve(__dirname, "src") },
   },

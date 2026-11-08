@@ -1,20 +1,13 @@
 @import "tailwindcss";
 
 /* Self-hosted fonts (no request to Google; one origin; works on slow rural links).
-   Each package splits by unicode-range, so the browser fetches only the subsets a page
-   uses — e.g. Bangla glyphs download only on Bangla pages. */
-@import "@fontsource-variable/playfair-display/wght.css";
-@import "@fontsource-variable/playfair-display/wght-italic.css";
-@import "@fontsource-variable/dm-sans/wght.css";
-@import "@fontsource/dm-mono/400.css";
-@import "@fontsource/dm-mono/500.css";
-@import "@fontsource-variable/noto-sans-bengali/wght.css";
-@import "@fontsource-variable/noto-serif-bengali/wght.css";
+   The @font-face rules live in public/fonts/fonts.css (linked from index.html):
+   woff2 only, trimmed to the latin + bengali subsets the type stacks resolve to,
+   so no Cyrillic and no .woff fallback bytes are ever downloaded. */
 
 /* ══════════════════════════════════════════════════════════════
    DESIGN TOKENS — Abu Md. Moniruzjaman portfolio
-   Carried over unchanged from the Manus build. Values match
-   content/design-system.md; change one, change both.
+   Values match content/design-system.md; change one, change both.
    ══════════════════════════════════════════════════════════════ */
 
 @theme {
@@ -178,7 +171,10 @@
   }
 
   .u-card-lift {
-    transition: transform 220ms var(--ease-out-soft), box-shadow 220ms ease, border-color 220ms ease;
+    transition:
+      transform 220ms var(--ease-out-soft),
+      box-shadow 220ms ease,
+      border-color 220ms ease;
   }
 
   .u-card-lift:hover {

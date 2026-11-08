@@ -25,7 +25,15 @@ export default function Topics() {
   const matches = (r: Repo) => {
     if (liveOnly && !(r.live || r.pages)) return false;
     if (!needle) return true;
-    return [r.name, r.title, titleFor(r, "en"), titleFor(r, "bn"), summaryFor(r, "en"), summaryFor(r, "bn"), ...r.topics]
+    return [
+      r.name,
+      r.title,
+      titleFor(r, "en"),
+      titleFor(r, "bn"),
+      summaryFor(r, "en"),
+      summaryFor(r, "bn"),
+      ...r.topics,
+    ]
       .join(" ")
       .toLowerCase()
       .includes(needle);
@@ -65,7 +73,9 @@ export default function Topics() {
                       aria-pressed={selected}
                       onClick={() => setTopic(id === topic ? "all" : id)}
                       className={`min-h-11 shrink-0 rounded-full border px-4 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
-                        selected ? "border-forest-900 bg-forest-900 text-cream-100" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                        selected
+                          ? "border-forest-900 bg-forest-900 text-cream-100"
+                          : "border-forest-300 text-moss-500 hover:border-forest-500"
                       }`}
                     >
                       {label} · {count}
@@ -79,7 +89,9 @@ export default function Topics() {
                   aria-pressed={liveOnly}
                   onClick={() => setLiveOnly((v) => !v)}
                   className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-bold transition-colors ${
-                    liveOnly ? "border-gold-500 bg-gold-400/20 text-forest-900" : "border-forest-300 text-moss-500 hover:border-forest-500"
+                    liveOnly
+                      ? "border-gold-500 bg-gold-400/20 text-forest-900"
+                      : "border-forest-300 text-moss-500 hover:border-forest-500"
                   }`}
                 >
                   {t("Live apps only", "চালু অ্যাপ")}
@@ -96,14 +108,20 @@ export default function Topics() {
               </div>
             </div>
 
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500" aria-live="polite">
-              {total} {t("shown", "দেখানো হচ্ছে")} · {t("scanned", "যাচাই করা")} {meta.scanned} {t("repositories", "রিপোজিটরি")} ·{" "}
-              {t("synced", "সিঙ্ক")} {meta.generatedAt.slice(0, 10)}
+            <p
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500"
+              aria-live="polite"
+            >
+              {total} {t("shown", "দেখানো হচ্ছে")} · {t("scanned", "যাচাই করা")} {meta.scanned}{" "}
+              {t("repositories", "রিপোজিটরি")} · {t("synced", "সিঙ্ক")}{" "}
+              {meta.generatedAt.slice(0, 10)}
             </p>
           </div>
 
           <div className="mb-14">
-            <p className="u-eyebrow mb-4 text-gold-500">{t("Distribution — works per topic", "বিষয়ভিত্তিক কাজের সংখ্যা")}</p>
+            <p className="u-eyebrow mb-4 text-gold-500">
+              {t("Distribution — works per topic", "বিষয়ভিত্তিক কাজের সংখ্যা")}
+            </p>
             <div className="space-y-1.5">
               {ACTIVE_GROUPS.map((id) => {
                 const m = metaOf(id);
@@ -117,13 +135,25 @@ export default function Topics() {
                     onClick={() => setTopic(selected ? "all" : id)}
                     className="group grid min-h-11 w-full grid-cols-[minmax(9rem,14rem)_1fr_2.5rem] items-center gap-3 rounded-lg px-2 text-left transition-colors hover:bg-white sm:gap-4"
                   >
-                    <span className={`truncate text-sm font-bold ${selected ? "text-forest-900" : "text-moss-500 group-hover:text-forest-900"}`}>
+                    <span
+                      className={`truncate text-sm font-bold ${selected ? "text-forest-900" : "text-moss-500 group-hover:text-forest-900"}`}
+                    >
                       {t(m.en, m.bn)}
                     </span>
                     <span className="h-2 overflow-hidden rounded-full bg-cream-200">
-                      <span className="block h-full rounded-full transition-all duration-200" style={{ width: `${(st.count / maxCount) * 100}%`, backgroundColor: m.color }} />
+                      <span
+                        className="block h-full rounded-full transition-all duration-200"
+                        style={{
+                          width: `${(st.count / maxCount) * 100}%`,
+                          backgroundColor: m.color,
+                        }}
+                      />
                     </span>
-                    <span className={`text-right font-mono text-xs ${selected ? "font-bold text-forest-900" : "text-moss-500"}`}>{st.count}</span>
+                    <span
+                      className={`text-right font-mono text-xs ${selected ? "font-bold text-forest-900" : "text-moss-500"}`}
+                    >
+                      {st.count}
+                    </span>
                   </button>
                 );
               })}
@@ -143,8 +173,12 @@ export default function Topics() {
               <section key={id} id={`topic-${id}`} className="mb-16 scroll-mt-28">
                 <div className="mb-6 flex flex-col gap-3 border-b border-forest-300 pb-5 lg:flex-row lg:items-end lg:justify-between">
                   <div className="max-w-2xl">
-                    <h2 className="font-serif text-2xl font-black tracking-[-0.01em] text-forest-900">{t(m.en, m.bn)}</h2>
-                    <p className="mt-2 text-sm leading-relaxed text-moss-600">{t(m.blurbEn, m.blurbBn)}</p>
+                    <h2 className="font-serif text-2xl font-black tracking-[-0.01em] text-forest-900">
+                      {t(m.en, m.bn)}
+                    </h2>
+                    <p className="mt-2 text-sm leading-relaxed text-moss-600">
+                      {t(m.blurbEn, m.blurbBn)}
+                    </p>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
                     <Chip color={m.color}>
@@ -158,7 +192,9 @@ export default function Topics() {
 
                 {topicNotes.length > 0 && (
                   <div className="mb-6">
-                    <p className="u-eyebrow mb-2 text-moss-400">{t("Research notes", "গবেষণা নোট")}</p>
+                    <p className="u-eyebrow mb-2 text-moss-400">
+                      {t("Research notes", "গবেষণা নোট")}
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {topicNotes.map((n) => (
                         <Link
@@ -166,7 +202,8 @@ export default function Topics() {
                           href={`/notes/${n.slug}`}
                           className="inline-flex min-h-11 items-center rounded-full border border-forest-300 bg-white px-4 text-sm font-bold text-forest-600 transition-colors hover:border-forest-500 hover:text-forest-900"
                         >
-                          {NOTE_TYPE_LABEL[n.type][lang]} · {lang === "bn" && n.titleBn ? n.titleBn : n.title}
+                          {NOTE_TYPE_LABEL[n.type][lang]} ·{" "}
+                          {lang === "bn" && n.titleBn ? n.titleBn : n.title}
                         </Link>
                       ))}
                     </div>
@@ -182,7 +219,11 @@ export default function Topics() {
             );
           })}
 
-          {total === 0 && <p className="py-20 text-center text-moss-500">{t("No works match those filters.", "এই ফিল্টারে কিছু মেলেনি।")}</p>}
+          {total === 0 && (
+            <p className="py-20 text-center text-moss-500">
+              {t("No works match those filters.", "এই ফিল্টারে কিছু মেলেনি।")}
+            </p>
+          )}
         </div>
       </section>
     </>

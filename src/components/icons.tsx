@@ -20,18 +20,41 @@ export function GithubMark({ size = 16, className = "" }: { size?: number; class
 }
 
 type IconProps = { size?: number; className?: string };
-const Mark = ({ size = 16, className = "", d, evenodd }: IconProps & { d: string; evenodd?: boolean }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true" focusable="false">
+const Mark = ({
+  size = 16,
+  className = "",
+  d,
+  evenodd,
+}: IconProps & { d: string; evenodd?: boolean }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+    focusable="false"
+  >
     <path d={d} fillRule={evenodd ? "evenodd" : undefined} />
   </svg>
 );
 
 export const LinkedinMark = (p: IconProps) => (
-  <Mark {...p} d="M4.5 9h3v11h-3zM6 4a1.75 1.75 0 1 1 0 3.5A1.75 1.75 0 0 1 6 4Zm4 5h2.9v1.5c.5-.9 1.7-1.7 3.4-1.7 3.2 0 3.7 2.1 3.7 4.8V20h-3v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20h-3Z" />
+  <Mark
+    {...p}
+    d="M4.5 9h3v11h-3zM6 4a1.75 1.75 0 1 1 0 3.5A1.75 1.75 0 0 1 6 4Zm4 5h2.9v1.5c.5-.9 1.7-1.7 3.4-1.7 3.2 0 3.7 2.1 3.7 4.8V20h-3v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20h-3Z"
+  />
 );
 export const FacebookMark = (p: IconProps) => (
-  <Mark {...p} d="M14 8.5V6.9c0-.7.2-1.1 1.2-1.1h1.3V3.1C16.2 3.1 15.4 3 14.5 3 12.4 3 11 4.3 11 6.6v1.9H8.5v2.9H11V21h3v-9.6h2.3l.4-2.9H14Z" />
+  <Mark
+    {...p}
+    d="M14 8.5V6.9c0-.7.2-1.1 1.2-1.1h1.3V3.1C16.2 3.1 15.4 3 14.5 3 12.4 3 11 4.3 11 6.6v1.9H8.5v2.9H11V21h3v-9.6h2.3l.4-2.9H14Z"
+  />
 );
 export const YoutubeMark = (p: IconProps) => (
-  <Mark {...p} evenodd d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3Z" />
+  <Mark
+    {...p}
+    evenodd
+    d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3Z"
+  />
 );

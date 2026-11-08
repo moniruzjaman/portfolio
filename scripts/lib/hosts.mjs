@@ -41,7 +41,10 @@ export const hostAllowed = (host) =>
 export const urlAllowed = (u) => {
   try {
     const url = new URL(u);
-    return (url.protocol === "https:" || url.protocol === "http:") && hostAllowed(url.hostname.toLowerCase());
+    return (
+      (url.protocol === "https:" || url.protocol === "http:") &&
+      hostAllowed(url.hostname.toLowerCase())
+    );
   } catch {
     return false;
   }

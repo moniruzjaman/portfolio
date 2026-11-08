@@ -11,10 +11,34 @@ const handleOf = (url: string): string =>
 
 /** The three professional profiles surfaced across hero / Connect / footer. */
 export const socials = [
-  { key: "github", label: "GitHub", href: author.github, handle: handleOf(author.github), Icon: GithubMark },
-  { key: "linkedin", label: "LinkedIn", href: author.linkedin, handle: handleOf(author.linkedin), Icon: LinkedinMark },
-  { key: "youtube", label: "YouTube", href: author.youtube, handle: handleOf(author.youtube), Icon: YoutubeMark },
-  { key: "facebook", label: "Facebook", href: author.facebook, handle: handleOf(author.facebook), Icon: FacebookMark },
+  {
+    key: "github",
+    label: "GitHub",
+    href: author.github,
+    handle: handleOf(author.github),
+    Icon: GithubMark,
+  },
+  {
+    key: "linkedin",
+    label: "LinkedIn",
+    href: author.linkedin,
+    handle: handleOf(author.linkedin),
+    Icon: LinkedinMark,
+  },
+  {
+    key: "youtube",
+    label: "YouTube",
+    href: author.youtube,
+    handle: handleOf(author.youtube),
+    Icon: YoutubeMark,
+  },
+  {
+    key: "facebook",
+    label: "Facebook",
+    href: author.facebook,
+    handle: handleOf(author.facebook),
+    Icon: FacebookMark,
+  },
 ] as const;
 
 /** The three requested social profiles (no GitHub) — used by "Connect & Follow". */

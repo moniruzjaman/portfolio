@@ -19,7 +19,11 @@ export type LibData = {
   entries: Record<string, Partial<LibCuration>>;
 };
 
-export const norm = (s: string): string => s.replace(/[_\s]+/g, " ").trim().toLowerCase();
+export const norm = (s: string): string =>
+  s
+    .replace(/[_\s]+/g, " ")
+    .trim()
+    .toLowerCase();
 
 export function resolveShelf(data: LibData, id: string, path: string[]): LibCuration {
   const top = path[0] ? norm(path[0]) : "";

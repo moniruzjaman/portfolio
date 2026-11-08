@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { brandOf, primaryEndpoint, relativeDate, CHANNEL_LABEL, type Repo } from "@/lib/data";
-import { AUDIENCE_LABEL, audiencesOf, summaryFor, titleFor, typeOf, TYPE_LABEL } from "@/lib/curation";
+import {
+  AUDIENCE_LABEL,
+  audiencesOf,
+  summaryFor,
+  titleFor,
+  typeOf,
+  TYPE_LABEL,
+} from "@/lib/curation";
 import type { Brand } from "@/lib/brand";
 import { Chip } from "@/components/Section";
 import { useI18n } from "@/lib/i18n";
@@ -12,7 +19,15 @@ import { useI18n } from "@/lib/i18n";
  * falls back to a monogram if there is none or it fails to load. The <img> is
  * decorative (alt="") because the card's title already names the app.
  */
-export function BrandMark({ brand, size = 44, radius = 12 }: { brand: Brand; size?: number; radius?: number }) {
+export function BrandMark({
+  brand,
+  size = 44,
+  radius = 12,
+}: {
+  brand: Brand;
+  size?: number;
+  radius?: number;
+}) {
   const [failed, setFailed] = useState(false);
   const showIcon = brand.icon && !failed;
   return (
@@ -27,9 +42,15 @@ export function BrandMark({ brand, size = 44, radius = 12 }: { brand: Brand; siz
         // A real icon sits on white so a transparent PNG/SVG is legible on any brand colour.
         // The tint must move AWAY from the text colour, never toward it: white text gets a dark
         // overlay, dark text a light one. (A white overlay under white text lowered contrast.)
-        background: showIcon ? "#ffffff" : brand.fg === "#ffffff" ? "rgba(0,0,0,0.22)" : "rgba(255,255,255,0.35)",
+        background: showIcon
+          ? "#ffffff"
+          : brand.fg === "#ffffff"
+            ? "rgba(0,0,0,0.22)"
+            : "rgba(255,255,255,0.35)",
         color: brand.fg,
-        boxShadow: showIcon ? "0 0 0 1px rgba(255,255,255,0.35)" : "inset 0 0 0 1px rgba(255,255,255,0.28)",
+        boxShadow: showIcon
+          ? "0 0 0 1px rgba(255,255,255,0.35)"
+          : "inset 0 0 0 1px rgba(255,255,255,0.28)",
       }}
     >
       {showIcon ? (
@@ -68,7 +89,10 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
       href={`/works/${repo.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-forest-400 bg-white transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.1)]"
     >
-      <div className="flex items-center gap-3 px-5 py-4" style={{ background: brand.color, color: brand.fg }}>
+      <div
+        className="flex items-center gap-3 px-5 py-4"
+        style={{ background: brand.color, color: brand.fg }}
+      >
         <BrandMark brand={brand} size={compact ? 38 : 44} />
         <span className="min-w-0 flex-1">
           <span className="block truncate font-mono text-[10px] uppercase tracking-[0.14em]">
@@ -86,9 +110,13 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">{titleFor(repo, lang)}</h3>
+        <h3 className="font-serif text-lg font-black leading-snug text-forest-900">
+          {titleFor(repo, lang)}
+        </h3>
         {summary && (
-          <p className={`mt-2 flex-1 text-sm leading-relaxed text-moss-600 ${compact ? "line-clamp-2" : "line-clamp-3"}`}>
+          <p
+            className={`mt-2 flex-1 text-sm leading-relaxed text-moss-600 ${compact ? "line-clamp-2" : "line-clamp-3"}`}
+          >
             {summary}
           </p>
         )}
@@ -102,7 +130,12 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
         <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
           <span>{TYPE_LABEL[typeOf(repo)][lang]}</span>
           <span className="flex items-center gap-1.5">
-            {ep && <span className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400" aria-label={lang === "bn" ? "চালু" : "live"} />}
+            {ep && (
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-forest-400"
+                aria-label={lang === "bn" ? "চালু" : "live"}
+              />
+            )}
             {relativeDate(repo.pushedAt)}
           </span>
         </div>

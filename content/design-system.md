@@ -1,6 +1,6 @@
 # Design System — Knowledge Hub
 
-The rebuild of `ideas.md`. The original was 91 lines of design *philosophy* — good
+The rebuild of `ideas.md`. The original was 91 lines of design _philosophy_ — good
 instincts, but not a system: no tokens, no component specs, no accessibility
 contract, no content rules. This document describes the site as actually built.
 Token values here are duplicated in `src/index.css` under `@theme`; if one changes,
@@ -25,12 +25,12 @@ the difference, and they are the point.
 Ordered by who actually needs what. Design decisions resolve conflicts toward the
 top of this list.
 
-| Tier | Who | What they need | Consequence |
-|---|---|---|---|
-| 1 | **Extension officers** (DAE field staff) | Fast, low-bandwidth, Bangla-capable, works on a phone | Bangla parity, no JS-heavy interactions, 3G budgets |
-| 2 | **Farmers** | Clear guidance they can act on | Plain language, no jargon, honest about limits |
-| 3 | **Developers / partners** | Ways in — source, deployment, what it does | Public repos, live links, channel labels |
-| 4 | **Institutions** | Credibility | CV, publications, cadre, affiliations |
+| Tier | Who                                      | What they need                                        | Consequence                                         |
+| ---- | ---------------------------------------- | ----------------------------------------------------- | --------------------------------------------------- |
+| 1    | **Extension officers** (DAE field staff) | Fast, low-bandwidth, Bangla-capable, works on a phone | Bangla parity, no JS-heavy interactions, 3G budgets |
+| 2    | **Farmers**                              | Clear guidance they can act on                        | Plain language, no jargon, honest about limits      |
+| 3    | **Developers / partners**                | Ways in — source, deployment, what it does            | Public repos, live links, channel labels            |
+| 4    | **Institutions**                         | Credibility                                           | CV, publications, cadre, affiliations               |
 
 **Design movement.** Contemporary minimalism with agricultural heritage. Clean
 digital structure, grounded in earth-adjacent colour and field-document motifs.
@@ -45,24 +45,24 @@ WCAG 2.1.
 
 ### Brand — forest green (authority, agriculture)
 
-| Token | Hex | Use |
-|---|---|---|
+| Token        | Hex       | Use                            |
+| ------------ | --------- | ------------------------------ |
 | `forest-900` | `#0a2e1a` | Primary text, dark panels, nav |
-| `forest-800` | `#103c25` | Graph canvas, contact section |
-| `forest-700` | `#164a2d` | Graph centre node |
-| `forest-600` | `#1a5c32` | Primary hover |
+| `forest-800` | `#103c25` | Graph canvas, contact section  |
+| `forest-700` | `#164a2d` | Graph centre node              |
+| `forest-600` | `#1a5c32` | Primary hover                  |
 | `forest-500` | `#2d8a4e` | Accent text on cream (4.6:1 ✓) |
-| `forest-400` | `#4ab870` | Graph edges, live indicators |
-| `forest-200` | `#a8d8b0` | Text on dark (9.1:1 ✓) |
+| `forest-400` | `#4ab870` | Graph edges, live indicators   |
+| `forest-200` | `#a8d8b0` | Text on dark (9.1:1 ✓)         |
 
 ### Accent — gold (innovation, achievement)
 
-| Token | Hex | Use |
-|---|---|---|
-| `gold-600` | `#a8861d` | On cream, low emphasis (4.5:1 ✓) |
+| Token      | Hex       | Use                                             |
+| ---------- | --------- | ----------------------------------------------- |
+| `gold-600` | `#a8861d` | On cream, low emphasis (4.5:1 ✓)                |
 | `gold-500` | `#c09a24` | Eyebrows, mono labels (4.1:1 — decorative only) |
-| `gold-400` | `#c9a227` | On dark, borders, focus ring (10.4:1 ✓) |
-| `gold-300` | `#e3ba45` | Graph edge on dark |
+| `gold-400` | `#c9a227` | On dark, borders, focus ring (10.4:1 ✓)         |
+| `gold-300` | `#e3ba45` | Graph edge on dark                              |
 
 > `gold-500` sits at 4.1:1 on cream — below AA for body text. It is used **only**
 > for uppercase mono labels and numerals, never for running prose. If you need a
@@ -70,20 +70,20 @@ WCAG 2.1.
 
 ### Neutral — cream (paper, agricultural documentation)
 
-| Token | Hex | Use |
-|---|---|---|
-| `cream-50` | `#fdfbf7` | Footer, note cards |
-| `cream-100` | `#f7f3ec` | Page background |
-| `cream-200` | `#efe8dc` | Raised surfaces |
-| `cream-300` | `#dce8dc` | Borders |
-| `cream-400` | `#d6e4d7` | Card borders |
+| Token       | Hex       | Use                |
+| ----------- | --------- | ------------------ |
+| `cream-50`  | `#fdfbf7` | Footer, note cards |
+| `cream-100` | `#f7f3ec` | Page background    |
+| `cream-200` | `#efe8dc` | Raised surfaces    |
+| `cream-300` | `#dce8dc` | Borders            |
+| `cream-400` | `#d6e4d7` | Card borders       |
 
 ### Text
 
-| Token | Hex | On | Ratio |
-|---|---|---|---|
-| `moss-600` | `#6b826e` | cream | 4.8:1 ✓ |
-| `moss-500` | `#527059` | cream | 6.1:1 ✓ |
+| Token      | Hex       | On    | Ratio                       |
+| ---------- | --------- | ----- | --------------------------- |
+| `moss-600` | `#6b826e` | cream | 4.8:1 ✓                     |
+| `moss-500` | `#527059` | cream | 6.1:1 ✓                     |
 | `moss-400` | `#7a9b7c` | cream | 3.2:1 — **decorative only** |
 
 `moss-400` is used for metadata and de-emphasised captions. It is never the sole
@@ -93,25 +93,25 @@ carrier of meaning.
 
 ## 3. Typography
 
-| Role | Face | Fallback chain |
-|---|---|---|
-| Display | Playfair Display | Noto Serif Bengali → Georgia → serif |
-| Body | DM Sans | Noto Sans Bengali → system-ui → sans-serif |
-| Mono / labels | DM Mono | ui-monospace → SFMono-Regular → monospace |
-| Bangla display | Noto Serif Bengali | serif |
-| Bangla body | Noto Sans Bengali | sans-serif |
+| Role           | Face               | Fallback chain                             |
+| -------------- | ------------------ | ------------------------------------------ |
+| Display        | Playfair Display   | Noto Serif Bengali → Georgia → serif       |
+| Body           | DM Sans            | Noto Sans Bengali → system-ui → sans-serif |
+| Mono / labels  | DM Mono            | ui-monospace → SFMono-Regular → monospace  |
+| Bangla display | Noto Serif Bengali | serif                                      |
+| Bangla body    | Noto Sans Bengali  | sans-serif                                 |
 
 ### Scale
 
-| Element | Size | Weight | Tracking |
-|---|---|---|---|
-| H1 (hero) | `clamp(3rem, 8vw, 6.2rem)` | 900 | -0.04em |
-| H1 (page) | `clamp(2.5rem, 5vw, 3.75rem)` | 900 | -0.02em |
-| H2 | `clamp(2rem, 4vw, 3rem)` | 700–900 | -0.02em |
-| H3 | `1.25–1.5rem` | 700–900 | — |
-| Body | `1rem` / `1.05rem` | 400 | — |
-| Lead | `1.125–1.25rem` | 400 | — |
-| Label / eyebrow | `0.6875rem` uppercase | 700 | 0.22em |
+| Element         | Size                          | Weight  | Tracking |
+| --------------- | ----------------------------- | ------- | -------- |
+| H1 (hero)       | `clamp(3rem, 8vw, 6.2rem)`    | 900     | -0.04em  |
+| H1 (page)       | `clamp(2.5rem, 5vw, 3.75rem)` | 900     | -0.02em  |
+| H2              | `clamp(2rem, 4vw, 3rem)`      | 700–900 | -0.02em  |
+| H3              | `1.25–1.5rem`                 | 700–900 | —        |
+| Body            | `1rem` / `1.05rem`            | 400     | —        |
+| Lead            | `1.125–1.25rem`               | 400     | —        |
+| Label / eyebrow | `0.6875rem` uppercase         | 700     | 0.22em   |
 
 ### Bangla rules
 
@@ -141,21 +141,25 @@ Bangla is a **first-class** language here, not a translation afterthought.
 ## 5. Components
 
 ### Nav
+
 Fixed, transparent until `scrollY > 24`, then cream at 90% with backdrop blur and
 a bottom border. Monogram + wordmark left, four links centre, search and language
 toggle right. Below `md` the links collapse to a disclosure panel.
 
 ### Hero
+
 Asymmetric split. Left: role badge, name, H1, lead paragraph, two CTAs, live
 stat row. Right: the "field intelligence" graph panel.
 
 ### KnowledgeGraph
+
 The signature element. Dark `forest-800` canvas, dotted grid, four absolutely
 positioned satellite nodes connected to a centred expertise node by dashed SVG
 edges. Node geometry is percentage-based, so it scales without a breakpoint.
 Footer strip shows the count of live-linked repositories.
 
 ### AppCard (was RepoCard)
+
 Bordered white card with a colour band on top carrying the app's mark and address.
 The band is the app's own theme colour when its PWA manifest / `<head>` publishes
 one (`brand.derived === false`), otherwise a deterministic colour from
@@ -167,6 +171,7 @@ language + relative-push footer. Whole card is one link — no nested interactiv
 elements, which keeps the tab order clean.
 
 ### PlatformTiles
+
 Four tiles (krishiai.live · Vercel · Cloudflare · GitHub Pages) showing apps and
 addresses per channel — computed from the data. On `/works` they are the channel
 filter (`aria-pressed`); on Home they link to `/works`. An "address" is host **and**
@@ -174,15 +179,18 @@ path: every GitHub Pages site shares `moniruzjaman.github.io`, so counting hosts
 collapses ~22 sites into one.
 
 ### Library / DocPreview
+
 `/library` lists files from Google Drive. Preview opens in a native `<dialog>`
 (focus trap, Esc, focus return for free). The Drive frame is mounted only while
 open, so nothing is requested from Google until a visitor asks. Frames are
 sandboxed. Folder browsing (`embeddedfolderview`) is likewise click-to-load.
 
 ### NoteCard
+
 Cream surface, type chip + year, serif title, summary clamp, reading time.
 
 ### Timeline
+
 Left border with dots; current role dot is filled `forest-500`, earlier roles
 inherit the border colour.
 
@@ -190,12 +198,12 @@ inherit the border colour.
 
 ## 6. Motion
 
-| Interaction | Duration | Easing |
-|---|---|---|
-| Hover lift | 200ms | `cubic-bezier(0.22, 1, 0.36, 1)` |
-| Colour / opacity | 200ms | ease-out |
-| Nav background | 300ms | ease |
-| Section reveal | 600ms | ease-out |
+| Interaction      | Duration | Easing                           |
+| ---------------- | -------- | -------------------------------- |
+| Hover lift       | 200ms    | `cubic-bezier(0.22, 1, 0.36, 1)` |
+| Colour / opacity | 200ms    | ease-out                         |
+| Nav background   | 300ms    | ease                             |
+| Section reveal   | 600ms    | ease-out                         |
 
 **Contract:** animate only meaningful state changes. A decorative loop is noise.
 
@@ -210,10 +218,10 @@ animation to 0.01ms and disabling smooth scroll. Not "shortened" — removed.
 
 **Any number on this site must be traceable to a source.** Two categories:
 
-| Claim type | Rule |
-|---|---|
-| **Computed** (repo counts, live-deployment counts, note counts, reading time) | Derived from `repos.generated.json` / the notes array at runtime. **Never typed by hand.** |
-| **Transcribed** (years of service, CGPA, posting count, dates) | Taken from the author's own record in `src/lib/author.ts`. **Must be confirmed before public launch.** |
+| Claim type                                                                    | Rule                                                                                                   |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Computed** (repo counts, live-deployment counts, note counts, reading time) | Derived from `repos.generated.json` / the notes array at runtime. **Never typed by hand.**             |
+| **Transcribed** (years of service, CGPA, posting count, dates)                | Taken from the author's own record in `src/lib/author.ts`. **Must be confirmed before public launch.** |
 
 This exists because the previous build contradicted itself: it claimed "9 years"
 where the CV says 8+, "6+ digital apps" against 39 real repositories, and
@@ -228,7 +236,7 @@ repositories, and optionally `GOOGLE_API_KEY` / `GOOGLE_SERVICE_ACCOUNT_JSON`
 (repository secrets) for the Drive library — and written to static JSON. The
 credential stays on the runner; the browser only reads the JSON.
 
-*Revised in v1.1.* The original wording ("no credentials exist anywhere in this
+_Revised in v1.1._ The original wording ("no credentials exist anywhere in this
 project") would have forbidden the Drive sync, so it was revisited deliberately, as
 this section always required. What did not change: nothing secret reaches the
 browser. What got stricter: the gate now also scans generated `.json` under `src/`
@@ -236,6 +244,7 @@ and the **built output** for key and private-key shapes (it previously skipped b
 and `scripts/__tests__` proves the Drive sync never writes its key to disk.
 
 ### Drive visibility is fail-closed
+
 Only files publicly readable ("Anyone with the link") are ever indexed. With an API
 key that is true by construction (the key is anonymous). With a service account the
 sync checks each file's permissions and **skips** anything not public, or whose
@@ -268,18 +277,18 @@ Listing a private file's title on a public site is the failure this prevents.
 
 Target: **WCAG 2.1 AA**.
 
-| Area | Rule |
-|---|---|
-| Focus | `:focus-visible` → 3px `gold-400` outline, 2px offset. Programmatic heading focus (route change) is `outline-none` — it is a screen-reader handoff, not a keyboard stop |
-| Skip link | First focusable element, visible on focus, targets `#main` |
-| Headings | One `h1` per page, no level skipped. Route change moves focus to it |
-| Route change | Scrolls to top **and** focuses the `h1` so screen-reader users are not left at the top of an unchanged-sounding page |
-| Keyboard | Graph selector is a `tablist` with arrow-key navigation. Search is ⌘K / Ctrl+K with ↑ ↓ ↵ Esc |
-| Touch targets | Minimum 44×44px for all interactive elements |
-| Language | `<html lang>` updates on toggle so screen readers switch voice |
-| Motion | `prefers-reduced-motion` collapses all animation |
-| Contrast | Body text ≥ 4.5:1. `gold-500` and `moss-400` are decorative-only tokens |
-| Colour | Never the sole carrier of meaning — channel labels are always text |
+| Area          | Rule                                                                                                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Focus         | `:focus-visible` → 3px `gold-400` outline, 2px offset. Programmatic heading focus (route change) is `outline-none` — it is a screen-reader handoff, not a keyboard stop |
+| Skip link     | First focusable element, visible on focus, targets `#main`                                                                                                              |
+| Headings      | One `h1` per page, no level skipped. Route change moves focus to it                                                                                                     |
+| Route change  | Scrolls to top **and** focuses the `h1` so screen-reader users are not left at the top of an unchanged-sounding page                                                    |
+| Keyboard      | Graph selector is a `tablist` with arrow-key navigation. Search is ⌘K / Ctrl+K with ↑ ↓ ↵ Esc                                                                           |
+| Touch targets | Minimum 44×44px for all interactive elements                                                                                                                            |
+| Language      | `<html lang>` updates on toggle so screen readers switch voice                                                                                                          |
+| Motion        | `prefers-reduced-motion` collapses all animation                                                                                                                        |
+| Contrast      | Body text ≥ 4.5:1. `gold-500` and `moss-400` are decorative-only tokens                                                                                                 |
+| Colour        | Never the sole carrier of meaning — channel labels are always text                                                                                                      |
 
 ---
 
@@ -287,17 +296,17 @@ Target: **WCAG 2.1 AA**.
 
 Things that must not appear, and why.
 
-| ✗ | Why |
-|---|---|
-| `monir@example.com` or any placeholder contact | Shipped in the previous build. Use `src/lib/author.ts` |
-| A hand-typed repository list | Defeats auto-inclusion; drifts within a week |
-| A silently-truncated sync | A 403 misread as "empty repo" once dropped 11 real projects. The sync script now aborts instead |
-| Treating any `CNAME` as "our domain" | `plantation-tracker-app` has a CNAME pointing at surge.sh |
-| Pagefind on this build | It indexes built HTML; a Vite SPA's `index.html` is an empty `<div id="root">`. It would index nothing |
-| Focus rings on programmatic heading focus | Visible gold box on first paint of every page |
-| Rendering each source line as its own paragraph | Markdown is soft-wrapped; this shatters sentences with paragraph gaps |
-| Inventing a "Blockchain Supply Chains" deliverable | It is a proposal, not shipped work. Relabelled **Policy & Traceability** |
-| Adding an API key because a feature would be easier | The build fails. That is the point of the gate |
+| ✗                                                   | Why                                                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `monir@example.com` or any placeholder contact      | Shipped in the previous build. Use `src/lib/author.ts`                                                 |
+| A hand-typed repository list                        | Defeats auto-inclusion; drifts within a week                                                           |
+| A silently-truncated sync                           | A 403 misread as "empty repo" once dropped 11 real projects. The sync script now aborts instead        |
+| Treating any `CNAME` as "our domain"                | `plantation-tracker-app` has a CNAME pointing at surge.sh                                              |
+| Pagefind on this build                              | It indexes built HTML; a Vite SPA's `index.html` is an empty `<div id="root">`. It would index nothing |
+| Focus rings on programmatic heading focus           | Visible gold box on first paint of every page                                                          |
+| Rendering each source line as its own paragraph     | Markdown is soft-wrapped; this shatters sentences with paragraph gaps                                  |
+| Inventing a "Blockchain Supply Chains" deliverable  | It is a proposal, not shipped work. Relabelled **Policy & Traceability**                               |
+| Adding an API key because a feature would be easier | The build fails. That is the point of the gate                                                         |
 
 ---
 
@@ -336,20 +345,20 @@ Things that must not appear, and why.
 
 The audit found failures no screenshot showed. Cause was the palette, not scattered mistakes:
 
-| Token | Was | Now | Contrast on cream (was → now) |
-| --- | --- | --- | --- |
-| `moss-400` | `#7a9b7c` | `#566e58` | 2.5 → 4.6 |
-| `moss-500` | `#527059` | `#475f4d` | kept a distinct tone after 400 moved |
-| `moss-600` | `#6b826e` | `#596d5c` | 3.4 → 4.6 (was *lighter* than 500: scale inverted) |
-| `forest-500` | `#2d8a4e` | `#267643` | 3.6 → 4.6 |
-| `gold-500` | `#c09a24` | `#7e6517` | 2.2 → 4.6 |
-| `gold-600` | `#a8861d` | `#6a530f` | 2.8 → darker than 500 |
+| Token        | Was       | Now       | Contrast on cream (was → now)                      |
+| ------------ | --------- | --------- | -------------------------------------------------- |
+| `moss-400`   | `#7a9b7c` | `#566e58` | 2.5 → 4.6                                          |
+| `moss-500`   | `#527059` | `#475f4d` | kept a distinct tone after 400 moved               |
+| `moss-600`   | `#6b826e` | `#596d5c` | 3.4 → 4.6 (was _lighter_ than 500: scale inverted) |
+| `forest-500` | `#2d8a4e` | `#267643` | 3.6 → 4.6                                          |
+| `gold-500`   | `#c09a24` | `#7e6517` | 2.2 → 4.6                                          |
+| `gold-600`   | `#a8861d` | `#6a530f` | 2.8 → darker than 500                              |
 
 - **Rule:** `gold-300/400` are for text on dark; `gold-500/600` for text on light. Using
   `gold-400` on `forest-800` at 11px measured 4.3:1 — use `gold-300` there.
 - **Brand bands:** an app's own theme colour is nudged darker (same hue) by `fitBand`
   when neither white nor dark text reaches 5:1 — typical app greens sit in that dead
-  zone. The monogram tint moves *away* from the text colour (a white tint under white
+  zone. The monogram tint moves _away_ from the text colour (a white tint under white
   text lowered contrast). Property-tested over 936 colours.
 - **Label in name (WCAG 2.5.3):** an `aria-label` must contain the visible text. Fixed
   on the logo (real whitespace between the two spans), the language toggle (visible
@@ -390,4 +399,3 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   rendered cards, then locked in with tests.
 - Drive's in-page player handles MP4 but is not guaranteed for every codec/size; "Open in
   Drive" and "Download" are always offered next to the preview.
-

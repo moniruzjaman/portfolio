@@ -3,10 +3,10 @@ import { ExternalLink, GitBranch, Leaf, MapPin, ShieldCheck, Sparkles, Sprout } 
 import { repos, type Repo } from "@/lib/data";
 
 /**
- * Carried over from the Manus build — the SVG edge system, the node geometry,
- * the palette. The change is that `repoSignal` and the supporting links are no
- * longer hardcoded to plantation-tracker: they resolve against the generated
- * repo list, so a graph is a live view of what actually shipped.
+ * The SVG edge system, the node geometry and the palette are unchanged from
+ * the original build. The change is that `repoSignal` and the supporting links
+ * are no longer hardcoded to plantation-tracker: they resolve against the
+ * generated repo list, so a graph is a live view of what actually shipped.
  */
 
 export type GraphIcon = "leaf" | "map" | "shield" | "branch" | "spark" | "sprout";
@@ -104,7 +104,9 @@ export function KnowledgeGraph({
         <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-full bg-gold-400 text-forest-900">
           <Leaf size={18} strokeWidth={2.5} />
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-forest-200">Expertise</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-forest-200">
+          Expertise
+        </span>
         <strong className="mt-1 text-sm leading-tight text-white">{graph.title}</strong>
       </div>
 
@@ -159,10 +161,18 @@ export const expertiseGraphs: ExpertiseGraph[] = [
     color: "var(--color-forest-400)",
     match: ["cabi", "diagnosis", "plant-detective", "crop-diagnosis", "plantwise"],
     nodes: [
-      { label: "Field observation", detail: "Structured nursery and seedling records", icon: "leaf" },
+      {
+        label: "Field observation",
+        detail: "Structured nursery and seedling records",
+        icon: "leaf",
+      },
       { label: "Geo context", detail: "Coordinates and reverse-geocoded address", icon: "map" },
       { label: "Review trail", detail: "Editable records for follow-up checks", icon: "shield" },
-      { label: "Diagnosis loop", detail: "From evidence to an actionable next step", icon: "branch" },
+      {
+        label: "Diagnosis loop",
+        detail: "From evidence to an actionable next step",
+        icon: "branch",
+      },
     ],
   },
   {
@@ -175,9 +185,21 @@ export const expertiseGraphs: ExpertiseGraph[] = [
     color: "var(--color-gold-300)",
     match: ["pesticide", "ipm", "gap-brinjal", "biopesticide", "crop-protection"],
     nodes: [
-      { label: "Plant categories", detail: "Fruit, forest, and medicinal groupings", icon: "sprout" },
-      { label: "Boundary check", detail: "Upazila polygon validation for GPS entries", icon: "shield" },
-      { label: "Signal quality", detail: "Flags anomalies without deleting evidence", icon: "spark" },
+      {
+        label: "Plant categories",
+        detail: "Fruit, forest, and medicinal groupings",
+        icon: "sprout",
+      },
+      {
+        label: "Boundary check",
+        detail: "Upazila polygon validation for GPS entries",
+        icon: "shield",
+      },
+      {
+        label: "Signal quality",
+        detail: "Flags anomalies without deleting evidence",
+        icon: "spark",
+      },
       { label: "Safer action", detail: "Review before intervention or escalation", icon: "branch" },
     ],
   },
@@ -207,10 +229,22 @@ export const expertiseGraphs: ExpertiseGraph[] = [
     color: "var(--color-gold-400)",
     match: ["game", "education", "wisdom", "youtube", "school", "training"],
     nodes: [
-      { label: "Field-ready form", detail: "Mobile collection in low-connectivity areas", icon: "sprout" },
+      {
+        label: "Field-ready form",
+        detail: "Mobile collection in low-connectivity areas",
+        icon: "sprout",
+      },
       { label: "Local memory", detail: "Browser storage keeps entries available", icon: "shield" },
-      { label: "Sync moment", detail: "Automatic sync when a network is available", icon: "branch" },
-      { label: "Shared learning", detail: "Data becomes a common operational language", icon: "spark" },
+      {
+        label: "Sync moment",
+        detail: "Automatic sync when a network is available",
+        icon: "branch",
+      },
+      {
+        label: "Shared learning",
+        detail: "Data becomes a common operational language",
+        icon: "spark",
+      },
     ],
   },
   {

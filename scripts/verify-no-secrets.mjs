@@ -170,7 +170,9 @@ for await (const file of walk(DIST)) {
 if (advisories.size) {
   console.log(`\n  advisory — non-requested hosts found in the bundle (not fetched):`);
   for (const h of [...advisories].sort().slice(0, 12)) console.log(`    ${h}`);
-  console.log(`  If any of these should be requested, it belongs in ALLOWED_HOSTS (scripts/lib/hosts.mjs).`);
+  console.log(
+    `  If any of these should be requested, it belongs in ALLOWED_HOSTS (scripts/lib/hosts.mjs).`,
+  );
 }
 
 if (problems.length) {

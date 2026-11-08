@@ -46,7 +46,9 @@ export default function Expertise() {
 
             <div className="rounded-[1.5rem] border border-forest-300 bg-white p-7">
               <p className="u-eyebrow text-gold-500">{active.eyebrow}</p>
-              <h2 className="mt-3 font-serif text-3xl font-black text-forest-900">{active.title}</h2>
+              <h2 className="mt-3 font-serif text-3xl font-black text-forest-900">
+                {active.title}
+              </h2>
               <p className="mt-1 text-sm font-medium text-moss-400">{active.bangla}</p>
               <p className="mt-5 text-sm leading-relaxed text-moss-600">{active.summary}</p>
 
@@ -56,7 +58,11 @@ export default function Expertise() {
                 </p>
                 <ul className="space-y-1.5">
                   {repos
-                    .filter((r) => active.match.some((m) => [r.name, r.title, r.description ?? ""].join(" ").toLowerCase().includes(m)))
+                    .filter((r) =>
+                      active.match.some((m) =>
+                        [r.name, r.title, r.description ?? ""].join(" ").toLowerCase().includes(m),
+                      ),
+                    )
                     .slice(0, 6)
                     .map((r) => (
                       <li key={r.name}>

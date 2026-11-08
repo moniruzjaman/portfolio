@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T10:20:16.302Z",
+  "generatedAt": "2026-11-08T15:33:31.169Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 79,
@@ -11,31 +11,6 @@
   },
   "repos": [
     {
-      "name": "portfolio",
-      "slug": "portfolio",
-      "title": "moniruzjaman.github.io",
-      "description": "personal creativity showcasing",
-      "language": "TypeScript",
-      "topics": [],
-      "stars": 0,
-      "pushedAt": "2026-11-08T08:35:35Z",
-      "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/portfolio/",
-      "channels": [
-        "github-pages"
-      ],
-      "readmeBytes": 11872,
-      "brand": {
-        "name": "Abu Md. Moniruzjaman",
-        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
-        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
-    {
       "name": "rashtra_teen_chokhe",
       "slug": "rashtra-teen-chokhe",
       "title": "রাষ্ট্রকে দেখা তিন চোখে",
@@ -43,7 +18,7 @@
       "language": "HTML",
       "topics": [],
       "stars": 0,
-      "pushedAt": "2026-11-08T07:31:11Z",
+      "pushedAt": "2026-11-08T13:16:49Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -56,6 +31,31 @@
         "name": "রাষ্ট্রকে দেখা তিন চোখে",
         "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
         "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "portfolio",
+      "slug": "portfolio",
+      "title": "moniruzjaman.github.io",
+      "description": "personal creativity showcasing",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "pushedAt": "2026-11-08T10:20:50Z",
+      "url": "https://github.com/moniruzjaman/portfolio",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/portfolio/",
+      "channels": [
+        "github-pages"
+      ],
+      "readmeBytes": 11872,
+      "brand": {
+        "name": "Abu Md. Moniruzjaman",
+        "icon": "https://moniruzjaman.github.io/portfolio/favicon.svg",
+        "image": "https://moniruzjaman.github.io/portfolio/portrait.jpg",
         "source": "html"
       },
       "featured": false
@@ -298,7 +298,7 @@
       "name": "pesticide-field-guide",
       "slug": "pesticide-field-guide",
       "title": "pesticide-field-guide",
-      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers. · Built with Manus",
+      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers.",
       "language": "TypeScript",
       "topics": [],
       "stars": 0,

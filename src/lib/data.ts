@@ -41,7 +41,10 @@ export const CHANNEL_LABEL: Record<Channel, { en: string; bn: string }> = {
 };
 
 export const CHANNEL_BLURB: Record<Channel, { en: string; bn: string }> = {
-  "custom-domain": { en: "Apps on their own krishiai.live address", bn: "নিজস্ব krishiai.live ঠিকানায় অ্যাপ" },
+  "custom-domain": {
+    en: "Apps on their own krishiai.live address",
+    bn: "নিজস্ব krishiai.live ঠিকানায় অ্যাপ",
+  },
   vercel: { en: "Serverless apps on *.vercel.app", bn: "*.vercel.app-এ সার্ভারলেস অ্যাপ" },
   cloudflare: { en: "Workers and Pages deployments", bn: "ওয়ার্কার ও পেজ ডিপ্লয়মেন্ট" },
   "github-pages": { en: "Static sites on github.io", bn: "github.io-তে স্ট্যাটিক সাইট" },
@@ -61,7 +64,13 @@ export const brandOf = (r: Repo): Brand => brandFor(r.name, r.brand);
 /* ── endpoints ─────────────────────────────────────────────────────────── */
 
 /** `label` is host + path ("moniruzjaman.github.io/soil-media-portal"): on GitHub Pages the host alone is shared by every site. */
-export type Endpoint = { channel: Channel; url: string; host: string; label: string; short: string };
+export type Endpoint = {
+  channel: Channel;
+  url: string;
+  host: string;
+  label: string;
+  short: string;
+};
 
 const hostOf = (u: string): string => {
   try {
@@ -97,7 +106,13 @@ export function endpointsOf(r: Repo): Endpoint[] {
     const channel = channelOfHost(host) ?? fallback;
     // On GitHub Pages every site shares one host, so the PATH is the informative part.
     const path = new URL(url).pathname.replace(/\/$/, "");
-    out.push({ channel, url, host, label, short: channel === "github-pages" && path ? path : host });
+    out.push({
+      channel,
+      url,
+      host,
+      label,
+      short: channel === "github-pages" && path ? path : host,
+    });
   };
   add(r.customDomain, "custom-domain");
   add(r.live, "vercel");
@@ -143,7 +158,10 @@ export const stats = {
 /** Flat directory for the endpoints view: one row per distinct host. */
 export const endpointDirectory = allEndpoints
   .map((e) => ({ host: e.host, label: e.label, url: e.url, channel: e.channel, repo: e.repo }))
-  .sort((a, b) => CHANNELS.indexOf(a.channel) - CHANNELS.indexOf(b.channel) || a.label.localeCompare(b.label));
+  .sort(
+    (a, b) =>
+      CHANNELS.indexOf(a.channel) - CHANNELS.indexOf(b.channel) || a.label.localeCompare(b.label),
+  );
 
 export function relativeDate(iso: string): string {
   const then = new Date(iso).getTime();

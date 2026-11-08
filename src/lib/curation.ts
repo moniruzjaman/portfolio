@@ -142,6 +142,7 @@ export const SHELF_LABEL: Record<Shelf, { en: string; bn: string }> = {
 const LIB = libRaw as unknown as LibData;
 
 /** Resolve a Drive file's shelf + subject chips from its id and folder path. */
-export const libCurationFor = (id: string, path: string[]): LibCuration => resolveShelf(LIB, id, path);
+export const libCurationFor = (id: string, path: string[]): LibCuration =>
+  resolveShelf(LIB, id, path);
 
 export const SHELVES: Shelf[] = ["research", "report", "ebook", "guide", "training", "other"];

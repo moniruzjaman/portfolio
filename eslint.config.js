@@ -25,9 +25,9 @@ export default tseslint.config(
     },
   },
   {
-    // ui-audit.mjs passes callbacks into page.evaluate(), which execute in the
-    // browser context, not Node.
-    files: ["scripts/ui-audit.mjs"],
+    // ui-audit.mjs and the hydration probes pass callbacks into page.evaluate(),
+    // which execute in the browser context, not Node.
+    files: ["scripts/ui-audit.mjs", "scripts/hydration-probe.mjs", "scripts/hydration-diff.mjs"],
     languageOptions: {
       globals: { ...globals.browser },
     },

@@ -82,7 +82,12 @@ let failed = 0;
 const titles = new Map();
 for (const path of routePaths) {
   const m = routeMeta(path);
-  const markup = renderAt(`${BASE}${path.replace(/^\//, "")}`);
+  const raw = renderAt(`${BASE}${path.replace(/^\//, "")}`);
+  // React 19 hoists <link rel="preload"> for srcset images to the top of the
+  // renderToString output. They belong in <head> — left inside the root div
+  // they would break hydration (the client tree has them in the head).
+  const hoisted = [...new Set([...raw.matchAll(/<link rel="preload"[^>]*>/g)].map((x) => x[0]))];
+  const markup = raw.replace(/<link rel="preload"[^>]*>/g, "");
   const text = markup.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&");
   const canonical = canonicalFor(path);
 
@@ -130,6 +135,7 @@ for (const path of routePaths) {
         `    <meta property="og:url" content="${esc(canonical)}" />`,
         `    <meta property="og:type" content="${m.ogType}" />`,
         `    <meta property="og:image" content="${esc(`${SITE}${ogRel}`)}" />`,
+        ...hoisted,
         ...m.jsonLd.map(jsonld),
         "  </head>",
       ].join("\n"),

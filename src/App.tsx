@@ -17,9 +17,9 @@ import Library from "@/pages/Library";
 import { NotFound } from "@/pages/NotFound";
 
 // The search dialog is an overlay that renders nothing until ⌘K — split it out
-// of the first load. Route pages stay statically imported on purpose: they are
-// what scripts/prerender.mjs writes into the static HTML, and a lazy page would
-// prerender as its Suspense fallback.
+// of the first load. The boundary mounts only while the dialog is open: a
+// suspended lazy component inside renderToString would abort server rendering
+// and litter the prerendered HTML with hydration-breaking markers.
 const SearchDialog = lazy(() =>
   import("@/components/SearchDialog").then((m) => ({ default: m.SearchDialog })),
 );
@@ -77,9 +77,11 @@ function Shell() {
       </main>
 
       <Footer />
-      <Suspense fallback={null}>
-        <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
-      </Suspense>
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
     </div>
   );
 }

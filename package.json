@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Personal portfolio of Abu Md. Moniruzjaman — agricultural extension & digital tools, DAE Bangladesh",
+  "description": "Personal portfolio of Abu Md. Moniruzjaman \u2014 agricultural extension & digital tools, DAE Bangladesh",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/verify-no-secrets.mjs dist",
+    "build": "node scripts/gen-static.mjs && tsc --noEmit && vite build && node scripts/prerender.mjs && node scripts/verify-no-secrets.mjs dist",
     "build:fast": "vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
@@ -18,7 +18,8 @@
     "test": "npm run test:scripts && npm run test:render",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prerender": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.54.0",

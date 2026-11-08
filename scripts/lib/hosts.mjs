@@ -25,6 +25,12 @@ export const ALLOWED_HOSTS = [
   // Google Drive library: link-out and click-to-load preview frames only
   "drive.google.com",
   "docs.google.com",
+  // The author's public profile links: prerendered pages embed them as real
+  // footer anchors (they were script-only JSON-LD before prerendering existed).
+  // Link-out only — nothing is fetched from these hosts at runtime.
+  "linkedin.com",
+  "youtube.com",
+  "facebook.com",
 ];
 
 export const hostOf = (u) => {

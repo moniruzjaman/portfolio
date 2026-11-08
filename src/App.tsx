@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Route, Router, Switch } from "wouter";
+import { Route, Router, Switch, useLocation } from "wouter";
 import { ROUTER_BASE } from "@/lib/site";
+import { useDocumentMeta } from "@/lib/seo";
 import { LangProvider } from "@/lib/i18n";
 import { Nav, Footer } from "@/components/Chrome";
 import { SearchDialog } from "@/components/SearchDialog";
@@ -29,7 +30,9 @@ import { NotFound } from "@/pages/NotFound";
  */
 function Shell() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [location] = useLocation();
   useRouteReset();
+  useDocumentMeta(location);
 
   // ⌘K / Ctrl+K opens search from anywhere.
   useEffect(() => {

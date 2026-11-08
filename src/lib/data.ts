@@ -8,6 +8,8 @@ export type Repo = {
   slug: string;
   title: string;
   description: string | null;
+  /** Where the description came from — "github" field, or derived from the README. */
+  descriptionSource?: "github" | "readme" | null;
   language: string | null;
   topics: string[];
   stars: number;

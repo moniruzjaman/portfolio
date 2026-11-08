@@ -22,6 +22,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { probeBrand } from "./lib/brand-probe.mjs";
+import { descriptionFromReadme } from "./lib/readme-description.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -239,6 +240,7 @@ async function main() {
 
   const included = [];
   const excluded = [];
+  const needsDescription = [];
 
   for (const repo of repos) {
     const name = repo.name;
@@ -303,6 +305,19 @@ async function main() {
     const liveUrl = homeAlive ? homepage : customDomain || null;
     const brand = await probeBrand(liveUrl || (pagesAlive ? pagesUrl : null));
 
+    // GitHub descriptions can carry a builder-marketplace suffix ("· Built
+    // with Manus"); the site should not advertise a tool the owner stopped
+    // using. Strip the suffix, never the owner's own text. Empty descriptions
+    // fall back to the README's first readable paragraph (brief 3.1) — cards
+    // must never render blank, and what remains blank is reported for the
+    // owner to fix on GitHub.
+    const githubDescription = (repo.description || "")
+      .replace(/\s*[·—-]\s*Built with Manus\s*$/i, "")
+      .trim();
+    const readmeDescription = githubDescription ? null : descriptionFromReadme(readme);
+    const description = githubDescription || readmeDescription || null;
+    if (!description) needsDescription.push(name);
+
     included.push({
       name,
       slug: name
@@ -310,11 +325,8 @@ async function main() {
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-|-$/g, ""),
       title: await titleFrom(readme, name),
-      // GitHub descriptions can carry a builder-marketplace suffix ("· Built
-      // with Manus"); the site should not advertise a tool the owner stopped
-      // using. Strip the suffix, never the owner's own text.
-      description:
-        (repo.description || "").replace(/\s*[·—-]\s*Built with Manus\s*$/i, "").trim() || null,
+      description,
+      descriptionSource: githubDescription ? "github" : readmeDescription ? "readme" : null,
       language: repo.language || null,
       topics: repo.topics || [],
       stars: repo.stargazers_count,
@@ -362,6 +374,10 @@ async function main() {
         note: "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
         total: excluded.length,
         excluded,
+        // Included repositories still without any description after the README
+        // fallback. Fix these on GitHub (Settings → Description) and the next
+        // sync picks them up — the site never shows an empty card.
+        needsDescription,
       },
       null,
       2,
@@ -371,11 +387,16 @@ async function main() {
 
   const live = included.filter((r) => r.live || r.pages).length;
   const branded = included.filter((r) => r.brand).length;
+  const readmeDescriptions = included.filter((r) => r.descriptionSource === "readme").length;
   console.log(
     `\n✔ ${included.length} included · ${excluded.length} excluded · ${live} with a live URL · ${branded} branded from the app itself\n` +
       `  channels: ${Object.entries(counts)
         .map(([k, v]) => `${k}=${v}`)
         .join("  ")}\n` +
+      `  descriptions: ${included.length - readmeDescriptions} from GitHub · ${readmeDescriptions} derived from README\n` +
+      (needsDescription.length
+        ? `  still no description (fix on GitHub): ${needsDescription.join(", ")}\n`
+        : "") +
       `  took ${((Date.now() - t0) / 1000).toFixed(1)}s → ${OUT.replace(ROOT + "/", "")}`,
   );
 }

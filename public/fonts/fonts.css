@@ -54,7 +54,12 @@
   font-family: "Noto Sans Bengali Variable";
   font-style: normal;
   font-weight: 100 1000;
-  font-display: swap;
+  /* optional, not swap: the Bengali faces are not preloaded (107–191 KB would
+     contend with the JS bundle on the rural mobile connections this site
+     serves), so a late swap reflows Bangla lines and breaks the CLS budget.
+     optional renders the system Bangla font on a first visit and the real
+     font once cached — and never reflows. */
+  font-display: optional;
   src: url(noto-sans-bengali-bengali-wght-normal.woff2) format("woff2-variations");
   unicode-range: U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD2,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1;
 }
@@ -62,7 +67,8 @@
   font-family: "Noto Serif Bengali Variable";
   font-style: normal;
   font-weight: 100 1000;
-  font-display: swap;
+  /* See the Sans Bengali face above — same rationale. */
+  font-display: optional;
   src: url(noto-serif-bengali-bengali-wght-normal.woff2) format("woff2-variations");
   unicode-range: U+0951-0952,U+0964-0965,U+0980-09FE,U+1CD0,U+1CD2,U+1CD5-1CD6,U+1CD8,U+1CE1,U+1CEA,U+1CED,U+1CF2,U+1CF5-1CF7,U+200C-200D,U+20B9,U+25CC,U+A8F1;
 }

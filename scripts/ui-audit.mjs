@@ -64,7 +64,13 @@ for (const vp of VIEWPORTS) {
   for (const route of ROUTES) {
     errors.length = 0;
     const where = `${vp.name} ${route}`;
-    await page.goto(base + route, { waitUntil: "load", timeout: 60_000 });
+    // Trailing slash: vite preview SPA-falls back to the home shell for
+    // extension-less URLs, but production (GitHub Pages) serves the prerendered
+    // directory file at exactly this URL form. The bare root keeps its slash.
+    await page.goto(`${base}${route === "/" ? "/" : `${route}/`}`, {
+      waitUntil: "load",
+      timeout: 60_000,
+    });
     await wait(1200);
     for (const e of errors) failures.push(`${where}: ${e}`);
 

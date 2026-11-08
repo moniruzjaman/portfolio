@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Search, Menu, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { asset } from "@/lib/site";
 import { socials } from "@/components/Socials";
 import { GithubMark, LinkedinMark, FacebookMark, YoutubeMark } from "@/components/icons";
 import { author } from "@/lib/author";
@@ -161,6 +162,12 @@ export function Footer() {
             className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
           >
             {author.email}
+          </a>
+          <a
+            href={asset("feed.xml")}
+            className="flex min-h-11 items-center text-moss-500 transition-colors hover:text-forest-900"
+          >
+            {t("Writing feed (Atom)", "লেখার ফিড (Atom)")}
           </a>
           <div className="flex flex-wrap gap-x-5">
             {socials.map(({ key, label, href }) => (

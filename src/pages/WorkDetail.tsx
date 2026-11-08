@@ -105,6 +105,8 @@ export default function WorkDetail() {
                     `${title} — preview as the app presents itself`,
                     `${title} — অ্যাপটির নিজস্ব প্রিভিউ`,
                   )}
+                  width={1200}
+                  height={628}
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"

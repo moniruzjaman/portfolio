@@ -7,6 +7,9 @@ export type Note = {
   summary: string;
   type: NoteType;
   year: number;
+  /** ISO date. Year-precision fallback ("YYYY-01-01"): real publication dates
+      are an owner question; do not invent days. */
+  datePublished?: string;
   org: string;
   tags: string[];
   expertise: string[];
@@ -42,6 +45,9 @@ const RAW: Omit<Note, "readingTime">[] = [
 
 export const notes: Note[] = RAW.map((n) => ({
   ...n,
+  // Year-precision publication date: the registry only records the year, so the
+  // feed and JSON-LD state January 1st of it rather than an invented day.
+  datePublished: `${n.year}-01-01`,
   readingTime: Math.max(1, Math.round(n.body.split(/\s+/).length / 200)),
 }));
 

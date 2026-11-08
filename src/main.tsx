@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
@@ -31,8 +31,19 @@ if (redirect) {
   window.history.replaceState(null, "", redirect);
 }
 
-createRoot(root).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+if (root.hasChildNodes()) {
+  // The page was prerendered by scripts/prerender.mjs — the markup is already
+  // in the document, so hydrate it instead of re-rendering from scratch.
+  hydrateRoot(
+    root,
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+} else {
+  createRoot(root).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}

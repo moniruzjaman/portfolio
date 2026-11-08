@@ -37,14 +37,15 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      # Script unit tests (brand probe, Drive sync) + server-render of every route
-      # at the real base path. The render test is what catches routing breakage.
-      - name: Test
-        run: npm test
-
-      # `npm run build` runs tsc, vite, and the no-api-key gate as one command.
+      # Build first: it prerenders every route, and the render test below audits
+      # those files (unique titles, canonicals) as part of the gates.
       - name: Build + verify no API keys
         run: npm run build
+
+      # Script unit tests (brand probe, Drive sync) + server-render of every route
+      # at the real base path + prerender audit when dist/ exists.
+      - name: Test
+        run: npm test
 
       - uses: actions/configure-pages@v5
         with:

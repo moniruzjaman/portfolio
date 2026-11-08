@@ -6,7 +6,10 @@
  * gate. Only rendering the app at its real base path can catch that class of bug.
  *
  * Runs at both a sub-path and the root, since the deployment target may change.
+ * When dist/ exists (after a build), it also audits the prerendered files:
+ * every route file must have a unique <title> and a meta description.
  */
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { createServer } from "vite";
 
 const CASES = [
@@ -54,3 +57,42 @@ if (failed) {
   process.exit(1);
 }
 console.log("\n✔ all routes render at their base path");
+
+// ── Prerendered-output audit (only meaningful after `npm run build`) ─────────
+// The deploy workflow builds before it tests, so CI exercises this too.
+if (existsSync("dist/index.html")) {
+  const files = readdirSync("dist", { recursive: true }).filter(
+    (f) => f.endsWith("index.html") && f !== "404.html",
+  );
+  const titles = new Map();
+  let prerenderFailed = 0;
+  for (const f of files) {
+    const html = readFileSync(`dist/${f}`, "utf8");
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    if (!title) {
+      console.error(`✖ ${f}: no <title>`);
+      prerenderFailed++;
+      continue;
+    }
+    if (titles.has(title)) {
+      console.error(`✖ duplicate <title> "${title}" — ${f} and ${titles.get(title)}`);
+      prerenderFailed++;
+    }
+    titles.set(title, f);
+    if (!html.includes('name="description"')) {
+      console.error(`✖ ${f}: no meta description`);
+      prerenderFailed++;
+    }
+    if (!html.includes('<div id="root">')) {
+      console.error(`✖ ${f}: root div missing`);
+      prerenderFailed++;
+    }
+  }
+  if (prerenderFailed) {
+    console.error(`\n✖ ${prerenderFailed} prerendered-page check(s) failed`);
+    process.exit(1);
+  }
+  console.log(
+    `\n✔ prerender audit: ${files.length} route files, ${titles.size} unique titles, all with descriptions`,
+  );
+}

@@ -51,7 +51,9 @@ export default function Home() {
             {/* On a phone the full portrait card sits far below the fold; show who this is immediately. */}
             <div className="mb-6 flex items-center gap-3.5 lg:hidden">
               <img
-                src={asset("portrait.jpg")}
+                src={asset("portrait-320.webp")}
+                srcSet={`${asset("portrait-320.webp")} 320w, ${asset("portrait-480.webp")} 480w`}
+                sizes="56px"
                 alt=""
                 width={56}
                 height={56}
@@ -148,9 +150,14 @@ export default function Home() {
             <div className="surface-grid-dark relative overflow-hidden rounded-[2rem] border border-forest-200/70 bg-forest-900 p-8 text-white shadow-[0_30px_80px_rgba(10,46,26,0.22)]">
               <img
                 src={asset("portrait.jpg")}
+                srcSet={`${asset("portrait-480.webp")} 480w, ${asset("portrait-720.webp")} 720w`}
+                sizes="(min-width: 1024px) 460px, 100vw"
                 alt={author.name}
                 width={720}
                 height={693}
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
                 className="-mx-8 -mt-8 mb-6 h-80 w-[calc(100%+4rem)] max-w-none bg-white object-cover object-top"
               />
               <div>

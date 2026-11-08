@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Route, Router, Switch } from "wouter";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { Route, Router, Switch, useLocation } from "wouter";
 import { ROUTER_BASE } from "@/lib/site";
+import { useDocumentMeta } from "@/lib/seo";
 import { LangProvider } from "@/lib/i18n";
 import { Nav, Footer } from "@/components/Chrome";
-import { SearchDialog } from "@/components/SearchDialog";
 import { useRouteReset } from "@/components/Section";
 import Home from "@/pages/Home";
 import Works from "@/pages/Works";
@@ -15,6 +15,14 @@ import NoteDetail from "@/pages/NoteDetail";
 import About from "@/pages/About";
 import Library from "@/pages/Library";
 import { NotFound } from "@/pages/NotFound";
+
+// The search dialog is an overlay that renders nothing until ⌘K — split it out
+// of the first load. The boundary mounts only while the dialog is open: a
+// suspended lazy component inside renderToString would abort server rendering
+// and litter the prerendered HTML with hydration-breaking markers.
+const SearchDialog = lazy(() =>
+  import("@/components/SearchDialog").then((m) => ({ default: m.SearchDialog })),
+);
 
 /**
  * Deep links on GitHub Pages: there are no rewrite rules, so a cold load of
@@ -29,7 +37,9 @@ import { NotFound } from "@/pages/NotFound";
  */
 function Shell() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [location] = useLocation();
   useRouteReset();
+  useDocumentMeta(location);
 
   // ⌘K / Ctrl+K opens search from anywhere.
   useEffect(() => {
@@ -67,7 +77,11 @@ function Shell() {
       </main>
 
       <Footer />
-      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
     </div>
   );
 }

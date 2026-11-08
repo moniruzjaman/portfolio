@@ -13,6 +13,7 @@ const FOOTER_SOCIALS = ["facebook", "linkedin", "youtube", "github"] as const;
 
 const LINKS = [
   { href: "/works", en: "Work", bn: "কাজ" },
+  { href: "/topics", en: "Topics", bn: "বিষয়" },
   { href: "/library", en: "Library", bn: "লাইব্রেরি" },
   { href: "/expertise", en: "Expertise", bn: "দক্ষতা" },
   { href: "/notes", en: "Writing", bn: "লেখা" },

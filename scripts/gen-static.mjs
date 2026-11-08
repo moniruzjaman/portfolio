@@ -20,7 +20,7 @@ const noteSlugs = readdirSync("src/content/notes")
   .filter(Boolean);
 
 const paths = [
-  "", "works", "library", "expertise", "notes", "about",
+  "", "works", "topics", "library", "expertise", "notes", "about",
   ...repos.map((r) => `works/${r.slug}`),
   ...noteSlugs.map((s) => `notes/${s}`),
 ];

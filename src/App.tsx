@@ -8,6 +8,7 @@ import { useRouteReset } from "@/components/Section";
 import Home from "@/pages/Home";
 import Works from "@/pages/Works";
 import WorkDetail from "@/pages/WorkDetail";
+import Topics from "@/pages/Topics";
 import Expertise from "@/pages/Expertise";
 import Notes from "@/pages/Notes";
 import NoteDetail from "@/pages/NoteDetail";
@@ -55,6 +56,7 @@ function Shell() {
           <Route path="/" component={Home} />
           <Route path="/works" component={Works} />
           <Route path="/works/:slug" component={WorkDetail} />
+          <Route path="/topics" component={Topics} />
           <Route path="/library" component={Library} />
           <Route path="/expertise" component={Expertise} />
           <Route path="/notes" component={Notes} />

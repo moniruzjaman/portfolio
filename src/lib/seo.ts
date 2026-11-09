@@ -221,7 +221,7 @@ export function routeMeta(path: string): RouteMeta {
  * itself is produced by scripts/prerender.mjs with satori at build time.
  */
 export const ogImageFor = (path: string): string =>
-  `og/${path === "/" ? "home" : path.replace(/^\//, "")}.png`;
+  `og/${path === "/" || path === "" ? "home" : path.replace(/^\//, "")}.png`;
 
 /** Every routable path, for the prerenderer. Must agree with public/sitemap.xml. */
 export const routePaths: string[] = [

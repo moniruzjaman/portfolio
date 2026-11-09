@@ -24,8 +24,6 @@
       "items": [
         {
           "id": "1TtPKvdafd4ssQ0_-2825HEoOSxA0fArF",
-          "collection": "pdf",
-          "name": "Tarique_Rahman_s_Grassroots_Blueprint.pdf",
           "title": "Tarique Rahman s Grassroots Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -33,12 +31,11 @@
           "size": 14400403,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "15MYIGM4jM5vyG9BCBxkSTPupuabpXnr2",
-          "collection": "pdf",
-          "name": "bangladesh-zindabad-3ed6db_copy.pdf",
           "title": "bangladesh – zindabad – 3ed6db copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -46,12 +43,11 @@
           "size": 3807459,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Zu0UsFFvxbBd8vAlul-l9QsaiFnodj_r",
-          "collection": "pdf",
-          "name": "the-political-thought-of-tarique-rahman-e161_copy.pdf",
           "title": "the – political – thought – of – tarique – rahman – e161 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -59,34 +55,31 @@
           "size": 5074250,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1VDfS6s-Ch90JSIhTXhBCryu8XisxvS9N",
-          "collection": "pdf",
-          "name": "daily report 3-11.pdf",
           "title": "daily report 3 – 11",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-11-03T05:57:23.055Z",
           "size": 1435261,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1_wA9kD2_7T5D21huPprlsiPLAvJp_jsW",
-          "collection": "pdf",
-          "name": "From Field Symptom to_cabi_app_research.pdf",
           "title": "From Field Symptom to cabi app research",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-11-01T19:16:43.768Z",
           "size": 486832,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1HRB_2bLwEQbEsddxggvsRdBfCFoau2IL",
-          "collection": "pdf",
-          "name": "“Legal Issues Related to International Trading of Agricultural Products” ছাড়পত্র_copy.pdf",
           "title": "“Legal Issues Related to International Trading of Agricultural Products” ছাড়পত্র copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -94,23 +87,21 @@
           "size": 148609,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "15RKyg0sPSZa7s0rEOjLOaMCdUMGCuA0k",
-          "collection": "pdf",
-          "name": "Plant Health Guide.pdf",
           "title": "Plant Health Guide",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-10-26T11:29:13.780Z",
           "size": 22798883,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1KLwhLP4o0ZpPR8MIOFcjS7tSx2bIUOoG",
-          "collection": "pdf",
-          "name": "স্বশিক্ষা_ও_স্বনির্ভরতার_কৃষি_ই-বুক.pdf",
           "title": "স্বশিক্ষা ও স্বনির্ভরতার কৃষি ই – বুক",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -119,12 +110,11 @@
           "path": [
             "ebook",
             "self-learner-farmer"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1fjZnJBe34jVdXlwzzCMj2xst8hkys7bW",
-          "collection": "pdf",
-          "name": "81_ptac_approved_pesticide.pdf",
           "title": "81 ptac approved pesticide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -132,12 +122,11 @@
           "size": 993712,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16neLD5uNDu9HfAA1PFeJtxdU_8djyZ4v",
-          "collection": "pdf",
-          "name": "From Code to Code_ A Unified Framework for Classifying and Managing Multi-MoA Pesticides According to IRAC, FRAC, and HRAC Standards.pdf",
           "title": "From Code to Code A Unified Framework for Classifying and Managing Multi – MoA Pesticides According to IRAC, FRAC, and HRAC Standards",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -145,12 +134,11 @@
           "size": 127922,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uOqHJ5RlKNt1mNnZAj64pJZgQqp6cLcj",
-          "collection": "pdf",
-          "name": "bnp_manifesto2026_research.pdf",
           "title": "bnp manifesto2026 research",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -158,12 +146,11 @@
           "size": 119229,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1S4lH3iLbs7ElJ9tFiL2miMHdqBl9vyqf",
-          "collection": "pdf",
-          "name": "Pesticide_Field_Guide_MoA_Edition_2026.pdf",
           "title": "Pesticide Field Guide MoA Edition 2026",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -171,12 +158,11 @@
           "size": 372972,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1AhlOleWDBBy4lsc0x4foBwTuqnS5jByK",
-          "collection": "pdf",
-          "name": "Pesticide_Field_Guide_Bangladesh_DAE.pdf",
           "title": "Pesticide Field Guide Bangladesh DAE",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -184,12 +170,11 @@
           "size": 1358471,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1USDnTYj2_-X2XekGZooouRzH1uSN0KPB",
-          "collection": "pdf",
-          "name": "AgriChem DAE Pesticide Registry Field Guide.pdf",
           "title": "AgriChem DAE Pesticide Registry Field Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -197,12 +182,11 @@
           "size": 274346,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1nWhHTUlYhIyjriRBXMqqs3INuulrb45C",
-          "collection": "pdf",
-          "name": "Bangladesh Agri-Chemical Field Guide & Pesticide Registry Reference.pdf",
           "title": "Bangladesh Agri – Chemical Field Guide & Pesticide Registry Reference",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -210,12 +194,11 @@
           "size": 365606,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Dfd8oFhGHi7v6IbyA18ZWYyhgF0aaISe",
-          "collection": "pdf",
-          "name": "Soil_Microclimate_Engineering.pdf",
           "title": "Soil Microclimate Engineering",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -224,12 +207,11 @@
           "path": [
             "interactive-learning",
             "mulching"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1jLNpadPVwV1xNq8Ms0v2hmOqdO8gvyj9",
-          "collection": "pdf",
-          "name": "Living_Soil_Blueprint_(2).pdf",
           "title": "Living Soil Blueprint (2)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -238,12 +220,11 @@
           "path": [
             "interactive-learning",
             "mulching"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16yIB3_0F7xuYf7eiqCXioFeUixYk88Qa",
-          "collection": "pdf",
-          "name": "brief_brand_to_risk_regulation.pdf",
           "title": "brief brand to risk regulation",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -251,12 +232,11 @@
           "size": 171158,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zYsQnCpeKVaoaA1qnZ532fe5EzXTZGQR",
-          "collection": "pdf",
-          "name": "Modernizing Pesticide Regulation in Bangladesh.pdf",
           "title": "Modernizing Pesticide Regulation in Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -264,12 +244,11 @@
           "size": 416470,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Ws6av636Anx8BA7ZMDtpZ1bM_4kUb7it",
-          "collection": "pdf",
-          "name": "Pesticide_Field_Guide_PTAC_Edition_2026.pdf",
           "title": "Pesticide Field Guide PTAC Edition 2026",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -277,12 +256,11 @@
           "size": 1028227,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1u2a8h3CHv9doklE0eb5dbqLoABB3G2US",
-          "collection": "pdf",
-          "name": "Pesticide_Regulation_Bangladesh_PTAC_Report.pdf",
           "title": "Pesticide Regulation Bangladesh PTAC Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -292,12 +270,11 @@
             "Pesticides_Crisis",
             "pesticide regulation ",
             "public"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "11Kws7VRPzsUeBjO8o-CYlZX9D9iV7KHf",
-          "collection": "pdf",
-          "name": "Pesticide_Regulation_Bangladesh_PTAC_Report.pdf",
           "title": "Pesticide Regulation Bangladesh PTAC Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -307,12 +284,11 @@
             "Pesticides_Crisis",
             "pesticide regulation ",
             "download"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1IgSNLm0S_NCy9rtudZIS445olucQMcDq",
-          "collection": "pdf",
-          "name": "final_delivery.pdf",
           "title": "final delivery",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -323,12 +299,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1nbP4JGCpoVkG6qh6Gseso0SLcSs4I_Pl",
-          "collection": "pdf",
-          "name": "final_report.pdf",
           "title": "final report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -339,12 +314,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1-Us0Fn_bS0xDsrYtTwDmGQhQYOmsBOyI",
-          "collection": "pdf",
-          "name": "passA.pdf",
           "title": "passA",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -355,12 +329,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zNd-vl0KrCy2xwQ1wcJCkzo1Ege96SMm",
-          "collection": "pdf",
-          "name": "final_meta.pdf",
           "title": "final meta",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -371,12 +344,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1pHszk4h7k5XNlkvmF9ItLlwBi-HXVgLp",
-          "collection": "pdf",
-          "name": "output2.pdf",
           "title": "output2",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -387,12 +359,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1PeTTS21w7QgHekB8Dn6LTA2OG0FGl_vo",
-          "collection": "pdf",
-          "name": "output.pdf",
           "title": "output",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -403,12 +374,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1XAG12T267QYFiNXqjVJuob0wMsuEBnvR",
-          "collection": "pdf",
-          "name": "pass1.pdf",
           "title": "pass1",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -419,12 +389,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1gNDDIukEylQJ5Ob4JpBWEMs6Gx8Psek6",
-          "collection": "pdf",
-          "name": "Pesticide_Regulation_Bangladesh_PTAC_Report.pdf",
           "title": "Pesticide Regulation Bangladesh PTAC Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -434,12 +403,11 @@
             "Pesticides_Crisis",
             "pesticide regulation ",
             "assets"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1EjNvUXt2FNTgJmrhAxAkv7WhD4W8w5fk",
-          "collection": "pdf",
-          "name": "Pesticide_Field_Guide_PTAC_Edition_2026.pdf",
           "title": "Pesticide Field Guide PTAC Edition 2026",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -447,12 +415,11 @@
           "size": 1028227,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1XBaGWRmijaQ-VFoHQr8MrC7PZFFdQ95i",
-          "collection": "pdf",
-          "name": "Fertilizer _path_Bloom",
           "title": "Fertilizer path Bloom",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -461,12 +428,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1y5JuISqyorWYN62s5G6JTDdAJgVIPgVR",
-          "collection": "pdf",
-          "name": "From_Fertilizer_Secu_86454242_20260924_2234202634.pdf",
           "title": "From Fertilizer Secu 86454242 20260924 2234202634",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -475,12 +441,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "174eEDcwjNmQrqQPX5Nm-wGA-poKxNfBq",
-          "collection": "pdf",
-          "name": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1).pdf",
           "title": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -489,12 +454,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1FCEsoVfREMrwa62tEmAV2UAX9I9BiqgB",
-          "collection": "pdf",
-          "name": "Fertilizer Management in Bangladesh (1).pdf",
           "title": "Fertilizer Management in Bangladesh (1)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -503,12 +467,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yJeqaRW4PINUS2Cz03Et-bZSzQe-Kr0m",
-          "collection": "pdf",
-          "name": "Fertilizer_Management_in_Bangladeshe574.pdf",
           "title": "Fertilizer Management in Bangladeshe574",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -517,12 +480,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Xo0O2x6G9UuLnHtQPPIby8z6PynnSMA0",
-          "collection": "pdf",
-          "name": "Fertilizer_Management_in_Bangladeshe574.pdf_20260926_021312_0000.pdf",
           "title": "Fertilizer Management in Bangladeshe574.pdf 20260926 021312 0000",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -531,12 +493,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1gSpYxNU0j8KhXUKUM9AQejSbnwHgJXvo",
-          "collection": "pdf",
-          "name": "Fertilizer Management in Bangladesh.pdf",
           "title": "Fertilizer Management in Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -545,12 +506,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1JgrkzvOF200CB4zmgC7gDtdnoq0pV5DW",
-          "collection": "pdf",
-          "name": "From Fertilizer Security to Farming Security (1).pdf",
           "title": "From Fertilizer Security to Farming Security (1)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -559,12 +519,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1MaCD4OjFm-SD3OEfeK3kU4SmkwV3eHzo",
-          "collection": "pdf",
-          "name": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1).pdf_20260926_110427_0000.pdf",
           "title": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1).pdf 20260926 110427 0000",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -573,12 +532,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Kkz2wtxzkEoWMF-BbSmS5xGeLD8ovjCk",
-          "collection": "pdf",
-          "name": "fertilizer_security_to_farming_security_bangla.pdf",
           "title": "fertilizer security to farming security bangla",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -587,12 +545,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1dNm9Yq5pFN61GXVUV15Idd5xMqEDt7wY",
-          "collection": "pdf",
-          "name": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায়.pdf",
           "title": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায়",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -601,12 +558,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1j0U5RUtwfhWxq7ces34wbkTcTkpVlYjF",
-          "collection": "pdf",
-          "name": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায়-1.pdf",
           "title": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় – 1",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -615,12 +571,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1jFYDqGIKD5NvoRLn8lMP_ozopA7U_bHY",
-          "collection": "pdf",
-          "name": "Fertilizer Management in Bangladesh — Crisis, Resources, Regional Lessons, and the Path to Accountability.pdf",
           "title": "Fertilizer Management in Bangladesh — Crisis, Resources, Regional Lessons, and the Path to Accountability",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -629,12 +584,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uOSRZ9w-0EEdT0jIMj6sCrztcCrgwBWu",
-          "collection": "pdf",
-          "name": "ব__ল_দ_শ_র_ক_ষ__ঐত_হ_য_ও_ড_জ_ট_ল_র_প_ন_তর5365.pdf",
           "title": "ব ল দ শ র ক ষ ঐত হ য ও ড জ ট ল র প ন তর5365",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -643,12 +597,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1WkEHfRF8abw1P8ab0DyEDT-yjimPCYZL",
-          "collection": "pdf",
-          "name": "From_Fertilizer_Secu_78113917_20260927_29920269.pdf",
           "title": "From Fertilizer Secu 78113917 20260927 29920269",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -657,12 +610,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13qRHKqARSeNYmvNyVlqAPOXvx6fGu5Fe",
-          "collection": "pdf",
-          "name": "Fertilizer_Management_in_Bangladeshev1.pdf.pdf",
           "title": "Fertilizer Management in Bangladeshev1.pdf",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -671,12 +623,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1tn0LzwW_Dqb0JJWB8qmiAi88tOh8NM0F",
-          "collection": "pdf",
-          "name": "Fertilizer Management in Bangladesh (1).pdf",
           "title": "Fertilizer Management in Bangladesh (1)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -685,12 +636,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1DPGf5kSf_DK4cq3oM44EfRWEp2g4JSGm",
-          "collection": "pdf",
-          "name": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1).pdf",
           "title": "সার নিরাপত্তা থেকে কৃষি নিরাপত্তায় (1)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -699,12 +649,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "14mxW2zkp4-5NOS03ENrz-6ONaf2BYptG",
-          "collection": "pdf",
-          "name": "Fertilizer Management in Bangladesh",
           "title": "Fertilizer Management in Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -713,12 +662,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1DOK91Mo6u03Hin2Q6ncjekl-OfUOsfbP",
-          "collection": "pdf",
-          "name": "criticism-bn.pdf",
           "title": "criticism – bn",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -726,12 +674,11 @@
           "size": 6218220,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1y0Y1BNEAPhtaNJpp5ZKBRQWimztr3gHt",
-          "collection": "pdf",
-          "name": "criticism-eng.pdf",
           "title": "criticism – eng",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -739,12 +686,11 @@
           "size": 3603907,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1wm1uVL9twBR-1xkFy1tsSXNweAyWtO3o",
-          "collection": "pdf",
-          "name": "editorial-bangla.pdf",
           "title": "editorial – bangla",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -752,12 +698,11 @@
           "size": 4663901,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Oq3cFSR36QyYzaWlqkh-6evIMNmzp3Cm",
-          "collection": "pdf",
-          "name": "editorial english.pdf",
           "title": "editorial english",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -765,12 +710,11 @@
           "size": 4090607,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1R9Gps1Qz3QcwFIdzk7ieHa-j8GnYk1xF",
-          "collection": "pdf",
-          "name": "From_Fertilizer_Security_to_Farming_Security61b0.pdf",
           "title": "From Fertilizer Security to Farming Security61b0",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -778,12 +722,11 @@
           "size": 105399234,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1u5zrPnsfAPeuHBvk8aZRn21256IQc05y",
-          "collection": "pdf",
-          "name": "From_Fertilizer_Security_to_Farming_Security-validate.pdf",
           "title": "From Fertilizer Security to Farming Security – validate",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -791,12 +734,11 @@
           "size": 24669022,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zNqV456Z-8An-ERaAYhLilMzrgzKWv44",
-          "collection": "pdf",
-          "name": "abundance_stalls_fertilizer.pdf",
           "title": "abundance stalls fertilizer",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -804,12 +746,11 @@
           "size": 57865350,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1p4ExxC9A_ATSXIitA0KmbCE0K238BVna",
-          "collection": "pdf",
-          "name": "abundance_stalls_fertilizer.pdf",
           "title": "abundance stalls fertilizer",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -818,12 +759,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1wgEtV4-yaNJKn7uONldb6xDclNB4FLyN",
-          "collection": "pdf",
-          "name": "Modern_Agricultural_Technology_Extension_in_Bangladesh_s_Char_Area.pdf",
           "title": "Modern Agricultural Technology Extension in Bangladesh s Char Area",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -831,12 +771,11 @@
           "size": 85894237,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1q9L9poWhmL18-Z-MWw8znyrU5-RopcLo",
-          "collection": "pdf",
-          "name": "Breefing_Fertilizer_Security_to_Farming_Securityfb9b.pdf",
           "title": "Breefing Fertilizer Security to Farming Securityfb9b",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -844,12 +783,11 @@
           "size": 104480769,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1R0eG8dYkQVGqK45C6NutKfX_NVrk54m3",
-          "collection": "pdf",
-          "name": "Breefing_Fertilizer_Security_to_Farming_Securityfb9b.pdf",
           "title": "Breefing Fertilizer Security to Farming Securityfb9b",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -858,12 +796,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1i5QsWRaZnkywmHgPmjjKbuKGUQ2ioVzh",
-          "collection": "pdf",
-          "name": "soveirgn farming_fertilizer.pdf",
           "title": "soveirgn farming fertilizer",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -871,12 +808,11 @@
           "size": 132088786,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1IW4k84YN5rUd28LBkqDVbloUOoWbsRxc",
-          "collection": "pdf",
-          "name": "soveirgn farming_fertilizer.pdf",
           "title": "soveirgn farming fertilizer",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -885,12 +821,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1GBcdp_b42eeGmwJguNiEKVlYEYfjOMjd",
-          "collection": "pdf",
-          "name": "Pesticide-Law-2018_Bangla_Retailer-Guide.pdf",
           "title": "Pesticide – Law – 2018 Bangla Retailer – Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -898,12 +833,11 @@
           "size": 5803461,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1dL7y6y7Sc81cUBQdpjYhMNB3WnOtoSa2",
-          "collection": "pdf",
-          "name": "GAP_Manual_Comprehensive_Report.pdf",
           "title": "GAP Manual Comprehensive Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -911,12 +845,11 @@
           "size": 1166043,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1UzzFr04UM07oHE2z63JYn9NeXDM5HWhh",
-          "collection": "pdf",
-          "name": "Diagnostic-Field-Guide.pdf",
           "title": "Diagnostic – Field – Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -924,12 +857,11 @@
           "size": 6468341,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1NYqL_KZAOuFxDVU_eX31d4fq5ZPDPFxQ",
-          "collection": "pdf",
-          "name": "MoA-classification_copy.pdf",
           "title": "MoA – classification copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -937,12 +869,11 @@
           "size": 342279,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zv7B9JbBvde9j662cUaRrDSWXVB0igHc",
-          "collection": "pdf",
-          "name": "MoA-Classification_v11.5_4Feb26-1770200746_copy.pdf",
           "title": "MoA – Classification v11.5 4Feb26 – 1770200746 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -950,12 +881,11 @@
           "size": 1478488,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uwkdzlyigdzNHTKBbHqddv5LbMfq-HZa",
-          "collection": "pdf",
-          "name": "Pesticide_Field_Guide.pdf",
           "title": "Pesticide Field Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -963,12 +893,11 @@
           "size": 499595,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1lqyrqZE7y8bPVuTbeRv2y9QHX0Y3a8Eq",
-          "collection": "pdf",
-          "name": "pesticide act,2018.pdf",
           "title": "pesticide act,2018",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -976,12 +905,11 @@
           "size": 192000,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16k5xlQjiKVip-QzTnr9489khkfc-aBsy",
-          "collection": "pdf",
-          "name": "Farmer_Card_App_Technical_Report.pdf",
           "title": "Farmer Card App Technical Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -990,12 +918,11 @@
           "path": [
             "bnp_policy",
             "Farmers Card App_analysis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "11AHaBlATg0203kvBi3Nl7i9j2W74HPc1",
-          "collection": "pdf",
-          "name": "Farmers_Card_Enhancement_Report.docx.pdf",
           "title": "Farmers Card Enhancement Report.docx",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1004,12 +931,11 @@
           "path": [
             "bnp_policy",
             "Farmers Card App_analysis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1-T16AhaOqtKFqwC8sQ9xkCzyBQ3SSAnd",
-          "collection": "pdf",
-          "name": "প্রণোদনাপুনর্বাসন_copy.pdf",
           "title": "প্রণোদনাপুনর্বাসন copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1017,12 +943,11 @@
           "size": 666169,
           "path": [
             "Plantation tracker "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "14U-vajNZ58V2ZIi0kC5vxJskEnvCQprG",
-          "collection": "pdf",
-          "name": "PlantationTracker_OnePager.pdf",
           "title": "PlantationTracker OnePager",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1030,12 +955,11 @@
           "size": 4531,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1U-b7gT2DhAeQvutYCHF6ieYyRxh2V-XM",
-          "collection": "pdf",
-          "name": "PlantationTracker_CommandCenter_Roadmap.pdf",
           "title": "PlantationTracker CommandCenter Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1043,12 +967,11 @@
           "size": 16742,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12hhxZbEz0EVsU6Sr4y-zvnAHmuX9NEr3",
-          "collection": "pdf",
-          "name": "Shovels_to_Swipes.pdf",
           "title": "Shovels to Swipes",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1056,12 +979,11 @@
           "size": 15422849,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1lak9mOXJexkZc45CiECCHxIr0B4PCMUa",
-          "collection": "pdf",
-          "name": "GAP_Manual_Comprehensive_Report.pdf",
           "title": "GAP Manual Comprehensive Report",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1069,12 +991,11 @@
           "size": 1166043,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "17WcjQWc16_rPTCgPAstGeqtBw4giKnw9",
-          "collection": "pdf",
-          "name": "GAP_Papaya_Success_Guide.pdf",
           "title": "GAP Papaya Success Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1082,12 +1003,11 @@
           "size": 19058423,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1JHxCrvGsK4UySGG2rmok95TNuTVMEa-7",
-          "collection": "pdf",
-          "name": "Safe_Papaya_GAP_Protocol.pdf",
           "title": "Safe Papaya GAP Protocol",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1095,12 +1015,11 @@
           "size": 24638416,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1mIIUYsDfN7onYqdtDmLXZo0IW0oWmPtP",
-          "collection": "pdf",
-          "name": "Papaya_GAP_Certification_Blueprint.pdf",
           "title": "Papaya GAP Certification Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1108,12 +1027,11 @@
           "size": 17871705,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "17jjiBT_gMaue2lppH4ARKttHxG1DXvr6",
-          "collection": "pdf",
-          "name": "GAP_Certification_Training.pdf",
           "title": "GAP Certification Training",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1121,12 +1039,11 @@
           "size": 15259911,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1wKuxW6mNRVaULcQ_QTAMWYDiRnNyYp7D",
-          "collection": "pdf",
-          "name": "Bangladesh_GAP_Laau_Production.pdf",
           "title": "Bangladesh GAP Laau Production",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1134,12 +1051,11 @@
           "size": 13751947,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1FNNVyIpTwzG2U2DO4OfUgk1BT_0yVoPM",
-          "collection": "pdf",
-          "name": "Safe_Lau_Production_Protocols.pdf",
           "title": "Safe Lau Production Protocols",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1147,12 +1063,11 @@
           "size": 16732607,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1luKRbogDEPXxvmM9NCmgmGP_KW5uIZL-",
-          "collection": "pdf",
-          "name": "GAP Training Manual 29.7.2025.pdf",
           "title": "GAP Training Manual 29.7.2025",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1160,12 +1075,11 @@
           "size": 9153695,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Vu8xRGDevZoYD6uuGaEMTnFWkbkvI3sj",
-          "collection": "pdf",
-          "name": "Papaya_GAP_Production_Guide.pdf",
           "title": "Papaya GAP Production Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1173,12 +1087,11 @@
           "size": 19115761,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "185mYsSsxMwNjBS3Z9PaC3T8XzHDmiWac",
-          "collection": "pdf",
-          "name": "GAP_Jackfruit_Export_Success.pdf",
           "title": "GAP Jackfruit Export Success",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1186,12 +1099,11 @@
           "size": 21139818,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1eD7zcy4i8IkHmP0qDcysu8kzjFOlaVWN",
-          "collection": "pdf",
-          "name": "Jackfruit_Protection_Protocol.pdf",
           "title": "Jackfruit Protection Protocol",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1199,12 +1111,11 @@
           "size": 16028686,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1GnHD8eKvSOvBeIwTcvYXWbRV_uMAwYUY",
-          "collection": "pdf",
-          "name": "gap_mango_technology_Blueprint.pdf",
           "title": "gap mango technology Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1212,12 +1123,11 @@
           "size": 18348007,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "17yFMNbgJTx6RryDnWDKtvN52JlTR55z3",
-          "collection": "pdf",
-          "name": "Bangladesh_Mango_GAP_Standards.pdf",
           "title": "Bangladesh Mango GAP Standards",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1225,34 +1135,31 @@
           "size": 19390924,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1jRaWXpSYuCm4zsixjwWiovI47GUqFDNM",
-          "collection": "pdf",
-          "name": "pesticides rules 2018.pdf",
           "title": "pesticides rules 2018",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-04-26T12:57:31.936Z",
           "size": 244760,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1eS4VUXI2WVZWqFK6eG-hWeZ8vfZjbpVJ",
-          "collection": "pdf",
-          "name": "SDRnP Training & Demo Establishment Guidline Book.pdf",
           "title": "SDRnP Training & Demo Establishment Guidline Book",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-04-08T12:47:46.671Z",
           "size": 80151044,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1CkyP-Ubj2mE-Epox_4TMvU8Wmy9YlmJ_",
-          "collection": "pdf",
-          "name": "Soil_Health_Our_Future.pdf",
           "title": "Soil Health Our Future",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1260,12 +1167,11 @@
           "size": 15733060,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "108VK_rIaBcNtWOLvrDkZkdqEOeiVH9my",
-          "collection": "pdf",
-          "name": "চর_অর্থনীতি_সহনশীল_ভবিষ্যৎ.pdf",
           "title": "চর অর্থনীতি সহনশীল ভবিষ্যৎ",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1273,12 +1179,11 @@
           "size": 17413421,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1RDqKiVMlqriRgbZxPNmdOEoSSpbps48j",
-          "collection": "pdf",
-          "name": "Kurigram Char Soil Analysis (Bangla) with Images.pdf",
           "title": "Kurigram Char Soil Analysis (Bangla) with Images",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1286,12 +1191,11 @@
           "size": 2317972,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1VuFyD0u3jXgiuXaZA2crzVynwYUH64hr",
-          "collection": "pdf",
-          "name": "gap_mango.pdf",
           "title": "gap mango",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1300,12 +1204,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1hYccPBE-o6lWl4t3DmA8Y6bs515Ixn7a",
-          "collection": "pdf",
-          "name": "Bangladesh_Agricultural_Counterfeit_Crisis.pdf",
           "title": "Bangladesh Agricultural Counterfeit Crisis",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1313,12 +1216,11 @@
           "size": 12533265,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1hHT10IceclPrxLcIPyfs3MO2yQziILBZ",
-          "collection": "pdf",
-          "name": "Pesticide_Integrity_Field_Guide.pdf",
           "title": "Pesticide Integrity Field Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1326,12 +1228,11 @@
           "size": 20327258,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "15ZIZNKbdc_kQIoS7rlrIi1fjC5_HhISF",
-          "collection": "pdf",
-          "name": "Plantwise_Diagnostic_Guide_Core_Principles.pdf",
           "title": "Plantwise Diagnostic Guide Core Principles",
           "kind": "pdf",
           "mime": "application/vnd.google-apps.drive-sdk.94859032195",
@@ -1340,12 +1241,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1_F9US5FWyMp9pEZELYsp3iUyYLEEpPPj",
-          "collection": "pdf",
-          "name": "Farmers Group Formation Final_copy.pdf",
           "title": "Farmers Group Formation Final copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1353,12 +1253,11 @@
           "size": 2307853,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yKnsuo2_6Gdv8Zkm53WnmngQiqZUKGv0",
-          "collection": "pdf",
-          "name": "Rice_BPH_Tactical_Defense.pdf",
           "title": "Rice BPH Tactical Defense",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1367,12 +1266,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ivvMxoVUCM1k9rl8bXpiZ7rLYg8RdMup",
-          "collection": "pdf",
-          "name": "Mastering_Plant_Diagnosis.pdf",
           "title": "Mastering Plant Diagnosis",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1381,12 +1279,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ziWu2R_P1zsCugk99hKP3zesmt9m9Q8K",
-          "collection": "pdf",
-          "name": "GreenLoop_3.0_Rural_Transformation.pdf",
           "title": "GreenLoop 3.0 Rural Transformation",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1396,12 +1293,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1DPkeBK8z2hPyJ2l9huOzK9eEHHGoC03S",
-          "collection": "pdf",
-          "name": "greenloop_cirdap_ layer_C_proposal.pdf",
           "title": "greenloop cirdap layer C proposal",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1410,12 +1306,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1pZGe86V7q8HZHXcvzEf3u4Y7bnvJRtle",
-          "collection": "pdf",
-          "name": "Bangladesh_Agriculture_A_China_Roadmap.pdf",
           "title": "Bangladesh Agriculture A China Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1423,12 +1318,11 @@
           "size": 12500759,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ywzI82Lyp_MfpAEWufcBG6s-uiqJcweD",
-          "collection": "pdf",
-          "name": "বাংলাদেশের কৃষি রূপান্তর- চীনা মডেলের আলোকে একটি কৌশলগত নীতি প্রস্তাব.pdf",
           "title": "বাংলাদেশের কৃষি রূপান্তর – চীনা মডেলের আলোকে একটি কৌশলগত নীতি প্রস্তাব",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1436,12 +1330,11 @@
           "size": 175561,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "10ArLEpeEkH5biGt8r2zIGstUvu5o0PpI",
-          "collection": "pdf",
-          "name": "কৃষি রূপান্তরের কৌশলগত রোডম্যাপ_ 'সাকুয়ান ঝিলি' এবং 'টিভিই' মডেলের সমন্বিত প্রয়োগ.pdf",
           "title": "কৃষি রূপান্তরের কৌশলগত রোডম্যাপ 'সাকুয়ান ঝিলি' এবং 'টিভিই' মডেলের সমন্বিত প্রয়োগ",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1449,12 +1342,11 @@
           "size": 142752,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1lUNT5rZf7wWFGiXu1bQ36nOt82_9Wml6",
-          "collection": "pdf",
-          "name": "Sovereignty_Through_Agrarian_Reform.pdf",
           "title": "Sovereignty Through Agrarian Reform",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1462,12 +1354,11 @@
           "size": 11662225,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1i0b6bZrLhk6Z9GgoyNLPlJXx1G2x1Q2T",
-          "collection": "pdf",
-          "name": "Vision_2026_31_Point_Reform.pdf",
           "title": "Vision 2026 31 Point Reform",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1475,12 +1366,11 @@
           "size": 15602052,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zfQa1tfgCU0cB75aAXfOoSArQgQsLRDC",
-          "collection": "pdf",
-          "name": "Future_Rangpur_Future_Bangladesh.pdf",
           "title": "Future Rangpur Future Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1488,12 +1378,11 @@
           "size": 20476119,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1jgxX9sC_-D3dsoBZfU6PcEPj4FACiPZc",
-          "collection": "pdf",
-          "name": "Future Rangpur, Future Bangladesh.pdf",
           "title": "Future Rangpur, Future Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1501,12 +1390,11 @@
           "size": 3264677,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1x1WwnXfwkp1JEI2f1YiBiZgUAhPpHkkW",
-          "collection": "pdf",
-          "name": "dd03aa1d70f0c5e6c52d2c4f75ba450a.pdf",
           "title": "dd03aa1d70f0c5e6c52d2c4f75ba450a",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1514,12 +1402,11 @@
           "size": 94395,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1OIlkSBPyBJKZRc6_xx0Sz7qTq-v11Wnz",
-          "collection": "pdf",
-          "name": "Shovels_to_Swipes.pdf",
           "title": "Shovels to Swipes",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1527,12 +1414,11 @@
           "size": 15422849,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1J39VASwExcb3ZDvAPa_y0Cb_qjLTFEF6",
-          "collection": "pdf",
-          "name": "Manifesto_2026_Bangladesh_Before_All.pdf",
           "title": "Manifesto 2026 Bangladesh Before All",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1540,12 +1426,11 @@
           "size": 14266795,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1D5ncIUKpUyyXtM3TNGumiugEZvkcumdU",
-          "collection": "pdf",
-          "name": "Rainbow_Nation_State_Repair.pdf",
           "title": "Rainbow Nation State Repair",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1553,12 +1438,11 @@
           "size": 14886706,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Kt4BD9Zh7F36J3euVMp6-PE4MeT-h3FE",
-          "collection": "pdf",
-          "name": "Agriculture_Reform_Resilience_Roadmap.pdf",
           "title": "Agriculture Reform Resilience Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1566,12 +1450,11 @@
           "size": 20621097,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1SBBU2cSE9Wg7uhGpur6hinlctXmJiczv",
-          "collection": "pdf",
-          "name": "Agricultural_Roots_State_Transformation.pdf",
           "title": "Agricultural Roots State Transformation",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1579,12 +1462,11 @@
           "size": 23379460,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1OjU4hgXmaoc1o_k9Q8XxDcBc1gy9xnFn",
-          "collection": "pdf",
-          "name": "NANO_UREA_SMART_AGRICULTURE_SAVINGS.pdf",
           "title": "NANO UREA SMART AGRICULTURE SAVINGS",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1592,12 +1474,11 @@
           "size": 21811059,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1kicH30-1BSQWaizbE6twoPW--d3NwDn4",
-          "collection": "pdf",
-          "name": "Bangladesh_Harvest_Logistics_Roadmap.pdf",
           "title": "Bangladesh Harvest Logistics Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1605,12 +1486,11 @@
           "size": 17035186,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "14zZH4ptqTgHU9w_KkGBxBfgp4I5UW82k",
-          "collection": "pdf",
-          "name": "From Cash Transfers to Market Linkages_ A Cross-National Assessment of Agricultural Support for Farmers and Consumers.pdf",
           "title": "From Cash Transfers to Market Linkages A Cross – National Assessment of Agricultural Support for Farmers and Consumers",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1618,12 +1498,11 @@
           "size": 476198,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1kunE6y7HXw3QnHcJbqYwKAO-G-gEpyl5",
-          "collection": "pdf",
-          "name": "কৌশলগত বনায়ন কাঠামো_ বাংলাদেশে ২৫০ মিলিয়ন বৃক্ষরোপণ ...এমেয়...0 Million Tree Plantation and Long-term Survival in Bangladesh).pdf",
           "title": "কৌশলগত বনায়ন কাঠামো বাংলাদেশে ২৫০ মিলিয়ন বৃক্ষরোপণ ...এমেয়...0 Million Tree Plantation and Long – term Survival in Bangladesh)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1631,12 +1510,11 @@
           "size": 174280,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "17JSDbSC06qEVMwqILyE2veA-zGL2XjzC",
-          "collection": "pdf",
-          "name": "Bangladesh_National_Afforestation_Blueprint.pdf",
           "title": "Bangladesh National Afforestation Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1644,12 +1522,11 @@
           "size": 24553324,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ZEsf2WGLo1onHobTPI49Uz4byZ82As6X",
-          "collection": "pdf",
-          "name": "Smart_Agriculture_Card_Roadmap.pdf",
           "title": "Smart Agriculture Card Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1657,12 +1534,11 @@
           "size": 24014323,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ekfu2kYZt0fQlBnglGPfpNaQP73W6WOS",
-          "collection": "pdf",
-          "name": "Family Card.pdf",
           "title": "Family Card",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1670,12 +1546,11 @@
           "size": 11933119,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CXcTFq77YGY49Po1thIf6dYxL-QFTQpE",
-          "collection": "pdf",
-          "name": "Family_Card_Strategic_Reform.pdf",
           "title": "Family Card Strategic Reform",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1683,12 +1558,11 @@
           "size": 15912301,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1QhImSXYo3pBxnMhiVq3vdA0vQ4MhcMom",
-          "collection": "pdf",
-          "name": "31 Points English 2.5k_copy.pdf",
           "title": "31 Points English 2.5k copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1696,12 +1570,11 @@
           "size": 7215865,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13cDYLpUOE4cbE5zBZ7XGgXVNiiKQVkmx",
-          "collection": "pdf",
-          "name": "সংকট উত্তরণ ও সমৃদ্ধি বিনির্মাণের পথে.pdf.pdf",
           "title": "সংকট উত্তরণ ও সমৃদ্ধি বিনির্মাণের পথে.pdf",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1709,12 +1582,11 @@
           "size": 18558311,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1LaoSP8bVzbk0W8Z3Z1w6fZMk2vhA7FhT",
-          "collection": "pdf",
-          "name": "রাষ্ট্র বিনির্মাণে কৃষি.pdf_20260105_134839_0000.pdf",
           "title": "রাষ্ট্র বিনির্মাণে কৃষি.pdf 20260105 134839 0000",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1722,12 +1594,11 @@
           "size": 18010252,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1erARYm1_EP8wjH3btCxaMyGiDC5aPaQ5",
-          "collection": "pdf",
-          "name": "__বাংলাদেশের কৃষি উন্নয়ন, যুব সম্পৃক্ততা এবং নারীর ক্ষমতায়ন_ একটি সমন্বিত রূপরেখা__.pdf",
           "title": "বাংলাদেশের কৃষি উন্নয়ন, যুব সম্পৃক্ততা এবং নারীর ক্ষমতায়ন একটি সমন্বিত রূপরেখা",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1735,12 +1606,11 @@
           "size": 188929,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1EYbzbkOZsRvulo10AQW-oJhjpKyFFfjc",
-          "collection": "pdf",
-          "name": "Farm_Rebuilding_National_Security.pdf",
           "title": "Farm Rebuilding National Security",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1748,12 +1618,11 @@
           "size": 18131502,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1hQbCVz4Wkvuk8_lGPJaMsEqQQ53nknhn",
-          "collection": "pdf",
-          "name": "Ziaur_Rahman_Architect_of_Modern_Bangladesh.pdf",
           "title": "Ziaur Rahman Architect of Modern Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1761,12 +1630,11 @@
           "size": 19913998,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "18jRoAKwIV9qvj9dt8AoOKR7J5i3LQ2o0",
-          "collection": "pdf",
-          "name": "Future Rangpur, Future Bangladesh.pdf",
           "title": "Future Rangpur, Future Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1774,12 +1642,11 @@
           "size": 3264677,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "188PtY03U40zDAArTaDYYB15AjTsJfV4U",
-          "collection": "pdf",
-          "name": "Field_to_State_Power.pdf",
           "title": "Field to State Power",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1787,12 +1654,11 @@
           "size": 18988998,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ykgDiwGdJpzAarwb2Hjll_ioQn6QUR7l",
-          "collection": "pdf",
-          "name": "Sovereign_Spade_Smartphone_State.pdf",
           "title": "Sovereign Spade Smartphone State",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1800,12 +1666,11 @@
           "size": 16932852,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Dq3H-U1MkSfu3cTCOrcCA9minmIZ9K2e",
-          "collection": "pdf",
-          "name": "Sovereign_Spade_Smartphone_State.pdf_20260207_134854_0000.pdf",
           "title": "Sovereign Spade Smartphone State.pdf 20260207 134854 0000",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1813,12 +1678,11 @@
           "size": 18133974,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1c3Es5rO-1rd6QKx4ClIgDQWXxEskRogB",
-          "collection": "pdf",
-          "name": "Smart_Agricultural_Strategy.pdf",
           "title": "Smart Agricultural Strategy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1826,12 +1690,11 @@
           "size": 14450756,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1aLAZbjxctpLbychr372xNxG7MT022r8M",
-          "collection": "pdf",
-          "name": "From Cash Transfers to Market Linkages_ A Cross-National Assessment of Agricultural Support for Farmers and Consumers.pdf",
           "title": "From Cash Transfers to Market Linkages A Cross – National Assessment of Agricultural Support for Farmers and Consumers",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1839,12 +1702,11 @@
           "size": 476198,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ICI9mmYJiqMyzYsIMQp664fzNax6ckpZ",
-          "collection": "pdf",
-          "name": "The 1 Crore Tree Blu_50328542_20260220_2055202655.pdf",
           "title": "The 1 Crore Tree Blu 50328542 20260220 2055202655",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1852,12 +1714,11 @@
           "size": 445512,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1qQqFAaAQUZTcaJF5Ku56jMX8XLspDkTv",
-          "collection": "pdf",
-          "name": "250_Million_Trees_Scientific_Roadmap.pdf",
           "title": "250 Million Trees Scientific Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1865,12 +1726,11 @@
           "size": 21496642,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "14ys7WtasB_1AyzlF9QbMPJYArsiYxk81",
-          "collection": "pdf",
-          "name": "কৌশলগত বনায়ন কাঠামো_ বাংলাদেশে ২৫০ মিলিয়ন বৃক্ষরোপণ ...এমেয়...0 Million Tree Plantation and Long-term Survival in Bangladesh).pdf",
           "title": "কৌশলগত বনায়ন কাঠামো বাংলাদেশে ২৫০ মিলিয়ন বৃক্ষরোপণ ...এমেয়...0 Million Tree Plantation and Long – term Survival in Bangladesh)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1878,12 +1738,11 @@
           "size": 174280,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "19jZQsnffISPPYKQC482unrqAgKljAqOc",
-          "collection": "pdf",
-          "name": "Bangladesh_National_Afforestation_Blueprint.pdf",
           "title": "Bangladesh National Afforestation Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1891,12 +1750,11 @@
           "size": 24553324,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1MYVQtHxV77R4c_9lFd4RpMVTEtmfAXHz",
-          "collection": "pdf",
-          "name": "Smart_Agriculture_Card_Roadmap.pdf",
           "title": "Smart Agriculture Card Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1904,12 +1762,11 @@
           "size": 24014323,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1GxCMfnvlPNM7syhzuFiID256Qxaq1Ra7",
-          "collection": "pdf",
-          "name": "Learning from Asia_ _35675866_20260225_3835202635.pdf",
           "title": "Learning from Asia 35675866 20260225 3835202635",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1917,12 +1774,11 @@
           "size": 446328,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1z5uD_YZO6HAnedhmlvvoP6ZlhFD7lZDq",
-          "collection": "pdf",
-          "name": "Sustainable_Fertilizer_Management_in_Bangladesh.pdf",
           "title": "Sustainable Fertilizer Management in Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1930,12 +1786,11 @@
           "size": 20505361,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1SLkeZoMZrP2_dHLwcVbcQXHola2i854i",
-          "collection": "pdf",
-          "name": "Beyond the Broken Ta_33591717_20260302_1019202619.pdf",
           "title": "Beyond the Broken Ta 33591717 20260302 1019202619",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1943,12 +1798,11 @@
           "size": 440638,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1zvGzIwtRG16xUZNkZ5Aj6f9IoYU67pEN",
-          "collection": "pdf",
-          "name": "Smart_Farmer_Card_Project.pdf",
           "title": "Smart Farmer Card Project",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1956,12 +1810,11 @@
           "size": 15537652,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Jw649NYHmOsdrphEgpLyl02Bf3H7_iuP",
-          "collection": "pdf",
-          "name": "NANO_UREA_SMART_AGRICULTURE_SAVINGS.pdf",
           "title": "NANO UREA SMART AGRICULTURE SAVINGS",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1971,12 +1824,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16f10xPD1lNiu7GZbgQ4LdU2quK2wbaqA",
-          "collection": "pdf",
-          "name": "Blockchain_Fertilizer_E-Bill_Blueprint.pdf",
           "title": "Blockchain Fertilizer E – Bill Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -1986,12 +1838,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13_rOnUa94tDHlSalR-cLNS6Fb9AHfv4B",
-          "collection": "pdf",
-          "name": "Blockchain_Fertilizer_Revolution.pdf",
           "title": "Blockchain Fertilizer Revolution",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2001,12 +1852,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Fc0XZJM8nL11R9v8Z4Euf1CYnl8TQLbh",
-          "collection": "pdf",
-          "name": "ফার্টিলাইজার ট্র্যাকিং ই-বিল সিস্টেম- হাইব্রিড ...্ভিস এবং ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট.pdf",
           "title": "ফার্টিলাইজার ট্র্যাকিং ই – বিল সিস্টেম – হাইব্রিড ...্ভিস এবং ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2015,12 +1865,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ZozRcqLVeFpqD16uvh-MjkR-T3ARqb0R",
-          "collection": "pdf",
-          "name": "Beyond the Broken Ta_33591717_20260302_1019202619.pdf",
           "title": "Beyond the Broken Ta 33591717 20260302 1019202619",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2029,12 +1878,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1coI63IdRZAtn2CByw8ONmKQ3uLFfj6L2",
-          "collection": "pdf",
-          "name": "Beyond the Spray_ Qu_03149114_20260303_3053202653.pdf",
           "title": "Beyond the Spray Qu 03149114 20260303 3053202653",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2043,12 +1891,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1WZGPDy4tnN_TGxhEfu4OhT2NsOyK6V2C",
-          "collection": "pdf",
-          "name": "From Yashohar to the_00383655_20260304_2243202643.pdf",
           "title": "From Yashohar to the 00383655 20260304 2243202643",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2057,12 +1904,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13mBueBg5-__YHwT4KSIsybgdfIXW95Z6",
-          "collection": "pdf",
-          "name": "From Field Symptom t_41268136_20260304_1320202620.pdf",
           "title": "From Field Symptom t 41268136 20260304 1320202620",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2071,12 +1917,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1e0PDh7fWV3hpIHwP5fAMZorxWUHeUtwo",
-          "collection": "pdf",
-          "name": "From Farm to Forecas_27990484_20260308_5019202619.pdf",
           "title": "From Farm to Forecas 27990484 20260308 5019202619",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2085,12 +1930,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Kit5SuPbmNIGail6HSQscRJSVoxPiF3u",
-          "collection": "pdf",
-          "name": "Plantwise_Diagnostic_Guide_Core_Principles.pdf",
           "title": "Plantwise Diagnostic Guide Core Principles",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2099,23 +1943,21 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1k71bbvwDJHyMXaJ0kZuFHArg5-CT-Bd0",
-          "collection": "pdf",
-          "name": "Growth_Equity_Innovation_Finance.pdf",
           "title": "Growth Equity Innovation Finance",
           "kind": "pdf",
           "mime": "application/pdf",
           "modified": "2026-03-23T18:45:59.862Z",
           "size": 19516883,
-          "path": []
+          "path": [],
+          "ext": "pdf"
         },
         {
           "id": "1cRuEY7YwsCd9v047tg2poQgEgwFwUVpp",
-          "collection": "pdf",
-          "name": "From Cash Transfers to Market Linkages_ A Cross-National Assessment of Agricultural Support for Farmers and Consumers.pdf",
           "title": "From Cash Transfers to Market Linkages A Cross – National Assessment of Agricultural Support for Farmers and Consumers",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2124,12 +1966,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ICHIm2cQC0ngl1JJHSHzxrkZfTr2N22s",
-          "collection": "pdf",
-          "name": "মাটির কান্না থেকে ধানের হাসি_ একটি উন্নয়ন আখ্যান.pdf",
           "title": "মাটির কান্না থেকে ধানের হাসি একটি উন্নয়ন আখ্যান",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2138,12 +1979,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "19vrv01XjIai27cZbp2dO72gYDQIpCwF9",
-          "collection": "pdf",
-          "name": "Blockchain_Fertilizer_E-Bill_Blueprint.pdf",
           "title": "Blockchain Fertilizer E – Bill Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2152,12 +1992,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1MUEG4I3rcCvT1SY8v8pP2sm19FVZ-m_Q",
-          "collection": "pdf",
-          "name": "Blockchain_Fertilizer_Revolution.pdf",
           "title": "Blockchain Fertilizer Revolution",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2166,12 +2005,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1y3je7KTGmpCey5Y6GKepUqb4urqd_6s0",
-          "collection": "pdf",
-          "name": "ডিজিটাল কৃষি- ব্লকচেইন কীভাবে সার বিতরণে স্বচ্ছতা আনে (শিক্ষার্থীদের জন্য একটি সহজ গাইড).pdf",
           "title": "ডিজিটাল কৃষি – ব্লকচেইন কীভাবে সার বিতরণে স্বচ্ছতা আনে (শিক্ষার্থীদের জন্য একটি সহজ গাইড)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2180,12 +2018,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "14u7ln4zzji8Y6ubpoRm-3gdyUsHsLti9",
-          "collection": "pdf",
-          "name": "From Lab to Field_ A_49283298_20260301_5344202644.pdf",
           "title": "From Lab to Field A 49283298 20260301 5344202644",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2194,12 +2031,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1s1OZG8JswyKAwK2edfU4WnjNHPRjYmPT",
-          "collection": "pdf",
-          "name": "The_Soil_Pulse.pdf",
           "title": "The Soil Pulse",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2208,12 +2044,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13zwfSlrvt06Ghh5KRNfv0NZku2cLbPp9",
-          "collection": "pdf",
-          "name": "Sovereign_Spade_Smartphone_State.pdf",
           "title": "Sovereign Spade Smartphone State",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2221,12 +2056,11 @@
           "size": 16932852,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1cyZ55UW7HUo8GGOkxL0h9bEq2SvxWTeA",
-          "collection": "pdf",
-          "name": "Shovels_to_Swipes.pdf",
           "title": "Shovels to Swipes",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2234,12 +2068,11 @@
           "size": 15422849,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CP4_KEEQ386YiHhuaz784I52G2a6Sbd_",
-          "collection": "pdf",
-          "name": "Bangladesh Nationalist Party-BNP Election Manifesto 2026-English-1.pdf",
           "title": "Bangladesh Nationalist Party – BNP Election Manifesto 2026 – English – 1",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2247,12 +2080,11 @@
           "size": 126755590,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1B8BcXfBME3a-WfvXeEhosh6_vJwi3gSS",
-          "collection": "pdf",
-          "name": "Manifesto_2026_Bangladesh_Before_All.pdf",
           "title": "Manifesto 2026 Bangladesh Before All",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2260,12 +2092,11 @@
           "size": 14266795,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1cAmBRZdsXKqOwjd9Y8VtNLbXxkzgkhMM",
-          "collection": "pdf",
-          "name": "Sovereign_Spade_Smartphone_State.pdf_20260207_134854_0000.pdf",
           "title": "Sovereign Spade Smartphone State.pdf 20260207 134854 0000",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2273,12 +2104,11 @@
           "size": 18133974,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CKOVZk9dkLykJbNHX1WtgJrJAOt2CagS",
-          "collection": "pdf",
-          "name": "Rainbow_Nation_State_Repair.pdf",
           "title": "Rainbow Nation State Repair",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2286,12 +2116,11 @@
           "size": 14886706,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Y8T1OGg_7QX8-kNcXcWAVDIsSaZ7XD2X",
-          "collection": "pdf",
-          "name": "Agriculture_Reform_Resilience_Roadmap.pdf",
           "title": "Agriculture Reform Resilience Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2299,12 +2128,11 @@
           "size": 20621097,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1qLPEVrm5DFs-Vxhpru9L8j7dXcdzYXUw",
-          "collection": "pdf",
-          "name": "Data_Empowering_Smallholders.pdf",
           "title": "Data Empowering Smallholders",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2312,12 +2140,11 @@
           "size": 20788604,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16vvOomO7mtUxcqp1M_lqlzIZhEnv9MGd",
-          "collection": "pdf",
-          "name": "Agricultural_Roots_State_Transformation.pdf",
           "title": "Agricultural Roots State Transformation",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2325,12 +2152,11 @@
           "size": 23379460,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ycUx8jqgsmQZAOq4Q7Av37tdpLBok9lC",
-          "collection": "pdf",
-          "name": "NANO_UREA_SMART_AGRICULTURE_SAVINGS.pdf",
           "title": "NANO UREA SMART AGRICULTURE SAVINGS",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2338,12 +2164,11 @@
           "size": 21811059,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1qoyowqMBhf7qYrlIpd-B-dkS0Hk6kwKh",
-          "collection": "pdf",
-          "name": "Colonial_Legacy_Administrative_Deconstruction.pdf",
           "title": "Colonial Legacy Administrative Deconstruction",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2351,12 +2176,11 @@
           "size": 26542640,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1daxs7SVfqtoN67Pv_fvo0IUeFtxtEJH1",
-          "collection": "pdf",
-          "name": "Bangladesh_Harvest_Logistics_Roadmap.pdf",
           "title": "Bangladesh Harvest Logistics Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2364,12 +2188,11 @@
           "size": 17035186,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yqmvfiP8TtSmyeI4gcT2UhGuoh24YQzl",
-          "collection": "pdf",
-          "name": "Smart_Agriculture_Card_Roadmap.pdf",
           "title": "Smart Agriculture Card Roadmap",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2377,12 +2200,11 @@
           "size": 24014323,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16cO3lP5ZUdcpRKjuwJxOl4n9KjuzrEro",
-          "collection": "pdf",
-          "name": "Smart_Fertilizer_Transformation.pdf",
           "title": "Smart Fertilizer Transformation",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2390,12 +2212,11 @@
           "size": 15262334,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "18E0S4ev_T2iC1GOLLZ2QcJLd1RRAtYDk",
-          "collection": "pdf",
-          "name": "Smart_Farmer_Card_Project.pdf",
           "title": "Smart Farmer Card Project",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2403,12 +2224,11 @@
           "size": 15537652,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1gTGpSXOKhiTEHw-CJCUPEbdp6w-V5VLV",
-          "collection": "pdf",
-          "name": "Krishak_Card_Digital_Roadmap_(6).pdf",
           "title": "Krishak Card Digital Roadmap (6)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2416,12 +2236,11 @@
           "size": 15120082,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "18IcCuGYHDV65T7BruGhLpfEM4SCKAHI9",
-          "collection": "pdf",
-          "name": "GreenLoop_AI_Agriculture.pdf",
           "title": "GreenLoop AI Agriculture",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2431,12 +2250,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1RagH8vxu3rRI2cNipXTgFnwIAIiZIAge",
-          "collection": "pdf",
-          "name": "GreenLoop_3.0_Digital_Circular_Agriculture.pdf",
           "title": "GreenLoop 3.0 Digital Circular Agriculture",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2446,12 +2264,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1LwB9YfLKoC0PPe9t40c_h5iszT9Ukhmo",
-          "collection": "pdf",
-          "name": "greenloop_innovation_infographic.pdf",
           "title": "greenloop innovation infographic",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2460,12 +2277,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1TVN2eMes_yX8XcvrGeMXYqfh1kUwtZ_U",
-          "collection": "pdf",
-          "name": "greenloop_system_architecture.pdf",
           "title": "greenloop system architecture",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2474,12 +2290,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uWyS7OjLcXVh9Q7bZd2zVTFV9jrxUzUs",
-          "collection": "pdf",
-          "name": "av045e.pdf",
           "title": "av045e",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2490,12 +2305,11 @@
             "WEFE_en",
             "story_content",
             "external_files"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1VANsTIKKLHwaLZzqMUrcy3iwOM-hUBRo",
-          "collection": "pdf",
-          "name": "cb7654en.pdf",
           "title": "cb7654en",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2506,12 +2320,11 @@
             "WEFE_en",
             "story_content",
             "external_files"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1nFZYxU68WF2MMZ7I2N6i4v_3n0Ctc8Hs",
-          "collection": "pdf",
-          "name": "i7959en.pdf",
           "title": "i7959en",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2522,12 +2335,11 @@
             "WEFE_en",
             "story_content",
             "external_files"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uiU0B7OXxgEmx_UWSYr2DQM45YKITRAZ",
-          "collection": "pdf",
-          "name": "greenloop_cirdap_proposal.pdf",
           "title": "greenloop cirdap proposal",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2536,12 +2348,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "15b2plyMuzj0iMJ7uvo-ViZf2Yi0KOE2j",
-          "collection": "pdf",
-          "name": "epb6 process food in Europe.pdf",
           "title": "epb6 process food in Europe",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2549,12 +2360,11 @@
           "size": 6011466,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1nl4rIv0VCaPwr107EorMm465O-ONtVDh",
-          "collection": "pdf",
-          "name": "epb8.pdf",
           "title": "epb8",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2562,12 +2372,11 @@
           "size": 5863881,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1oKn4ih4FwNSWgRexIy3QdFkrNtPovPep",
-          "collection": "pdf",
-          "name": "epb america 7.pdf",
           "title": "epb america 7",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2575,12 +2384,11 @@
           "size": 13514091,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1P9sxhpSeKb4vkvaTrgqTUh1JWMSSEMKQ",
-          "collection": "pdf",
-          "name": "epb middle east fruit& vegetable.pdf",
           "title": "epb middle east fruit& vegetable",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2588,12 +2396,11 @@
           "size": 5357498,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uO8srgsx6gtPRGoaykHJXyaV3QHlft_n",
-          "collection": "pdf",
-          "name": "epb4.pdf",
           "title": "epb4",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2601,12 +2408,11 @@
           "size": 4454760,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CnCsFW31O_s8jvsl3gFl90nCGEBZwlJ-",
-          "collection": "pdf",
-          "name": "epb middle east.pdf",
           "title": "epb middle east",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2614,12 +2420,11 @@
           "size": 4511803,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Bw14f4VJoPnvleuUsjo6qnxU6x75FKTP",
-          "collection": "pdf",
-          "name": "epb1.pdf",
           "title": "epb1",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2627,12 +2432,11 @@
           "size": 5437378,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1DnhGZfeZ4LenBFWSo8tvuRoflPO_WBpM",
-          "collection": "pdf",
-          "name": "1. Guideline on Export Procedures of FFV.pdf",
           "title": "1. Guideline on Export Procedures of FFV",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2640,12 +2444,11 @@
           "size": 8140042,
           "path": [
             "Export"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1EGgeFQsOCPVFrHhDHwTlC7b1V0E51-8z",
-          "collection": "pdf",
-          "name": "Efficiency_3.0_Rural_Bangladesh.pdf",
           "title": "Efficiency 3.0 Rural Bangladesh",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2655,12 +2458,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "17wYkCiSbW5tTyKPZjBfSR4Gx1CO8a9kt",
-          "collection": "pdf",
-          "name": "Decoding the CIRDAP _22002314_20260305_1455202655.pdf",
           "title": "Decoding the CIRDAP 22002314 20260305 1455202655",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2669,12 +2471,11 @@
           "path": [
             "CIRDAP",
             "Research"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1lFg8vbrz2nsEkGvi9-E_XeJqZxGc8zOE",
-          "collection": "pdf",
-          "name": "প্রতিযোগিতার প্রস্তাবনা- এফিশিয়েন্সি ৩.০ — ব্লকচেইন ও স্মার্ট কৃষি ব্যবস্থাপনা.pdf",
           "title": "প্রতিযোগিতার প্রস্তাবনা – এফিশিয়েন্সি ৩.০ — ব্লকচেইন ও স্মার্ট কৃষি ব্যবস্থাপনা",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2683,12 +2484,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1-_xfxQ_b-MuqlthVrCDYZfepv-wrDOtj",
-          "collection": "pdf",
-          "name": "Agri_Efficiency_3.0.pdf",
           "title": "Agri Efficiency 3.0",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2698,12 +2498,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "bangla"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "19EHLZTg-im_Sz-3tv-nnI2USyWUnijOF",
-          "collection": "pdf",
-          "name": "CIRDAP_2026_Innovation_Blueprint.pdf",
           "title": "CIRDAP 2026 Innovation Blueprint",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2713,12 +2512,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "english"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uJ1oySwgZjhyk6iVfCsQxgj_I8XBQ-Ea",
-          "collection": "pdf",
-          "name": "‘এফিসিয়েন্সি ৩.০’ (Efficiency 3.0)- CIRDAP-REEDS ইনোভেশন চ্যালেঞ্জ ২০২৬-এর জন্য একটি সমন্বিত প্রস্তাবনা.pdf",
           "title": "‘এফিসিয়েন্সি ৩.০’ (Efficiency 3.0) – CIRDAP – REEDS ইনোভেশন চ্যালেঞ্জ ২০২৬ – এর জন্য একটি সমন্বিত প্রস্তাবনা",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2727,12 +2525,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1D60p7RaybHPWlklGA9cXsfrWZ-TUmAl9",
-          "collection": "pdf",
-          "name": "GreenLoop 3.0 _ CIRDAP Innovation Challenge 2026.pdf",
           "title": "GreenLoop 3.0 CIRDAP Innovation Challenge 2026",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2742,12 +2539,11 @@
             "CIRDAP",
             "pdf_slide_deck",
             "english"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1iOxDg4MU55W-aKJsijkPciK-OWeFbmuj",
-          "collection": "pdf",
-          "name": "GreenLoop 3.0- Blockchain-Enabled Circular Agriculture for Rural Empowerment.pdf",
           "title": "GreenLoop 3.0 – Blockchain – Enabled Circular Agriculture for Rural Empowerment",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2756,12 +2552,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yHShiIueQDDLZs-A1sEN0DU4DhirtNII",
-          "collection": "pdf",
-          "name": "গ্রীনলুপ ৩.০ (GreenLoop 3.0)- পল্লী ক্ষমতায়নে ব্লকচেইন-নির্ভর সার্কুলার এগ্রিকালচার.pdf",
           "title": "গ্রীনলুপ ৩.০ (GreenLoop 3.0) – পল্লী ক্ষমতায়নে ব্লকচেইন – নির্ভর সার্কুলার এগ্রিকালচার",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2770,12 +2565,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "10bF80wxY9QA6TRahhGEo2ixbb9yxhDts",
-          "collection": "pdf",
-          "name": "From Farm to Forecas_27990484_20260308_5019202619_copy.pdf",
           "title": "From Farm to Forecas 27990484 20260308 5019202619 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2783,12 +2577,11 @@
           "size": 782347,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1-0I67MJCcGyUXOAZCS29wf8yO3wMTVQT",
-          "collection": "pdf",
-          "name": "Learning_from_Asia__A_Blueprint_for_Sustainable_Fertilizer_Management_in_Bangladesh_s_Smallholder_Farms6522.pdf",
           "title": "Learning from Asia A Blueprint for Sustainable Fertilizer Management in Bangladesh s Smallholder Farms6522",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2796,12 +2589,11 @@
           "size": 126295428,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1WBA93oBkE2R9FKb0_RSHq5nCbkQyAyGx",
-          "collection": "pdf",
-          "name": "চর_অর্থনীতি_সহনশীল_ভবিষ্যৎ.pdf",
           "title": "চর অর্থনীতি সহনশীল ভবিষ্যৎ",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2809,12 +2601,11 @@
           "size": 17413421,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1VGSR430kQ-QGiQ-YQHDyN7rv0ythRRzD",
-          "collection": "pdf",
-          "name": "Shovels_to_Swipes.pdf",
           "title": "Shovels to Swipes",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2822,12 +2613,11 @@
           "size": 15422324,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1TFMKiKOiQMneoZEn3PYN59JVXJspcz2X",
-          "collection": "pdf",
-          "name": "Plant_Disease_and_Nutrition_Guide.pdf",
           "title": "Plant Disease and Nutrition Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2836,12 +2626,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CCgDDk-7Rjuph_a-I3-dHz8FiRzW5AUd",
-          "collection": "pdf",
-          "name": "31 Points English 2.5k_copy.pdf",
           "title": "31 Points English 2.5k copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2849,12 +2638,11 @@
           "size": 7215865,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1Zd2xq1Bo8Mo5GXzDaxODeC7Kr3N7eMUb",
-          "collection": "pdf",
-          "name": "nid.pdf",
           "title": "nid",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2862,12 +2650,11 @@
           "size": 87433,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1HZMoViTljQnT8AnVPVrpsjFU1qn3B81V",
-          "collection": "pdf",
-          "name": "FRG 2024.pdf",
           "title": "FRG 2024",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2875,12 +2662,11 @@
           "size": 12481486,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1MOGzZhfxYCmC0vOpygpYL-zKttCVanSa",
-          "collection": "pdf",
-          "name": "CABI-BioProtection-Portal_Practical-biocontrol-guide_Bengali.pdf",
           "title": "CABI – BioProtection – Portal Practical – biocontrol – guide Bengali",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2889,12 +2675,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yw4JPZXY06FyEQ4b8O_TxPGLes9Kn_-v",
-          "collection": "pdf",
-          "name": "Diagnostic-Field-Guide.pdf",
           "title": "Diagnostic – Field – Guide",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2903,12 +2688,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1bhgEAqN4IJpl2uHODWG5JyTEbtOGh63j",
-          "collection": "pdf",
-          "name": "gap potato.pdf",
           "title": "gap potato",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2916,12 +2700,11 @@
           "size": 4029034,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1dGZ5eh4tHpSPLVmdxPg3mVvvH4cek_q2",
-          "collection": "pdf",
-          "name": "লেবেলের জাদু.pdf",
           "title": "লেবেলের জাদু",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2929,12 +2712,11 @@
           "size": 178983179,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1UiO7IUA18-jaX1pAzmEDjFkxDXZj-fhe",
-          "collection": "pdf",
-          "name": "Kurigram_Agriculture_and_Rabi_Strategy.pdf",
           "title": "Kurigram Agriculture and Rabi Strategy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2942,12 +2724,11 @@
           "size": 12384973,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1FtDccRupJQD5CTkuAE7Q3byLEnUL74pB",
-          "collection": "pdf",
-          "name": "Plant_Defense_From_Cell_Wall_to_CRISPR.pdf",
           "title": "Plant Defense From Cell Wall to CRISPR",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2955,12 +2736,11 @@
           "size": 21317723,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1pOQIZ_Pht8TzO7c1MpORjKBsEipM9w_6",
-          "collection": "pdf",
-          "name": "Plant_Signals_Stress_Resilience_copy.pdf",
           "title": "Plant Signals Stress Resilience copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2968,12 +2748,11 @@
           "size": 17206421,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1sbvsmObxZxT6LGg9Z2AgMjJiP1tf2Y5K",
-          "collection": "pdf",
-          "name": "---CLP-2-Alleviating-Poverty-on-the-Chars-of-NW-Bangladesh---_copy.pdf",
           "title": "– – – CLP – 2 – Alleviating – Poverty – on – the – Chars – of – NW – Bangladesh – – – copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2981,12 +2760,11 @@
           "size": 23772563,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1CPGFxHZoBe8j8CexTn3Fzi6ox6AQYtHf",
-          "collection": "pdf",
-          "name": "2023-06-25-07-23-e3bba4648884efa13d4c7ccdeb8e7dbf_copy.pdf",
           "title": "2023 – 06 – 25 – 07 – 23 – e3bba4648884efa13d4c7ccdeb8e7dbf copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -2994,12 +2772,11 @@
           "size": 9578666,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1w17sU-sz-HiI9qoRTxTejFk9wh-XeqWn",
-          "collection": "pdf",
-          "name": "income tax certificate .pdf",
           "title": "income tax certificate",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3007,12 +2784,11 @@
           "size": 155727,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1sK_aFvAQekccwBqKHnRcL0PnrOB8RXdo",
-          "collection": "pdf",
-          "name": "Aug 25 bill.pdf",
           "title": "Aug 25 bill",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3020,12 +2796,11 @@
           "size": 60045,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1lCjMl9eif2QN_Y6DwdR_HR1osljcg7FX",
-          "collection": "pdf",
-          "name": "sep bill.pdf",
           "title": "sep bill",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3033,12 +2808,11 @@
           "size": 60227,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "16P14dD283jzU3ikBdGCDSxuodt16bmpx",
-          "collection": "pdf",
-          "name": "partner rice.pdf",
           "title": "partner rice",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3047,12 +2821,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1C6HSVp39nGgnt61X0xC5_Q1bJJuXhOXk",
-          "collection": "pdf",
-          "name": "summary-of-frac-recommendations-for-cereals-and-corn.pdf",
           "title": "summary – of – frac – recommendations – for – cereals – and – corn",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3060,12 +2833,11 @@
           "size": 278821,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1C29JzI23AAXfOgoQy2KKUqzifjv-MX2d",
-          "collection": "pdf",
-          "name": "frac-recommendations-for-fungicide-mixtures-january-2010.pdf",
           "title": "frac – recommendations – for – fungicide – mixtures – january – 2010",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3073,12 +2845,11 @@
           "size": 63711,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1C2-JyHTHox1HbLVP7b474t2LwYJm_Q3E",
-          "collection": "pdf",
-          "name": "frac-list-of-fungicide-common-names-2016v2.pdf",
           "title": "frac – list – of – fungicide – common – names – 2016v2",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3086,12 +2857,11 @@
           "size": 313278,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1C-q9GG3ZE913Z-4eLdXIkLRad--6-C5a",
-          "collection": "pdf",
-          "name": "frac-moa-poster-2024.pdf",
           "title": "frac – moa – poster – 2024",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3099,12 +2869,11 @@
           "size": 1402744,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1BuDk_u-_5DaY6Y04AQ876AAXtAv4WmN5",
-          "collection": "pdf",
-          "name": "frac-code-list-2024_.pdf",
           "title": "frac – code – list – 2024",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3112,12 +2881,11 @@
           "size": 744501,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "19uGNo4V1pnIsNqziOY7bzvaFH4_xNRdo",
-          "collection": "pdf",
-          "name": "print_mistake_correction_form1_copy.pdf",
           "title": "print mistake correction form1 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3125,12 +2893,11 @@
           "size": 149804,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "186YeluFoR1AartihMfKUMViI6dGFLcPN",
-          "collection": "pdf",
-          "name": "FRG-2018 (Bangla).pdf",
           "title": "FRG – 2018 (Bangla)",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3138,12 +2905,11 @@
           "size": 24004144,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "18-H1oPj4HMY6yDAtSafaC_-lt-Pu0w3F",
-          "collection": "pdf",
-          "name": "জাতীয় কৃষি যান্ত্রিকীকরণ নীতি ২০২০.pdf",
           "title": "জাতীয় কৃষি যান্ত্রিকীকরণ নীতি ২০২০",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3151,12 +2917,11 @@
           "size": 342108,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "13I16onTCcT3aZELirVtp8mBaeBAqPekl",
-          "collection": "pdf",
-          "name": "pointed gourd.pdf",
           "title": "pointed gourd",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3164,12 +2929,11 @@
           "size": 3651865,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "130g3zARf3fTq4JEoEwscamkzlmMMLkBa",
-          "collection": "pdf",
-          "name": "papaya green.pdf",
           "title": "papaya green",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3177,12 +2941,11 @@
           "size": 3549262,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12yNTzYrqkHBC6-MmOs2A7CDcx7dYYJxE",
-          "collection": "pdf",
-          "name": "mango.pdf",
           "title": "mango",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3190,12 +2953,11 @@
           "size": 4435078,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12vTghxKZDWNhcKkSbua-USadMFTvaOtN",
-          "collection": "pdf",
-          "name": "bottle gourd.pdf",
           "title": "bottle gourd",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3203,12 +2965,11 @@
           "size": 3619928,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12oejCCH_Wmn--2Uvhh35gtocOJPLTDch",
-          "collection": "pdf",
-          "name": "jackfruit.pdf",
           "title": "jackfruit",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3216,12 +2977,11 @@
           "size": 3886332,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12lFL0T-BOGjCzPvH-9eULIy2tUuuFT1k",
-          "collection": "pdf",
-          "name": "payara.pdf",
           "title": "payara",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3229,12 +2989,11 @@
           "size": 3613065,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12iO8ebziEQGoWOkF-aA0--fDh950OQRV",
-          "collection": "pdf",
-          "name": "Brinjal .pdf",
           "title": "Brinjal",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3242,12 +3001,11 @@
           "size": 3884003,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "12Yl2nKv2pY0NLXa8oxV8QygJTygxS8ku",
-          "collection": "pdf",
-          "name": "long yard bean .pdf",
           "title": "long yard bean",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3255,12 +3013,11 @@
           "size": 9006538,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yOjOt2ujS2UrjHwsT__xVxUk2PEW54lN",
-          "collection": "pdf",
-          "name": "agri dairy 25.pdf",
           "title": "agri dairy 25",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3268,12 +3025,11 @@
           "size": 5556200,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1yJPlgn3wPmS9i7drJqmVu_atX0oIzoTU",
-          "collection": "pdf",
-          "name": "vegetable pesticides residue reduction.pdf",
           "title": "vegetable pesticides residue reduction",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3281,12 +3037,11 @@
           "size": 7147407,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1uDtYgHKfhHbIrKGO6cqMrkoYxXTPrGh-",
-          "collection": "pdf",
-          "name": "Sucking-Pest_IRM_Guidelnes_v1_-7thJan20_copy.pdf",
           "title": "Sucking – Pest IRM Guidelnes v1 – 7thJan20 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3294,12 +3049,11 @@
           "size": 346113,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         },
         {
           "id": "1ny3lwT47iRxCI-UTMP-LVpI36PylNnYb",
-          "collection": "pdf",
-          "name": "Updated_Insecticide_Mixtures_Guidance_V2_30Aug23_copy.pdf",
           "title": "Updated Insecticide Mixtures Guidance V2 30Aug23 copy",
           "kind": "pdf",
           "mime": "application/pdf",
@@ -3307,7 +3061,8 @@
           "size": 412427,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pdf"
         }
       ]
     },
@@ -3321,8 +3076,6 @@
       "items": [
         {
           "id": "1hWwNQNdz6uO19E-iqme7W4NIynYszsqh",
-          "collection": "pptx",
-          "name": "fungicide-management-guide-merged.pptx",
           "title": "fungicide – management – guide – merged",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3330,12 +3083,11 @@
           "size": 37703943,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1CRM6Yxue67Fi0ASh1c1NwGjRPBc1o2IL",
-          "collection": "pptx",
-          "name": "fungicide-management-guide-merged.pptx",
           "title": "fungicide – management – guide – merged",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3343,12 +3095,11 @@
           "size": 36035158,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1Bq3Xy3hnhhDTpHdHl6a3iXO1lVc4D1X-",
-          "collection": "pptx",
-          "name": "DAE Pesticide Registration Reconciliation.pptx",
           "title": "DAE Pesticide Registration Reconciliation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3356,12 +3107,11 @@
           "size": 312348,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1NNFTzfGeKgKVHH9klQ_5nA99dryM8qnT",
-          "collection": "pptx",
-          "name": "'সার_নিরাপত্তা_থেকে_কৃষি_নিরাপত্তা_Nikosh_Slides' with you",
           "title": "'সার নিরাপত্তা থেকে কৃষি নিরাপত্তা Nikosh Slides' with you",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3370,12 +3120,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1VdLSVHngrVvUcoJxk9HnlrurPqQjRvs9",
-          "collection": "pptx",
-          "name": "Fertilizer_Tracking_Blockchain_Presentation.pptx",
           "title": "Fertilizer Tracking Blockchain Presentation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3383,12 +3132,11 @@
           "size": 146960,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1PmHw8fi0JMR32nbyEmQ6v678vQaYsn12",
-          "collection": "pptx",
-          "name": "ল্যাব থেকে মাঠে_ ১২-প্যারামিটার মাটি সেন্সর.pptx",
           "title": "ল্যাব থেকে মাঠে ১২ – প্যারামিটার মাটি সেন্সর",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3396,12 +3144,11 @@
           "size": 4897295,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1VY1-U_vZDwKXVq4YcTBoyIpPVZNVeCt7",
-          "collection": "pptx",
-          "name": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল.pptx",
           "title": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3409,23 +3156,21 @@
           "size": 6188008,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1uVmIAH9Jez2gPEwJLi9y5nJ4YD1L8_7u",
-          "collection": "pptx",
-          "name": "Char_Project_Kurigram_Review-1.pptx",
           "title": "Char Project Kurigram Review – 1",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-09-20T07:51:52.569Z",
           "size": 619167,
-          "path": []
+          "path": [],
+          "ext": "pptx"
         },
         {
           "id": "1zNv1gdIBd-kmlDq3GSsZJhS-HR3nkmMK",
-          "collection": "pptx",
-          "name": "নিরাপদ খাদ্য মডিউল _ Food Safety Module.pptx",
           "title": "নিরাপদ খাদ্য মডিউল Food Safety Module",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3433,12 +3178,11 @@
           "size": 6638833,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1vr7oviur3gHEf409nM6dbSVAqk9GUCjk",
-          "collection": "pptx",
-          "name": "বাংলাদেশ থেকে প্রক্রিয়াজাত খাদ্য রপ্তানি নির্দেশিকা.pptx",
           "title": "বাংলাদেশ থেকে প্রক্রিয়াজাত খাদ্য রপ্তানি নির্দেশিকা",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3446,12 +3190,11 @@
           "size": 7965648,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1F1qsxvHUC0jefL7cp20TYvpTWi7dJ4Bb",
-          "collection": "pptx",
-          "name": "Securing_Our_Agricultural_Future.pptx",
           "title": "Securing Our Agricultural Future",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3459,12 +3202,11 @@
           "size": 28709599,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1I-5HF7TEBp-gtBd5ypv9gnE0oN5V7xk8",
-          "collection": "pptx",
-          "name": "Pesticide_Law_2018_Compliance_Guide.pptx",
           "title": "Pesticide Law 2018 Compliance Guide",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3472,12 +3214,11 @@
           "size": 17709520,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1d0KngyHmucYMcPWojYAC9kyrnEAnHFSb",
-          "collection": "pptx",
-          "name": "Pesticide_MoA_Blueprint.pptx",
           "title": "Pesticide MoA Blueprint",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3485,12 +3226,11 @@
           "size": 25951696,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "10vLYdzTgnvkQYDu0yZz3xr7iIjwWUtEyaghNuPiK_bY",
-          "collection": "pptx",
-          "name": "Rangamati Statistics",
           "title": "Rangamati Statistics",
           "kind": "slides",
           "mime": "application/vnd.google-apps.presentation",
@@ -3498,12 +3238,11 @@
           "size": 190237205,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1sK_Pi8_7vznX25koqaKPPDuq5De9mCzS",
-          "collection": "pptx",
-          "name": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল.pptx",
           "title": "উত্তম কৃষি চর্চা (GAP) ম্যানুয়াল",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3511,12 +3250,11 @@
           "size": 6187936,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1NdT79ph3Kpz17vitY7H-SUCOFkUa5IJG",
-          "collection": "pptx",
-          "name": "enhanced_char_project_presentation_FINAL.pptx",
           "title": "enhanced char project presentation FINAL",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3524,12 +3262,11 @@
           "size": 11063380,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1poETwJLZrDzm0CHfD8QPS52me5qU_UBx",
-          "collection": "pptx",
-          "name": "Rangpur_Smart_Agriculture_Blueprint_(2).pptx",
           "title": "Rangpur Smart Agriculture Blueprint (2)",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3537,12 +3274,11 @@
           "size": 18746922,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "11inm1iJEVurWOH4I_UqEN_5jb6bGGFGK",
-          "collection": "pptx",
-          "name": "GAP ppt__V1 (1).pptx",
           "title": "GAP ppt V1 (1)",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3550,12 +3286,11 @@
           "size": 17378868,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1IqVaP0sEj_gKz2tRnVTD8Y94Ruc1v6SC",
-          "collection": "pptx",
-          "name": "Safe_Papaya_GAP_Protocol.pdf_20251124_062842_0000.pptx",
           "title": "Safe Papaya GAP Protocol.pdf 20251124 062842 0000",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3563,12 +3298,11 @@
           "size": 30420828,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1313pEQKbHwW-aCoxt_9Zzprlo0t3c9IZ",
-          "collection": "pptx",
-          "name": "GAP Audit.pptx",
           "title": "GAP Audit",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3576,12 +3310,11 @@
           "size": 45420,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "163unqpIcwHP5s-n735oH6Z29FVdBxTg5",
-          "collection": "pptx",
-          "name": "ISO and Bangladesh GAP standard.pptx",
           "title": "ISO and Bangladesh GAP standard",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3589,12 +3322,11 @@
           "size": 2648656,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1w4xMRK19ll8sO9fGGQBCyj8-lfvkklaR",
-          "collection": "pptx",
-          "name": "Safe_Papaya_GAP_Protocol.pdf_20251124_062842_0000.pptx",
           "title": "Safe Papaya GAP Protocol.pdf 20251124 062842 0000",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3602,12 +3334,11 @@
           "size": 30420828,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1SBVdbaaQWMsBCFye2FYaOCiKYYOxIdOj",
-          "collection": "pptx",
-          "name": "Bangladesh_GAP_Implementation_Blueprint.pptx",
           "title": "Bangladesh GAP Implementation Blueprint",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3615,12 +3346,11 @@
           "size": 21298070,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1cvTOejYCeI5Iwr5-L60yRh_QQ1SzpjYp",
-          "collection": "pptx",
-          "name": "Gap guide saao.pptx",
           "title": "Gap guide saao",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3628,12 +3358,11 @@
           "size": 19319368,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1tL0t9MvFbm0QE7n4BpQLagY8rUehatij",
-          "collection": "pptx",
-          "name": "Producer Register on Bangladesh GAP.pptx",
           "title": "Producer Register on Bangladesh GAP",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3641,12 +3370,11 @@
           "size": 797226,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1IVygtjh2juGcoeoMAPKMwUhlrHaRKcMv",
-          "collection": "pptx",
-          "name": "MEL Framework for Digital Agriculture Tools in Bangladesh.pptx",
           "title": "MEL Framework for Digital Agriculture Tools in Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3655,12 +3383,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1KSQ5RZjUnRXtU5KqpnsXow4Piu_Jo6fX",
-          "collection": "pptx",
-          "name": "মাটির_ত্রিভুজ_পিএইচ_আর্দ্রতা_গঠন.pdf_20260106_172010_0000.pptx",
           "title": "মাটির ত্রিভুজ পিএইচ আর্দ্রতা গঠন.pdf 20260106 172010 0000",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3668,12 +3395,11 @@
           "size": 14752930,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1pm8XFSO66mMnf426cRMlw-_BcEsrFJ4y",
-          "collection": "pptx",
-          "name": "Rice_Stem_Borer_Tactical_Manual.pptx",
           "title": "Rice Stem Borer Tactical Manual",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3682,34 +3408,31 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1pv_Rp4WQqgDvvGJ4QwAnVvuKEZsB2eB4",
-          "collection": "pptx",
-          "name": "Krishakcard roadmap ",
           "title": "Krishakcard roadmap",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-04-05T15:03:13.184Z",
           "size": 6007170,
-          "path": []
+          "path": [],
+          "ext": ""
         },
         {
           "id": "1PvYCCYtP7SqsiuK9miqWDXUPwhIhP3fJ",
-          "collection": "pptx",
-          "name": "Producer Register on Bangladesh GAP.pptx",
           "title": "Producer Register on Bangladesh GAP",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-04-03T07:39:17.513Z",
           "size": 2430182,
-          "path": []
+          "path": [],
+          "ext": "pptx"
         },
         {
           "id": "1YJO-bQI7b6l8VIvFsc5ol5NyI8xUtD9T",
-          "collection": "pptx",
-          "name": "BNP Policy Series High Command Briefing.pptx",
           "title": "BNP Policy Series High Command Briefing",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3717,12 +3440,11 @@
           "size": 1278142,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "11hRb-W8MPQVY_rwFvrbYKiEMP9HqIjJh",
-          "collection": "pptx",
-          "name": "Protecting Our Harvests_ Pest & Disease Management in Bangladesh.pptx",
           "title": "Protecting Our Harvests Pest & Disease Management in Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3731,34 +3453,31 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1_jWj5U1Lse3b29PpLaKqVYqqhJWwXjc0",
-          "collection": "pptx",
-          "name": "Action Research on GAP and CSA in Jashore.pptx",
           "title": "Action Research on GAP and CSA in Jashore",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-04-02T00:50:17.036Z",
           "size": 2306903,
-          "path": []
+          "path": [],
+          "ext": "pptx"
         },
         {
           "id": "1n80Z97rJqgek6g1xJrMUC5NMx_MHrkfW",
-          "collection": "pptx",
-          "name": "Bangladesh Agriculture & Youth Empowerment.pptx",
           "title": "Bangladesh Agriculture & Youth Empowerment",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-04-01T22:43:51.000Z",
           "size": 2693675,
-          "path": []
+          "path": [],
+          "ext": "pptx"
         },
         {
           "id": "19uFgbuFw7idcCwtmOYRHgB7p3DYhnovO",
-          "collection": "pptx",
-          "name": "GreenLoop_3.0_Rural_Transformation.pptx",
           "title": "GreenLoop 3.0 Rural Transformation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3767,12 +3486,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1ozWnReNMl7zpQbUMpadVsDZORa12Ahpz",
-          "collection": "pptx",
-          "name": "GreenLoop_3.0_Ecosystem_pitch_deck.pptx",
           "title": "GreenLoop 3.0 Ecosystem pitch deck",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3781,12 +3499,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1ziUy4RxetQEkTV26xFTCee47d4mORzNB",
-          "collection": "pptx",
-          "name": "Pitch_deck_Precision_GreenLoop_3.0.pptx",
           "title": "Pitch deck Precision GreenLoop 3.0",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3795,12 +3512,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1KYnBlrVh4hUIsM7PrFlxj4voWwbNPoTN",
-          "collection": "pptx",
-          "name": "Pitch_deck_GreenLoop_3.0_Cyber-Organic_Agriculture.pptx",
           "title": "Pitch deck GreenLoop 3.0 Cyber – Organic Agriculture",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3809,12 +3525,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1zM_-9Lp5Vy2mIIHD0_uMebwUjp1uVnPy",
-          "collection": "pptx",
-          "name": "Pitch_deck_GreenLoop_3.0_Circular_Agriculture.pptx",
           "title": "Pitch deck GreenLoop 3.0 Circular Agriculture",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3823,12 +3538,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1E-R8B7Z_o6xR5BqTbb5zIhnzKzpGSuC4",
-          "collection": "pptx",
-          "name": "Future_Rangpur_Future_Bangladesh.pptx",
           "title": "Future Rangpur Future Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3836,12 +3550,11 @@
           "size": 3688729,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1EdZf-DLCUjqdxmkG9QHN6g0KKmNOOniL",
-          "collection": "pptx",
-          "name": "BNP_High_Command_Policy_Brief.pptx",
           "title": "BNP High Command Policy Brief",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3849,12 +3562,11 @@
           "size": 37094,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1h5CXFwRBbWx8puRby2ycf2v-uN_ht86v",
-          "collection": "pptx",
-          "name": "BNP_Policy_Series_Branded_Manifesto_Annex.pptx",
           "title": "BNP Policy Series Branded Manifesto Annex",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3862,12 +3574,11 @@
           "size": 35410,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1JD1tvyqU_fKd2iPkhYCMvIPbRKyR9An0",
-          "collection": "pptx",
-          "name": "250_Million_Trees_Scientific_Roadmap.pptx",
           "title": "250 Million Trees Scientific Roadmap",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3875,12 +3586,11 @@
           "size": 26422755,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1D_l0PRnVuTM2IQ-hLrevbIwgcDf95jVM",
-          "collection": "pptx",
-          "name": "BNP_High_Command_Policy_Brief.pptx",
           "title": "BNP High Command Policy Brief",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3888,12 +3598,11 @@
           "size": 37094,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1maO6ucMtQF1E-BQR89xpQTBy9w8bOEH6",
-          "collection": "pptx",
-          "name": "BNP_Policy_Series_Branded_Manifesto_Annex.pptx",
           "title": "BNP Policy Series Branded Manifesto Annex",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3901,12 +3610,11 @@
           "size": 35410,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "124A6bTd_7dinwQUA7Dlci3Vvyrgzt8J-",
-          "collection": "pptx",
-          "name": "দক্ষিণ এশিয়া ও চীনে কৃষি কল্যাণ প...বং সরবরাহ শৃঙ্খলা হস্তক্ষেপের তুলনামূলক মূল্যায়ন.pptx",
           "title": "দক্ষিণ এশিয়া ও চীনে কৃষি কল্যাণ প...বং সরবরাহ শৃঙ্খলা হস্তক্ষেপের তুলনামূলক মূল্যায়ন",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3914,12 +3622,11 @@
           "size": 18799940,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1q5qy7gvZ85tP0tHHuaImeCG4ePEBipFM",
-          "collection": "pptx",
-          "name": "250_Million_Trees_Scientific_Roadmap.pptx",
           "title": "250 Million Trees Scientific Roadmap",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3927,12 +3634,11 @@
           "size": 26422755,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1uQ69CNh2J-y-TXU4kGz9dDHq3n0QhyDo",
-          "collection": "pptx",
-          "name": "Learning from Asia_ Sustainable Fertilizer Management in Bangladesh.pptx",
           "title": "Learning from Asia Sustainable Fertilizer Management in Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3940,12 +3646,11 @@
           "size": 4770143,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1DEY-6sj9M7NSYF1mFQlPCIv6Tpp4G6Qv",
-          "collection": "pptx",
-          "name": "Fertilizer_Tracking_Blockchain_Presentation.pptx",
           "title": "Fertilizer Tracking Blockchain Presentation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3953,12 +3658,11 @@
           "size": 146960,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1bsx_8I_9RRTuTlcBpHI73xsCTKi39WQJ",
-          "collection": "pptx",
-          "name": "ই-গভর্নেন্স ও ডিজিটাল প্রযুক্তির টেকসই গ্রহণ.pptx",
           "title": "ই – গভর্নেন্স ও ডিজিটাল প্রযুক্তির টেকসই গ্রহণ",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3966,12 +3670,11 @@
           "size": 1836097,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1T9s9NbaNh9HnLdHjCuX9nJBG7PCSxxpO",
-          "collection": "pptx",
-          "name": "সমন্বিত বালাইনাশক ব্যবস্থাপনা_ বাংলাদেশে টেকসই কৃষির পথ.pptx",
           "title": "সমন্বিত বালাইনাশক ব্যবস্থাপনা বাংলাদেশে টেকসই কৃষির পথ",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3979,12 +3682,11 @@
           "size": 9001310,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1KrKePWQyIEvNir7RVoOCfkvFPerBcsmq",
-          "collection": "pptx",
-          "name": "Pesticide_Governance_Roadmap_2026_2030_Bangladesh.pptx",
           "title": "Pesticide Governance Roadmap 2026 2030 Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -3992,12 +3694,11 @@
           "size": 53389,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "10ZIBf49TcW_9hU1zDKyNP3XWsDOmZ3HR",
-          "collection": "pptx",
-          "name": "Cabinet_Briefing_Pesticide_Reform_2026_2030.pptx",
           "title": "Cabinet Briefing Pesticide Reform 2026 2030",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4005,12 +3706,11 @@
           "size": 45208,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1vRsKFabDACLuFT0eKNNcDLmMjzx71Q5D",
-          "collection": "pptx",
-          "name": "IPM_Bangladesh_Bilingual-1.pptx",
           "title": "IPM Bangladesh Bilingual – 1",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4018,12 +3718,11 @@
           "size": 319230,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1E4_yGmtPDWHy8sO7JmqMBqY4oxUu_m_Q",
-          "collection": "pptx",
-          "name": "egovernance_presentation.pptx",
           "title": "egovernance presentation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4031,12 +3730,11 @@
           "size": 375542,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "17nmenLU8n-qMUPGaPLEVFWy67Xyxi9Au",
-          "collection": "pptx",
-          "name": "ফার্টিলাইজার ট্র্যাকিং ই-বিল সিস্টেম_ ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট.pptx",
           "title": "ফার্টিলাইজার ট্র্যাকিং ই – বিল সিস্টেম ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4045,12 +3743,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1n16ZmMcEr8t8naBmjef5vcSGZhUOBlcc",
-          "collection": "pptx",
-          "name": "Fertilizer_Tracking_Blockchain_Presentation-1.pptx",
           "title": "Fertilizer Tracking Blockchain Presentation – 1",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4059,12 +3756,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "13TfTAtWCbZyWUH4WoQjGAw3hIzWRLQxW",
-          "collection": "pptx",
-          "name": "GreenLoop_3.0_Circular_Agriculture (2).pptx",
           "title": "GreenLoop 3.0 Circular Agriculture (2)",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4073,12 +3769,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1lPFRKPvZTsEP3XgMFRABzCaZoDC3EIXy",
-          "collection": "pptx",
-          "name": "Learning from Asia_ Sustainable Fertilizer Management in Bangladesh.pptx",
           "title": "Learning from Asia Sustainable Fertilizer Management in Bangladesh",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4087,12 +3782,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1DRCPkXr5BkrBe1gyh6KHA7xhhyr4RL-c",
-          "collection": "pptx",
-          "name": "Fertilizer_Tracking_Blockchain_Presentation.pptx",
           "title": "Fertilizer Tracking Blockchain Presentation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4101,12 +3795,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "10KFgYJpGyQ2tKrHBbwy82aVC6VQzS8KC",
-          "collection": "pptx",
-          "name": "ল্যাব থেকে মাঠে_ ১২-প্যারামিটার মাটি সেন্সর.pptx",
           "title": "ল্যাব থেকে মাঠে ১২ – প্যারামিটার মাটি সেন্সর",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4115,12 +3808,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1obQaD_d3QpQnZOq4Cd-BPPCVYEkom0Ae",
-          "collection": "pptx",
-          "name": "ফার্টিলাইজার ট্র্যাকিং ই-বিল সিস্টেম_ ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট.pptx",
           "title": "ফার্টিলাইজার ট্র্যাকিং ই – বিল সিস্টেম ব্লকচেইন আর্কিটেকচারাল ব্লুপ্রিন্ট",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4129,12 +3821,11 @@
           "path": [
             "bnp_policy",
             "Fertilizer tracking mechanism-e bill system "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1CMzrJXd6BPqKEhrnOcPmZr31xqOoziHX",
-          "collection": "pptx",
-          "name": "GreenLoop_Presentation.pptx",
           "title": "GreenLoop Presentation",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4143,12 +3834,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1e7p76YpMtQbhSvLD-_rh7BzMwR5VMM4t",
-          "collection": "pptx",
-          "name": "GreenLoop_3.0_Blockchain_Circular_Agriculture.pptx",
           "title": "GreenLoop 3.0 Blockchain Circular Agriculture",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4157,12 +3847,11 @@
           "path": [
             "CIRDAP",
             "presentation"
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1l_O-43oPlWftTolkfa883ttP49_49qYZ",
-          "collection": "pptx",
-          "name": "দক্ষিণ এশিয়া ও চীনে কৃষি কল্যাণ প...বং সরবরাহ শৃঙ্খলা হস্তক্ষেপের তুলনামূলক মূল্যায়ন.pptx",
           "title": "দক্ষিণ এশিয়া ও চীনে কৃষি কল্যাণ প...বং সরবরাহ শৃঙ্খলা হস্তক্ষেপের তুলনামূলক মূল্যায়ন",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4170,12 +3859,11 @@
           "size": 18799940,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1yEP-QiVywj8lnvKENgsA7D961MGbml_nY6-gOzeEBxQ",
-          "collection": "pptx",
-          "name": "OUTLOOK 2050 AD Rangpur PPT 2025.pptx_20251009_224931_0000.pptx (Converted - 2025-11-24 00:33)",
           "title": "OUTLOOK 2050 AD Rangpur PPT 2025.pptx 20251009 224931 0000.pptx (Converted – 2025 – 11 – 24 00:33)",
           "kind": "slides",
           "mime": "application/vnd.google-apps.presentation",
@@ -4183,12 +3871,11 @@
           "size": 12232858,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1CP2HmGotluKQ5foOIfMtTxuixfcH6bbu",
-          "collection": "pptx",
-          "name": "OUTLOOK 2050 AD Rangpur PPT 2025.pptx_20251009_224931_0000.pptx",
           "title": "OUTLOOK 2050 AD Rangpur PPT 2025.pptx 20251009 224931 0000",
           "kind": "slides",
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
@@ -4196,12 +3883,11 @@
           "size": 18131491,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "pptx"
         },
         {
           "id": "1Af398T85seUW9vWgDP4NENDS36qAb5_tzvwzzT9ALSU",
-          "collection": "pptx",
-          "name": "Derai Story",
           "title": "Derai Story",
           "kind": "slides",
           "mime": "application/vnd.google-apps.presentation",
@@ -4209,12 +3895,11 @@
           "size": 1973533,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1v6-_RlCKZGxEZQNEUCy2n3jfWtJ6nlG54hM2B8faYaE",
-          "collection": "pptx",
-          "name": "variety analysis",
           "title": "variety analysis",
           "kind": "slides",
           "mime": "application/vnd.google-apps.presentation",
@@ -4222,7 +3907,8 @@
           "size": 2608867,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         }
       ]
     },
@@ -4236,8 +3922,6 @@
       "items": [
         {
           "id": "1afvPFXqsGxq09EBAKbJ_wH6ZmwoFQncW",
-          "collection": "other",
-          "name": "জাতীয়তাবাদের_শেকড়_ও_রূপকল্প.mp4",
           "title": "জাতীয়তাবাদের শেকড় ও রূপকল্প",
           "kind": "video",
           "mime": "video/mp4",
@@ -4246,12 +3930,11 @@
           "durationMs": 372624,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1O2-czpFH5wHp7rPfeZDdZlkMhASamY5R",
-          "collection": "other",
-          "name": "জাতীয়তাবাদের_শেকড়_ও_রূপকল্প.mp4",
           "title": "জাতীয়তাবাদের শেকড় ও রূপকল্প",
           "kind": "video",
           "mime": "video/mp4",
@@ -4260,12 +3943,11 @@
           "durationMs": 372624,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1mwgFDTf3AeMJ4QlZHR4p_IqYjmgKsH_Q",
-          "collection": "other",
-          "name": "স্বশিক্ষা_ও_স্বনির্ভরতার_কৃষি_ই-বুক.docx",
           "title": "স্বশিক্ষা ও স্বনির্ভরতার কৃষি ই – বুক",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4274,12 +3956,11 @@
           "path": [
             "ebook",
             "self-learner-farmer"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1VO4QnfzyHf6ja1_eWtAoXCDK2pVfTYICI2x2NlF-qmI",
-          "collection": "other",
-          "name": "interactive-learning-mulching",
           "title": "interactive – learning – mulching",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -4288,12 +3969,11 @@
           "path": [
             "interactive-learning",
             "mulching"
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1iKUg7tiBitn5f-ge9-jw9HPeWFJ_iBEx",
-          "collection": "other",
-          "name": "Pesticide_Regulation_Bangladesh_PTAC_Report.docx",
           "title": "Pesticide Regulation Bangladesh PTAC Report",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4303,12 +3983,11 @@
             "Pesticides_Crisis",
             "pesticide regulation ",
             "public"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "14roVmAW-001bH7X0s752D1voR6GhChgl",
-          "collection": "other",
-          "name": "final_patch.docx",
           "title": "final patch",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4319,12 +3998,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "18zYtwkjkZ1Yr6YWI9ajBjWbcTgGPD6sL",
-          "collection": "other",
-          "name": "final_layout.docx",
           "title": "final layout",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4335,12 +4013,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1zWkBGGOWoaY22dkhlDzA4C5jXzFmPeq2",
-          "collection": "other",
-          "name": "final_clean.docx",
           "title": "final clean",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4351,12 +4028,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1_HIAIMAdLlh_JFerR_LIGe3JnlVYIBSY",
-          "collection": "other",
-          "name": "final.docx",
           "title": "final",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4367,12 +4043,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1jfkJpNGUc-5P8118byeBAaw1cV4ZEsJ7",
-          "collection": "other",
-          "name": "fixed.docx",
           "title": "fixed",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4383,12 +4058,11 @@
             "pesticide regulation ",
             "scripts",
             "pdf_work"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1J3b00SVKoepeNpwZbM4uMM9QGNaG9VkU",
-          "collection": "other",
-          "name": "Pesticide_Regulation_Bangladesh_PTAC_Report.docx",
           "title": "Pesticide Regulation Bangladesh PTAC Report",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4398,12 +4072,11 @@
             "Pesticides_Crisis",
             "pesticide regulation ",
             "download"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1zjPzcKyOJAIQJT1yAyK8qRTXFBmscmT7",
-          "collection": "other",
-          "name": "Producer_Register_GAP_DAE_Enhanced.docx",
           "title": "Producer Register GAP DAE Enhanced",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4411,12 +4084,11 @@
           "size": 48079,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1WTcWKXRZ6TO-w3pvMUJMkz-Ur36WjE9c",
-          "collection": "other",
-          "name": "Kurigram_Nursery_Evaluation_Report_2026.docx",
           "title": "Kurigram Nursery Evaluation Report 2026",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4424,12 +4096,11 @@
           "size": 1541729,
           "path": [
             "Meta_Process"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1nMl8nNILmC5FrlJ6D8vhp-QeOghFFjzel6HmU49rwBo",
-          "collection": "other",
-          "name": "Diagnostic-Field-Guide",
           "title": "Diagnostic – Field – Guide",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -4438,12 +4109,11 @@
           "path": [
             "Pesticides_Crisis",
             "Diagnosis_Detective"
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1hpTUiGAp-k40LggGAbOMAVGciHzCBN4K",
-          "collection": "other",
-          "name": "বালাইনাশক_আইন,_২০১৮.mp4",
           "title": "বালাইনাশক আইন, ২০১৮",
           "kind": "video",
           "mime": "video/mp4",
@@ -4452,12 +4122,11 @@
           "durationMs": 495333,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1E9xCkMWKDkBr9lhsipuiHu6E9E8rmt6w",
-          "collection": "other",
-          "name": "Farmers_Card_Integrated_Strategic_Report_v2.0.docx",
           "title": "Farmers Card Integrated Strategic Report v2.0",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4465,12 +4134,11 @@
           "size": 54781,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1i_577yKjVoRnqXH3CCd58ggSQKEqWTAy",
-          "collection": "other",
-          "name": "Rastroke_Dekha_Tin_Chokhe_FINAL_WITH_COVER.docx",
           "title": "Rastroke Dekha Tin Chokhe FINAL WITH COVER",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4479,12 +4147,11 @@
           "path": [
             "Web upload ",
             "State_ebook"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1gKL5Ewer1UEvT2tPCNYR-Pk56KzZFrx3",
-          "collection": "other",
-          "name": "Farmer_Card_Technical_Report.docx",
           "title": "Farmer Card Technical Report",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4493,12 +4160,11 @@
           "path": [
             "bnp_policy",
             "Farmers Card App_analysis"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1womwmKIXN6vtf6GurE1rrWY4G_RvUxva",
-          "collection": "other",
-          "name": "Farmers_Card_Enhancement_Report.docx",
           "title": "Farmers Card Enhancement Report",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4507,12 +4173,11 @@
           "path": [
             "bnp_policy",
             "Farmers Card App_analysis"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1_OZ72b1sEXGUzaxTTn3HjeR1vtl2wZEs",
-          "collection": "other",
-          "name": "BNP_Policy_Brief_Digital_Agriculture.docx",
           "title": "BNP Policy Brief Digital Agriculture",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4520,12 +4185,11 @@
           "size": 41350,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1KrccKoGkzZIbxkvO9mkHpIceJug308_e",
-          "collection": "other",
-          "name": "লাউ_চাষের_জন্য_GAP_নির্দেশিকা.mp4",
           "title": "লাউ চাষের জন্য GAP নির্দেশিকা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4534,12 +4198,11 @@
           "durationMs": 475083,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "15iZ-MW3sRqKtgTl43xAlnpgj4I2kKyq2",
-          "collection": "other",
-          "name": "একটি_GAP-সনদপ্রাপ্ত_লাউয়ের_যাত্রা.mp4",
           "title": "একটি GAP – সনদপ্রাপ্ত লাউয়ের যাত্রা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4548,12 +4211,11 @@
           "durationMs": 402999,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1qsRMSfcEY8OxerQ6VfYZDxvl39aYDTuS",
-          "collection": "other",
-          "name": "মুকুল_থেকে_বাক্স__নিখুঁত_আমের_জন্য_GAP_পদ্ধতি.mp4",
           "title": "মুকুল থেকে বাক্স নিখুঁত আমের জন্য GAP পদ্ধতি",
           "kind": "video",
           "mime": "video/mp4",
@@ -4562,23 +4224,21 @@
           "durationMs": 429666,
           "path": [
             "Gap"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1dTpkTXDjDtKRdP7mN2C7yV0jAHGz5CjJ",
-          "collection": "other",
-          "name": "PARTNER_District_Report_Kurigram_2025-26_Enhanced.docx",
           "title": "PARTNER District Report Kurigram 2025 – 26 Enhanced",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           "modified": "2026-05-04T21:49:10.066Z",
           "size": 57285,
-          "path": []
+          "path": [],
+          "ext": "docx"
         },
         {
           "id": "1ftF-1ZxiDzY-I3vDiLWX7sBBbKIlMzz4",
-          "collection": "other",
-          "name": "গাছ_ও_মাটির_অংশীদারিত্ব.mp4",
           "title": "গাছ ও মাটির অংশীদারিত্ব",
           "kind": "video",
           "mime": "video/mp4",
@@ -4587,12 +4247,11 @@
           "durationMs": 108374,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1CNZU1a4BxcX79aip4F1V5vschb2bGwx4",
-          "collection": "other",
-          "name": "কুড়িগ্রামের_কৃষি_প্যারাডক্স.mp4",
           "title": "কুড়িগ্রামের কৃষি প্যারাডক্স",
           "kind": "video",
           "mime": "video/mp4",
@@ -4601,12 +4260,11 @@
           "durationMs": 337416,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "19JoRJxoALpHIdCPYcMtGzrHq0OrtESlw",
-          "collection": "other",
-          "name": "মাটির_pH_পরিমাপের_নির্দেশিকা.mp4",
           "title": "মাটির pH পরিমাপের নির্দেশিকা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4615,12 +4273,11 @@
           "durationMs": 152541,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1-ZSVAj2i9vXKDtEavEtA7SDPXm7M7q73",
-          "collection": "other",
-          "name": "শুধু_ধুলোবালি_নয়.mp4",
           "title": "শুধু ধুলোবালি নয়",
           "kind": "video",
           "mime": "video/mp4",
@@ -4629,12 +4286,11 @@
           "durationMs": 359583,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "115oLM-IXyCJYAxnThHS3rp5kDJpHHjuM",
-          "collection": "other",
-          "name": "উদ্ভিদ_স্বাস্থ্যের_জাদুকরী_পিরামিড.mp4",
           "title": "উদ্ভিদ স্বাস্থ্যের জাদুকরী পিরামিড",
           "kind": "video",
           "mime": "video/mp4",
@@ -4643,12 +4299,11 @@
           "durationMs": 386458,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "15x-Wyf7-Aqxvc3e9IvdkbPzuUmCIqnwd",
-          "collection": "other",
-          "name": "মাটির_pH__রিডিং_গাইড.mp4",
           "title": "মাটির pH রিডিং গাইড",
           "kind": "video",
           "mime": "video/mp4",
@@ -4657,12 +4312,11 @@
           "durationMs": 386166,
           "path": [
             "Soil"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1rBotkYDbucpb3M62Jutj9kSSdVuhIxFB",
-          "collection": "other",
-          "name": "Krishak_Card_Policy_Brief_update.docx",
           "title": "Krishak Card Policy Brief update",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4670,12 +4324,11 @@
           "size": 31295,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1hmx0zkuo0XIKz1ZhqoiLGwuLnJVxJ91l",
-          "collection": "other",
-          "name": "Krishak_Card_Policy_Brief-4.docx",
           "title": "Krishak Card Policy Brief – 4",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4683,12 +4336,11 @@
           "size": 26098,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "134rMW7LWpFTxxEKNsWN6CKOvpPxTHh8A",
-          "collection": "other",
-          "name": "নকল_চেনার_উপায়__কীটনাশক_নির্দেশিকা.mp4",
           "title": "নকল চেনার উপায় কীটনাশক নির্দেশিকা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4697,12 +4349,11 @@
           "durationMs": 129708,
           "path": [
             "Pesticides_Crisis"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1LHEudMHN1nJ58nH929KRpgleKSplKfBc",
-          "collection": "other",
-          "name": "Krishak_Card_Policy_Brief.docx",
           "title": "Krishak Card Policy Brief",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4710,12 +4361,11 @@
           "size": 26098,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1UYQnz5NE1vk3dn0ZmN2-AkivQk0fUMTS",
-          "collection": "other",
-          "name": "উদ্ভিদ_স্বাস্থ্যের_জাদুকরী_পিরামিড.mp4",
           "title": "উদ্ভিদ স্বাস্থ্যের জাদুকরী পিরামিড",
           "kind": "video",
           "mime": "video/mp4",
@@ -4726,12 +4376,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1GnzOWByC2cxpPfoetJGMMoXTA-N4Qk4y",
-          "collection": "other",
-          "name": "একজন_উদ্ভিদ_গোয়েন্দা_হয়ে_উঠুন.mp4",
           "title": "একজন উদ্ভিদ গোয়েন্দা হয়ে উঠুন",
           "kind": "video",
           "mime": "video/mp4",
@@ -4742,12 +4391,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1kSbwu6O3XicBgY-ZQ3sUOQbJq54U2Vel",
-          "collection": "other",
-          "name": "download.mp4",
           "title": "download",
           "kind": "video",
           "mime": "video/mp4",
@@ -4758,12 +4406,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1oDpDeaHJqDUwfgMiGIkSTkoUvrG3tOxW",
-          "collection": "other",
-          "name": "bacteria diagnosis.mp4",
           "title": "bacteria diagnosis",
           "kind": "video",
           "mime": "video/mp4",
@@ -4774,12 +4421,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1-E6u_rnaCNDWbKap4etH3OkRuCcsN9Hu",
-          "collection": "other",
-          "name": "এক_নিরাপদ_ফসলের_নিয়মাবলী.mp4",
           "title": "এক নিরাপদ ফসলের নিয়মাবলী",
           "kind": "video",
           "mime": "video/mp4",
@@ -4790,12 +4436,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1p-22XcoIZmF41w5Ero2oLV_-Q9ninUgj",
-          "collection": "other",
-          "name": "deficiency.mp4",
           "title": "deficiency",
           "kind": "video",
           "mime": "video/mp4",
@@ -4806,12 +4451,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1I5TTG0g7rZLrRT0f0b53gbB_pEXWaqfv",
-          "collection": "other",
-          "name": "উদ্ভিদ_রোগ_নির্ণয়.mp4",
           "title": "উদ্ভিদ রোগ নির্ণয়",
           "kind": "video",
           "mime": "video/mp4",
@@ -4822,12 +4466,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1g4oUitcpdzQifZTIUbwjq2jlUPksOYw9",
-          "collection": "other",
-          "name": "স্মার্ট_কৃষকের_সিদ্ধান্ত_পদ্ধতি.mp4",
           "title": "স্মার্ট কৃষকের সিদ্ধান্ত পদ্ধতি",
           "kind": "video",
           "mime": "video/mp4",
@@ -4838,12 +4481,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1k8A7PSsVHiuPUY5i22wnlktyJESxMpBs",
-          "collection": "other",
-          "name": "বাদামী_গাছফড়িংয়ের_রণকৌশল.mp4",
           "title": "বাদামী গাছফড়িংয়ের রণকৌশল",
           "kind": "video",
           "mime": "video/mp4",
@@ -4854,12 +4496,11 @@
             "Pesticides_Crisis",
             "Diagnosis_Detective",
             "Video.mp4"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1gTCtJML6W4ReWI5RT0vZHoAQAK3R5wsMZ2znvWlIy50",
-          "collection": "other",
-          "name": "GreenLoop 3.0: Regional Scaling Roadmap for CIRDAP Member Countries (CMCs)",
           "title": "GreenLoop 3.0: Regional Scaling Roadmap for CIRDAP Member Countries (CMCs)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -4868,12 +4509,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1wRWXNMx99F3pGZpDq6xlsVnV4r1D-uIa",
-          "collection": "other",
-          "name": "GreenLoop3.0_masted_prolosal.docx",
           "title": "GreenLoop3.0 masted prolosal",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -4882,12 +4522,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "14GH5QL6-4NcCfpqiGLoLuU8EAjlGeI_j",
-          "collection": "other",
-          "name": "বিএনপির_কৃষি_ভাবনা.mp4",
           "title": "বিএনপির কৃষি ভাবনা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4896,12 +4535,11 @@
           "durationMs": 131333,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1rJwk8-2TaH2WlR4nOZcLa7IovHEGOa2d",
-          "collection": "other",
-          "name": "তারেক_রহমানের_নির্বাচনী_রূপরেখা.mp4",
           "title": "তারেক রহমানের নির্বাচনী রূপরেখা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4910,12 +4548,11 @@
           "durationMs": 136249,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "18bovs02_qoR4CcuxHz4ODAifkrjIT94g",
-          "collection": "other",
-          "name": "তারেক_রহমানের_ডিজিটাল_ভিশন.mp4",
           "title": "তারেক রহমানের ডিজিটাল ভিশন",
           "kind": "video",
           "mime": "video/mp4",
@@ -4924,12 +4561,11 @@
           "durationMs": 396874,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1xhIejngYdqJWfxhwtd1TkJYuEzs1dPvz",
-          "collection": "other",
-          "name": "একটি_জাতির_নীলনকশা.mp4",
           "title": "একটি জাতির নীলনকশা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4938,12 +4574,11 @@
           "durationMs": 135166,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1-JKdjMzsPAiyZ05yUx9B1fuQlO2OZjk8",
-          "collection": "other",
-          "name": "শিক্ষক_উন্নয়ন_প্রস্তাবনা.mp4",
           "title": "শিক্ষক উন্নয়ন প্রস্তাবনা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4952,12 +4587,11 @@
           "durationMs": 112708,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1_RFSJv4kmBNB3jU7h0_oQWdi_mqUSss7",
-          "collection": "other",
-          "name": "ডিজিটাল_ফার্মার_প্রোফাইল__কৃষির_নতুন_কল্পনা.mp4",
           "title": "ডিজিটাল ফার্মার প্রোফাইল কৃষির নতুন কল্পনা",
           "kind": "video",
           "mime": "video/mp4",
@@ -4966,12 +4600,11 @@
           "durationMs": 336958,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1wW70FGB9BjFdeR7nMfsONVETXV5eG_OS",
-          "collection": "other",
-          "name": "Family card program and an International lesson.mp4",
           "title": "Family card program and an International lesson",
           "kind": "video",
           "mime": "video/mp4",
@@ -4980,12 +4613,11 @@
           "durationMs": 484416,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1-WXsiU71GYz-ebqn3ak9dD98tKHjjscn",
-          "collection": "other",
-          "name": "মাঠ_থেকে_ভবিষ্যৎ.mp4",
           "title": "মাঠ থেকে ভবিষ্যৎ",
           "kind": "video",
           "mime": "video/mp4",
@@ -4994,12 +4626,11 @@
           "durationMs": 127499,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1hyO_ofYIVu5eYbC3M2IODD-THL3vAArS",
-          "collection": "other",
-          "name": "বাংলাদেশের_ভাঙা_খাদ্য_শৃঙ্খল.mp4",
           "title": "বাংলাদেশের ভাঙা খাদ্য শৃঙ্খল",
           "kind": "video",
           "mime": "video/mp4",
@@ -5008,12 +4639,11 @@
           "durationMs": 129708,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1G_y6c4rB_v8Ml44_jLeXP3ZoDvoPrbQh",
-          "collection": "other",
-          "name": "বাংলাদেশের_জীবনরেখা__খালের_উপাখ্যান.mp4",
           "title": "বাংলাদেশের জীবনরেখা খালের উপাখ্যান",
           "kind": "video",
           "mime": "video/mp4",
@@ -5022,12 +4652,11 @@
           "durationMs": 482666,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1ftqC6cRO0auKYgM7ktLfd2AJSBy9Ke1H",
-          "collection": "other",
-          "name": "২৫_কোটি_গাছের_মিশন.mp4",
           "title": "২৫ কোটি গাছের মিশন",
           "kind": "video",
           "mime": "video/mp4",
@@ -5036,12 +4665,11 @@
           "durationMs": 135583,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "11isn8oQYWBdXJfSgBF9abJkx8IdVauRd",
-          "collection": "other",
-          "name": "ফ্যামিলি_কার্ড_প্রোগ্রাম.mp4",
           "title": "ফ্যামিলি কার্ড প্রোগ্রাম",
           "kind": "video",
           "mime": "video/mp4",
@@ -5050,12 +4678,11 @@
           "durationMs": 130124,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1McSenK0cLxluZNaq_iaPY23AOlUTp3w9",
-          "collection": "other",
-          "name": "টেকসই_সার_ব্যবস্থাপনার_নীলনকশা.mp4",
           "title": "টেকসই সার ব্যবস্থাপনার নীলনকশা",
           "kind": "video",
           "mime": "video/mp4",
@@ -5064,12 +4691,11 @@
           "durationMs": 411958,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1KSc6_yrP4a5ii58k7sZs7tKlCRW6UKFI",
-          "collection": "other",
-          "name": "ডিজিটাল_সার_সমাধান.mp4",
           "title": "ডিজিটাল সার সমাধান",
           "kind": "video",
           "mime": "video/mp4",
@@ -5078,12 +4704,11 @@
           "durationMs": 127624,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1OAMylE_oRLdAFRB-1icocsnnrKDauqdl",
-          "collection": "other",
-          "name": "কৃষক_কার্ড__একটি_ডিজিটাল_স্ট্যাক.mp4",
           "title": "কৃষক কার্ড একটি ডিজিটাল স্ট্যাক",
           "kind": "video",
           "mime": "video/mp4",
@@ -5092,12 +4717,11 @@
           "durationMs": 137249,
           "path": [
             "bnp_policy"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1qmX8P5QuH3B9TWXtnWPU15cz9BQOVcRE",
-          "collection": "other",
-          "name": "রাষ্ট্রকে_দেখা_তিন_চোখে.mp4",
           "title": "রাষ্ট্রকে দেখা তিন চোখে",
           "kind": "video",
           "mime": "video/mp4",
@@ -5106,12 +4730,11 @@
           "durationMs": 132416,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1jgBOVtzoLKElao1LGQ1oG4_h5xATjlNb",
-          "collection": "other",
-          "name": "ডিজিটাল_ফার্মার_প্রোফাইল__কৃষির_নতুন_কল্পনা.mp4",
           "title": "ডিজিটাল ফার্মার প্রোফাইল কৃষির নতুন কল্পনা",
           "kind": "video",
           "mime": "video/mp4",
@@ -5120,12 +4743,11 @@
           "durationMs": 336958,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1EANrEv4lvOgHguE09-TqD_zJMNuwdCSV",
-          "collection": "other",
-          "name": "Family card program and an International lesson.mp4",
           "title": "Family card program and an International lesson",
           "kind": "video",
           "mime": "video/mp4",
@@ -5134,12 +4756,11 @@
           "durationMs": 484416,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1f0A_Zw_nsesCmOL2cxebQrh_VUcGGgYQ",
-          "collection": "other",
-          "name": "মাঠ_থেকে_ভবিষ্যৎ.mp4",
           "title": "মাঠ থেকে ভবিষ্যৎ",
           "kind": "video",
           "mime": "video/mp4",
@@ -5148,12 +4769,11 @@
           "durationMs": 127499,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1c2k3L4FUEnXo-f9AEGwbTePdexxDsYBK",
-          "collection": "other",
-          "name": "বাংলাদেশের_ভাঙা_খাদ্য_শৃঙ্খল.mp4",
           "title": "বাংলাদেশের ভাঙা খাদ্য শৃঙ্খল",
           "kind": "video",
           "mime": "video/mp4",
@@ -5162,12 +4782,11 @@
           "durationMs": 129708,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "11nOggbJY3qFaE-zl9MWjxf4KAvq2LHSK",
-          "collection": "other",
-          "name": "কৃষক_কার্ড__একটি_ডিজিটাল_স্ট্যাক.mp4",
           "title": "কৃষক কার্ড একটি ডিজিটাল স্ট্যাক",
           "kind": "video",
           "mime": "video/mp4",
@@ -5176,12 +4795,11 @@
           "durationMs": 137249,
           "path": [
             "Krishak card multimedia portal resources "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1CBIih4GGHTZFplVXAJRn6R_1WoopCy1n",
-          "collection": "other",
-          "name": "GreenLoop 3.0- Blockchain-Enabled Circular Agriculture for Rural Empowerment.docx",
           "title": "GreenLoop 3.0 – Blockchain – Enabled Circular Agriculture for Rural Empowerment",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5190,12 +4808,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1fD1loDIdSBGBfGwgNoC0K5QWgSvTQFq0",
-          "collection": "other",
-          "name": "video_6plYIAUwY0p_5_48_298x284.mp4",
           "title": "video 6plYIAUwY0p 5 48 298x284",
           "kind": "video",
           "mime": "video/mp4",
@@ -5206,12 +4823,11 @@
             "Courses",
             "WEFE_en",
             "story_content"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1CDrLggLSWIRhX3t96e64VIgNNhX3_Ik6",
-          "collection": "other",
-          "name": "video_6id9V7R5hgr_5_48_298x284.mp4",
           "title": "video 6id9V7R5hgr 5 48 298x284",
           "kind": "video",
           "mime": "video/mp4",
@@ -5222,12 +4838,11 @@
             "Courses",
             "WEFE_en",
             "story_content"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1gso36ed3BH82UuFq3ukON4WJ7dB1maTn",
-          "collection": "other",
-          "name": "video_6YoES08zDwz_5_48_298x284.mp4",
           "title": "video 6YoES08zDwz 5 48 298x284",
           "kind": "video",
           "mime": "video/mp4",
@@ -5238,12 +4853,11 @@
             "Courses",
             "WEFE_en",
             "story_content"
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1LLUoUPDJSFJ8G0dH9CCABPuzToWZfR_-",
-          "collection": "other",
-          "name": "GreenLoop3.0_Proposal_AbuMoniruzjaman_CIRDAP2026.docx",
           "title": "GreenLoop3.0 Proposal AbuMoniruzjaman CIRDAP2026",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5252,12 +4866,11 @@
           "path": [
             "CIRDAP",
             "innovator_profile"
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1wSLsSQHHhVX9omKGNROOkJAY9nLatUUa",
-          "collection": "other",
-          "name": "GreenLoop3.0_CIRDAP_Proposal_Enhanced_2026.docx",
           "title": "GreenLoop3.0 CIRDAP Proposal Enhanced 2026",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5266,12 +4879,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "15b-_54OohkMw61T-73i_m2vxqc571s1J",
-          "collection": "other",
-          "name": "গ্রিনলুপ ৩.০- ব্লকচেইন-সক্ষম সার্কুলার এগ্রিকালচার (CIRDAP উদ্ভাবন চ্যালেঞ্জ ২০২৬ প্রস্তাবনা).docx",
           "title": "গ্রিনলুপ ৩.০ – ব্লকচেইন – সক্ষম সার্কুলার এগ্রিকালচার (CIRDAP উদ্ভাবন চ্যালেঞ্জ ২০২৬ প্রস্তাবনা)",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5280,12 +4892,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1pnb3fT2N5vLT0qECYz0ICt71nRXiwV95",
-          "collection": "other",
-          "name": "GreenLoop 3.0- Blockchain-Enabled Circular Agriculture for Rural Empowerment.docx",
           "title": "GreenLoop 3.0 – Blockchain – Enabled Circular Agriculture for Rural Empowerment",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5294,12 +4905,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1UKCVUtNGtiZ1VAyKgoY3xIhH2UNfJwQ7",
-          "collection": "other",
-          "name": "GreenLoop 3.0 Proposal- Healing the Earth, Securing the Smile – A Blockchain-Driven Circular Ecosystem for a Resilient Asia-Pacific.docx",
           "title": "GreenLoop 3.0 Proposal – Healing the Earth, Securing the Smile – A Blockchain – Driven Circular Ecosystem for a Resilient Asia – Pacific",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5308,12 +4918,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1MMS11otCAznXmkAlaBvsYbEk6RIcaRPU",
-          "collection": "other",
-          "name": "AbuMdMoniruzjaman_Profile.docx",
           "title": "AbuMdMoniruzjaman Profile",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5322,12 +4931,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1e7vN8f74Y94E-1Qt6oWfuaLdFFvOx9Wn",
-          "collection": "other",
-          "name": "GreenLoop_Proposal.docx",
           "title": "GreenLoop Proposal",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5336,12 +4944,11 @@
           "path": [
             "CIRDAP",
             "Proposal "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1xpD4rkL4KZJ61l9A5U7vhNoPWGAQz9qT",
-          "collection": "other",
-          "name": "GreenLoop3.0_Proposal_AbuMoniruzjaman_CIRDAP2026.docx",
           "title": "GreenLoop3.0 Proposal AbuMoniruzjaman CIRDAP2026",
           "kind": "doc",
           "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -5349,12 +4956,11 @@
           "size": 717123,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "docx"
         },
         {
           "id": "1oGEiWgSLuap87WjPHRXLUqIdoNpZJAJNCTgCihe0jWI",
-          "collection": "other",
-          "name": "IRAC MoA গ্রুপ",
           "title": "IRAC MoA গ্রুপ",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5362,12 +4968,11 @@
           "size": 13273,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1zATOhWEbcUq6Gznhh06SK02DbnA69UC1HVLYdnpI5Vk",
-          "collection": "other",
-          "name": "কৃষি সহায়তা - ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted - 2025-12-16 00:11)",
           "title": "কৃষি সহায়তা – ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted – 2025 – 12 – 16 00:11)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5375,12 +4980,11 @@
           "size": 5061,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1X2tvNsBtqqCCEiN1yT3hdCDV-dtaR0WA",
-          "collection": "other",
-          "name": "একটি_GAP-সনদপ্রাপ্ত_লাউয়ের_যাত্রা.mp4",
           "title": "একটি GAP – সনদপ্রাপ্ত লাউয়ের যাত্রা",
           "kind": "video",
           "mime": "video/mp4",
@@ -5389,12 +4993,11 @@
           "durationMs": 402999,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1dqZ6lD-wz1lc6RdWJGhVYzASCFsn65qB",
-          "collection": "other",
-          "name": "উদ্ভিদ_স্বাস্থ্য_পিরামিড.mp4",
           "title": "উদ্ভিদ স্বাস্থ্য পিরামিড",
           "kind": "video",
           "mime": "video/mp4",
@@ -5403,12 +5006,11 @@
           "durationMs": 389041,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": "mp4"
         },
         {
           "id": "1DE6PlUaqa-aHBu0obQ-aiIi_4IWKJUTFd12_cs2Bb9Q",
-          "collection": "other",
-          "name": "কৃষি সহায়তা - ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted - 2025-11-24 01:15)",
           "title": "কৃষি সহায়তা – ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted – 2025 – 11 – 24 01:15)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5416,12 +5018,11 @@
           "size": 5059,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1XDMaVgbSzuaO-E_VI1WbSuJLMwQ-w0rsnzOLhjf8Q1s",
-          "collection": "other",
-          "name": "কৃষি সহায়তা - ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted - 2025-11-24 01:15)",
           "title": "কৃষি সহায়তা – ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted – 2025 – 11 – 24 01:15)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5429,12 +5030,11 @@
           "size": 5060,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1P10obZaWS4IgxkwL3SkVo0Yuly0H8Khx4ZYY4jqxyfw",
-          "collection": "other",
-          "name": "কৃষি সহায়তা - ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted - 2025-11-24 00:33)",
           "title": "কৃষি সহায়তা – ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted – 2025 – 11 – 24 00:33)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5442,12 +5042,11 @@
           "size": 5060,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1LEjjg_akiVUFoJhkHuGCAADy-HGUFCc3CIdRz98S_K0",
-          "collection": "other",
-          "name": "কৃষি সহায়তা - ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted - 2025-11-24 00:33)",
           "title": "কৃষি সহায়তা – ফসলের রোগ ও পোকামাকড় সনাক্তকরণ ব্যবস্থা (Converted – 2025 – 11 – 24 00:33)",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5455,12 +5054,11 @@
           "size": 5059,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1oW2PLTzZQhHCGp2XkrLT2BsCG7WKxTmuTUFaWWjk-Uc",
-          "collection": "other",
-          "name": "বিসিএস কৃষি এসোসিয়েশনের পূণর্জাগরণ- স্বপ্ন, বাস্তবতা ও কৌশল",
           "title": "বিসিএস কৃষি এসোসিয়েশনের পূণর্জাগরণ – স্বপ্ন, বাস্তবতা ও কৌশল",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5468,12 +5066,11 @@
           "size": 828697,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         },
         {
           "id": "1K2lw8BFcCT_Ma1VgxoOdyxS0cVdrUkIQVhk50EtljPs",
-          "collection": "other",
-          "name": "Leadership grooming ",
           "title": "Leadership grooming",
           "kind": "doc",
           "mime": "application/vnd.google-apps.document",
@@ -5481,7 +5078,8 @@
           "size": 3588,
           "path": [
             "Web upload "
-          ]
+          ],
+          "ext": ""
         }
       ]
     }

@@ -5,6 +5,28 @@ updates:
     schedule:
       interval: weekly
     groups:
+      # Peer-locked stacks must land as one PR: eslint releases need a matching
+      # @eslint/js, vite releases need a matching plugin-react — splitting them
+      # is how the npm PRs ended up failing ERESOLVE for weeks.
+      eslint-stack:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "typescript-eslint"
+          - "eslint-plugin-*"
+          - "globals"
+        update-types:
+          - major
+          - minor
+          - patch
+      vite-stack:
+        patterns:
+          - "vite"
+          - "@vitejs/plugin-react"
+        update-types:
+          - major
+          - minor
+          - patch
       npm-minor-and-patch:
         update-types:
           - minor

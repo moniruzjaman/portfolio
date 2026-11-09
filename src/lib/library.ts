@@ -4,8 +4,8 @@ export type Kind = "pdf" | "slides" | "doc" | "sheet" | "image" | "video" | "oth
 
 export type LibItem = {
   id: string;
-  collection: string;
-  name: string;
+  /** Filename extension, lowercased ("pdf", "pptx"…) — the full name never ships. */
+  ext: string;
   title: string;
   kind: Kind;
   mime: string;
@@ -106,9 +106,8 @@ export const FORMATS: { key: Kind; en: string; bn: string }[] = [
   { key: "video", en: "Videos", bn: "ভিডিও" },
 ];
 
-/** "PPTX", "DOCX", "MP4"… from the filename — what a visitor actually recognises. */
-export const extOf = (i: LibItem): string =>
-  (i.name.match(/\.([A-Za-z0-9]{1,5})$/)?.[1] ?? "").toUpperCase();
+/** "PPTX", "DOCX", "MP4"… from the stored extension — what a visitor recognises. */
+export const extOf = (i: LibItem): string => i.ext.toUpperCase();
 
 /** 312000 → "5:12", 3725000 → "1:02:05". Empty when unknown. */
 export function formatDuration(ms?: number): string {

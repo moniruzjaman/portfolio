@@ -113,11 +113,14 @@ export function assignCollection(path, kind, researchRe) {
   return "other";
 }
 
-export function shapeItem(f, path, collection) {
+export function shapeItem(f, path, _collection) {
   return {
     id: f.id,
-    collection,
+    collection: _collection,
     name: f.name,
+    // The extension survives into the output file; `name` and `collection` are
+    // stripped at write time (see the payload assembly below).
+    ext: (f.name.match(/\.([A-Za-z0-9]{1,5})$/)?.[1] || "").toLowerCase(),
     title: titleOf(f.name),
     kind: kindOf(f.mimeType, f.name),
     mime: f.mimeType,
@@ -449,7 +452,18 @@ export async function run(
         `The library had ${before} files and now returns 0. Refusing to overwrite — check sharing and the folder id.`,
       );
     }
-    const payload = { generatedAt: new Date().toISOString(), mode, root, collections };
+    const payload = {
+      generatedAt: new Date().toISOString(),
+      mode,
+      root,
+      // `collection` and `name` exist only to group and audit during sync; the
+      // client bundle never reads them (grouping is implied by the items array,
+      // only the filename extension is displayed), so they stay out of the file.
+      collections: collections.map((c) => ({
+        ...c,
+        items: c.items.map(({ collection, name, ...slim }) => slim),
+      })),
+    };
     await write(paths.out, payload);
     await write(paths.skipped, {
       generatedAt: payload.generatedAt,
@@ -497,7 +511,16 @@ export async function run(
     }
   }
 
-  const payload = { generatedAt: new Date().toISOString(), mode, root: null, collections };
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    mode,
+    root: null,
+    // Same slim client schema as the root-mode payload above.
+    collections: collections.map((c) => ({
+      ...c,
+      items: c.items.map(({ collection, name, ...slim }) => slim),
+    })),
+  };
   await write(paths.out, payload);
   await write(paths.skipped, {
     generatedAt: payload.generatedAt,

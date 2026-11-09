@@ -8,18 +8,14 @@ export type Repo = {
   slug: string;
   title: string;
   description: string | null;
-  /** Where the description came from — "github" field, or derived from the README. */
-  descriptionSource?: "github" | "readme" | null;
   language: string | null;
   topics: string[];
-  stars: number;
   pushedAt: string;
   url: string;
   live: string | null;
   customDomain: string | null;
   pages: string | null;
   channels: Channel[];
-  readmeBytes: number;
   featured: boolean;
   /** Read from the app's own manifest/<head> at sync time; absent until then. */
   brand?: RawBrand | null;

@@ -82,6 +82,13 @@ let failed = 0;
 const titles = new Map();
 for (const path of routePaths) {
   const m = routeMeta(path);
+  // A routable path that resolves to the 404 fallback meta is exactly the bug
+  // this script once shipped live: the page body rendered Home while every
+  // crawler got "Page not found" for the site's root URL.
+  if (m.title === "Page not found — Abu Md. Moniruzjaman") {
+    console.error(`✖ ${path || "/"} — routable path resolved to the 404 meta`);
+    failed++;
+  }
   const raw = renderAt(`${BASE}${path.replace(/^\//, "")}`);
   // React 19 hoists <link rel="preload"> for srcset images to the top of the
   // renderToString output. They belong in <head> — left inside the root div

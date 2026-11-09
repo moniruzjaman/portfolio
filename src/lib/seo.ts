@@ -127,10 +127,14 @@ const STATIC_META: Record<string, { title: string; description: string }> = {
 
 /** Metadata for a router-relative path ("/works/krishi-ai"). */
 export function routeMeta(path: string): RouteMeta {
-  const staticMeta = STATIC_META[path];
+  // routePaths spells the home route "" (dist/index.html has no directory),
+  // while the router, STATIC_META and the client all call it "/" — normalize
+  // here so a caller's spelling can't silently resolve to the 404 fallback.
+  const p = path === "" ? "/" : path;
+  const staticMeta = STATIC_META[p];
   if (staticMeta) {
     // The Person record belongs on the two identity pages only (brief 2.2).
-    const jsonLd = path === "/" || path === "/about" ? [personJsonLd] : [];
+    const jsonLd = p === "/" || p === "/about" ? [personJsonLd] : [];
     const ogTitle = staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
     return { ...staticMeta, ogType: "website", jsonLd, ogTitle };
   }

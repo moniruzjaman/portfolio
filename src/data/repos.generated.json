@@ -1,39 +1,15 @@
 {
-  "generatedAt": "2026-11-09T11:29:52.481Z",
+  "generatedAt": "2026-11-09T12:33:54.621Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 79,
   "channels": {
-    "vercel": 26,
     "github-pages": 36,
+    "vercel": 26,
     "custom-domain": 4,
     "cloudflare": 5
   },
   "repos": [
-    {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "\u0989\u09a6\u09cd\u09ad\u09bf\u09a6 \u0997\u09cb\u09af\u09bc\u09c7\u09a8\u09cd\u09a6\u09be (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
-      "language": "TypeScript",
-      "topics": [],
-      "pushedAt": "2026-11-09T11:04:28Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "vercel"
-      ],
-      "brand": {
-        "name": "\u0989\u09a6\u09cd\u09ad\u09bf\u09a6 \u0997\u09cb\u09af\u09bc\u09c7\u09a8\u09cd\u09a6\u09be",
-        "themeColor": "#046a1a",
-        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
-        "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
     {
       "name": "portfolio",
       "slug": "portfolio",
@@ -41,7 +17,7 @@
       "description": "personal creativity showcasing",
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-11-09T07:57:46Z",
+      "pushedAt": "2026-11-09T12:32:46Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -59,10 +35,34 @@
       "featured": false
     },
     {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "language": "TypeScript",
+      "topics": [],
+      "pushedAt": "2026-11-09T11:04:28Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi-diagnosis.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel"
+      ],
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
       "name": "rashtra_teen_chokhe",
       "slug": "rashtra-teen-chokhe",
-      "title": "\u09b0\u09be\u09b7\u09cd\u099f\u09cd\u09b0\u0995\u09c7 \u09a6\u09c7\u0996\u09be \u09a4\u09bf\u09a8 \u099a\u09cb\u0996\u09c7",
-      "description": "\u098f\u0995\u099f\u09bf \u09b8\u09ae\u09cd\u09aa\u09c2\u09b0\u09cd\u09a3 \u09ab\u09bf\u099a\u09be\u09b0-\u09b8\u09ae\u09c3\u09a6\u09cd\u09a7 \u09ac\u09be\u0982\u09b2\u09be \u0987-\u09ac\u09c1\u0995 \u2014 \u09aa\u09a1\u09bc\u09c1\u09a8, \u09b6\u09c1\u09a8\u09c1\u09a8, \u09b6\u09c7\u09af\u09bc\u09be\u09b0 \u0995\u09b0\u09c1\u09a8\u0964 \u098f\u0987 \u09b0\u09bf\u09aa\u09cb\u099c\u09bf\u099f\u09b0\u09bf GitHub Pages-\u098f \u09b9\u09cb\u09b8\u09cd\u099f \u0995\u09b0\u09be \u098f\u0995\u099f\u09bf \u09b8\u09cd\u099f\u09cd\u09af\u09be\u099f\u09bf\u0995 \u0993\u09af\u09bc\u09c7\u09ac \u0987-\u09ac\u09c1\u0995 \u09b0\u09bf\u09a1\u09be\u09b0 \u09a7\u09be\u09b0\u09a3 \u0995\u09b0\u09c7, \u09b8\u09be\u09a5\u09c7 \u0986\u099b\u09c7\u2026",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-11-08T13:16:49Z",
@@ -74,7 +74,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09b0\u09be\u09b7\u09cd\u099f\u09cd\u09b0\u0995\u09c7 \u09a6\u09c7\u0996\u09be \u09a4\u09bf\u09a8 \u099a\u09cb\u0996\u09c7",
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
         "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
         "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
         "source": "html"
@@ -97,7 +97,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09b8\u09cc\u09b0 \u099b\u09be\u09a6 \u09aa\u09cd\u09b0\u0995\u09b2\u09cd\u09aa \u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6",
+        "name": "সৌর ছাদ প্রকল্প বাংলাদেশ",
         "themeColor": "#006a4e",
         "source": "html"
       },
@@ -106,8 +106,8 @@
     {
       "name": "krishi-ai",
       "slug": "krishi-ai",
-      "title": "\u0995\u09c3\u09b7\u09bf \u098f\u0986\u0987 (Krishi AI)",
-      "description": "\u0995\u09c3\u09b7\u09bf \u098f\u0986\u0987 \u2014 \u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6\u09c7\u09b0 \u0995\u09c3\u09b7\u0995\u09a6\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u098f\u0986\u0987 \u099a\u09be\u09b2\u09bf\u09a4 \u09b8\u09cd\u09ae\u09be\u09b0\u09cd\u099f \u0995\u09c3\u09b7\u09bf \u09b8\u09b9\u09be\u09df\u0995 | Bengali-first Agricultural AI Assistant with Android-native PWA",
+      "title": "কৃষি এআই (Krishi AI)",
+      "description": "কৃষি এআই — বাংলাদেশের কৃষকদের জন্য এআই চালিত স্মার্ট কৃষি সহায়ক | Bengali-first Agricultural AI Assistant with Android-native PWA",
       "language": "TypeScript",
       "topics": [
         "agriculture",
@@ -135,7 +135,7 @@
     {
       "name": "bangladesh-zindabad",
       "slug": "bangladesh-zindabad",
-      "title": "\u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6 \u099c\u09bf\u09a8\u09cd\u09a6\u09be\u09ac\u09be\u09a6 \u2014 \u09ae\u09c2\u09b2 \u09aa\u09c1\u09b8\u09cd\u09a4\u09bf\u0995\u09be\u09b0 \u09b8\u09cc\u099c\u09a8\u09cd\u09af \u0987-\u09ac\u09c1\u0995 \u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3",
+      "title": "বাংলাদেশ জিন্দাবাদ — মূল পুস্তিকার সৌজন্য ই-বুক সংস্করণ",
       "description": "ebook",
       "language": "JavaScript",
       "topics": [],
@@ -148,7 +148,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u099c\u09bf\u09a8\u09cd\u09a6\u09be\u09ac\u09be\u09a6",
+        "name": "জিন্দাবাদ",
         "themeColor": "#006a4e",
         "icon": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
         "image": "https://moniruzjaman.github.io/bangladesh-zindabad/og-image.jpg",
@@ -159,7 +159,7 @@
     {
       "name": "cabinet-division-bangladesh-before-all",
       "slug": "cabinet-division-bangladesh-before-all",
-      "title": "Bangladesh Before All \u2014 Cabinet Division Fertilizer Governance Reform Portal",
+      "title": "Bangladesh Before All — Cabinet Division Fertilizer Governance Reform Portal",
       "description": "The path leads toward transparency, accountability, precision and dignity.",
       "language": "HTML",
       "topics": [],
@@ -183,7 +183,7 @@
     {
       "name": "fertilizer-nationalism",
       "slug": "fertilizer-nationalism",
-      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom \ud83c\udf3e",
+      "title": "Fertilizer Management: Walking The Path towards nationalism to Bloom 🌾",
       "description": "An intregated path to connect krishak card, land with proper authentication for sovereign agriculture.",
       "language": "HTML",
       "topics": [],
@@ -230,8 +230,8 @@
     {
       "name": "web.krishiai.live",
       "slug": "web-krishiai-live",
-      "title": "KrishiAI \u2014 \u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6 \u0995\u09c3\u09b7\u09bf AI \u09aa\u09cd\u09b2\u09cd\u09af\u09be\u099f\u09ab\u09b0\u09cd\u09ae",
-      "description": "\u099a\u09be\u09b7\u09be\u09ac\u09be\u09a6\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09b8\u09cd\u09ae\u09be\u09b0\u09cd\u099f \u0993 \u09a8\u09bf\u09b0\u09cd\u09ad\u09b0\u09af\u09cb\u0997\u09cd\u09af\u0964 \u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6\u09c7\u09b0 \u0995\u09c3\u09b7\u0995\u09a6\u09c7\u09b0 \u099c\u09a8\u09cd\u09af AI-\u099a\u09be\u09b2\u09bf\u09a4 \u09b8\u09cd\u09ae\u09be\u09b0\u09cd\u099f \u0995\u09c3\u09b7\u09bf \u09aa\u09cd\u09b2\u09cd\u09af\u09be\u099f\u09ab\u09b0\u09cd\u09ae \u2014 \u09ab\u09b8\u09b2\u09c7\u09b0 \u09b0\u09cb\u0997 \u09a8\u09bf\u09b0\u09cd\u09a3\u09af\u09bc, \u0986\u09ac\u09b9\u09be\u0993\u09af\u09bc\u09be \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6, \u09ac\u09be\u099c\u09be\u09b0 \u09ae\u09c2\u09b2\u09cd\u09af, \u09ae\u09be\u099f\u09bf \u09ac\u09bf\u09b6\u09cd\u2026",
+      "title": "KrishiAI — বাংলাদেশ কৃষি AI প্ল্যাটফর্ম",
+      "description": "চাষাবাদের জন্য স্মার্ট ও নির্ভরযোগ্য। বাংলাদেশের কৃষকদের জন্য AI-চালিত স্মার্ট কৃষি প্ল্যাটফর্ম — ফসলের রোগ নির্ণয়, আবহাওয়া পরামর্শ, বাজার মূল্য, মাটি বিশ্…",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-11-01T21:16:00Z",
@@ -258,7 +258,7 @@
       "name": "diagnosis-assistant",
       "slug": "diagnosis-assistant",
       "title": "CABI Plant Diagnosis Assistant",
-      "description": "\u09b8\u09bf\u09ae\u09c1\u09b2\u09c7\u09b6\u09a8-\u09ad\u09bf\u09a4\u09cd\u09a4\u09bf\u0995 \u098f\u09ac\u0982 CABI (Centre for Agriculture and Bioscience International) \u098f\u09b0 \u09aa\u09cd\u09b0\u09cb\u099f\u09cb\u0995\u09b2 \u0993 \u09aa\u09b0\u09bf\u09ad\u09be\u09b7\u09be (Terminology) \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09c7 \u09ac\u09bf\u09b7\u09df\u09ac\u09b8\u09cd\u09a4\u09c1 \u0986\u09b0\u0993 \u0989\u09a8\u09cd\u09a8\u09a4 \u0995\u09b0\u09c7\u099b\u09bf\u0964 \u09a8\u09a4\u09c1\u09a8 \u0995\u09c0 \u0995\u09c0 \u09af\u09cb\u0997 \u0995\u09b0\u09be \u09b9\u09df\u09c7\u099b\u09c7: \u09e7. CABI \u09aa\u09cd\u09b0\u09cb\u099f\u09cb\u0995\u09b2 (\u09eb\u099f\u09bf \u09a7\u09be\u09aa): \u09a6\u09c7\u0996\u09bf: \u09ae\u09be\u09a0 \u09aa\u09b0\u09cd\u09af\u09ac\u09c7\u0995\u09cd\u09b7\u09a3 \u0993 \u09b2\u0995\u09cd\u09b7\u09a3 \u0985\u09a8\u09c1\u09b8\u09a8\u09cd\u09a7\u09be\u09a8 (Scouting & Symptom Observation) \u09ac\u09c1\u099d\u09bf: \u09b8\u09ae\u09b8\u09cd\u09af\u09be \u099a\u09bf\u09b9\u09cd\u09a8\u09bf\u09a4\u0995\u09b0\u09a3 \u0993 \u0995\u09be\u09b0\u09a3 \u09ac\u09bf\u09b6\u09cd\u09b2\u09c7\u09b7\u09a3 (Dia",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-11-01T19:47:43Z",
@@ -295,8 +295,8 @@
     {
       "name": "AgriChem-Guide-Pest-Control-Database",
       "slug": "agrichem-guide-pest-control-database",
-      "title": "\u09aa\u09c7\u09b8\u09cd\u099f\u09bf\u09b8\u09be\u0987\u09a1\u09a8\u09c7\u0995\u09cd\u09b8\u099f \u2014 PesticideNext",
-      "description": "\u09aa\u09c7\u09b8\u09cd\u099f\u09bf\u09b8\u09be\u0987\u09a1\u09a8\u09c7\u0995\u09cd\u09b8\u099f \u2014 \u09aa\u09b0\u09c7\u09b0 \u09b8\u09cd\u09aa\u09cd\u09b0\u09c7, \u0986\u09b0 \u09ad\u09c1\u09b2 \u09b9\u09ac\u09c7 \u09a8\u09be\u0964 | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
+      "title": "পেস্টিসাইডনেক্সট — PesticideNext",
+      "description": "পেস্টিসাইডনেক্সট — পরের স্প্রে, আর ভুল হবে না। | Bangladesh field-crop reference: 9600+ DAE-registered pesticides, MoA rotation planner, knapsack tank-mix calculator, PPE checklists, and an offline pocket-book guide.",
       "language": "TypeScript",
       "topics": [
         "agriculture",
@@ -377,7 +377,7 @@
     {
       "name": "fertilizer",
       "slug": "fertilizer",
-      "title": "Fertilizer Management \u2014 Burden to Bloom",
+      "title": "Fertilizer Management — Burden to Bloom",
       "description": "The path leads toward transparency, accountability, precision and dignity.",
       "language": "HTML",
       "topics": [],
@@ -390,7 +390,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "Fertilizer Management \u2014 Burden to Bloom",
+        "name": "Fertilizer Management — Burden to Bloom",
         "themeColor": "#006a4e",
         "icon": "https://moniruzjaman.github.io/fertilizer/apple-touch-icon.png",
         "image": "https://moniruzjaman.github.io/fertilizer/social-preview.png",
@@ -401,8 +401,8 @@
     {
       "name": "rastro-tin-ayna",
       "slug": "rastro-tin-ayna",
-      "title": "\u09b0\u09be\u09b7\u09cd\u099f\u09cd\u09b0\u09c7\u09b0 \u09a4\u09bf\u09a8 \u0986\u09af\u09bc\u09a8\u09be \u2014 eBook & Audiobook",
-      "description": "\u098f\u0995\u099f\u09bf Vite + React + TypeScript + Tailwind CSS \u09a6\u09bf\u09af\u09bc\u09c7 \u09a4\u09c8\u09b0\u09bf \u09ac\u09be\u0982\u09b2\u09be \u0987-\u09ac\u09c1\u0995 \u09b0\u09bf\u09a1\u09be\u09b0 \u0985\u09cd\u09af\u09be\u09aa\u09cd\u09b2\u09bf\u0995\u09c7\u09b6\u09a8\u0964 \u09e8\u09ed\u099f\u09bf \u0985\u09a7\u09cd\u09af\u09be\u09af\u09bc\u099c\u09c1\u09a1\u09bc\u09c7 \u09a8\u09be\u0997\u09b0\u09bf\u0995, \u09ae\u09be\u09a0 \u0995\u09b0\u09cd\u09ae\u0995\u09b0\u09cd\u09a4\u09be \u0993 \u09b0\u09be\u099c\u09a8\u09c0\u09a4\u09bf\u09ac\u09bf\u09a6\u09c7\u09b0 \u09a4\u09bf\u09a8 \u0986\u09af\u09bc\u09a8\u09be\u09af\u09bc \u09b0\u2026",
+      "title": "রাষ্ট্রের তিন আয়না — eBook & Audiobook",
+      "description": "একটি Vite + React + TypeScript + Tailwind CSS দিয়ে তৈরি বাংলা ই-বুক রিডার অ্যাপ্লিকেশন। ২৭টি অধ্যায়জুড়ে নাগরিক, মাঠ কর্মকর্তা ও রাজনীতিবিদের তিন আয়নায় র…",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-10-21T13:41:55Z",
@@ -414,7 +414,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09a4\u09bf\u09a8 \u0986\u09af\u09bc\u09a8\u09be",
+        "name": "তিন আয়না",
         "themeColor": "#d97706",
         "icon": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-192.png",
         "image": "https://moniruzjaman.github.io/rastro-tin-ayna/icons/icon-512.png",
@@ -425,8 +425,8 @@
     {
       "name": "self-learning",
       "slug": "self-learning",
-      "title": "\u09b8\u09cd\u09ac\u09b6\u09bf\u0995\u09cd\u09b7\u09be \u0993 \u09b8\u09cd\u09ac\u09a8\u09bf\u09b0\u09cd\u09ad\u09b0\u09a4\u09be\u09b0 \u0995\u09c3\u09b7\u09bf \u2014 \u09ac\u09be\u0982\u09b2\u09be \u0987-\u09ac\u09c1\u0995",
-      "description": "\u098f\u0995\u099f\u09bf \u09b8\u09ae\u09cd\u09aa\u09c2\u09b0\u09cd\u09a3 \u09ab\u09bf\u099a\u09be\u09b0-\u09b8\u09ae\u09c3\u09a6\u09cd\u09a7 \u09ac\u09be\u0982\u09b2\u09be \u0987-\u09ac\u09c1\u0995 \u2014 \u09aa\u09a1\u09bc\u09c1\u09a8, \u09b6\u09c1\u09a8\u09c1\u09a8, \u09b6\u09c7\u09af\u09bc\u09be\u09b0 \u0995\u09b0\u09c1\u09a8\u0964 \u098f\u0987 \u09b0\u09bf\u09aa\u09cb\u099c\u09bf\u099f\u09b0\u09bf GitHub Pages-\u098f \u09b9\u09cb\u09b8\u09cd\u099f \u0995\u09b0\u09be \u098f\u0995\u099f\u09bf \u09b8\u09cd\u099f\u09cd\u09af\u09be\u099f\u09bf\u0995 \u0993\u09af\u09bc\u09c7\u09ac \u0987-\u09ac\u09c1\u0995 \u09b0\u09bf\u09a1\u09be\u09b0 \u09a7\u09be\u09b0\u09a3 \u0995\u09b0\u09c7\u0964",
+      "title": "স্বশিক্ষা ও স্বনির্ভরতার কৃষি — বাংলা ই-বুক",
+      "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে।",
       "language": "JavaScript",
       "topics": [],
       "pushedAt": "2026-10-18T18:02:00Z",
@@ -438,7 +438,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09b8\u09cd\u09ac\u09b6\u09bf\u0995\u09cd\u09b7\u09be \u0995\u09c3\u09b7\u09bf",
+        "name": "স্বশিক্ষা কৃষি",
         "themeColor": "#145a32",
         "icon": "https://moniruzjaman.github.io/self-learning/apple-touch-icon.png",
         "image": "https://moniruzjaman.github.io/self-learning/og-image.jpg",
@@ -450,7 +450,7 @@
       "name": "knowledge-hub",
       "slug": "knowledge-hub",
       "title": "moniruzjaman.github.io",
-      "description": "Personal website and knowledge sharing hub for Abu Md. Moniruzzaman \u2014",
+      "description": "Personal website and knowledge sharing hub for Abu Md. Moniruzzaman —",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-10-13T13:21:36Z",
@@ -463,7 +463,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "Abu Md. Moniruzzaman \u2014 Agricultural Extension & Digital Innovation",
+        "name": "Abu Md. Moniruzzaman — Agricultural Extension & Digital Innovation",
         "icon": "https://knowledge-hub-alpha-khaki.vercel.app/favicon.svg",
         "source": "html"
       },
@@ -472,8 +472,8 @@
     {
       "name": "plantation-tracker",
       "slug": "plantation-tracker",
-      "title": "\ud83c\udf34 \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3 \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09be\u09b0 (Plantation Tracker PWA)",
-      "description": "\u09e6\u09eb \u09ac\u099b\u09b0\u09c7 \u09e8\u09eb \u0995\u09cb\u099f\u09bf \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3\u201d \u0995\u09b0\u09cd\u09ae\u09b8\u09c2\u099a\u09bf\u09b0 \u0986\u0993\u09a4\u09be\u09ad\u09c1\u0995\u09cd\u09a4 \u09b9\u0993\u09df\u09be\u09b0 \u09b2\u0995\u09cd\u09b7\u09cd\u09af\u09c7 \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3\u09c7\u09b0 \u09a4\u09a5\u09cd\u09af",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "০৫ বছরে ২৫ কোটি বৃক্ষরোপণ” কর্মসূচির আওতাভুক্ত হওয়ার লক্ষ্যে বৃক্ষরোপণের তথ্য",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-10-13T09:15:36Z",
@@ -485,7 +485,7 @@
         "vercel"
       ],
       "brand": {
-        "name": "\u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3 \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09be\u09b0",
+        "name": "বৃক্ষরোপণ ট্র্যাকার",
         "themeColor": "#006a4e",
         "icon": "https://plantation-tracker.vercel.app/pwa-192x192.svg",
         "image": "https://plantation.krishiai.live/og-share-large.png?v=3",
@@ -509,7 +509,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "Pesticide Reform \u2014 DAE Kurigram",
+        "name": "Pesticide Reform — DAE Kurigram",
         "themeColor": "#006a4e",
         "icon": "https://moniruzjaman.github.io/pesticide-reform/pesticide-reform.jpeg",
         "image": "https://raw.githubusercontent.com/moniruzjaman/pesticide-reform/main/social-preview.png",
@@ -556,7 +556,7 @@
     {
       "name": "path-to-bloom",
       "slug": "path-to-bloom",
-      "title": "\ud83c\udf3e Fertilizer Management \u2014 The Path to Bloom",
+      "title": "🌾 Fertilizer Management — The Path to Bloom",
       "description": "interactive report",
       "language": "HTML",
       "topics": [],
@@ -569,7 +569,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "Fertilizer Management \u2014 The Path to Bloom | Ministry of Agriculture, Bangladesh",
+        "name": "Fertilizer Management — The Path to Bloom | Ministry of Agriculture, Bangladesh",
         "themeColor": "#004d3a",
         "icon": "https://moniruzjaman.github.io/path-to-bloom/apple-touch-icon.jpg",
         "source": "html"
@@ -592,7 +592,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "Distribution Reform Package \u2014 Fertilizer Distribution Reform | Ministry of Agriculture, Bangladesh",
+        "name": "Distribution Reform Package — Fertilizer Distribution Reform | Ministry of Agriculture, Bangladesh",
         "icon": "https://moniruzjaman.github.io/fertilizer-reform/favicon.png",
         "source": "html"
       },
@@ -601,7 +601,7 @@
     {
       "name": "biopesticide-policy",
       "slug": "biopesticide-policy",
-      "title": "\ud83c\udf31 Biopesticide Transition Framework \u2014 Bangladesh",
+      "title": "🌱 Biopesticide Transition Framework — Bangladesh",
       "description": "From dependency to resilience: A phased policy blueprint for Biopesticide Transition.",
       "language": "HTML",
       "topics": [],
@@ -619,8 +619,8 @@
     {
       "name": "soil-media-portal",
       "slug": "soil-media-portal",
-      "title": "\ud83c\udf3e AgriMedia Portal \u2014 \u0995\u09c3\u09b7\u09bf \u09ae\u09bf\u09a1\u09bf\u09af\u09bc\u09be \u09aa\u09cb\u09b0\u09cd\u099f\u09be\u09b2",
-      "description": "A modern, responsive multimedia web portal that dynamically fetches and displays content from a shared Google Drive folder \u2014 built for DAE Bangladesh agricul\u2026",
+      "title": "🌾 AgriMedia Portal — কৃষি মিডিয়া পোর্টাল",
+      "description": "A modern, responsive multimedia web portal that dynamically fetches and displays content from a shared Google Drive folder — built for DAE Bangladesh agricul…",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-09-28T09:47:14Z",
@@ -678,7 +678,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "DAE Kurigram | \u0995\u09c3\u09b7\u09bf \u09b8\u09ae\u09cd\u09aa\u09cd\u09b0\u09b8\u09be\u09b0\u09a3 \u0985\u09a7\u09bf\u09a6\u09aa\u09cd\u09a4\u09b0",
+        "name": "DAE Kurigram | কৃষি সম্প্রসারণ অধিদপ্তর",
         "image": "https://kurigram-nursery-2026.vercel.app/cover.png",
         "source": "html"
       },
@@ -687,8 +687,8 @@
     {
       "name": "crop-diagnosis",
       "slug": "crop-diagnosis",
-      "title": "\u0989\u09a6\u09cd\u09ad\u09bf\u09a6 \u0997\u09cb\u09af\u09bc\u09c7\u09a8\u09cd\u09a6\u09be (Plant Detective)",
-      "description": "\u0986\u09aa\u09a8\u09be\u09b0 \u09ab\u09b8\u09b2\u09c7\u09b0 \u09b8\u09ae\u09b8\u09cd\u09af\u09be \u099a\u09bf\u09a8\u09c7 \u09a8\u09bf\u09a8 \u09b8\u09b9\u099c\u09c7 CABI \u09eb-\u09a7\u09be\u09aa \u09aa\u09cd\u09b0\u09cb\u099f\u09cb\u0995\u09b2 \u0985\u09a8\u09c1\u09b8\u09be\u09b0\u09c7 \u09a7\u09be\u09aa\u09c7 \u09a7\u09be\u09aa\u09c7 \u09b6\u09bf\u0996\u09c1\u09a8 \u09ab\u09b8\u09b2\u09c7\u09b0 \u09b0\u09cb\u0997 \u0993 \u09aa\u09cb\u0995\u09be \u099a\u09c7\u09a8\u09be\u09b0 \u09aa\u09a6\u09cd\u09a7\u09a4\u09bf\u0964 \u0997\u09be\u0987\u09a1 \u09aa\u09a1\u09bc\u09c1\u09a8, \u0997\u09c7\u09ae \u0996\u09c7\u09b2\u09c1\u09a8, \u09a4\u09be\u09b0\u09aa\u09b0 \u09a8\u09bf\u099c\u09c7\u0987 \u09a8\u09bf\u09b0\u09cd\u09a3\u09af\u09bc \u0995\u09b0\u09c1\u09a8\u0964",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "আপনার ফসলের সমস্যা চিনে নিন সহজে CABI ৫-ধাপ প্রোটোকল অনুসারে ধাপে ধাপে শিখুন ফসলের রোগ ও পোকা চেনার পদ্ধতি। গাইড পড়ুন, গেম খেলুন, তারপর নিজেই নির্ণয় করুন।",
       "language": "JavaScript",
       "topics": [],
       "pushedAt": "2026-09-20T06:47:13Z",
@@ -705,7 +705,7 @@
     {
       "name": "pesticide_act_2018",
       "slug": "pesticide-act-2018",
-      "title": "\u09ac\u09be\u09b2\u09be\u0987\u09a8\u09be\u09b6\u0995 \u0986\u0987\u09a8, \u09e8\u09e6\u09e7\u09ee \u2014 \u0996\u09c1\u099a\u09b0\u09be \u09ac\u09bf\u0995\u09cd\u09b0\u09c7\u09a4\u09be\u09b0 \u09b8\u09ae\u09a8\u09cd\u09ac\u09bf\u09a4 \u09ab\u09bf\u09b2\u09cd\u09a1 \u0997\u09be\u0987\u09a1",
+      "title": "বালাইনাশক আইন, ২০১৮ — খুচরা বিক্রেতার সমন্বিত ফিল্ড গাইড",
       "description": "git clone https://github.com/moniruzjaman/pesticideact2018.git",
       "language": "TypeScript",
       "topics": [],
@@ -719,7 +719,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09ac\u09be\u09b2\u09be\u0987\u09a8\u09be\u09b6\u0995 \u0986\u0987\u09a8",
+        "name": "বালাইনাশক আইন",
         "themeColor": "#006a4e",
         "icon": "https://pesticideact2018.vercel.app/icon-192.png",
         "image": "https://raw.githubusercontent.com/moniruzjaman/pesticide_act_2018/main/public/og-image.png",
@@ -750,8 +750,8 @@
     {
       "name": "plantation-tracker-app",
       "slug": "plantation-tracker-app",
-      "title": "\ud83c\udf34 \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3 \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09be\u09b0 (Plantation Tracker PWA)",
-      "description": "\u09eb \u09ac\u099b\u09b0\u09c7 \u09e8\u09eb \u0995\u09cb\u099f\u09bf \u09ac\u09c3\u0995\u09cd\u09b7 \u09b0\u09cb\u09aa\u09a3 \u0995\u09b0\u09cd\u09ae\u09b8\u09c2\u099a\u09bf ' \u09b8\u09ae\u09cd\u09aa\u09c3\u0995\u09cd\u09a4 \u09b9\u09a4\u09c7 \u09a4\u09a5\u09cd\u09af \u09b8\u0982\u0997\u09cd\u09b0\u09b9, \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3 \u0993 \u09aa\u09cd\u09b0\u09c7\u09b0\u09a3\u0964",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "৫ বছরে ২৫ কোটি বৃক্ষ রোপণ কর্মসূচি ' সম্পৃক্ত হতে তথ্য সংগ্রহ, সংরক্ষণ ও প্রেরণ।",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-09-09T09:22:09Z",
@@ -782,7 +782,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "BNP Policy \u2014 Bangladesh Agriculture & Governance Multimedia Portal",
+        "name": "BNP Policy — Bangladesh Agriculture & Governance Multimedia Portal",
         "themeColor": "#006a4e",
         "icon": "https://bnp-policy.vercel.app/bnp-icon.png",
         "source": "html"
@@ -793,7 +793,7 @@
       "name": "plantation-submission-system",
       "slug": "plantation-submission-system",
       "title": "plantation-submission-system",
-      "description": "Plantation Submission System \u2013 A mobile-first, offline-capable GIS-enabled web application for recording, validating, and monitoring tree plantation activities with GPS, geo-fencing, multi-site submissions, NDVI, carbon estimation, and government-ready validation workflows.",
+      "description": "Plantation Submission System – A mobile-first, offline-capable GIS-enabled web application for recording, validating, and monitoring tree plantation activities with GPS, geo-fencing, multi-site submissions, NDVI, carbon estimation, and government-ready validation workflows.",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-08-24T11:34:06Z",
@@ -830,8 +830,8 @@
     {
       "name": "plantation-tracker-v1",
       "slug": "plantation-tracker-v1",
-      "title": "\ud83c\udf34 \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3 \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09be\u09b0 (Plantation Tracker PWA)",
-      "description": "\u0997\u09a3\u09aa\u09cd\u09b0\u099c\u09be\u09a4\u09a8\u09cd\u09a4\u09cd\u09b0\u09c0 \u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6 \u09b8\u09b0\u0995\u09be\u09b0\u09c7\u09b0 \u0995\u09c3\u09b7\u09bf \u09b8\u09ae\u09cd\u09aa\u09cd\u09b0\u09b8\u09be\u09b0\u09a3 \u0985\u09a7\u09bf\u09a6\u09aa\u09cd\u09a4\u09b0 \u0995\u09b0\u09cd\u09a4\u09c3\u0995 \u201c\u09e6\u09eb \u09ac\u099b\u09b0\u09c7 \u09e8\u09eb \u0995\u09cb\u099f\u09bf \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3\u201d \u09a6\u09c7\u09b6\u09ac\u09cd\u09af\u09be\u09aa\u09c0 \u09ae\u09b9\u09be-\u0995\u09b0\u09cd\u09ae\u09b8\u09c2\u099a\u09bf\u09b0 \u0986\u0993\u09a4\u09be\u09ad\u09c1\u0995\u09cd\u09a4 \u09a4\u09a5\u09cd\u09af \u09b8\u0982\u0997\u09cd\u09b0\u09b9, \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09bf\u0982 \u098f\u09ac\u0982 \u0985\u09ab\u09b2\u09be\u0987\u09a8 \u09a1\u09c7\u099f\u09be\u09ac\u09c7\u099c \u09ae\u09cd\u09af\u09be\u09a8\u09c7\u099c\u09ae\u09c7\u09a8\u09cd\u099f\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09a4\u09c8\u09b0\u09bf \u098f\u0995\u099f\u09bf \u0985\u09a4\u09cd\u09af\u09be\u09a7\u09c1\u09a8\u09bf\u0995 \u098f\u09ac\u0982 \u09b6\u0995\u09cd\u09a4\u09bf\u09b6\u09be\u09b2\u09c0 Progressive Web App (PWA)\u0964",
+      "title": "🌴 বৃক্ষরোপণ ট্র্যাকার (Plantation Tracker PWA)",
+      "description": "গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের কৃষি সম্প্রসারণ অধিদপ্তর কর্তৃক “০৫ বছরে ২৫ কোটি বৃক্ষরোপণ” দেশব্যাপী মহা-কর্মসূচির আওতাভুক্ত তথ্য সংগ্রহ, ট্র্যাকিং এবং অফলাইন ডেটাবেজ ম্যানেজমেন্টের জন্য তৈরি একটি অত্যাধুনিক এবং শক্তিশালী Progressive Web App (PWA)।",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-08-17T04:49:23Z",
@@ -843,7 +843,7 @@
         "vercel"
       ],
       "brand": {
-        "name": "\u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a3 \u099f\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09be\u09b0",
+        "name": "বৃক্ষরোপণ ট্র্যাকার",
         "themeColor": "#15803d",
         "icon": "https://plantation-tracker-v1.vercel.app/apple-touch-icon.png",
         "source": "manifest"
@@ -854,7 +854,7 @@
       "name": "kurigram_nursery_registry",
       "slug": "kurigram-nursery-registry",
       "title": "Kurigram Nursery Registry",
-      "description": "A fully offline, zero-API-key mobile GIS application for nursery data collection and mapping in Kurigram District, Bangladesh. **Interactive Map**: GPS Auto-Capture**: One-tap location locking**Image Compression**: Photos automatically resized**Inventory Management**: Track Fruit (\u09ab\u09b2\u09a6), Forest (\u09ac\u09a8\u099c), and Medicinal (\u0994\u09b7\u09a7\u09bf) saplings **Offline-First**",
+      "description": "A fully offline, zero-API-key mobile GIS application for nursery data collection and mapping in Kurigram District, Bangladesh. **Interactive Map**: GPS Auto-Capture**: One-tap location locking**Image Compression**: Photos automatically resized**Inventory Management**: Track Fruit (ফলদ), Forest (বনজ), and Medicinal (ঔষধি) saplings **Offline-First**",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-07-24T08:02:35Z",
@@ -875,7 +875,7 @@
     {
       "name": "krishak-card",
       "slug": "krishak-card",
-      "title": "\ud83c\udf3e \u0995\u09c3\u09b7\u0995 \u0995\u09be\u09b0\u09cd\u09a1 \u2014 Farmers Card System",
+      "title": "🌾 কৃষক কার্ড — Farmers Card System",
       "description": "Farmers dashboard",
       "language": "JavaScript",
       "topics": [],
@@ -888,7 +888,7 @@
         "vercel"
       ],
       "brand": {
-        "name": "\u0995\u09c3\u09b7\u0995 \u0995\u09be\u09b0\u09cd\u09a1 | Farmers Card \u2014 DAE Bangladesh",
+        "name": "কৃষক কার্ড | Farmers Card — DAE Bangladesh",
         "icon": "https://krishak-card.vercel.app/favicon.svg",
         "source": "html"
       },
@@ -910,7 +910,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "DAE \u0995\u09c1\u09a1\u09bc\u09bf\u0997\u09cd\u09b0\u09be\u09ae \u09a8\u09be\u09b0\u09cd\u09b8\u09be\u09b0\u09c0 \u09a1\u09cd\u09af\u09be\u09b6\u09ac\u09cb\u09b0\u09cd\u09a1",
+        "name": "DAE কুড়িগ্রাম নার্সারী ড্যাশবোর্ড",
         "image": "https://moniruzjaman.github.io/kurigram-nursery-2026/og-image.png",
         "source": "html"
       },
@@ -920,7 +920,7 @@
       "name": "nursery-form-2",
       "slug": "nursery-form-2",
       "title": "Run and deploy your AI Studio app",
-      "description": "\u09e8\u09e6\u09e8\u09ec \u09b8\u09be\u09b2\u09c7 \u09ac\u09c3\u0995\u09cd\u09b7\u09b0\u09cb\u09aa\u09a8\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09ac\u09c7\u09b8\u09b0\u0995\u09be\u09b0\u09bf \u09a8\u09be\u09b0\u09cd\u09b8\u09be\u09b0\u09bf\u09b0 \u09aa\u09cd\u09b0\u09b8\u09cd\u09a4\u09be\u09ac\u09bf\u09a4 \u099a\u09be\u09b0\u09be \u0993 \u09a8\u09be\u09b0\u09cd\u09b8\u09be\u09b0\u09c0\u09b0 \u09a4\u09a5\u09cd\u09af",
+      "description": "২০২৬ সালে বৃক্ষরোপনের জন্য বেসরকারি নার্সারির প্রস্তাবিত চারা ও নার্সারীর তথ্য",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-07-02T00:36:36Z",
@@ -997,7 +997,7 @@
         "vercel"
       ],
       "brand": {
-        "name": "Krishi AI: \u09b8\u09cd\u09ae\u09be\u09b0\u09cd\u099f \u0995\u09c3\u09b7\u09bf \u0987\u0995\u09cb\u09b8\u09bf\u09b8\u09cd\u099f\u09c7\u09ae",
+        "name": "Krishi AI: স্মার্ট কৃষি ইকোসিস্টেম",
         "themeColor": "#0a8a1f",
         "source": "html"
       },
@@ -1006,8 +1006,8 @@
     {
       "name": "krishiai-v2",
       "slug": "krishiai-v2",
-      "title": "\u0995\u09c3\u09b7\u09bf AI v2 \u2014 Krishi AI Bangladesh",
-      "description": "AI-\u099a\u09be\u09b2\u09bf\u09a4 \u0995\u09c3\u09b7\u09bf \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6 \u09b8\u09c7\u09ac\u09be | AI-powered agricultural advisory for Bangladesh farmers",
+      "title": "কৃষি AI v2 — Krishi AI Bangladesh",
+      "description": "AI-চালিত কৃষি পরামর্শ সেবা | AI-powered agricultural advisory for Bangladesh farmers",
       "language": "TypeScript",
       "topics": [],
       "pushedAt": "2026-05-24T18:16:10Z",
@@ -1019,7 +1019,7 @@
         "vercel"
       ],
       "brand": {
-        "name": "\u0995\u09c3\u09b7\u09bf AI",
+        "name": "কৃষি AI",
         "themeColor": "#16a34a",
         "icon": "https://krishiai-v2.vercel.app/favicon.svg",
         "image": "https://krishiai-v2.vercel.app/og-image.svg",
@@ -1071,7 +1071,7 @@
       "name": "gap-brinjal",
       "slug": "gap-brinjal",
       "title": "GAP Brinjal Training Portal",
-      "description": "An interactive web application for Good Agricultural Practices (GAP) training in brinjal cultivation, specifically designed for Bangladesh. This portal provi\u2026",
+      "description": "An interactive web application for Good Agricultural Practices (GAP) training in brinjal cultivation, specifically designed for Bangladesh. This portal provi…",
       "language": "JavaScript",
       "topics": [],
       "pushedAt": "2026-04-08T21:45:37Z",
@@ -1127,8 +1127,8 @@
     {
       "name": "diagnosis_game",
       "slug": "diagnosis-game",
-      "title": "\u09a7\u09be\u09a8\u09c7\u09b0 \u09a1\u09be\u0995\u09cd\u09a4\u09be\u09b0 \u09b8\u09bf\u09ae\u09c1\u09b2\u09c7\u09b6\u09a8 (Smart Farmer Simulation)",
-      "description": "\u09b8\u09bf\u09ae\u09c1\u09b2\u09c7\u09b6\u09a8-\u09ad\u09bf\u09a4\u09cd\u09a4\u09bf\u0995 \u098f\u09ac\u0982 CABI (Centre for Agriculture and Bioscience International) \u098f\u09b0 \u09aa\u09cd\u09b0\u09cb\u099f\u09cb\u0995\u09b2 \u0993 \u09aa\u09b0\u09bf\u09ad\u09be\u09b7\u09be (Terminology) \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09c7 \u09ac\u09bf\u09b7\u09df\u09ac\u09b8\u09cd\u09a4\u09c1 \u0986\u09b0\u0993 \u0989\u09a8\u09cd\u09a8\u09a4 \u0995\u09b0\u09c7\u099b\u09bf\u0964 \u09a8\u09a4\u09c1\u09a8 \u0995\u09c0 \u0995\u09c0 \u09af\u09cb\u0997 \u0995\u09b0\u09be \u09b9\u09df\u09c7\u099b\u09c7: \u09e7. CABI \u09aa\u09cd\u09b0\u09cb\u099f\u09cb\u0995\u09b2 (\u09eb\u099f\u09bf \u09a7\u09be\u09aa): \u09a6\u09c7\u0996\u09bf: \u09ae\u09be\u09a0 \u09aa\u09b0\u09cd\u09af\u09ac\u09c7\u0995\u09cd\u09b7\u09a3 \u0993 \u09b2\u0995\u09cd\u09b7\u09a3 \u0985\u09a8\u09c1\u09b8\u09a8\u09cd\u09a7\u09be\u09a8 (Scouting & Symptom Observation) \u09ac\u09c1\u099d\u09bf: \u09b8\u09ae\u09b8\u09cd\u09af\u09be \u099a\u09bf\u09b9\u09cd\u09a8\u09bf\u09a4\u0995\u09b0\u09a3 \u0993 \u0995\u09be\u09b0\u09a3 \u09ac\u09bf\u09b6\u09cd\u09b2\u09c7\u09b7\u09a3 (Dia",
+      "title": "ধানের ডাক্তার সিমুলেশন (Smart Farmer Simulation)",
+      "description": "সিমুলেশন-ভিত্তিক এবং CABI (Centre for Agriculture and Bioscience International) এর প্রোটোকল ও পরিভাষা (Terminology) ব্যবহার করে বিষয়বস্তু আরও উন্নত করেছি। নতুন কী কী যোগ করা হয়েছে: ১. CABI প্রোটোকল (৫টি ধাপ): দেখি: মাঠ পর্যবেক্ষণ ও লক্ষণ অনুসন্ধান (Scouting & Symptom Observation) বুঝি: সমস্যা চিহ্নিতকরণ ও কারণ বিশ্লেষণ (Dia",
       "language": "HTML",
       "topics": [],
       "pushedAt": "2026-03-30T10:46:31Z",
@@ -1141,7 +1141,7 @@
         "github-pages"
       ],
       "brand": {
-        "name": "\u09ab\u09b8\u09b2 \u09ab\u09a4\u09cb\u09af\u09bc\u09be (Crop Call) - \u0995\u09c3\u09b7\u09bf \u09b8\u09bf\u09a6\u09cd\u09a7\u09be\u09a8\u09cd\u09a4 \u09b8\u09bf\u09ae\u09c1\u09b2\u09c7\u09b6\u09a8",
+        "name": "ফসল ফতোয়া (Crop Call) - কৃষি সিদ্ধান্ত সিমুলেশন",
         "themeColor": "#022c22",
         "source": "html"
       },

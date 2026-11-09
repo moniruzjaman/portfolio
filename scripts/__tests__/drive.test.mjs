@@ -139,6 +139,7 @@ test("api-key mode: recurses sub-folders, records path, skips shortcuts, writes 
   );
   assert.deepEqual(items[0].path, ["Decks"]);
   assert.equal(items[0].kind, "slides");
+  assert.equal(items[0].ext, "pptx");
   assert.ok(m.seen.every((r) => r.key === "KEY_SECRET_VALUE"));
   assert.equal(
     JSON.parse(await readFile(paths.skipped)).skipped[0].reason,
@@ -186,9 +187,11 @@ test("service-account mode FAILS CLOSED: private and unverifiable files are skip
   );
   m.s.close();
   assert.deepEqual(
-    out.collections[0].items.map((i) => i.name),
-    ["public.pdf"],
+    out.collections[0].items.map((i) => i.ext),
+    ["pdf"],
   );
+  // The slim client schema never ships the raw filename or collection key.
+  assert.ok(!out.collections[0].items[0].name && !out.collections[0].items[0].collection);
   const skipped = JSON.parse(await readFile(paths.skipped)).skipped.map((s) => s.reason);
   assert.deepEqual(skipped.sort(), [
     "not shared publicly",

@@ -25,6 +25,16 @@ export default tseslint.config(
     },
   },
   {
+    // The omit-in-destructure idiom ({ drop, ...rest }) and _-prefixed params
+    // are intentional; don't flag them as unused.
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_", ignoreRestSiblings: true },
+      ],
+    },
+  },
+  {
     // The audit scripts pass callbacks into page.evaluate(), which execute in
     // the browser context, not Node.
     files: [

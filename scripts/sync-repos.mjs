@@ -361,7 +361,12 @@ async function main() {
     total: included.length,
     scanned: repos.length,
     channels: counts,
-    repos: included,
+    // Slim client schema: stars/readmeBytes/descriptionSource have no reader in
+    // src/ (descriptionSource is counted above from memory before this point),
+    // so the bundle carries only what the UI renders.
+    repos: included.map(
+      ({ stars, readmeBytes, descriptionSource, ...slim }) => slim,
+    ),
   };
 
   await mkdir(dirname(OUT), { recursive: true });

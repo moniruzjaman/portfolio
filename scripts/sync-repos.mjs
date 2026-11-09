@@ -236,13 +236,19 @@ async function main() {
     repos.push(...batch);
     if (batch.length < 100) break;
   }
-  console.log(`  fetched ${repos.length} public repos`);
+  // sort=updated pagination can return the same repo twice when something
+  // changes between page fetches (it did: /works/cabi-diagnosis shipped twice
+  // and failed the prerender duplicate-title gate). Repos are unique by id.
+  const unique = new Map();
+  for (const repo of repos) unique.set(repo.id, repo);
+  const fetchedRepos = [...unique.values()];
+  console.log(`  fetched ${repos.length} public repos (${fetchedRepos.length} unique)`);
 
   const included = [];
   const excluded = [];
   const needsDescription = [];
 
-  for (const repo of repos) {
+  for (const repo of fetchedRepos) {
     const name = repo.name;
 
     // ── exclusions, with a recorded reason ──────────────────────────

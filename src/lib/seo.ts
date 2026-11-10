@@ -135,7 +135,13 @@ export function routeMeta(path: string): RouteMeta {
   if (staticMeta) {
     // The Person record belongs on the two identity pages only (brief 2.2).
     const jsonLd = p === "/" || p === "/about" ? [personJsonLd] : [];
-    const ogTitle = staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
+    // The home title leads with the name (unlike "X — Abu Md. Moniruzjaman"),
+    // so the generic split below is a no-op there; the OG card needs a short
+    // title — the full one truncates awkwardly at the card's column width.
+    const ogTitle =
+      p === "/"
+        ? "Abu Md. Moniruzjaman — Portfolio"
+        : staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
     return { ...staticMeta, ogType: "website", jsonLd, ogTitle };
   }
 

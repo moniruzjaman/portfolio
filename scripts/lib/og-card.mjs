@@ -52,6 +52,10 @@ const truncate = (s, max) => {
 
 const text = (children, style) => ({ type: "div", props: { style, children } });
 
+// The owner's portrait (brief: the shared preview must show the person, not
+// just the brand monogram). Base64 data URI — satori cannot read file paths.
+const PORTRAIT_DATA_URI = `data:image/jpeg;base64,${readFileSync("public/portrait.jpg").toString("base64")}`;
+
 /** The card layout as a satori element — exported so tests can inspect the SVG. */
 export function buildCardElement({ title, bnTitle, description, site }) {
   const el = {
@@ -101,29 +105,67 @@ export function buildCardElement({ title, bnTitle, description, site }) {
         {
           type: "div",
           props: {
-            style: { display: "flex", flexDirection: "column", gap: "20px" },
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "48px",
+            },
             children: [
-              text(truncate(title, 90), {
-                color: C.cream,
-                fontSize: title.length > 55 ? "54px" : "66px",
-                fontWeight: 700,
-                lineHeight: 1.18,
-              }),
-              bnTitle
-                ? text(bnTitle, {
-                    color: C.paleGreen,
-                    fontSize: "40px",
-                    fontWeight: 700,
-                    lineHeight: 1.4,
-                    fontFamily: "Noto Serif Bengali",
-                  })
-                : null,
-              text(truncate(description, 150), {
-                color: C.mist,
-                fontSize: "26px",
-                lineHeight: 1.45,
-              }),
-            ].filter(Boolean),
+              {
+                type: "div",
+                props: {
+                  style: { display: "flex", flexDirection: "column", gap: "20px", flex: 1 },
+                  children: [
+                    text(truncate(title, 64), {
+                      color: C.cream,
+                      fontSize: title.length > 55 ? "48px" : "58px",
+                      fontWeight: 700,
+                      lineHeight: 1.18,
+                    }),
+                    bnTitle
+                      ? text(bnTitle, {
+                          color: C.paleGreen,
+                          fontSize: "36px",
+                          fontWeight: 700,
+                          lineHeight: 1.4,
+                          fontFamily: "Noto Serif Bengali",
+                        })
+                      : null,
+                    text(truncate(description, 130), {
+                      color: C.mist,
+                      fontSize: "24px",
+                      lineHeight: 1.45,
+                    }),
+                  ].filter(Boolean),
+                },
+              },
+              {
+                type: "div",
+                props: {
+                  style: {
+                    display: "flex",
+                    width: "210px",
+                    height: "210px",
+                    borderRadius: "50%",
+                    border: `5px solid ${C.gold}`,
+                    overflow: "hidden",
+                    flexShrink: 0,
+                  },
+                  children: [
+                    {
+                      type: "img",
+                      props: {
+                        src: PORTRAIT_DATA_URI,
+                        width: 210,
+                        height: 210,
+                        style: { objectFit: "cover" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
           },
         },
         {

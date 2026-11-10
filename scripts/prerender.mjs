@@ -129,6 +129,8 @@ for (const path of routePaths) {
     failed++;
   }
 
+  const ogAbs = `${SITE}${ogRel}`;
+  const ogAlt = `${m.title} — Abu Md. Moniruzjaman`;
   const html = shell
     .replace("__PRERENDERED__", markup)
     .replace(
@@ -141,7 +143,14 @@ for (const path of routePaths) {
         `    <meta property="og:description" content="${esc(m.description)}" />`,
         `    <meta property="og:url" content="${esc(canonical)}" />`,
         `    <meta property="og:type" content="${m.ogType}" />`,
-        `    <meta property="og:image" content="${esc(`${SITE}${ogRel}`)}" />`,
+        `    <meta property="og:image" content="${esc(ogAbs)}" />`,
+        `    <meta property="og:image:width" content="1200" />`,
+        `    <meta property="og:image:height" content="630" />`,
+        `    <meta property="og:image:alt" content="${esc(ogAlt)}" />`,
+        `    <meta name="twitter:title" content="${esc(m.title)}" />`,
+        `    <meta name="twitter:description" content="${esc(m.description)}" />`,
+        `    <meta name="twitter:image" content="${esc(ogAbs)}" />`,
+        `    <meta name="twitter:image:alt" content="${esc(ogAlt)}" />`,
         ...hoisted,
         ...m.jsonLd.map(jsonld),
         "  </head>",

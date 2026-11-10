@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-09T18:06:25.765Z",
+  "generatedAt": "2026-11-10T11:11:24.872Z",
   "note": "Audit trail — what was seen in the configured folder but NOT published, and why. 'counts' are bulk reasons; 'skipped' lists individual files.",
   "counts": {
     "file type not published: sheet": 29,
-    "file type not published: other": 591,
+    "file type not published: other": 592,
     "file type not published: image": 482,
     "folder deeper than maxDepth=4": 182
   },

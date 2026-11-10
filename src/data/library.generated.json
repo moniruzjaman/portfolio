@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T18:06:25.765Z",
+  "generatedAt": "2026-11-10T11:11:24.872Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -22,6 +22,110 @@
       "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
       "folderId": null,
       "items": [
+        {
+          "id": "1Bam3RmsZ2cFwEK2eelDKTdg6Rw2CPrLD",
+          "ext": "pdf",
+          "title": "Kurigram Char Agritech Impact",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:38:52.806Z",
+          "size": 14845247,
+          "path": []
+        },
+        {
+          "id": "1Q46BBWdZpBue8oRXGX6iOuXOkNScl8yu",
+          "ext": "pdf",
+          "title": "Pesticide Field Guide 2026",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:37:12.293Z",
+          "size": 2833545,
+          "path": [
+            "Pesticides_Crisis"
+          ]
+        },
+        {
+          "id": "1Z6MYfdMpNxaOIr-Kqafj18YlABkfhU30",
+          "ext": "pdf",
+          "title": "Char Land Agriculture in Kurigram",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:36:00.399Z",
+          "size": 239930,
+          "path": []
+        },
+        {
+          "id": "1yEYjWd1yuy6wPMXLNFKNkzhqXngMJWQm",
+          "ext": "pdf",
+          "title": "soil – 12 – parameter",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:35:12.517Z",
+          "size": 15017927,
+          "path": []
+        },
+        {
+          "id": "1DI5AeLkNaCNS6AVbHY0f7wpsvC2_wL2_",
+          "ext": "pdf",
+          "title": "ptac gazette 86th raw",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:34:50.209Z",
+          "size": 450348,
+          "path": [
+            "Pesticides_Crisis"
+          ]
+        },
+        {
+          "id": "19XGoGkCLYZ9i_BSYD6sDc5pqdBzUtp_Q",
+          "ext": "pdf",
+          "title": "From Sensor to Strategy A Practical Guide to Adopting Mango Ripeness Scanning at the Farm Level",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:29:05.863Z",
+          "size": 130622,
+          "path": []
+        },
+        {
+          "id": "1Oayd1WDJklDt2csglPEZo3X8TiGYxyI_",
+          "ext": "pdf",
+          "title": "From Sensor to Strategy – A Practical Guide to Adopting Mango Ripeness Scanning at the Farm Level",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:28:54.565Z",
+          "size": 4732451,
+          "path": []
+        },
+        {
+          "id": "19yLchZXVhFcfvbOImj9FqLFmhk99dCJU",
+          "ext": "pdf",
+          "title": "Save and Grow – Guide",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:26:18.922Z",
+          "size": 5698927,
+          "path": []
+        },
+        {
+          "id": "1970OiVS32w28OFUJ8SpjwKDTMs8OhwIj",
+          "ext": "pdf",
+          "title": "Commercial Solar Investment Blueprint",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:24:33.782Z",
+          "size": 17147833,
+          "path": []
+        },
+        {
+          "id": "1J8usEk9HwTjNlta6T0V3AnAVkacv6diP",
+          "ext": "pdf",
+          "title": "Save and Grow Policy Blueprint (2)",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-09T19:24:12.389Z",
+          "size": 24723042,
+          "path": []
+        },
         {
           "id": "1TtPKvdafd4ssQ0_-2825HEoOSxA0fArF",
           "ext": "pdf",
@@ -3075,6 +3179,16 @@
       "folderId": null,
       "items": [
         {
+          "id": "13_liWUtdYKNzC5P1B13Znu9DAU2anDyC",
+          "ext": "pptx",
+          "title": "pesticide guide for BPH & YSH on rice",
+          "kind": "slides",
+          "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "modified": "2026-11-09T19:28:41.237Z",
+          "size": 10496261,
+          "path": []
+        },
+        {
           "id": "1hWwNQNdz6uO19E-iqme7W4NIynYszsqh",
           "ext": "pptx",
           "title": "fungicide – management – guide – merged",
@@ -3920,6 +4034,16 @@
       "descriptionBn": "ওয়ার্ড-ধরনের নথি ও অন্যান্য লেখা উপকরণ।",
       "folderId": null,
       "items": [
+        {
+          "id": "1vIo9YrZXCXQf6XWB3_A0m6eZ50gtUew3",
+          "ext": "docx",
+          "title": "Comprehensive MoA Rotation Instructions & App Integration Guide",
+          "kind": "doc",
+          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "modified": "2026-11-09T19:30:07.661Z",
+          "size": 18146,
+          "path": []
+        },
         {
           "id": "1afvPFXqsGxq09EBAKbJ_wH6ZmwoFQncW",
           "ext": "mp4",

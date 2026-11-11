@@ -130,9 +130,12 @@ for (const path of routePaths) {
   }
 
   const ogAbs = `${SITE}${ogRel}`;
-  // ogTitle (when set) already leads with the name — the full home title
-  // duplicated "Abu Md. Moniruzjaman" here.
-  const ogAlt = `${m.ogTitle || m.title} — Abu Md. Moniruzjaman`;
+  // ogTitle already leads with the name on identity pages — only append the
+  // name when the title doesn't carry it, or the alt reads it twice.
+  const altBase = m.ogTitle || m.title;
+  const ogAlt = altBase.startsWith("Abu Md. Moniruzjaman")
+    ? altBase
+    : `${altBase} — Abu Md. Moniruzjaman`;
   const html = shell
     .replace("__PRERENDERED__", markup)
     .replace(

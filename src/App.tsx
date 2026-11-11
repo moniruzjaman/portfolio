@@ -65,15 +65,25 @@ function Shell() {
       <ErrorBoundary>
         <main id="main">
           <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/works" component={Works} />
-            <Route path="/works/:slug" component={WorkDetail} />
-            <Route path="/topics" component={Topics} />
-            <Route path="/library" component={Library} />
-            <Route path="/expertise" component={Expertise} />
-            <Route path="/notes" component={Notes} />
-            <Route path="/notes/:slug" component={NoteDetail} />
-            <Route path="/about" component={About} />
+            {/* One route table, mirrored: Bangla lives under the /bn prefix
+                and renders the SAME components — language comes from the URL
+                (lib/i18n), so the components need no per-language variants. */}
+            {(
+              [
+                ["/", Home],
+                ["/works", Works],
+                ["/works/:slug", WorkDetail],
+                ["/topics", Topics],
+                ["/library", Library],
+                ["/expertise", Expertise],
+                ["/notes", Notes],
+                ["/notes/:slug", NoteDetail],
+                ["/about", About],
+              ] as const
+            ).flatMap(([p, C]) => [
+              <Route key={p} path={p} component={C} />,
+              <Route key={`bn${p}`} path={`/bn${p === "/" ? "" : p}`} component={C} />,
+            ])}
             <Route component={NotFound} />
           </Switch>
         </main>
@@ -92,10 +102,12 @@ function Shell() {
 /** `ssrPath` exists only so scripts/render-smoke.mjs can render the REAL app at a given URL. */
 export default function App({ ssrPath }: { ssrPath?: string }) {
   return (
-    <LangProvider>
-      <Router base={ROUTER_BASE} ssrPath={ssrPath}>
+    // LangProvider INSIDE Router: language now derives from the URL (/bn/…),
+    // so it needs wouter's location context.
+    <Router base={ROUTER_BASE} ssrPath={ssrPath}>
+      <LangProvider>
         <Shell />
-      </Router>
-    </LangProvider>
+      </LangProvider>
+    </Router>
   );
 }

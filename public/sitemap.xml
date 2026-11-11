@@ -1,70 +1,673 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://moniruzjaman.github.io/portfolio/</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/topics</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/library</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/expertise</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/about</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/portfolio</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/solar-rooftop</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/web-krishiai-live</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-registry</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/kaggle-dataset</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/self-learning</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/knowledge-hub</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-reform</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/path-to-bloom</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-reform</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/biopesticide-policy</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/soil-media-portal</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/e-bill-system</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-report</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/crop-diagnosis</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/bnp-policy</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-submission-system</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form-2</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/app-krishiai</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai4-0</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-3-0</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-v2</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/producer-register</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/gap-brinjal</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card-v2</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-game</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system</loc><lastmod>2026-11-08</lastmod></url>
-  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools</loc><lastmod>2026-11-08</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://moniruzjaman.github.io/portfolio/</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/topics</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/topics"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/topics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/topics"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/topics</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/topics"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/topics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/topics"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/library</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/library"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/library"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/library"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/library</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/library"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/library"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/library"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/expertise</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/expertise"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/expertise"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/expertise"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/expertise</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/expertise"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/expertise"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/expertise"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/about</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/about"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/about"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/about</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/about"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/about"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/portfolio</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/portfolio"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/portfolio</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/portfolio"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-field-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/pesticide-field-guide</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-field-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-field-guide"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/rashtra-teen-chokhe"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/rashtra-teen-chokhe</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/rashtra-teen-chokhe"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/rashtra-teen-chokhe"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/solar-rooftop</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/solar-rooftop"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/solar-rooftop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/solar-rooftop"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/solar-rooftop</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/solar-rooftop"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/solar-rooftop"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/solar-rooftop"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/bangladesh-zindabad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/bangladesh-zindabad</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/bangladesh-zindabad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/bangladesh-zindabad"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabinet-division-bangladesh-before-all"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/cabinet-division-bangladesh-before-all</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabinet-division-bangladesh-before-all"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabinet-division-bangladesh-before-all"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-nationalism"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-nationalism</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-nationalism"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-nationalism"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/daily-report-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/daily-report-pipeline</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/daily-report-pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/daily-report-pipeline"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/web-krishiai-live</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/web-krishiai-live"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/web-krishiai-live"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/web-krishiai-live"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/web-krishiai-live</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/web-krishiai-live"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/web-krishiai-live"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/web-krishiai-live"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-assistant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-assistant</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-assistant"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-assistant"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/agrichem-guide-pest-control-database"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/agrichem-guide-pest-control-database</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/agrichem-guide-pest-control-database"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/agrichem-guide-pest-control-database"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/agrichem-registry</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/agrichem-registry"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/agrichem-registry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/agrichem-registry"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/agrichem-registry</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/agrichem-registry"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/agrichem-registry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/agrichem-registry"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/kaggle-dataset</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kaggle-dataset"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kaggle-dataset"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kaggle-dataset"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/kaggle-dataset</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kaggle-dataset"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kaggle-dataset"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kaggle-dataset"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/fertilizer</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/rastro-tin-ayna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/rastro-tin-ayna</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/rastro-tin-ayna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/rastro-tin-ayna"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/self-learning</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/self-learning"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/self-learning"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/self-learning"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/self-learning</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/self-learning"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/self-learning"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/self-learning"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/knowledge-hub</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/knowledge-hub"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/knowledge-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/knowledge-hub"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/knowledge-hub</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/knowledge-hub"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/knowledge-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/knowledge-hub"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-reform</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-reform"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-reform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-reform"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/pesticide-reform</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-reform"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-reform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-reform"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-regulatory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/pesticide-regulatory</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-regulatory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-regulatory"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai-gateway"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai-gateway</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishi-ai-gateway"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishi-ai-gateway"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/path-to-bloom</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/path-to-bloom"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/path-to-bloom"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/path-to-bloom"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/path-to-bloom</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/path-to-bloom"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/path-to-bloom"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/path-to-bloom"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/fertilizer-reform</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-reform"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-reform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-reform"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-reform</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-reform"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/fertilizer-reform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/fertilizer-reform"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/biopesticide-policy</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/biopesticide-policy"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/biopesticide-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/biopesticide-policy"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/biopesticide-policy</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/biopesticide-policy"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/biopesticide-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/biopesticide-policy"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/soil-media-portal</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/soil-media-portal"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/soil-media-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/soil-media-portal"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/soil-media-portal</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/soil-media-portal"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/soil-media-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/soil-media-portal"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/e-bill-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/e-bill-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/e-bill-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/e-bill-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/e-bill-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/e-bill-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/e-bill-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/e-bill-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-report</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-report"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-report"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-report"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/nursery-report</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-report"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-report"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-report"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/crop-diagnosis</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/crop-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/crop-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/crop-diagnosis"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/crop-diagnosis</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/crop-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/crop-diagnosis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/crop-diagnosis"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-act-2018"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/pesticide-act-2018</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/pesticide-act-2018"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/pesticide-act-2018"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishiai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-app</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-app"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/bnp-policy</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/bnp-policy"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/bnp-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/bnp-policy"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/bnp-policy</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/bnp-policy"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/bnp-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/bnp-policy"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-submission-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-submission-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-submission-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-submission-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/plantation-submission-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-submission-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-submission-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-submission-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-antigravity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishiai-antigravity</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-antigravity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-antigravity"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-v1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-v1</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/plantation-tracker-v1"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/plantation-tracker-v1"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-registry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-registry</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-registry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-registry"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishak-card"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishak-card"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishak-card"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishak-card</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishak-card"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishak-card"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishak-card"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-2026</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/kurigram-nursery-2026"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/kurigram-nursery-2026"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form-2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-form-2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-form-2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-form-2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/nursery-form-2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-form-2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-form-2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-form-2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/app-krishiai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/app-krishiai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/app-krishiai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/app-krishiai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/app-krishiai</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/app-krishiai"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/app-krishiai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/app-krishiai"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai4-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai4-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai4-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai4-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishiai4-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai4-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai4-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai4-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-3-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-3-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-3-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-3-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishiai-3-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-3-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-3-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-3-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishiai-v2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-v2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-v2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-v2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishiai-v2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishiai-v2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishiai-v2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishiai-v2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/producer-register</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/producer-register"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/producer-register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/producer-register"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/producer-register</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/producer-register"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/producer-register"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/producer-register"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/nursery-form</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-form"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-form"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/nursery-form</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/nursery-form"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/nursery-form"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/nursery-form"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/gap-brinjal</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/gap-brinjal"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/gap-brinjal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/gap-brinjal"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/gap-brinjal</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/gap-brinjal"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/gap-brinjal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/gap-brinjal"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis-builder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis-builder</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cabi-diagnosis-builder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cabi-diagnosis-builder"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/krishak-card-v2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishak-card-v2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishak-card-v2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishak-card-v2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/krishak-card-v2</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/krishak-card-v2"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/krishak-card-v2"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/krishak-card-v2"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/diagnosis-game</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-game"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-game"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-game</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-game"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/diagnosis-game"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/diagnosis-game"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cirdap-greenloop3-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/works/cirdap-greenloop3-0</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/works/cirdap-greenloop3-0"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/works/cirdap-greenloop3-0"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/digital-transformation-krishak-card-roadmap"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/digital-transformation-krishak-card-roadmap</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/digital-transformation-krishak-card-roadmap"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/digital-transformation-krishak-card-roadmap"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/greenloop-3-circular-agriculture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/greenloop-3-circular-agriculture</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/greenloop-3-circular-agriculture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/greenloop-3-circular-agriculture"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/smart-integrated-nutrient-management-t-aman"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/smart-integrated-nutrient-management-t-aman</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/smart-integrated-nutrient-management-t-aman"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/smart-integrated-nutrient-management-t-aman"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/cabi-plantwise-ready-reckoner"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/cabi-plantwise-ready-reckoner</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/cabi-plantwise-ready-reckoner"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/cabi-plantwise-ready-reckoner"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/ipm-game-field-method"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/ipm-game-field-method</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/ipm-game-field-method"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/ipm-game-field-method"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/soil-health-media-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/soil-health-media-hub</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/soil-health-media-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/soil-health-media-hub"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/plantation-tracker-field-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/plantation-tracker-field-system</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/plantation-tracker-field-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/plantation-tracker-field-system"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/greenhouse-advisory-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools"/>
+  </url>
+  <url><loc>https://moniruzjaman.github.io/portfolio/bn/notes/greenhouse-advisory-tools</loc><lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://moniruzjaman.github.io/portfolio/bn/notes/greenhouse-advisory-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://moniruzjaman.github.io/portfolio/notes/greenhouse-advisory-tools"/>
+  </url>
 </urlset>

@@ -30,7 +30,7 @@ const LINKS = [
 export function Nav({ onSearch }: { onSearch: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { t, toggle, lang } = useI18n();
+  const { t, lang, langSwitchHref } = useI18n();
   const [location] = useLocation();
 
   useEffect(() => {
@@ -92,14 +92,17 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
 
           <ThemeToggle />
 
-          <button
-            onClick={toggle}
+          {/* Real link to the mirrored URL: loads the other language's
+              prerendered page directly (no SPA re-render, no flash) and is
+              crawlable with its hreflang relationship declared. */}
+          <a
+            href={langSwitchHref}
+            hrefLang={lang === "en" ? "bn" : "en"}
             aria-label={`${lang === "en" ? "বাংলা" : "EN"} — ${t("Switch language", "ভাষা পরিবর্তন")}`}
-            aria-live="polite"
             className="flex min-h-11 items-center rounded-full bg-forest-900 px-5 font-mono text-[11px] font-bold text-cream-100 transition-transform hover:-translate-y-0.5 active:scale-95"
           >
             {lang === "en" ? "বাংলা" : "EN"}
-          </button>
+          </a>
 
           <button
             onClick={() => setOpen((o) => !o)}

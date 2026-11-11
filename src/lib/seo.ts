@@ -3,6 +3,9 @@ import { repos } from "@/lib/data";
 import { summaryFor, titleFor } from "@/lib/curation";
 import { notes } from "@/content/notes";
 import { BASE_URL } from "@/lib/site";
+import { splitLangPath } from "@/lib/lang-url";
+import { LANGS } from "@/lib/lang-url";
+import type { Lang } from "@/lib/lang-url";
 
 /**
  * Route metadata in one place — titles, descriptions, canonicals, OG tags and
@@ -19,6 +22,17 @@ export const SITE = `${ORIGIN}${BASE_URL}`;
 
 export const canonicalFor = (path: string): string =>
   `${SITE}${path === "/" ? "" : path.replace(/^\//, "")}`;
+
+/**
+ * Canonical URL of a language variant of a clean route path. Mirrors hrefFor
+ * in lang-url.ts and the sitemap builder in gen-static.mjs — all three must
+ * produce identical URLs, and prerender.mjs asserts that they do.
+ */
+export const canonicalForLang = (lang: Lang, cleanPath: string): string => {
+  const root = SITE.replace(/\/$/, "");
+  if (cleanPath === "/") return lang === "bn" ? `${root}/bn` : SITE;
+  return `${root}${lang === "bn" ? "/bn" : ""}${cleanPath}`;
+};
 
 const AUTHOR = {
   name: "Abu Md. Moniruzjaman",
@@ -87,71 +101,102 @@ type RouteMeta = {
   bnTitle?: string;
 };
 
-const STATIC_META: Record<string, { title: string; description: string }> = {
+type StaticMeta = { title: string; description: string; titleBn?: string; descriptionBn?: string };
+
+// Bangla copy is authored, same discipline as the en copy: describes the page
+// in the language the /bn/ page actually renders.
+const STATIC_META: Record<string, StaticMeta> = {
   "/": {
     title: "Abu Md. Moniruzjaman — Portfolio · Agricultural Extension & Digital Tools",
     description:
       "Portfolio of Abu Md. Moniruzjaman — Additional Deputy Director (Horticulture), DAE Bangladesh, and builder of digital tools for smallholder farmers. Selected work, career, and field writing.",
+    titleBn: "আবু এম ডি মনিরুজ্জামান — পোর্টফোলিও · কৃষি সম্প্রসারণ ও ডিজিটাল টুলস",
+    descriptionBn:
+      "আবু এম ডি মনিরুজ্জামান — কৃষি সম্প্রসারণ অধিদপ্তর (ডিএই), বাংলাদেশ; ক্ষুদ্র কৃষকদের জন্য ডিজিটাল টুল নির্মাতা। নির্বাচিত কাজ, কর্মজীবন ও মাঠপর্যায়ের লেখা।",
   },
   "/works": {
     title: "Work — Abu Md. Moniruzjaman",
     description:
       "The live ecosystem of digital tools for agricultural extension — every published repository with a real deployment channel, generated daily, never hand-maintained.",
+    titleBn: "কাজ — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn:
+      "কৃষি সম্প্রসারণের জন্য ডিজিটাল টুলসের জীবন্ত বাস্তুতন্ত্র — প্রতিটি প্রকাশিত রিপোজিটরির সত্যিকারের ডিপ্লয়মেন্ট চ্যানেল, প্রতিদিন স্বয়ংক্রিয়ভাবে তৈরি, কখনো হাতে রক্ষণাবেক্ষণ করা হয় না।",
   },
   "/topics": {
     title: "Research topics — Abu Md. Moniruzjaman",
     description:
       "The catalogue grouped into research themes — crop diagnosis, soil health, pesticide regulation and the Bengali-first Krishi AI platform, each linked to the notes that document its method.",
+    titleBn: "গবেষণা বিষয় — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn:
+      "গবেষণা থিম অনুযায়ী সাজানো ক্যাটালগ — ফসল রোগ নির্ণয়, মাটির স্বাস্থ্য, কীটনাশক ব্যবস্থাপনা ও বাংলা-প্রথম কৃষি এআই প্ল্যাটফর্ম, প্রতিটি পদ্ধতি নথিভুক্তকারী নোটের সাথে সংযুক্ত।",
   },
   "/library": {
     title: "Library — Abu Md. Moniruzjaman",
     description:
       "Research, documents, presentations and videos from the author's Google Drive — indexed at sync time, previewable in place.",
+    titleBn: "লাইব্রেরি — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn: "গুগল ড্রাইভে থাকা গবেষণা, নথি, উপস্থাপনা ও ভিডিও — সিঙ্কের সময় সূচিকৃত, সরাসরি প্রিভিউযোগ্য।",
   },
   "/expertise": {
     title: "Expertise — Abu Md. Moniruzjaman",
     description:
       "An expertise map built from real field systems — the published repositories translated into working agricultural workflows.",
+    titleBn: "দক্ষতা — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn: "প্রকৃত মাঠপর্যায়ের সিস্টেম থেকে গড়া দক্ষতা ম্যাপ — প্রকাশিত রিপোজিটরিগুলো কৃষি কর্মপ্রবাহে রূপান্তরিত।",
   },
   "/notes": {
     title: "Writing — Abu Md. Moniruzjaman",
     description:
       "Field guides, policy briefs and method notes on agricultural extension, soil health and digital tools for Bangladesh.",
+    titleBn: "লেখা — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn:
+      "কৃষি সম্প্রসারণ, মাটির স্বাস্থ্য ও বাংলাদেশের ডিজিটাল টুলস নিয়ে মাঠ গাইড, নীতি সংক্ষেপ ও পদ্ধতি নোট।",
   },
   "/about": {
     title: "About — Abu Md. Moniruzjaman",
     description:
       "Abu Md. Moniruzjaman — Additional Deputy Director (Horticulture), DAE Kurigram. Career, education and the thinking behind the tools.",
+    titleBn: "পরিচিতি — আবু এম ডি মনিরুজ্জামান",
+    descriptionBn:
+      "আবু এম ডি মনিরুজ্জামান — অতিরিক্ত উপ-পরিচালক (উদ্যান), ডিএই কুড়িগ্রাম। কর্মজীবন, শিক্ষা এবং টুলসের পেছনের ভাবনা।",
   },
 };
 
-/** Metadata for a router-relative path ("/works/krishi-ai"). */
-export function routeMeta(path: string): RouteMeta {
-  // routePaths spells the home route "" (dist/index.html has no directory),
-  // while the router, STATIC_META and the client all call it "/" — normalize
-  // here so a caller's spelling can't silently resolve to the 404 fallback.
-  const p = path === "" ? "/" : path;
+/** Metadata for a router-relative path ("/works/krishi-ai"), per language. */
+export function routeMeta(path: string, lang: Lang = "en"): RouteMeta {
+  // Normalize spellings AND tolerate a /bn prefix a caller hands us (the
+  // 404-shim replay produces one); callers normally pass clean paths + lang.
+  const { lang: urlLang, clean } = splitLangPath(path === "" ? "/" : path);
+  const p = clean;
+  const l: Lang = lang === "en" && urlLang === "bn" ? "bn" : lang;
   const staticMeta = STATIC_META[p];
   if (staticMeta) {
     // The Person record belongs on the two identity pages only (brief 2.2).
     const jsonLd = p === "/" || p === "/about" ? [personJsonLd] : [];
-    // The home title leads with the name (unlike "X — Abu Md. Moniruzjaman"),
-    // so the generic split below is a no-op there; the OG card needs a short
-    // title — the full one truncates awkwardly at the card's column width.
+    const title = l === "bn" ? (staticMeta.titleBn ?? staticMeta.title) : staticMeta.title;
+    const description =
+      l === "bn" ? (staticMeta.descriptionBn ?? staticMeta.description) : staticMeta.description;
+    // The home title leads with the name (unlike "X — suffix"), so the generic
+    // split is a no-op there; the OG card needs a short title — the full one
+    // truncates awkwardly at the card's column width.
     const ogTitle =
-      p === "/"
-        ? "Abu Md. Moniruzjaman — Portfolio"
-        : staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
-    return { ...staticMeta, ogType: "website", jsonLd, ogTitle };
+      l === "bn"
+        ? p === "/"
+          ? "আবু এম ডি মনিরুজ্জামান — পোর্টফোলিও"
+          : title.split(" — আবু এম ডি মনিরুজ্জামান")[0]
+        : p === "/"
+          ? "Abu Md. Moniruzjaman — Portfolio"
+          : staticMeta.title.split(" — Abu Md. Moniruzjaman")[0];
+    return { title, description, ogType: "website", jsonLd, ogTitle };
   }
 
-  if (path.startsWith("/works/")) {
-    const r = workBySlug(path.slice("/works/".length));
+  if (p.startsWith("/works/")) {
+    const r = workBySlug(p.slice("/works/".length));
     if (r) {
-      const title = `${titleFor(r, "en") || r.name} — Work`;
-      const cleanTitle = titleFor(r, "en") || r.name;
-      const description = summaryFor(r, "en") || r.description || r.name;
-      const url = canonicalFor(path);
+      const title = `${titleFor(r, l) || r.name} — ${l === "bn" ? "কাজ" : "Work"}`;
+      const cleanTitle = titleFor(r, l) || r.name;
+      const description = summaryFor(r, l) || r.description || r.name;
+      const url = canonicalForLang(l, p);
       return {
         title,
         description,
@@ -180,16 +225,16 @@ export function routeMeta(path: string): RouteMeta {
     }
   }
 
-  if (path.startsWith("/notes/")) {
-    const n = noteBySlug(path.slice("/notes/".length));
+  if (p.startsWith("/notes/")) {
+    const n = noteBySlug(p.slice("/notes/".length));
     if (n) {
-      const title = `${n.title} — Writing`;
-      const url = canonicalFor(path);
+      const title = `${(l === "bn" ? n.titleBn || n.title : n.title)} — ${l === "bn" ? "লেখা" : "Writing"}`;
+      const url = canonicalForLang(l, p);
       return {
         title,
         description: n.summary,
         ogType: "article",
-        ogTitle: n.title,
+        ogTitle: l === "bn" ? n.titleBn || n.title : n.title,
         bnTitle: n.titleBn || undefined,
         jsonLd: [
           {
@@ -244,12 +289,14 @@ export const routePaths: string[] = [
 
 /**
  * Client-side navigation happens after the static HTML is already in the
- * document — apply the same metadata the prerenderer injected.
+ * document — apply the same metadata the prerenderer injected, for either
+ * language variant of the location.
  */
 export function useDocumentMeta(location: string): void {
   useEffect(() => {
-    const m = routeMeta(location);
-    const url = canonicalFor(location);
+    const { lang, clean } = splitLangPath(location);
+    const m = routeMeta(clean, lang);
+    const url = canonicalForLang(lang, clean);
     document.title = m.title;
 
     const setMeta = (selector: string, attr: string, value: string) => {
@@ -268,12 +315,30 @@ export function useDocumentMeta(location: string): void {
     setMeta('meta[property="og:url"]', "property=og:url", url);
     setMeta('meta[property="og:type"]', "property=og:type", m.ogType);
 
-    let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "canonical";
-      document.head.appendChild(link);
-    }
+    const setLink = (selector: string, attrs: Record<string, string>) => {
+      let el = document.head.querySelector<HTMLLinkElement>(selector);
+      if (!el) {
+        el = document.createElement("link");
+        for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+        document.head.appendChild(el);
+      }
+      return el;
+    };
+
+    const link = setLink('link[rel="canonical"]', { rel: "canonical" });
     link.href = url;
+
+    // hreflang alternates: prerendered pages ship them in <head>; keep them
+    // truthful across client navigation (both directions + x-default → en).
+    for (const alt of LANGS) {
+      setLink(`link[rel="alternate"][hreflang="${alt}"]`, {
+        rel: "alternate",
+        hreflang: alt,
+      }).href = canonicalForLang(alt, clean);
+    }
+    setLink('link[rel="alternate"][hreflang="x-default"]', {
+      rel: "alternate",
+      hreflang: "x-default",
+    }).href = canonicalForLang("en", clean);
   }, [location]);
 }

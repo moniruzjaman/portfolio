@@ -37,7 +37,7 @@ for (const theme of ["light", "dark"]) {
   // localStorage only — the page's inline boot script applies the class at
   // parse time (evaluateOnNewDocument runs before documentElement exists).
   await page.evaluateOnNewDocument((t) => {
-    try { localStorage.setItem("theme", t); } catch {}
+    try { localStorage.setItem("theme", t); } catch { /* private mode — shots just run light */ }
   }, theme);
   for (const [route, name] of routes) {
     await page.goto(`http://localhost:4180/portfolio${route}`, { waitUntil: "networkidle0", timeout: 45000 });

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T04:41:38.034Z",
+  "generatedAt": "2026-11-11T06:02:16.727Z",
   "note": "Audit trail — what was seen in the configured folder but NOT published, and why. 'counts' are bulk reasons; 'skipped' lists individual files.",
   "counts": {
     "file type not published: sheet": 29,

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-11T04:41:05.325Z",
+  "generatedAt": "2026-11-11T06:01:43.338Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 80,
   "channels": {
     "github-pages": 36,
-    "vercel": 26,
-    "custom-domain": 4,
+    "vercel": 25,
+    "custom-domain": 5,
     "cloudflare": 5
   },
   "repos": [
@@ -17,7 +17,7 @@
       "description": "personal creativity showcasing",
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-11-11T04:39:54Z",
+      "pushedAt": "2026-11-11T06:00:38Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -478,16 +478,16 @@
       "topics": [],
       "pushedAt": "2026-10-13T09:15:36Z",
       "url": "https://github.com/moniruzjaman/plantation-tracker",
-      "live": "https://plantation-tracker.vercel.app",
-      "customDomain": null,
+      "live": "https://plantation.krishiai.live",
+      "customDomain": "https://plantation.krishiai.live",
       "pages": null,
       "channels": [
-        "vercel"
+        "custom-domain"
       ],
       "brand": {
         "name": "বৃক্ষরোপণ ট্র্যাকার",
         "themeColor": "#006a4e",
-        "icon": "https://plantation-tracker.vercel.app/pwa-192x192.svg",
+        "icon": "https://plantation.krishiai.live/pwa-192x192.svg",
         "image": "https://plantation.krishiai.live/og-share-large.png?v=3",
         "source": "manifest"
       },

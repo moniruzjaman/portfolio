@@ -273,6 +273,43 @@ Listing a private file's title on a public site is the failure this prevents.
 
 ---
 
+## 7. Dark theme
+
+Dark mode is a variable remap, not a component rewrite. The palette tokens in
+`src/index.css` (`@theme`) are single CSS variables; a `.dark` scope on
+`<html>` redefines them and every utility — including `/alpha` variants, which
+compile to color-mix over the variable — flips with it. Where a token plays
+two roles (e.g. `forest-900` is both the primary text on light surfaces and a
+section background), the majority role is remapped and the minority role gets
+an explicit scoped rescue rule (unlayered CSS beats `@layer utilities`).
+
+| Token (light value)      | Dark value                        |
+| ------------------------ | --------------------------------- |
+| cream-50/100/200/300/400 | forest-900 `#0a2e1a` → forest-950 `#061a10` ramp |
+| forest-900 (text)        | `#eaf2ea` pale                    |
+| forest-700 (labels)      | `#cfe3d2`                         |
+| forest-500               | `#8fc79b`                         |
+| forest-300 (hairlines)   | `#24523a`                         |
+| moss-400/500/600         | `#93b199` – `#a3bfa8`             |
+| gold-500/600             | `#e3ba45` (gold-400 unchanged)    |
+| forest-950/900/800/700/600/400, gold-400, gold-300 | unchanged (inverse sections, brand buttons, accent) |
+
+Rescues that keep the two-role tokens honest: `.bg-forest-900` stays
+`#061a10`; `.text-cream-100` stays `#f7f3ec`; gold CTAs keep dark ink; solid
+`bg-white` / `bg-white/70` surfaces (photo backings, filter inputs, stat
+cards, the repository panel) restore the full light palette on their subtree
+so their ink stays dark. Translucent whites (`bg-white/10`, `/40`) are glass
+on dark and stay on the dark palette.
+
+Mechanics: system preference by default, manual choice persisted in
+localStorage (`theme`), applied by an inline boot script in `index.html`
+before first paint (no white flash); the header toggle is stateless — both
+sun/moon icons render and CSS on `html.dark` swaps visibility, so
+prerendered and hydrated markup are identical and the toggle cannot cause a
+hydration mismatch. `theme-color` follows the active theme.
+
+---
+
 ## 8. Accessibility contract
 
 Target: **WCAG 2.1 AA**.
@@ -399,3 +436,5 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   rendered cards, then locked in with tests.
 - Drive's in-page player handles MP4 but is not guaranteed for every codec/size; "Open in
   Drive" and "Download" are always offered next to the preview.
+
+- 2026-11-10: §7 dark theme — variable-remap dark mode with system default, toggle and no-flash boot (phase 5).

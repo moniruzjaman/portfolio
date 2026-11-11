@@ -130,7 +130,9 @@ for (const path of routePaths) {
   }
 
   const ogAbs = `${SITE}${ogRel}`;
-  const ogAlt = `${m.title} — Abu Md. Moniruzjaman`;
+  // ogTitle (when set) already leads with the name — the full home title
+  // duplicated "Abu Md. Moniruzjaman" here.
+  const ogAlt = `${m.ogTitle || m.title} — Abu Md. Moniruzjaman`;
   const html = shell
     .replace("__PRERENDERED__", markup)
     .replace(

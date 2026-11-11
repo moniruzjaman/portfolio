@@ -5,6 +5,7 @@ import { useI18n } from "@/lib/i18n";
 import { asset } from "@/lib/site";
 import { socials } from "@/components/Socials";
 import { GithubMark, LinkedinMark, FacebookMark, YoutubeMark } from "@/components/icons";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { author } from "@/lib/author";
 
 const FOOTER_ICONS = {
@@ -88,6 +89,8 @@ export function Nav({ onSearch }: { onSearch: () => void }) {
           >
             <Search size={15} />
           </button>
+
+          <ThemeToggle />
 
           <button
             onClick={toggle}

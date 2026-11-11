@@ -259,3 +259,98 @@
   opacity: 1;
   transform: none;
 }
+
+/* ── dark theme ─────────────────────────────────────────────
+   The palette tokens are single CSS variables (Tailwind 4 @theme), so
+   utilities like `text-forest-900` compile to var() references and a
+   `.dark` remap flips every use at once — including /alpha variants
+   (color-mix over the remapped var). A token used in two roles gets the
+   majority role remapped and the minority role rescued with an explicit
+   scoped rule (unlayered CSS beats @layer utilities). Values reuse the
+   og-card dark palette: forest-950 page, forest-900 raised, pale-green
+   text, gold accents. Token values and roles are documented in
+   content/design-system.md §7 — change one, change both. */
+
+.dark {
+  /* Light surfaces go deep forest (page = 950, cards = 900/800) */
+  --color-cream-50: #0a2e1a;
+  --color-cream-100: #061a10;
+  --color-cream-200: #0f3320;
+  --color-cream-300: #144029;
+  --color-cream-400: #144029;
+
+  /* Dark-on-light text goes pale (forest-900 is the primary text color) */
+  --color-forest-900: #eaf2ea;
+  --color-forest-500: #8fc79b;
+  --color-forest-300: #24523a; /* hairline borders dim */
+
+  /* Muted text brightens */
+  --color-moss-500: #a3bfa8;
+  --color-moss-400: #93b199;
+  --color-moss-600: #a3bfa8;
+
+  /* Dark golds (for light backgrounds) brighten */
+  --color-gold-500: #e3ba45;
+  --color-gold-600: #e3ba45;
+
+  /* Headings/labels that keep the forest-700 ink on light surfaces */
+  --color-forest-700: #cfe3d2;
+}
+
+/* White surfaces keep their light look in dark mode (photo backings, filter
+   inputs, stat cards, the repository panel) — restore the light palette on
+   their subtree so their ink stays dark. Translucent whites (bg-white/10,
+   /40) are glass overlays on dark and stay on the dark palette. */
+.dark .bg-white,
+.dark .bg-white\/70 {
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f7f3ec;
+  --color-cream-200: #efe8dc;
+  --color-cream-300: #dce8dc;
+  --color-cream-400: #d6e4d7;
+  --color-forest-900: #0a2e1a;
+  --color-forest-700: #164a2d;
+  --color-forest-500: #267643;
+  --color-forest-300: #70c98a;
+  --color-moss-500: #475f4d;
+  --color-moss-400: #566e58;
+  --color-moss-600: #596d5c;
+  --color-gold-500: #7e6517;
+  --color-gold-600: #6a530f;
+}
+
+/* Rescues: tokens above whose minority role must not flip, plus tokens
+   below kept at their light value because their dark role is already
+   correct (text on inverse sections, brand buttons, accent borders). */
+
+.dark .bg-cream-100 { background-color: #061a10; }
+.dark .bg-forest-900 { background-color: #061a10; }       /* inverse sections stay dark */
+.dark .bg-forest-200 { background-color: #16402a; }
+.dark .bg-forest-200\/60 { background-color: color-mix(in oklab, #16402a 60%, transparent); }
+
+.dark .text-cream-100 { color: #f7f3ec; }                  /* light text on inverse sections stays light */
+.dark .text-forest-600 { color: #9fc9a9; }                 /* forest-600 kept for buttons */
+.dark .text-forest-300 { color: #70c98a; }                 /* forest-300 dimmed for borders only */
+.dark .bg-gold-400 .text-forest-900,
+.dark .bg-gold-400.text-forest-900 { color: #061a10; }     /* gold CTA keeps dark ink */
+
+.dark .border-forest-900 { border-color: #1c4430; }        /* hairlines on (now dark) cards */
+.dark .border-forest-600 { border-color: #2c5a3d; }
+.dark .border-forest-400 { border-color: #2c5a3d; }
+.dark .border-forest-200 { border-color: #1c4430; }
+.dark .ring-forest-900 { --tw-ring-color: #1c4430; }
+
+.dark .surface-grid {
+  background-image:
+    linear-gradient(rgba(168, 216, 176, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 216, 176, 0.06) 1px, transparent 1px);
+}
+.dark .paper-noise::after { mix-blend-mode: overlay; opacity: 0.16; }
+.dark .u-card-lift:hover { box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45); }
+.dark ::selection { color: #061a10; }
+
+/* Toggle: stateless across hydration — the icons swap via CSS on
+   html.dark, so server and client always render identical markup. */
+.u-theme-toggle .i-sun { display: none; }
+.dark .u-theme-toggle .i-sun { display: block; }
+.dark .u-theme-toggle .i-moon { display: none; }

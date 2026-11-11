@@ -26,6 +26,23 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#f7f3ec" />
+    <script>
+      // Theme boot — runs before first paint so a dark-preference visitor
+      // never sees a white flash. System preference by default; a manual
+      // choice (ThemeToggle) persists in localStorage and wins.
+      (function () {
+        var dark = false;
+        try {
+          var saved = localStorage.getItem("theme");
+          dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        } catch (e) {}
+        if (dark) {
+          document.documentElement.classList.add("dark");
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute("content", "#061a10");
+        }
+      })();
+    </script>
     <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="Writing feed (Atom)" />
 
     <!-- Fonts: stable URLs under /fonts/ (works at any base path). The preloads

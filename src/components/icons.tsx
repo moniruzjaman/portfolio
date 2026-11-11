@@ -58,3 +58,38 @@ export const YoutubeMark = (p: IconProps) => (
     d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3Z"
   />
 );
+
+/** Sun/moon pair for the theme toggle — both render always; CSS on
+    `html.dark` (index.css) shows the one that matches the active theme,
+    keeping server and client markup identical across hydration. */
+export const Sun = ({ size = 16, className = "" }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    className={`i-sun ${className}`}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="12" cy="12" r="4" fill="currentColor" stroke="none" />
+    <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5" />
+  </svg>
+);
+
+export const Moon = ({ size = 16, className = "" }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    className={`i-moon ${className}`}
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M20.7 14.9A8.5 8.5 0 0 1 9.1 3.3a8.5 8.5 0 1 0 11.6 11.6Z" />
+  </svg>
+);

@@ -325,7 +325,7 @@ export function useDocumentMeta(location: string): void {
       return el;
     };
 
-    let link = setLink('link[rel="canonical"]', { rel: "canonical" });
+    const link = setLink('link[rel="canonical"]', { rel: "canonical" });
     link.href = url;
 
     // hreflang alternates: prerendered pages ship them in <head>; keep them

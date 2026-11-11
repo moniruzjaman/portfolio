@@ -1,4 +1,11 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 import type { ReactNode } from "react";
 import { useLocation } from "wouter";
 import { hrefFor, splitLangPath } from "@/lib/lang-url";
@@ -7,45 +14,67 @@ import type { Lang } from "@/lib/lang-url";
 export type { Lang };
 
 const STORAGE_KEY = "ph:lang";
+const LANG_EVENT = "ph:lang";
+let memoryLang: Lang | null = null; // fallback when localStorage is blocked
+
+const readStored = (): Lang | null => {
+  if (memoryLang) return memoryLang;
+  try {
+    return window.localStorage.getItem(STORAGE_KEY) === "bn" ? "bn" : "en";
+  } catch {
+    return "en"; // storage blocked — default language, do not crash
+  }
+};
+
+const subscribeStored = (onChange: () => void) => {
+  window.addEventListener(LANG_EVENT, onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener(LANG_EVENT, onChange);
+    window.removeEventListener("storage", onChange);
+  };
+};
 
 /**
  * Language is a first-class audience concern, not a decoration — Bangla-speaking
- * extension officers are the primary readers. The toggle still sets <html lang>
- * so screen readers switch voice.
+ * extension officers are the primary readers. The switcher sets <html lang> so
+ * screen readers switch voice.
  *
- * Since the /bn/ URL scheme, the URL is authoritative: /bn/… pages are Bangla
- * (and are prerendered as Bangla), unprefixed pages are English. The stored
- * preference still applies on unprefixed URLs — after hydration, via a
- * post-mount effect, so a returning Bangla reader landing on "/" gets Bangla
- * without a hydration mismatch (the first client render matches the
- * prerendered English markup; the preference flips in afterwards).
- *
- * A /bn/ visit persists "bn" so unprefixed in-site links keep Bangla; a visit
- * to an unprefixed URL never rewrites an existing preference. The nav switcher
- * is a real link to the mirrored URL (crawlable, carries hreflang), so
- * switching loads the other language's prerendered page directly.
+ * The URL is authoritative: /bn/… pages are Bangla (and are prerendered as
+ * Bangla), unprefixed pages are English. The stored preference still applies on
+ * unprefixed URLs — through useSyncExternalStore, whose server snapshot is
+ * null (the prerendered HTML is English and the first client render matches
+ * it, so hydration never warns) while the client snapshot applies the stored
+ * choice right after — React's supported path for external state. A /bn/ visit
+ * persists "bn" so unprefixed in-site links keep Bangla; a visit to an
+ * unprefixed URL never rewrites an existing preference. The nav switcher is a
+ * real link to the mirrored URL (crawlable, carries hreflang), so switching
+ * loads the other language's prerendered page directly.
  */
 function useLang() {
   const [location] = useLocation();
   const urlLang = splitLangPath(location).lang;
-  const [stored, setStored] = useState<Lang | null>(null);
-
-  useEffect(() => {
-    let s: Lang | null = null;
-    try {
-      s = window.localStorage.getItem(STORAGE_KEY) === "bn" ? "bn" : null;
-      if (urlLang === "bn") window.localStorage.setItem(STORAGE_KEY, "bn");
-    } catch {
-      /* private mode — fall through to the URL language */
-    }
-    setStored(urlLang ?? s);
-  }, [urlLang]);
+  const stored = useSyncExternalStore<Lang | null>(
+    subscribeStored,
+    readStored,
+    () => null,
+  );
 
   const lang = urlLang ?? stored ?? "en";
 
+  // External-system writes only: persist a Bangla visit and keep <html lang>
+  // truthful. No setState here — `lang` is derived, never mirrored into state.
   useEffect(() => {
+    if (urlLang === "bn") {
+      memoryLang = "bn";
+      try {
+        window.localStorage.setItem(STORAGE_KEY, "bn");
+      } catch {
+        /* private mode */
+      }
+    }
     document.documentElement.lang = lang;
-  }, [lang]);
+  }, [urlLang, lang]);
 
   const t = useCallback((en: string, bn: string) => (lang === "bn" ? bn : en), [lang]);
 

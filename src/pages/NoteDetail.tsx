@@ -173,8 +173,10 @@ function renderMarkdown(body: string) {
 }
 
 export default function NoteDetail() {
-  const [, params] = useRoute("/notes/:slug");
   const { t, lang } = useI18n();
+  // The route is mirrored under /bn (see App.tsx) — match the prefix the URL
+  // actually carries, otherwise a bn URL would resolve to Not Found.
+  const [, params] = useRoute(`/${lang === "bn" ? "bn/" : ""}notes/:slug`);
   const note = params ? noteBySlug(params.slug) : undefined;
 
   if (!note) return <NotFound />;

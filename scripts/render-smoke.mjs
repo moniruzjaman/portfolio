@@ -25,6 +25,14 @@ const CASES = [
     "This page does not exist",
   ],
   ["/portfolio/", "definitely-not-a-page", "This page does not exist", null],
+  // Bangla URLs: the /bn/ prefix must render the Bangla prerender, not the
+  // English page at a wrong path, and unknown bn paths must 404 like en ones.
+  // (Body strings, deliberately not nav labels — the nav is Bangla on every
+  // bn page, so a nav string would pass even when the body 404s.)
+  ["/portfolio/", "bn/", "আমি ডিজিটাল টুল তৈরি করি", "This page does not exist"],
+  ["/portfolio/", "bn/about", "যোগাযোগ", "এই পাতাটি নেই"],
+  ["/portfolio/", "bn/works/web-krishiai-live", "web.krishiai.live", "এই পাতাটি নেই"],
+  ["/portfolio/", "bn/definitely-not-a-page", "এই পাতাটি নেই", null],
   ["/", "works", "The live ecosystem", "This page does not exist"],
   ["/", "topics", "Research topics", "This page does not exist"],
   ["/", "library", "Research, documents, presentations and videos", "This page does not exist"],
@@ -74,11 +82,16 @@ if (existsSync("dist/index.html")) {
       prerenderFailed++;
       continue;
     }
-    if (titles.has(title)) {
-      console.error(`✖ duplicate <title> "${title}" — ${f} and ${titles.get(title)}`);
+    // Uniqueness is per language: a bn page may legitimately fall back to its
+    // en title when the content has no Bangla title.
+    const titleKey = `${f.startsWith("bn/") ? "bn" : "en"}:${title}`;
+    if (titles.has(titleKey)) {
+      console.error(
+        `✖ duplicate <title> "${title}" — ${f} and ${titles.get(titleKey)}`,
+      );
       prerenderFailed++;
     }
-    titles.set(title, f);
+    titles.set(titleKey, f);
     if (!html.includes('name="description"')) {
       console.error(`✖ ${f}: no meta description`);
       prerenderFailed++;

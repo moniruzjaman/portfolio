@@ -36,11 +36,30 @@ const paths = [
 // lastmod = build date. Notes and repos change via sync, so the build date is the
 // honest "this URL was last (re)generated" signal for both.
 const LASTMOD = new Date().toISOString().slice(0, 10);
+// Both languages, cross-linked: each <url> carries xhtml:link alternates so
+// crawlers treat /bn/… as the Bangla variant of the English page, not as
+// separate content. Locs must match canonicalForLang in src/lib/seo.ts and
+// hrefFor in src/lib/lang-url.ts — prerender.mjs asserts the agreement.
+const root = SITE.replace(/\/$/, "");
+const loc = (lang, p) =>
+  p === "" ? (lang === "bn" ? `${root}/bn` : SITE) : `${root}${lang === "bn" ? "/bn" : ""}/${p}`;
+const altTags = (p) =>
+  ["en", "bn", "x-default"]
+    .map((h) => {
+      const lang = h === "x-default" ? "en" : h;
+      return `    <xhtml:link rel="alternate" hreflang="${h}" href="${loc(lang, p)}"/>`;
+    })
+    .join("\n");
 writeFileSync(
   "public/sitemap.xml",
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
     paths
-      .map((p) => `  <url><loc>${SITE}${p}</loc><lastmod>${LASTMOD}</lastmod></url>`)
+      .flatMap((p) =>
+        ["en", "bn"].map(
+          (lang) =>
+            `  <url><loc>${loc(lang, p)}</loc><lastmod>${LASTMOD}</lastmod>\n${altTags(p)}\n  </url>`,
+        ),
+      )
       .join("\n") +
     `\n</urlset>\n`,
 );
@@ -73,4 +92,4 @@ writeFileSync(
 </html>
 `,
 );
-console.log(`static: base ${BASE} · ${paths.length} sitemap URLs · ${SITE}`);
+console.log(`static: base ${BASE} · ${(paths.length * 2)} sitemap URLs (en + bn) · ${SITE}`);

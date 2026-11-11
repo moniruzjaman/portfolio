@@ -29,8 +29,10 @@ import { useI18n } from "@/lib/i18n";
 import { NotFound } from "./NotFound";
 
 export default function WorkDetail() {
-  const [, params] = useRoute("/works/:slug");
   const { t, lang } = useI18n();
+  // The route is mirrored under /bn (see App.tsx) — match the prefix the URL
+  // actually carries, otherwise a bn URL would resolve to Not Found.
+  const [, params] = useRoute(`/${lang === "bn" ? "bn/" : ""}works/:slug`);
   const repo = params ? bySlug(params.slug) : undefined;
 
   if (!repo) return <NotFound />;

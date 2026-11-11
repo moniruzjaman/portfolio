@@ -1,83 +1,64 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useSyncExternalStore,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { useLocation } from "wouter";
+import { hrefFor, splitLangPath } from "@/lib/lang-url";
+import type { Lang } from "@/lib/lang-url";
 
-export type Lang = "en" | "bn";
+export type { Lang };
 
 const STORAGE_KEY = "ph:lang";
-const LANG_EVENT = "ph:lang";
 
 /**
  * Language is a first-class audience concern, not a decoration — Bangla-speaking
- * extension officers are the primary readers. The toggle sets <html lang> so
- * screen readers switch voice, persists across visits, and is announced via
- * aria-live in the nav.
+ * extension officers are the primary readers. The toggle still sets <html lang>
+ * so screen readers switch voice.
  *
- * The stored choice is read through useSyncExternalStore: during hydration the
- * server snapshot (English, what prerendered HTML contains) is used, and the
- * client snapshot applies the stored choice right after — React's supported
- * path for external state, so hydration never warns or re-renders the tree
- * with mismatched markup.
+ * Since the /bn/ URL scheme, the URL is authoritative: /bn/… pages are Bangla
+ * (and are prerendered as Bangla), unprefixed pages are English. The stored
+ * preference still applies on unprefixed URLs — after hydration, via a
+ * post-mount effect, so a returning Bangla reader landing on "/" gets Bangla
+ * without a hydration mismatch (the first client render matches the
+ * prerendered English markup; the preference flips in afterwards).
+ *
+ * A /bn/ visit persists "bn" so unprefixed in-site links keep Bangla; a visit
+ * to an unprefixed URL never rewrites an existing preference. The nav switcher
+ * is a real link to the mirrored URL (crawlable, carries hreflang), so
+ * switching loads the other language's prerendered page directly.
  */
-let memoryLang: Lang | null = null; // fallback when localStorage is blocked
+function useLang() {
+  const [location] = useLocation();
+  const urlLang = splitLangPath(location).lang;
+  const [stored, setStored] = useState<Lang | null>(null);
 
-const readStored = (): Lang => {
-  if (memoryLang) return memoryLang;
-  try {
-    return window.localStorage.getItem(STORAGE_KEY) === "bn" ? "bn" : "en";
-  } catch {
-    return "en"; // storage blocked — default language, do not crash
-  }
-};
-
-const subscribe = (onChange: () => void) => {
-  const onStorage = (e: StorageEvent) => {
-    // Another tab changed the language (or cleared storage) — drop the cache.
-    if (e.key === STORAGE_KEY || e.key === null) {
-      memoryLang = null;
-      onChange();
+  useEffect(() => {
+    let s: Lang | null = null;
+    try {
+      s = window.localStorage.getItem(STORAGE_KEY) === "bn" ? "bn" : null;
+      if (urlLang === "bn") window.localStorage.setItem(STORAGE_KEY, "bn");
+    } catch {
+      /* private mode — fall through to the URL language */
     }
-  };
-  window.addEventListener("storage", onStorage);
-  window.addEventListener(LANG_EVENT, onChange);
-  return () => {
-    window.removeEventListener("storage", onStorage);
-    window.removeEventListener(LANG_EVENT, onChange);
-  };
-};
+    setStored(urlLang ?? s);
+  }, [urlLang]);
 
-export function useLang() {
-  const lang = useSyncExternalStore<Lang>(subscribe, readStored, () => "en");
+  const lang = urlLang ?? stored ?? "en";
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const setLang = useCallback((next: Lang) => {
-    memoryLang = next; // survive blocked storage within the session
-    try {
-      window.localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* private mode */
-    }
-    window.dispatchEvent(new Event(LANG_EVENT));
-  }, []);
-
-  const toggle = useCallback(() => setLang(readStored() === "bn" ? "en" : "bn"), [setLang]);
   const t = useCallback((en: string, bn: string) => (lang === "bn" ? bn : en), [lang]);
 
-  return useMemo(() => ({ lang, setLang, toggle, t }), [lang, setLang, toggle, t]);
+  /** href of the same page in the other language (real link, hreflang-carrying). */
+  const langSwitchHref = hrefFor(lang === "bn" ? "en" : "bn", location);
+
+  return useMemo(() => ({ lang, t, langSwitchHref }), [lang, t, langSwitchHref]);
 }
 
 type LangValue = ReturnType<typeof useLang>;
 const LangContext = createContext<LangValue | null>(null);
 
+/** Must be rendered INSIDE <Router> — it derives language from the location. */
 export function LangProvider({ children }: { children: ReactNode }) {
   const value = useLang();
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;

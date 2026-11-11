@@ -1,6 +1,7 @@
-import { Mail, Phone, MapPin, GraduationCap } from "lucide-react";
+import { Mail, Phone, MapPin, GraduationCap, FileDown } from "lucide-react";
 import { socials } from "@/components/Socials";
 import { author, figures } from "@/lib/author";
+import { asset } from "@/lib/site";
 import { stats } from "@/lib/data";
 import { notes } from "@/content/notes";
 import { PageHeader } from "@/components/Section";
@@ -121,6 +122,15 @@ export default function About() {
                     </a>
                   </li>
                 )}
+                <li>
+                  <a
+                    href={asset("cv.pdf")}
+                    className="flex min-h-11 items-center gap-2.5 text-moss-600 transition-colors hover:text-forest-900"
+                  >
+                    <FileDown size={15} className="shrink-0 text-forest-500" />
+                    <span>{t("Download CV (PDF)", "সিভি ডাউনলোড (PDF)")}</span>
+                  </a>
+                </li>
                 {socials.map(({ key, href, handle, Icon }) => (
                   <li key={key}>
                     <a

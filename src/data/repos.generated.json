@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T14:22:30.927Z",
+  "generatedAt": "2026-11-11T01:45:45.035Z",
   "source": "moniruzjaman",
   "total": 52,
   "scanned": 80,
@@ -17,7 +17,7 @@
       "description": "personal creativity showcasing",
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-11-10T14:21:11Z",
+      "pushedAt": "2026-11-11T01:44:31Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": null,
       "customDomain": null,
@@ -35,13 +35,32 @@
       "featured": false
     },
     {
+      "name": "pesticide-field-guide",
+      "slug": "pesticide-field-guide",
+      "title": "pesticide-field-guide",
+      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers.",
+      "language": "TypeScript",
+      "topics": [],
+      "pushedAt": "2026-11-11T01:11:46Z",
+      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
+      "live": "https://pesticide-field-guide.vercel.app",
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "vercel",
+        "github-pages"
+      ],
+      "brand": null,
+      "featured": false
+    },
+    {
       "name": "rashtra_teen_chokhe",
       "slug": "rashtra-teen-chokhe",
       "title": "রাষ্ট্রকে দেখা তিন চোখে",
       "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
       "language": "HTML",
       "topics": [],
-      "pushedAt": "2026-11-09T16:08:24Z",
+      "pushedAt": "2026-11-10T14:47:26Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -266,25 +285,6 @@
       "live": "https://diagnosis-assistant-eosin.vercel.app",
       "customDomain": null,
       "pages": "https://moniruzjaman.github.io/diagnosis-assistant/",
-      "channels": [
-        "vercel",
-        "github-pages"
-      ],
-      "brand": null,
-      "featured": false
-    },
-    {
-      "name": "pesticide-field-guide",
-      "slug": "pesticide-field-guide",
-      "title": "pesticide-field-guide",
-      "description": "A searchable, resistance-aware pesticide field guide and database connection companion for agricultural extension officers.",
-      "language": "TypeScript",
-      "topics": [],
-      "pushedAt": "2026-11-01T19:37:55Z",
-      "url": "https://github.com/moniruzjaman/pesticide-field-guide",
-      "live": "https://pesticide-field-guide.vercel.app",
-      "customDomain": null,
-      "pages": null,
       "channels": [
         "vercel",
         "github-pages"

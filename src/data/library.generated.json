@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T11:15:57.418Z",
+  "generatedAt": "2026-11-17T11:51:28.621Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -52,18 +52,6 @@
           "mime": "application/pdf",
           "modified": "2026-11-12T06:47:40.948Z",
           "size": 4308455,
-          "path": [
-            "bnp_policy"
-          ]
-        },
-        {
-          "id": "1zjmyfjbzhiAgeId8y7C9IhxgIKvi0MbJ",
-          "ext": "pdf",
-          "title": "Rice BPH & YSB",
-          "kind": "pdf",
-          "mime": "application/pdf",
-          "modified": "2026-11-11T15:32:53.794Z",
-          "size": 7029882,
           "path": [
             "bnp_policy"
           ]
@@ -4090,6 +4078,16 @@
       "descriptionBn": "ওয়ার্ড-ধরনের নথি ও অন্যান্য লেখা উপকরণ।",
       "folderId": null,
       "items": [
+        {
+          "id": "1VnyJP22nFhskkgL1tBQ0GEvXohh6wQe4",
+          "ext": "docx",
+          "title": "ziaur rahman agriculture policy editorial",
+          "kind": "doc",
+          "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "modified": "2026-11-16T14:30:27.518Z",
+          "size": 79244,
+          "path": []
+        },
         {
           "id": "1qL_4KeOFHdf4VhgdG7ShjXgeTXAVRebE",
           "ext": "mp4",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T11:51:28.621Z",
+  "generatedAt": "2026-11-18T11:40:55.857Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -3539,10 +3539,7 @@
           "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
           "modified": "2026-04-09T12:06:59.491Z",
           "size": 1574388,
-          "path": [
-            "CIRDAP",
-            "presentation"
-          ]
+          "path": []
         },
         {
           "id": "1KSQ5RZjUnRXtU5KqpnsXow4Piu_Jo6fX",

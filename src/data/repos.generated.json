@@ -1,37 +1,65 @@
 {
-  "generatedAt": "2026-11-17T11:50:56.967Z",
+  "generatedAt": "2026-11-18T11:40:30.692Z",
   "source": "moniruzjaman",
   "total": 54,
-  "scanned": 82,
+  "scanned": 83,
   "channels": {
-    "vercel": 24,
+    "custom-domain": 6,
     "github-pages": 38,
     "cloudflare": 5,
-    "custom-domain": 5
+    "vercel": 23
   },
   "repos": [
     {
       "name": "cabi-diagnosis",
       "slug": "cabi-diagnosis",
       "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "Smart Agri Ecosystem for pest, disease, deficiency identification app",
+      "description": "CABI diagnostic process trainer for Bangladesh farmers — learn crop problem identification through guided steps, interactive games, and hands-on diagnosis.",
       "language": "TypeScript",
-      "topics": [],
-      "pushedAt": "2026-11-17T08:03:17Z",
+      "topics": [
+        "bangladesh",
+        "diagnosis",
+        "evaluate",
+        "learn",
+        "monitor",
+        "prevent",
+        "self-learning",
+        "self-reliance",
+        "treatment"
+      ],
+      "pushedAt": "2026-11-18T10:46:36Z",
       "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi-diagnosis.vercel.app",
-      "customDomain": null,
+      "live": "https://cabi.krishiai.live",
+      "customDomain": "https://cabi.krishiai.live",
       "pages": null,
       "channels": [
-        "vercel"
+        "custom-domain"
       ],
       "brand": {
         "name": "উদ্ভিদ গোয়েন্দা",
         "themeColor": "#046a1a",
-        "icon": "https://cabi-diagnosis.vercel.app/favicon.png",
+        "icon": "https://cabi.krishiai.live/favicon.png",
         "image": "https://cabi.krishiai.live/og-share.png",
         "source": "manifest"
       },
+      "featured": false
+    },
+    {
+      "name": "crop-diagnosis",
+      "slug": "crop-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "আপনার ফসলের সমস্যা চিনে নিন সহজে CABI ৫-ধাপ প্রোটোকল অনুসারে ধাপে ধাপে শিখুন ফসলের রোগ ও পোকা চেনার পদ্ধতি। গাইড পড়ুন, গেম খেলুন, তারপর নিজেই নির্ণয় করুন।",
+      "language": "JavaScript",
+      "topics": [],
+      "pushedAt": "2026-11-17T17:05:44Z",
+      "url": "https://github.com/moniruzjaman/crop-diagnosis",
+      "live": null,
+      "customDomain": null,
+      "pages": null,
+      "channels": [
+        "github-pages"
+      ],
+      "brand": null,
       "featured": false
     },
     {
@@ -41,7 +69,7 @@
       "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
       "language": "HTML",
       "topics": [],
-      "pushedAt": "2026-11-16T15:36:25Z",
+      "pushedAt": "2026-11-17T15:54:46Z",
       "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
       "live": null,
       "customDomain": null,
@@ -61,12 +89,12 @@
       "name": "portfolio",
       "slug": "portfolio",
       "title": "portfolio",
-      "description": "personal creativity showcasing",
+      "description": "Built for the field, documented for the future.",
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-11-16T11:15:58Z",
+      "pushedAt": "2026-11-17T11:51:29Z",
       "url": "https://github.com/moniruzjaman/portfolio",
-      "live": null,
+      "live": "https://moniruzjaman.github.io/portfolio/",
       "customDomain": null,
       "pages": "https://moniruzjaman.github.io/portfolio/",
       "channels": [
@@ -729,24 +757,6 @@
         "image": "https://kurigram-nursery-2026.vercel.app/cover.png",
         "source": "html"
       },
-      "featured": false
-    },
-    {
-      "name": "crop-diagnosis",
-      "slug": "crop-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "আপনার ফসলের সমস্যা চিনে নিন সহজে CABI ৫-ধাপ প্রোটোকল অনুসারে ধাপে ধাপে শিখুন ফসলের রোগ ও পোকা চেনার পদ্ধতি। গাইড পড়ুন, গেম খেলুন, তারপর নিজেই নির্ণয় করুন।",
-      "language": "JavaScript",
-      "topics": [],
-      "pushedAt": "2026-09-20T06:47:13Z",
-      "url": "https://github.com/moniruzjaman/crop-diagnosis",
-      "live": null,
-      "customDomain": null,
-      "pages": null,
-      "channels": [
-        "github-pages"
-      ],
-      "brand": null,
       "featured": false
     },
     {

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-17T11:50:56.967Z",
+  "generatedAt": "2026-11-18T11:40:30.692Z",
   "note": "Audit trail — every repo that did not qualify, and why. See design-system.md §7.",
-  "total": 28,
+  "total": 29,
   "excluded": [
     {
       "name": "Agri-Tracker",
@@ -32,6 +32,11 @@
       "name": "bd_crop_advisory",
       "reason": "no qualifying deployment channel",
       "url": "https://github.com/moniruzjaman/bd_crop_advisory"
+    },
+    {
+      "name": "cro-health-intelligence",
+      "reason": "no qualifying deployment channel",
+      "url": "https://github.com/moniruzjaman/cro-health-intelligence"
     },
     {
       "name": "cultivating-knowledge",

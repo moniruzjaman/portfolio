@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T11:40:55.857Z",
+  "generatedAt": "2026-11-19T11:39:10.445Z",
   "mode": "api-key",
   "root": {
     "folderId": "1ScEDrF86Oedhh37jyXEu_Hzje_fiFW9t"
@@ -22,6 +22,18 @@
       "descriptionBn": "নির্দেশিকা, প্রতিবেদন ও রেফারেন্স নথি।",
       "folderId": null,
       "items": [
+        {
+          "id": "187Zi-i13Fkx-KzPLol98-fCMJcDqJEIE",
+          "ext": "pdf",
+          "title": "Extension manual zonewise strategy",
+          "kind": "pdf",
+          "mime": "application/pdf",
+          "modified": "2026-11-18T18:57:25.857Z",
+          "size": 2748214,
+          "path": [
+            "zip folder"
+          ]
+        },
         {
           "id": "1_-byrYwtw6tHZW-MoqNZvlYo5r_EnmOb",
           "ext": "pdf",

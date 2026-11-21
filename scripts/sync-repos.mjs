@@ -337,6 +337,10 @@ async function main() {
       topics: repo.topics || [],
       stars: repo.stargazers_count,
       pushedAt: repo.pushed_at,
+      // When the work was started, not when it was last touched. The catalogue
+      // orders by this so the newest build leads — a repo that was just started
+      // is more news than one that was merely touched today.
+      createdAt: repo.created_at,
       url: repo.html_url,
       live: liveUrl,
       customDomain,

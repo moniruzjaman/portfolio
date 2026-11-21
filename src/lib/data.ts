@@ -1,5 +1,6 @@
 import raw from "../data/repos.generated.json";
 import { brandFor, type Brand, type RawBrand } from "./brand";
+import { isNew as isNewSince } from "./ordering";
 
 export type Channel = "custom-domain" | "vercel" | "cloudflare" | "github-pages";
 
@@ -11,6 +12,8 @@ export type Repo = {
   language: string | null;
   topics: string[];
   pushedAt: string;
+  /** When the repository was created. Absent only if GitHub did not report it. */
+  createdAt: string | null;
   url: string;
   live: string | null;
   customDomain: string | null;
@@ -169,3 +172,17 @@ export function relativeDate(iso: string): string {
   if (days < 365) return `${Math.floor(days / 30)}mo ago`;
   return `${Math.floor(days / 365)}y ago`;
 }
+
+/* ── catalogue ordering ────────────────────────────────────────────────── */
+
+/**
+ * "Now" for the catalogue is the moment the data was synced, not the visitor's
+ * clock — see `ordering.ts` for why. Every age-based label is measured from
+ * this instant so the prerendered HTML and the hydrated copy agree.
+ */
+export const snapshotAt = Date.parse(meta.generatedAt);
+
+/** Was this work started inside the new window, relative to the snapshot? */
+export const isNew = (r: Repo): boolean => isNewSince(r, snapshotAt);
+
+export { byActivity, byCreation, NEW_WINDOW_DAYS } from "./ordering";

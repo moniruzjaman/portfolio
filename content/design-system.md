@@ -438,3 +438,36 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   Drive" and "Download" are always offered next to the preview.
 
 - 2026-11-10: §7 dark theme — variable-remap dark mode with system default, toggle and no-flash boot (phase 5).
+
+**v1.5** — newest-first catalogue, flagship showcase, and a green deploy.
+
+- **The catalogue now orders by creation, not by push.** The sync records
+  `createdAt` alongside `pushedAt` (the API already had it), and `/works` sorts
+  by it: **Newest** (default) → **Best apps** (the curated shortlist) → **Active**
+  (last push). A repo pushed today may have been started two years ago;
+  "what is new" was the wrong question to answer with a push timestamp.
+- **"Now" is the sync snapshot, not the visitor's clock.** Every age-based
+  label (`isNew`) is measured from `meta.generatedAt`, so the prerendered HTML
+  and the hydrated copy agree. `Date.now()` would bake one answer into the
+  static HTML and could disagree with the browser. The same reasoning already
+  governed the search recency boost.
+- **Showcase leads with the latest build.** Home's *Selected work* opens with the
+  newest repo as a wide card, followed by the flagship shortlist. The newest is
+  removed from the shortlist so the same app is never shown twice.
+- **Cards carry two marks.** *Flagship* (the curated shortlist) and *New*
+  (created inside 30 days of the snapshot). The footer now dates the **start**
+  of the work; the detail page keeps *Last push* beside a new *Started* row.
+- **Ordering rules are pure and tested.** `src/lib/ordering.ts` holds them,
+  dependency-free like `shelf.ts`, so `scripts/__tests__/ordering.test.mjs` can
+  pin them. The flagship shortlist moved into `src/lib/curation.ts`
+  (`flagshipRepos` / `flagshipRank` / `isFlagship`) — Home and Works were each
+  re-implementing it.
+- **Pointer cursor on buttons.** Tailwind's preflight leaves buttons on the
+  default arrow, so controls that looked clickable did not say so. Buttons and
+  `[role="button"]` now resolve to a pointer.
+- **Fixed: the deploy failed on an artifact that existed.** Run 44896951484
+  (2026-11-21) uploaded `github-pages` successfully and then failed at
+  `deploy-pages` with *"No artifacts named github-pages were found"* — the
+  artifact list is eventually consistent and the deploy read it back ~350 ms
+  after it was finalised. The workflow now waits for the artifact to appear
+  before deploying, instead of failing the run.

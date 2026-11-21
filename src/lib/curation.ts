@@ -1,8 +1,10 @@
 import raw from "../../content-data/apps.json";
 import libRaw from "../../content-data/library-curation.json";
 import type { Repo } from "./data";
+import { repos } from "./data";
 import type { Lang } from "./i18n";
 import { resolveShelf, type LibCuration, type LibData, type Shelf } from "./shelf";
+import { FLAGSHIP_NAMES } from "@/content/apps";
 
 export type { Shelf, LibCuration };
 
@@ -127,6 +129,32 @@ export const typeOf = (r: Repo): AppType => itemOf(r).type;
 
 /** An app can be opened and used; a report/ebook/source cannot. */
 export const isLaunchable = (r: Repo): boolean => typeOf(r) === "app" || typeOf(r) === "dataset";
+
+/* ── flagship (the "best apps") ────────────────────────────────────────── */
+
+/**
+ * The curated shortlist — the work worth leading with. `FLAGSHIP_NAMES` is
+ * hand-maintained in `src/content/apps.ts` because "which work is the best
+ * showcase" is an editorial judgement, not a fact GitHub can report. A name
+ * that no longer exists in the generated data is dropped silently, so a rename
+ * cannot break the build.
+ */
+const FLAGSHIP_SET = new Set<string>(FLAGSHIP_NAMES as readonly string[]);
+
+/** Is this repo one of the flagship apps? */
+export const isFlagship = (r: Repo): boolean => FLAGSHIP_SET.has(r.name);
+
+/** Position in the curated order. Non-flagship repos sort after all of them. */
+export const flagshipRank = (r: Repo): number => {
+  const i = (FLAGSHIP_NAMES as readonly string[]).indexOf(r.name);
+  return i === -1 ? FLAGSHIP_NAMES.length : i;
+};
+
+/** The flagship apps that actually exist in the generated catalogue, in order. */
+export const flagshipRepos = (): Repo[] =>
+  FLAGSHIP_NAMES.map((n) => repos.find((r) => r.name === n)).filter(
+    (r): r is Repo => Boolean(r),
+  );
 
 /* ── library shelves ─────────────────────────────────────────────────────── */
 

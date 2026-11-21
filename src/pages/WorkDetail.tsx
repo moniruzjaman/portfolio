@@ -215,6 +215,16 @@ export default function WorkDetail() {
                     <dd className="mt-1 font-bold text-forest-900">{repo.language}</dd>
                   </div>
                 )}
+                {repo.createdAt && (
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.12em] text-moss-400">
+                      {t("Started", "শুরু")}
+                    </dt>
+                    <dd className="mt-1 font-bold text-forest-900">
+                      {relativeDate(repo.createdAt)}
+                    </dd>
+                  </div>
+                )}
                 <div>
                   <dt className="text-xs uppercase tracking-[0.12em] text-moss-400">
                     {t("Last push", "সর্বশেষ আপডেট")}

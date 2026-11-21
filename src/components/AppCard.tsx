@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowUpRight } from "lucide-react";
-import { brandOf, primaryEndpoint, relativeDate, CHANNEL_LABEL, type Repo } from "@/lib/data";
+import { ArrowUpRight, Sparkles, Star } from "lucide-react";
+import {
+  brandOf,
+  primaryEndpoint,
+  relativeDate,
+  CHANNEL_LABEL,
+  isNew,
+  type Repo,
+} from "@/lib/data";
 import {
   AUDIENCE_LABEL,
   audiencesOf,
+  isFlagship,
   summaryFor,
   titleFor,
   typeOf,
@@ -77,17 +85,31 @@ export function BrandMark({
  * interactive elements, so the tab order stays clean). The colour band is the
  * app's own theme colour when known, a deterministic palette colour otherwise.
  */
-export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boolean }) {
-  const { lang } = useI18n();
+export function AppCard({
+  repo,
+  compact = false,
+  className = "",
+  tag,
+}: {
+  repo: Repo;
+  compact?: boolean;
+  /** Extra classes for the grid cell — used to let one card span two columns. */
+  className?: string;
+  /** A short label above the title, e.g. "Latest build". */
+  tag?: { en: string; bn: string };
+}) {
+  const { lang, t } = useI18n();
   const brand = brandOf(repo);
   const ep = primaryEndpoint(repo);
   const summary = summaryFor(repo, lang);
   const audiences = audiencesOf(repo).slice(0, 2);
+  const fresh = isNew(repo);
+  const flagship = isFlagship(repo);
 
   return (
     <Link
       href={`/works/${repo.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-forest-400 bg-white transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.1)]"
+      className={`group flex flex-col overflow-hidden rounded-2xl border border-forest-400 bg-white transition-all duration-200 hover:-translate-y-1 hover:border-forest-300 hover:shadow-[0_16px_40px_rgba(10,46,26,0.1)] ${className}`}
     >
       <div
         className="flex items-center gap-3 px-5 py-4"
@@ -110,6 +132,27 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
       </div>
 
       <div className="flex flex-1 flex-col p-5">
+        {tag && (
+          <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-gold-600">
+            {t(tag.en, tag.bn)}
+          </p>
+        )}
+        {(flagship || fresh) && (
+          <div className="mb-2 flex flex-wrap items-center gap-1.5">
+            {flagship && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-forest-900 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-cream-100">
+                <Star size={9} aria-hidden="true" />
+                {t("Flagship", "প্রধান")}
+              </span>
+            )}
+            {fresh && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-gold-400 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-forest-900">
+                <Sparkles size={9} aria-hidden="true" />
+                {t("New", "নতুন")}
+              </span>
+            )}
+          </div>
+        )}
         <h3 className="font-serif text-lg font-black leading-snug text-forest-900">
           {titleFor(repo, lang)}
         </h3>
@@ -127,7 +170,7 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
             ))}
           </div>
         )}
-        <div className="mt-4 flex items-center justify-between border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
+        <div className="mt-4 flex items-center justify-between gap-3 border-t border-forest-300 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-moss-500">
           <span>{TYPE_LABEL[typeOf(repo)][lang]}</span>
           <span className="flex items-center gap-1.5">
             {ep && (
@@ -136,7 +179,16 @@ export function AppCard({ repo, compact = false }: { repo: Repo; compact?: boole
                 aria-label={lang === "bn" ? "চালু" : "live"}
               />
             )}
-            {relativeDate(repo.pushedAt)}
+            {/* The catalogue is ordered by creation, so the card dates the start
+                of the work, not the last push. "Updated" stays on the detail
+                page — a card that carried both dates was unreadable. */}
+            {repo.createdAt ? (
+              <>
+                {t("Started", "শুরু")} {relativeDate(repo.createdAt)}
+              </>
+            ) : (
+              relativeDate(repo.pushedAt)
+            )}
           </span>
         </div>
       </div>

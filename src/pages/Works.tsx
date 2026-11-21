@@ -5,6 +5,8 @@ import {
   repos,
   endpointDirectory,
   stats,
+  byActivity,
+  byCreation,
   CHANNEL_LABEL,
   CHANNEL_COLOR,
   meta,
@@ -13,12 +15,12 @@ import {
 import { PageHeader, Chip } from "@/components/Section";
 import { AppCard } from "@/components/AppCard";
 import { PlatformTiles } from "@/components/PlatformTiles";
-import { FLAGSHIP_NAMES } from "@/content/apps";
 import {
   AUDIENCES,
   AUDIENCE_LABEL,
   AUDIENCE_BLURB,
   audiencesOf,
+  flagshipRank,
   summaryFor,
   titleFor,
   typeOf,
@@ -28,6 +30,21 @@ import {
 import { useI18n } from "@/lib/i18n";
 
 type View = "catalogue" | "endpoints";
+
+/**
+ * How the catalogue is ordered.
+ *
+ * "Newest" leads by default: the catalogue is a record of what is being built
+ * now, and the most recently *started* work is the truest signal of that —
+ * a repo pushed today may have been begun two years ago. "Flagship" puts the
+ * curated best apps first, "Active" the most recently worked-on.
+ */
+type Sort = "newest" | "flagship" | "active";
+const SORTS: { key: Sort; en: string; bn: string }[] = [
+  { key: "newest", en: "Newest", bn: "নতুন আগে" },
+  { key: "flagship", en: "Best apps", bn: "সেরা অ্যাপ" },
+  { key: "active", en: "Active", bn: "সক্রিয়" },
+];
 
 /** Visitors think in "tools / documents / code", not in five internal types. */
 type Group = "apps" | "documents" | "code" | "all";
@@ -51,6 +68,7 @@ export default function Works() {
   const [view, setView] = useState<View>("catalogue");
   const [group, setGroup] = useState<Group>("apps");
   const [audience, setAudience] = useState<Audience | "all">("all");
+  const [sort, setSort] = useState<Sort>("newest");
   const [q, setQ] = useState("");
   const needle = q.trim().toLowerCase();
 
@@ -77,24 +95,32 @@ export default function Works() {
     [channel, group, audience, needle],
   );
 
-  // Flagship apps lead (curated order in src/content/apps.ts); the rest follow by recent activity.
-  const rank = (name: string) => {
-    const i = (FLAGSHIP_NAMES as readonly string[]).indexOf(name);
-    return i === -1 ? FLAGSHIP_NAMES.length : i;
-  };
-  const shown = useMemo(
-    () => repos.filter(matches).sort((a, b) => rank(a.name) - rank(b.name)),
-    [matches],
-  );
+  // Flagship apps lead when that order is chosen; every other order is by
+  // date. The rest fall back to creation time so the order is total.
+  const shown = useMemo(() => {
+    const list = repos.filter(matches);
+    if (sort === "active") return list.sort(byActivity);
+    if (sort === "flagship") {
+      return list.sort((a, b) => flagshipRank(a) - flagshipRank(b) || byCreation(a, b));
+    }
+    return list.sort(byCreation);
+  }, [matches, sort]);
   const groupCount = (g: Group) =>
     repos.filter((r) => g === "all" || GROUP_OF[typeOf(r)] === g).length;
 
+  // The address directory follows the same order as the cards, so the two
+  // views never disagree about which work comes first.
+  const order = useMemo(() => new Map(shown.map((r, i) => [r.name, i])), [shown]);
   const rows = useMemo(
     () =>
-      endpointDirectory.filter(
-        (e) => (channel === "all" || e.channel === channel) && matches(e.repo),
-      ),
-    [channel, matches],
+      endpointDirectory
+        .filter((e) => (channel === "all" || e.channel === channel) && matches(e.repo))
+        .sort(
+          (a, b) =>
+            (order.get(a.repo.name) ?? Number.MAX_SAFE_INTEGER) -
+            (order.get(b.repo.name) ?? Number.MAX_SAFE_INTEGER),
+        ),
+    [channel, matches, order],
   );
 
   return (
@@ -217,14 +243,40 @@ export default function Works() {
             </div>
           </div>
 
-          <p
-            className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500"
-            aria-live="polite"
-          >
-            {view === "catalogue" ? shown.length : rows.length} {t("shown", "দেখানো হচ্ছে")} ·{" "}
-            {t("scanned", "যাচাই করা")} {meta.scanned} {t("repositories", "রিপোজিটরি")} ·{" "}
-            {t("synced", "সিঙ্ক")} {meta.generatedAt.slice(0, 10)}
-          </p>
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p
+              className="font-mono text-[11px] uppercase tracking-[0.14em] text-moss-500"
+              aria-live="polite"
+            >
+              {view === "catalogue" ? shown.length : rows.length} {t("shown", "দেখানো হচ্ছে")} ·{" "}
+              {t("scanned", "যাচাই করা")} {meta.scanned} {t("repositories", "রিপোজিটরি")} ·{" "}
+              {t("synced", "সিঙ্ক")} {meta.generatedAt.slice(0, 10)}
+            </p>
+
+            {view === "catalogue" && (
+              <div
+                role="group"
+                aria-label={t("Order", "ক্রম")}
+                className="flex shrink-0 gap-0.5 self-start rounded-full border border-forest-300 p-0.5"
+              >
+                {SORTS.map((s) => (
+                  <button
+                    key={s.key}
+                    type="button"
+                    aria-pressed={sort === s.key}
+                    onClick={() => setSort(s.key)}
+                    className={`min-h-11 rounded-full px-4 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
+                      sort === s.key
+                        ? "bg-forest-900 text-cream-100"
+                        : "text-moss-500 hover:text-forest-900"
+                    }`}
+                  >
+                    {t(s.en, s.bn)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           {view === "catalogue" ? (
             shown.length === 0 ? (

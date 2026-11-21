@@ -3,8 +3,8 @@ import { Link } from "wouter";
 import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles, Radio, FileText } from "lucide-react";
 import { socials } from "@/components/Socials";
 import { expertiseGraphs, KnowledgeGraph } from "@/components/KnowledgeGraph";
-import { repos, stats } from "@/lib/data";
-import { FLAGSHIP_NAMES } from "@/content/apps";
+import { repos, stats, byCreation } from "@/lib/data";
+import { flagshipRepos } from "@/lib/curation";
 import { AppCard } from "@/components/AppCard";
 import { PlatformTiles } from "@/components/PlatformTiles";
 import { libraryItems, KIND_LABEL } from "@/lib/library";
@@ -15,10 +15,14 @@ import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "@/components/Section";
 import { ConnectSection } from "@/components/ConnectSection";
 
-/** Flagship order is curated in src/content/apps.ts; a renamed repo drops out silently. */
-const FEATURED = FLAGSHIP_NAMES.map((n) => repos.find((r) => r.name === n)).filter(
-  (r): r is (typeof repos)[number] => Boolean(r),
-);
+/**
+ * The showcase leads with the newest work and follows with the curated best
+ * apps. `flagshipRepos` is the shortlist from src/content/apps.ts (a renamed
+ * repo drops out silently); the newest repo is taken out of that list so the
+ * same app is never shown twice.
+ */
+const LATEST = [...repos].sort(byCreation)[0];
+const FEATURED = flagshipRepos().filter((r) => r.name !== LATEST?.name);
 
 export default function Home() {
   const { t, lang } = useI18n();
@@ -220,6 +224,13 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {LATEST && (
+              <AppCard
+                repo={LATEST}
+                className="lg:col-span-2"
+                tag={{ en: "Latest build", bn: "সর্বশেষ নির্মাণ" }}
+              />
+            )}
             {FEATURED.map((repo) => (
               <AppCard key={repo.name} repo={repo} />
             ))}

@@ -91,6 +91,14 @@
   button {
     -webkit-tap-highlight-color: transparent;
   }
+
+  /* Tailwind's preflight leaves buttons on the default arrow cursor, so a
+     control that looks clickable does not say so. Links already resolve to a
+     pointer; this covers buttons and button-like elements. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 /* ── print ──────────────────────────────────────────────────

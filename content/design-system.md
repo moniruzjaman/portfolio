@@ -469,5 +469,16 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   (2026-11-21) uploaded `github-pages` successfully and then failed at
   `deploy-pages` with *"No artifacts named github-pages were found"* — the
   artifact list is eventually consistent and the deploy read it back ~350 ms
-  after it was finalised. The workflow now waits for the artifact to appear
-  before deploying, instead of failing the run.
+  after it was finalised. The workflow now waits for the artifact before
+  deploying.
+- **Fixed: waiting on the wrong backend.** The first version of that wait
+  polled the **REST** artifact list. Run 45020962655 then failed the same way
+  with the artifact id in hand — because `deploy-pages@v5` does not read the
+  REST API at all. It asks the **Actions Results Service** (a Twirp endpoint
+  reached with the runner's runtime token) for the artifacts of *this run and
+  this job*, and that service indexes an upload asynchronously. The REST poll
+  was a different backend, so it could not observe the race it was meant to
+  wait out. `scripts/wait-for-pages-artifact.mjs` now polls the same service,
+  with the same scope, that `deploy-pages` will ask — so when the probe sees
+  the artifact, the deploy finds it. Dependency-free, and pinned by
+  `scripts/__tests__/wait-for-pages-artifact.test.mjs`.

@@ -17,6 +17,12 @@
  */
 import http from "node:http";
 import { spawn } from "node:child_process";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+/** The repo root, from this file — not the working directory, and not a path
+ *  that only exists on one machine. */
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const RUN_ID = "ce7f54c7-61c7-4aae-887f-30da475f5f1a";
 const JOB_ID = "ca395085-040a-526b-2ce8-bdc85f692774";
@@ -50,7 +56,7 @@ await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const port = server.address().port;
 
 const child = spawn(process.execPath, [".github/actions/wait-for-pages-artifact/main.js"], {
-  cwd: "/workspace/portfolio",
+  cwd: REPO_ROOT,
   env: {
     ...process.env,
     ACTIONS_RESULTS_URL: `http://127.0.0.1:${port}/some/base`,

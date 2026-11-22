@@ -65,9 +65,15 @@ jobs:
       # "Found 0 artifact(s)".
       #
       # Poll the same service, with the same scope, that deploy-pages will use.
-      # When the probe sees the artifact, deploy-pages will find it.
+      # When the probe sees the artifact, deploy-pages will find it. It has to
+      # be a JavaScript action: the runner only hands ACTIONS_RESULTS_URL and
+      # ACTIONS_RUNTIME_TOKEN to JavaScript action steps.
       - name: Wait for the pages artifact
-        run: node scripts/wait-for-pages-artifact.mjs github-pages 30 4000
+        uses: ./.github/actions/wait-for-pages-artifact
+        with:
+          artifact-name: github-pages
+          attempts: "30"
+          delay-ms: "4000"
 
       - id: deployment
         uses: actions/deploy-pages@v5

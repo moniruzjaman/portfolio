@@ -1,0 +1,23 @@
+name: Wait for the pages artifact
+description: >-
+  Block until the Actions artifact service lists an artifact, so that
+  actions/deploy-pages finds it instead of failing with "No artifacts named
+  github-pages were found".
+
+inputs:
+  artifact-name:
+    description: The artifact to wait for.
+    required: false
+    default: github-pages
+  attempts:
+    description: How many times to poll the service before giving up.
+    required: false
+    default: "30"
+  delay-ms:
+    description: How long to wait between polls.
+    required: false
+    default: "4000"
+
+runs:
+  using: node20
+  main: main.js

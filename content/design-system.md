@@ -478,7 +478,16 @@ The audit found failures no screenshot showed. Cause was the palette, not scatte
   reached with the runner's runtime token) for the artifacts of *this run and
   this job*, and that service indexes an upload asynchronously. The REST poll
   was a different backend, so it could not observe the race it was meant to
-  wait out. `scripts/wait-for-pages-artifact.mjs` now polls the same service,
-  with the same scope, that `deploy-pages` will ask — so when the probe sees
-  the artifact, the deploy finds it. Dependency-free, and pinned by
-  `scripts/__tests__/wait-for-pages-artifact.test.mjs`.
+  wait out.
+- **Fixed: the probe needs a JavaScript action, not a `run:` step.** The
+  runner injects `ACTIONS_RESULTS_URL` and `ACTIONS_RUNTIME_TOKEN` only into
+  JavaScript action steps, so the probe could not read the service from a
+  `run:` step at all — it failed with "ACTIONS_RESULTS_URL is not set". The
+  probe is now the local action `.github/actions/wait-for-pages-artifact`,
+  which polls the same service, with the same scope, that `deploy-pages` will
+  ask. Its logic is in `scripts/wait-for-pages-artifact.mjs` (dependency-free,
+  like `sync-repos.mjs`), pinned by
+  `scripts/__tests__/wait-for-pages-artifact.test.mjs`, and the action entry
+  point itself is exercised against a mock service by
+  `scripts/action-smoke.mjs` on every `npm test` — so a broken probe fails the
+  test run rather than a deploy.

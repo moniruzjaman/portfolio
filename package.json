@@ -14,7 +14,7 @@
     "verify": "node scripts/verify-no-secrets.mjs dist",
     "sync:drive": "node scripts/sync-drive.mjs",
     "cv": "node scripts/gen-cv.mjs && python3 scripts/lib/render-cv.py",
-    "test:scripts": "node --test \"scripts/__tests__/*.test.mjs\"",
+    "test:scripts": "node --test \"scripts/__tests__/*.test.mjs\" && node scripts/action-smoke.mjs",
     "test:render": "node scripts/render-smoke.mjs",
     "test": "npm run test:scripts && npm run test:render",
     "lint": "eslint .",

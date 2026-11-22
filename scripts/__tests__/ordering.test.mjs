@@ -1,12 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import {
-  byActivity,
-  byCreation,
-  isNew,
-  NEW_WINDOW_DAYS,
-} from "../../src/lib/ordering.ts";
+import { byActivity, byCreation, isNew, NEW_WINDOW_DAYS } from "../../src/lib/ordering.ts";
 
 const json = (p) => JSON.parse(readFileSync(new URL(`../../${p}`, import.meta.url), "utf8"));
 const repos = json("src/data/repos.generated.json").repos;
@@ -23,18 +18,25 @@ test("byCreation: newest creation leads", () => {
     { name: "old", pushedAt: "2026-11-01T00:00:00Z", createdAt: "2025-01-01T00:00:00Z" },
     { name: "new", pushedAt: "2025-01-01T00:00:00Z", createdAt: "2026-11-01T00:00:00Z" },
   ];
-  assert.deepEqual([...list].sort(byCreation).map((r) => r.name), ["new", "old"]);
+  assert.deepEqual(
+    [...list].sort(byCreation).map((r) => r.name),
+    ["new", "old"],
+  );
 });
 
 test("byCreation: a repo pushed today does not outrank one created today", () => {
   const list = [
-    { name: "ancient-but-pushed", pushedAt: "2026-11-20T00:00:00Z", createdAt: "2024-01-01T00:00:00Z" },
+    {
+      name: "ancient-but-pushed",
+      pushedAt: "2026-11-20T00:00:00Z",
+      createdAt: "2024-01-01T00:00:00Z",
+    },
     { name: "just-started", pushedAt: "2026-01-05T00:00:00Z", createdAt: "2026-11-19T00:00:00Z" },
   ];
-  assert.deepEqual([...list].sort(byCreation).map((r) => r.name), [
-    "just-started",
-    "ancient-but-pushed",
-  ]);
+  assert.deepEqual(
+    [...list].sort(byCreation).map((r) => r.name),
+    ["just-started", "ancient-but-pushed"],
+  );
 });
 
 test("byCreation: a repo with no recorded creation falls back to push time", () => {
@@ -43,7 +45,10 @@ test("byCreation: a repo with no recorded creation falls back to push time", () 
     { name: "dated", pushedAt: "2026-01-05T00:00:00Z", createdAt: "2026-01-05T00:00:00Z" },
   ];
   // The dated repo still leads — it has a creation time, even if older.
-  assert.deepEqual([...list].sort(byCreation).map((r) => r.name), ["dated", "no-date"]);
+  assert.deepEqual(
+    [...list].sort(byCreation).map((r) => r.name),
+    ["dated", "no-date"],
+  );
 });
 
 test("byCreation: equal timestamps fall through to the name, so the order is total", () => {
@@ -51,7 +56,10 @@ test("byCreation: equal timestamps fall through to the name, so the order is tot
   const b = { name: "b", pushedAt: "2026-01-01T00:00:00Z", createdAt: "2026-01-01T00:00:00Z" };
   assert.ok(byCreation(a, b) < 0, "a sorts before b");
   assert.ok(byCreation(b, a) > 0, "b sorts after a");
-  assert.deepEqual([a, b].sort(byCreation).map((r) => r.name), ["a", "b"]);
+  assert.deepEqual(
+    [a, b].sort(byCreation).map((r) => r.name),
+    ["a", "b"],
+  );
 });
 
 test("byActivity: most recently pushed leads, name breaks ties", () => {
@@ -60,7 +68,10 @@ test("byActivity: most recently pushed leads, name breaks ties", () => {
     { name: "a", pushedAt: "2026-01-01T00:00:00Z", createdAt: "2025-01-01T00:00:00Z" },
     { name: "c", pushedAt: "2026-06-01T00:00:00Z", createdAt: "2025-01-01T00:00:00Z" },
   ];
-  assert.deepEqual([...list].sort(byActivity).map((r) => r.name), ["c", "a", "b"]);
+  assert.deepEqual(
+    [...list].sort(byActivity).map((r) => r.name),
+    ["c", "a", "b"],
+  );
 });
 
 test("isNew: inside the window, and measured from the snapshot", () => {

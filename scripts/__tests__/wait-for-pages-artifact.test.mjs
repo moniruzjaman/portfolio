@@ -35,10 +35,7 @@ test("backendIdsFromToken: a token with no Actions.Results scope is rejected", (
 });
 
 test("backendIdsFromToken: a malformed scope is rejected, not silently half-parsed", () => {
-  assert.throws(
-    () => backendIdsFromToken(jwt({ scp: `Actions.Results:${RUN_ID}` })),
-    /malformed/,
-  );
+  assert.throws(() => backendIdsFromToken(jwt({ scp: `Actions.Results:${RUN_ID}` })), /malformed/);
 });
 
 test("backendIdsFromToken: a token with no scp claim is rejected", () => {
@@ -47,7 +44,12 @@ test("backendIdsFromToken: a token with no scp claim is rejected", () => {
 
 test("artifactNames: pulls the names out of a ListArtifacts response", () => {
   assert.deepEqual(
-    artifactNames({ artifacts: [{ name: "github-pages", id: 1 }, { name: "other", id: 2 }] }),
+    artifactNames({
+      artifacts: [
+        { name: "github-pages", id: 1 },
+        { name: "other", id: 2 },
+      ],
+    }),
     ["github-pages", "other"],
   );
 });

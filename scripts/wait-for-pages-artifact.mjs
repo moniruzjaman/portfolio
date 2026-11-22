@@ -32,6 +32,15 @@
  * Dependency-free by design, like `sync-repos.mjs` — it must not be able to
  * drift out of sync with the workflow that calls it.
  *
+ * IT MUST RUN AS A JAVASCRIPT ACTION, NOT A `run:` STEP
+ * -------------------------------------------------------
+ * The runner injects `ACTIONS_RESULTS_URL` and `ACTIONS_RUNTIME_TOKEN` only
+ * into JavaScript action steps (Runner.Worker/Handlers/NodeScriptActionHandler.cs).
+ * A `run:` step never receives them, and the script exits with
+ * "ACTIONS_RESULTS_URL is not set" there. That is why the caller is the local
+ * action `.github/actions/wait-for-pages-artifact` rather than a bare `run:`
+ * line in deploy.yml.
+ *
  * Usage: node scripts/wait-for-pages-artifact.mjs [name] [attempts] [delayMs]
  */
 

@@ -1,76 +1,15 @@
 {
-  "generatedAt": "2026-11-27T12:16:38.103Z",
+  "generatedAt": "2026-11-27T19:23:54.048Z",
   "source": "moniruzjaman",
   "total": 55,
   "scanned": 84,
   "channels": {
-    "custom-domain": 6,
     "github-pages": 39,
+    "custom-domain": 6,
     "vercel": 23,
     "cloudflare": 5
   },
   "repos": [
-    {
-      "name": "cabi-diagnosis",
-      "slug": "cabi-diagnosis",
-      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
-      "description": "A mobile-first educational app designed to teach Bangladesh farmers and extension workers the CABI Plantwise 5-step diagnostic process. Rather than just giving answers, it trains users to systematically identify crop problems from symptom observation to IPM decision-making.",
-      "language": "TypeScript",
-      "topics": [
-        "bangladesh",
-        "bnp-media-cell",
-        "cabi",
-        "diagnosis",
-        "evaluate",
-        "learn",
-        "monitor",
-        "prevent",
-        "self-learning",
-        "self-reliance",
-        "treatment"
-      ],
-      "pushedAt": "2026-11-27T10:46:33Z",
-      "createdAt": "2026-02-02T15:29:12Z",
-      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
-      "live": "https://cabi.krishiai.live",
-      "customDomain": "https://cabi.krishiai.live",
-      "pages": null,
-      "channels": [
-        "custom-domain"
-      ],
-      "brand": {
-        "name": "উদ্ভিদ গোয়েন্দা",
-        "themeColor": "#046a1a",
-        "icon": "https://cabi.krishiai.live/favicon.png",
-        "image": "https://cabi.krishiai.live/og-share.png",
-        "source": "manifest"
-      },
-      "featured": false
-    },
-    {
-      "name": "rashtra_teen_chokhe",
-      "slug": "rashtra-teen-chokhe",
-      "title": "রাষ্ট্রকে দেখা তিন চোখে",
-      "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
-      "language": "HTML",
-      "topics": [],
-      "pushedAt": "2026-11-26T16:47:40Z",
-      "createdAt": "2026-10-12T04:28:55Z",
-      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
-      "live": null,
-      "customDomain": null,
-      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
-      "channels": [
-        "github-pages"
-      ],
-      "brand": {
-        "name": "রাষ্ট্রকে দেখা তিন চোখে",
-        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
-        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
-        "source": "html"
-      },
-      "featured": false
-    },
     {
       "name": "portfolio",
       "slug": "portfolio",
@@ -78,7 +17,7 @@
       "description": "Built for the field, documented for the future.",
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-11-26T12:31:18Z",
+      "pushedAt": "2026-11-27T19:22:44Z",
       "createdAt": "2026-10-15T15:11:20Z",
       "url": "https://github.com/moniruzjaman/portfolio",
       "live": "https://moniruzjaman.github.io/portfolio/",
@@ -118,7 +57,7 @@
         "self-reliance",
         "treatment"
       ],
-      "pushedAt": "2026-11-26T04:51:02Z",
+      "pushedAt": "2026-11-27T17:29:53Z",
       "createdAt": "2026-11-20T13:45:16Z",
       "url": "https://github.com/moniruzjaman/diagnostic-field-guide",
       "live": "https://moniruzjaman.github.io/diagnostic-field-guide/",
@@ -132,6 +71,67 @@
         "themeColor": "#006a4e",
         "icon": "https://moniruzjaman.github.io/diagnostic-field-guide/icons/icon-192.png",
         "image": "https://moniruzjaman.github.io/diagnostic-field-guide/og-image.jpg?v=4",
+        "source": "manifest"
+      },
+      "featured": false
+    },
+    {
+      "name": "rashtra_teen_chokhe",
+      "slug": "rashtra-teen-chokhe",
+      "title": "রাষ্ট্রকে দেখা তিন চোখে",
+      "description": "একটি সম্পূর্ণ ফিচার-সমৃদ্ধ বাংলা ই-বুক — পড়ুন, শুনুন, শেয়ার করুন। এই রিপোজিটরি GitHub Pages-এ হোস্ট করা একটি স্ট্যাটিক ওয়েব ই-বুক রিডার ধারণ করে, সাথে আছে…",
+      "language": "HTML",
+      "topics": [],
+      "pushedAt": "2026-11-27T16:33:36Z",
+      "createdAt": "2026-10-12T04:28:55Z",
+      "url": "https://github.com/moniruzjaman/rashtra_teen_chokhe",
+      "live": null,
+      "customDomain": null,
+      "pages": "https://moniruzjaman.github.io/rashtra_teen_chokhe/",
+      "channels": [
+        "github-pages"
+      ],
+      "brand": {
+        "name": "রাষ্ট্রকে দেখা তিন চোখে",
+        "icon": "https://moniruzjaman.github.io/rashtra_teen_chokhe/cover.jpg",
+        "image": "https://moniruzjaman.github.io/rashtra_teen_chokhe/og-image.jpg",
+        "source": "html"
+      },
+      "featured": false
+    },
+    {
+      "name": "cabi-diagnosis",
+      "slug": "cabi-diagnosis",
+      "title": "উদ্ভিদ গোয়েন্দা (Plant Detective)",
+      "description": "A mobile-first educational app designed to teach Bangladesh farmers and extension workers the CABI Plantwise 5-step diagnostic process. Rather than just giving answers, it trains users to systematically identify crop problems from symptom observation to IPM decision-making.",
+      "language": "TypeScript",
+      "topics": [
+        "bangladesh",
+        "bnp-media-cell",
+        "cabi",
+        "diagnosis",
+        "evaluate",
+        "learn",
+        "monitor",
+        "prevent",
+        "self-learning",
+        "self-reliance",
+        "treatment"
+      ],
+      "pushedAt": "2026-11-27T10:46:33Z",
+      "createdAt": "2026-02-02T15:29:12Z",
+      "url": "https://github.com/moniruzjaman/cabi-diagnosis",
+      "live": "https://cabi.krishiai.live",
+      "customDomain": "https://cabi.krishiai.live",
+      "pages": null,
+      "channels": [
+        "custom-domain"
+      ],
+      "brand": {
+        "name": "উদ্ভিদ গোয়েন্দা",
+        "themeColor": "#046a1a",
+        "icon": "https://cabi.krishiai.live/favicon.png",
+        "image": "https://cabi.krishiai.live/og-share.png",
         "source": "manifest"
       },
       "featured": false
